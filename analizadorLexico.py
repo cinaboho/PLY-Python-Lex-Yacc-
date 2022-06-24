@@ -121,6 +121,12 @@ t_OPERLOGICO_XOR =r'xor'
 t_OPERLOGICO_OREXCLUSIVO =r'\|\|' #||
 t_OPERLOGICO_NOT = r'!'
 t_OPERASIG_ARRAY = r'=>'
+
+def t_INICIO(t):
+    r'(<\?php){1}'
+
+def t_FIN(t):
+    r'(\?>){1}'
 #.
 #.
 #Cindy
