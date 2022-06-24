@@ -1,4 +1,4 @@
-    from turtle import update
+from turtle import update
 import ply.lex as lex
 import re
 import codecs
@@ -16,7 +16,7 @@ tokens = [
     'PARENIZQ',
     'PARENDER',
     'LLAVEIZQ',
-    'LLAVEEDER',
+    'LLAVEDER',
     'CORCHIZQ',
     'CORCHDER',
     'AMPERSAND',
@@ -42,6 +42,7 @@ tokens = [
     'OPERLOGICO_OREXCLUSIVO',
     'OPERLOGICO_NOT',
     'OPERASIG_ARRAY',
+    'BOOLEANO',
     #
     'INICIO',
     'FIN',
@@ -49,8 +50,10 @@ tokens = [
     #ESENCIALES
     'CADENA',
     'ENTERO',
-    'REAL',
-    'COMENTARIOS',
+    'FLOTANTE',
+    'COMENTARIO_UNA_LINEA',
+    'COMENTARIO_ABIERTO',
+    'COMENTARIO_CERRADO',
     'IDENTIFICADOR'
 
 ]
@@ -88,7 +91,7 @@ reservadas = {
 
 tokens = tokens+list(reservadas.values())
 
-t_DOLAR = r'$'
+t_DOLAR = r'\$'
 t_PUNTOYCOMA = r';'
 t_PUNTO = r'\.'
 t_COMA = r','
@@ -106,16 +109,16 @@ t_RESTA = r'\-'
 t_MULTIPLICACION = r'\*'
 t_DIVISION = r'/'
 t_MODULO = r'%'
-t_EXPONENCIACION = r'**'
-t_COMBINADO_OPERARIT_SUMA = r'+='
+t_EXPONENCIACION = r'\*\*'
+t_COMBINADO_OPERARIT_SUMA = r'\+='
 t_COMBINADO_OPERARIT_RESTA = r'-='
-t_COMBINADO_OPERARIT_MULTIPLICACION = r'*='
+t_COMBINADO_OPERARIT_MULTIPLICACION = r'\*='
 t_COMBINADO_OPERARIT_DIVISION = r'/='
 t_COMBINADO_OPERARIT_MODULO = r'%='
-t_COMBINADO_OPERARIT_EXPONENCIACION = r'**='
+t_COMBINADO_OPERARIT_EXPONENCIACION = r'\*\*='
 t_OPERCOMBINADO_CAD = r'\.='
 t_OPERCOMPARACION = r'=='
-t_OPER_INCREMENTO = r'++'
+t_OPER_INCREMENTO = r'\+\+'
 t_OPER_DECREMENTO = r'--'
 t_OPERLOGICO_OR = r'or'
 t_OPERLOGICO_XOR =r'xor'
@@ -132,6 +135,26 @@ def t_FIN(t):
 #.
 #.
 #Cindy
+
+#Gabriela
+def t_BOOLEANO(t):
+    r'True | False'
+
+def t_CADENA(t):
+    r'".+"'
+    t.type = reservadas.get(t.value, "CADENA")
+    return t
+
+t_COMENTARIO_UNA_LINEA =r'//'
+t_COMENTARIO_ABIERTO = r'/\*'
+t_COMENTARIO_CERRADO = r'\*/'
+
+def t_FLOTANTE(t):
+    r'\d+\.\d+'
+    t.value = float(t.value)
+    return t
+
+#--------------
 
 #.
 #.
@@ -150,3 +173,32 @@ def t_ENTERO(t):
 #.
 #.
 #Daniel
+
+#Gabriela 
+def t_contadorLineas(t):
+    r'\n+'
+    t.lexer.lineno += t.value.count("\n")
+    
+def t_error(t):
+    print(f"Caracter no reconocido {t.value[0]} en línea {t.lineno}")
+    t.lexer.skip(1)
+
+lexer = lex.lex()
+
+def getTokens(lexer):
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break 
+        print(tok)
+
+linea=" "
+codigo = open("source.vb")
+for linea in codigo:
+  lexer.input(linea)
+  getTokens(lexer)
+codigo.close()
+
+print("Análisis Léxico terminado... :)")
+
+#-------------

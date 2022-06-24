@@ -1,0 +1,218 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AMPERSAND
+    COMA
+    COMBINADO_OPERARIT_DIVISION
+    COMBINADO_OPERARIT_EXPONENCIACION
+    COMBINADO_OPERARIT_MODULO
+    COMBINADO_OPERARIT_MULTIPLICACION
+    COMBINADO_OPERARIT_RESTA
+    COMBINADO_OPERARIT_SUMA
+    COMENTARIO_ABIERTO
+    COMENTARIO_CERRADO
+    COMENTARIO_UNA_LINEA
+    CORCHDER
+    CORCHIZQ
+    DIVISION
+    DOLAR
+    DOSPUNTOS
+    EXPONENCIACION
+    FIN
+    IDENTIFICADOR
+    INICIO
+    LLAVEDER
+    LLAVEIZQ
+    MODULO
+    MULTIPLICACION
+    OPERASIGNACION
+    OPERASIG_ARRAY
+    OPERCOMBINADO_CAD
+    OPERCOMPARACION
+    OPERLOGICO_NOT
+    OPERLOGICO_OR
+    OPERLOGICO_OREXCLUSIVO
+    OPERLOGICO_XOR
+    OPERLOG_AND
+    OPER_DECREMENTO
+    OPER_INCREMENTO
+    PARENDER
+    PARENIZQ
+    PUNTO
+    PUNTOYCOMA
+    RESTA
+    SUMA
+    break
+    case
+    class
+    const
+    continue
+    default
+    do
+    echo
+    else
+    end_switch
+    end_while
+    extends
+    for
+    function
+    global
+    if
+    new
+    print
+    private
+    protected
+    public
+    return
+    static
+    switch
+    while
+
+Grammar
+
+Rule 0     S' -> codigoFuente
+Rule 1     codigoFuente -> valor
+Rule 2     valor -> CADENA
+Rule 3     valor -> ENTERO
+Rule 4     valor -> FLOTANTE
+Rule 5     valor -> BOOLEANO
+
+Terminals, with rules where they appear
+
+AMPERSAND            : 
+BOOLEANO             : 5
+CADENA               : 2
+COMA                 : 
+COMBINADO_OPERARIT_DIVISION : 
+COMBINADO_OPERARIT_EXPONENCIACION : 
+COMBINADO_OPERARIT_MODULO : 
+COMBINADO_OPERARIT_MULTIPLICACION : 
+COMBINADO_OPERARIT_RESTA : 
+COMBINADO_OPERARIT_SUMA : 
+COMENTARIO_ABIERTO   : 
+COMENTARIO_CERRADO   : 
+COMENTARIO_UNA_LINEA : 
+CORCHDER             : 
+CORCHIZQ             : 
+DIVISION             : 
+DOLAR                : 
+DOSPUNTOS            : 
+ENTERO               : 3
+EXPONENCIACION       : 
+FIN                  : 
+FLOTANTE             : 4
+IDENTIFICADOR        : 
+INICIO               : 
+LLAVEDER             : 
+LLAVEIZQ             : 
+MODULO               : 
+MULTIPLICACION       : 
+OPERASIGNACION       : 
+OPERASIG_ARRAY       : 
+OPERCOMBINADO_CAD    : 
+OPERCOMPARACION      : 
+OPERLOGICO_NOT       : 
+OPERLOGICO_OR        : 
+OPERLOGICO_OREXCLUSIVO : 
+OPERLOGICO_XOR       : 
+OPERLOG_AND          : 
+OPER_DECREMENTO      : 
+OPER_INCREMENTO      : 
+PARENDER             : 
+PARENIZQ             : 
+PUNTO                : 
+PUNTOYCOMA           : 
+RESTA                : 
+SUMA                 : 
+break                : 
+case                 : 
+class                : 
+const                : 
+continue             : 
+default              : 
+do                   : 
+echo                 : 
+else                 : 
+end_switch           : 
+end_while            : 
+error                : 
+extends              : 
+for                  : 
+function             : 
+global               : 
+if                   : 
+new                  : 
+print                : 
+private              : 
+protected            : 
+public               : 
+return               : 
+static               : 
+switch               : 
+while                : 
+
+Nonterminals, with rules where they appear
+
+codigoFuente         : 0
+valor                : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . codigoFuente
+    (1) codigoFuente -> . valor
+    (2) valor -> . CADENA
+    (3) valor -> . ENTERO
+    (4) valor -> . FLOTANTE
+    (5) valor -> . BOOLEANO
+
+    CADENA          shift and go to state 3
+    ENTERO          shift and go to state 4
+    FLOTANTE        shift and go to state 5
+    BOOLEANO        shift and go to state 6
+
+    codigoFuente                   shift and go to state 1
+    valor                          shift and go to state 2
+
+state 1
+
+    (0) S' -> codigoFuente .
+
+
+
+state 2
+
+    (1) codigoFuente -> valor .
+
+    $end            reduce using rule 1 (codigoFuente -> valor .)
+
+
+state 3
+
+    (2) valor -> CADENA .
+
+    $end            reduce using rule 2 (valor -> CADENA .)
+
+
+state 4
+
+    (3) valor -> ENTERO .
+
+    $end            reduce using rule 3 (valor -> ENTERO .)
+
+
+state 5
+
+    (4) valor -> FLOTANTE .
+
+    $end            reduce using rule 4 (valor -> FLOTANTE .)
+
+
+state 6
+
+    (5) valor -> BOOLEANO .
+
+    $end            reduce using rule 5 (valor -> BOOLEANO .)
+
