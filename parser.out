@@ -16,11 +16,9 @@ Unused terminals:
     CORCHDER
     CORCHIZQ
     DIVISION
-    DOLAR
     DOSPUNTOS
     EXPONENCIACION
     FIN
-    IDENTIFICADOR
     INICIO
     LLAVEDER
     LLAVEIZQ
@@ -73,16 +71,18 @@ Grammar
 
 Rule 0     S' -> codigoFuente
 Rule 1     codigoFuente -> valor
-Rule 2     valor -> CADENA
-Rule 3     valor -> ENTERO
-Rule 4     valor -> FLOTANTE
-Rule 5     valor -> BOOLEANO
+Rule 2     codigoFuente -> variable
+Rule 3     valor -> CADENA
+Rule 4     valor -> ENTERO
+Rule 5     valor -> FLOTANTE
+Rule 6     valor -> BOOLEANO
+Rule 7     variable -> DOLAR IDENTIFICADOR
 
 Terminals, with rules where they appear
 
 AMPERSAND            : 
-BOOLEANO             : 5
-CADENA               : 2
+BOOLEANO             : 6
+CADENA               : 3
 COMA                 : 
 COMBINADO_OPERARIT_DIVISION : 
 COMBINADO_OPERARIT_EXPONENCIACION : 
@@ -96,13 +96,13 @@ COMENTARIO_UNA_LINEA :
 CORCHDER             : 
 CORCHIZQ             : 
 DIVISION             : 
-DOLAR                : 
+DOLAR                : 7
 DOSPUNTOS            : 
-ENTERO               : 3
+ENTERO               : 4
 EXPONENCIACION       : 
 FIN                  : 
-FLOTANTE             : 4
-IDENTIFICADOR        : 
+FLOTANTE             : 5
+IDENTIFICADOR        : 7
 INICIO               : 
 LLAVEDER             : 
 LLAVEIZQ             : 
@@ -156,6 +156,7 @@ Nonterminals, with rules where they appear
 
 codigoFuente         : 0
 valor                : 1
+variable             : 2
 
 Parsing method: LALR
 
@@ -163,18 +164,22 @@ state 0
 
     (0) S' -> . codigoFuente
     (1) codigoFuente -> . valor
-    (2) valor -> . CADENA
-    (3) valor -> . ENTERO
-    (4) valor -> . FLOTANTE
-    (5) valor -> . BOOLEANO
+    (2) codigoFuente -> . variable
+    (3) valor -> . CADENA
+    (4) valor -> . ENTERO
+    (5) valor -> . FLOTANTE
+    (6) valor -> . BOOLEANO
+    (7) variable -> . DOLAR IDENTIFICADOR
 
-    CADENA          shift and go to state 3
-    ENTERO          shift and go to state 4
-    FLOTANTE        shift and go to state 5
-    BOOLEANO        shift and go to state 6
+    CADENA          shift and go to state 4
+    ENTERO          shift and go to state 5
+    FLOTANTE        shift and go to state 6
+    BOOLEANO        shift and go to state 7
+    DOLAR           shift and go to state 8
 
     codigoFuente                   shift and go to state 1
     valor                          shift and go to state 2
+    variable                       shift and go to state 3
 
 state 1
 
@@ -191,28 +196,49 @@ state 2
 
 state 3
 
-    (2) valor -> CADENA .
+    (2) codigoFuente -> variable .
 
-    $end            reduce using rule 2 (valor -> CADENA .)
+    $end            reduce using rule 2 (codigoFuente -> variable .)
 
 
 state 4
 
-    (3) valor -> ENTERO .
+    (3) valor -> CADENA .
 
-    $end            reduce using rule 3 (valor -> ENTERO .)
+    $end            reduce using rule 3 (valor -> CADENA .)
 
 
 state 5
 
-    (4) valor -> FLOTANTE .
+    (4) valor -> ENTERO .
 
-    $end            reduce using rule 4 (valor -> FLOTANTE .)
+    $end            reduce using rule 4 (valor -> ENTERO .)
 
 
 state 6
 
-    (5) valor -> BOOLEANO .
+    (5) valor -> FLOTANTE .
 
-    $end            reduce using rule 5 (valor -> BOOLEANO .)
+    $end            reduce using rule 5 (valor -> FLOTANTE .)
+
+
+state 7
+
+    (6) valor -> BOOLEANO .
+
+    $end            reduce using rule 6 (valor -> BOOLEANO .)
+
+
+state 8
+
+    (7) variable -> DOLAR . IDENTIFICADOR
+
+    IDENTIFICADOR   shift and go to state 9
+
+
+state 9
+
+    (7) variable -> DOLAR IDENTIFICADOR .
+
+    $end            reduce using rule 7 (variable -> DOLAR IDENTIFICADOR .)
 

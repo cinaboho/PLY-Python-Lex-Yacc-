@@ -6,13 +6,17 @@ import ply.yacc as yacc
 from analizadorLexico import tokens
 
 def p_codigoFuente(p):
-    '''codigoFuente : valor'''
+    '''codigoFuente : valor
+                    | variable'''
 
 def p_valor(p):
     '''valor : CADENA
             | ENTERO
             | FLOTANTE
             | BOOLEANO'''
+
+def p_variable(p):
+    '''variable : DOLAR IDENTIFICADOR'''
 
 
 def p_error(p):

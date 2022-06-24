@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMBINADO_OPERARIT_DIVISION COMBINADO_OPERARIT_EXPONENCIACION COMBINADO_OPERARIT_MODULO COMBINADO_OPERARIT_MULTIPLICACION COMBINADO_OPERARIT_RESTA COMBINADO_OPERARIT_SUMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMBINADO_CAD OPERCOMPARACION OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND OPER_DECREMENTO OPER_INCREMENTO PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA break case class const continue default do echo else end_switch end_while extends for function global if new print private protected public return static switch whilecodigoFuente : valorvalor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANO'
+_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMBINADO_OPERARIT_DIVISION COMBINADO_OPERARIT_EXPONENCIACION COMBINADO_OPERARIT_MODULO COMBINADO_OPERARIT_MULTIPLICACION COMBINADO_OPERARIT_RESTA COMBINADO_OPERARIT_SUMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMBINADO_CAD OPERCOMPARACION OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND OPER_DECREMENTO OPER_INCREMENTO PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA break case class const continue default do echo else end_switch end_while extends for function global if new print private protected public return static switch whilecodigoFuente : valor\n                    | variablevalor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANOvariable : DOLAR IDENTIFICADOR'
     
-_lr_action_items = {'CADENA':([0,],[3,]),'ENTERO':([0,],[4,]),'FLOTANTE':([0,],[5,]),'BOOLEANO':([0,],[6,]),'$end':([1,2,3,4,5,6,],[0,-1,-2,-3,-4,-5,]),}
+_lr_action_items = {'CADENA':([0,],[4,]),'ENTERO':([0,],[5,]),'FLOTANTE':([0,],[6,]),'BOOLEANO':([0,],[7,]),'DOLAR':([0,],[8,]),'$end':([1,2,3,4,5,6,7,9,],[0,-1,-2,-3,-4,-5,-6,-7,]),'IDENTIFICADOR':([8,],[9,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,],[2,]),}
+_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,],[2,]),'variable':([0,],[3,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,8 +28,10 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> codigoFuente","S'",1,None,None,None),
   ('codigoFuente -> valor','codigoFuente',1,'p_codigoFuente','main.py',9),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',12),
-  ('valor -> ENTERO','valor',1,'p_valor','main.py',13),
-  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',14),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',15),
+  ('codigoFuente -> variable','codigoFuente',1,'p_codigoFuente','main.py',10),
+  ('valor -> CADENA','valor',1,'p_valor','main.py',13),
+  ('valor -> ENTERO','valor',1,'p_valor','main.py',14),
+  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',15),
+  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',16),
+  ('variable -> DOLAR IDENTIFICADOR','variable',2,'p_variable','main.py',19),
 ]

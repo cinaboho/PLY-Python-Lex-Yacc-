@@ -128,9 +128,11 @@ t_OPERASIG_ARRAY = r'=>'
 
 def t_INICIO(t):
     r'(<\?php){1}'
+    return t
 
 def t_FIN(t):
     r'(\?>){1}'
+    return t
 
 #.
 #.
@@ -138,7 +140,8 @@ def t_FIN(t):
 
 #Gabriela
 def t_BOOLEANO(t):
-    r'True | False'
+    r'(True|False)'
+    return t
 
 def t_CADENA(t):
     r'".+"'
@@ -164,12 +167,14 @@ def t_OPERLOG_AND(t):
     r'(["AND" | \&\&])'
 
 def t_IDENTIFICADOR(t):
-    r'([a-zA-Z_]+[a-zA-Z0-9_]*)'
+    r'([a-zA-Z_][a-zA-Z0-9_]*)'
     t.type = reservadas.get(t.value, "IDENTIFICADOR")
     return t
 
 def t_ENTERO(t):
-    r'([0-9]+)'
+    r'\d+'
+    t.value = int(t.value)
+    return t
 #.
 #.
 #Daniel
