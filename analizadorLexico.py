@@ -50,6 +50,7 @@ tokens = [
     'CADENA',
     'ENTERO',
     'REAL',
+    'COMENTARIOS',
     'IDENTIFICADOR'
 
 ]
