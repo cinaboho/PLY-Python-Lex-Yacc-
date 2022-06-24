@@ -16,26 +16,42 @@ tokens = [
     'PARENIZQ',
     'PARENDER',
     'LLAVEIZQ',
-    'LLAVEDER',
+    'LLAVEEDER',
     'CORCHIZQ',
     'CORCHDER',
     'AMPERSAND',
     'OPERASIGNACION',
-    'OPER_ARITMETICO',
-    'OPERCOMBINADO_ART',
+    'SUMA',
+    'RESTA',
+    'MULTIPLICACION',
+    'DIVISION',
+    'MODULO',
+    'EXPONENCIACION',
+    'COMBINADO_OPERARIT_SUMA',
+    'COMBINADO_OPERARIT_RESTA',
+    'COMBINADO_OPERARIT_MULTIPLICACION',
+    'COMBINADO_OPERARIT_DIVISION',
+    'COMBINADO_OPERARIT_MODULO',
+    'COMBINADO_OPERARIT_EXPONENCIACION',
     'OPERCOMBINADO_CAD',
     'OPERCOMPARACION',
-    'OPERINCDEC',
-    'OPERLOGICO',
+    'OPER_INCREMENTO',
+    'OPER_DECREMENTO',
+    'OPERLOGICO_OR',
+    'OPERLOGICO_XOR',
+    'OPERLOGICO_OREXCLUSIVO',
     'OPERLOGICO_NOT',
     'OPERASIG_ARRAY',
+    #
     'INICIO',
     'FIN',
+    'OPERLOG_AND',
     #ESENCIALES
     'CADENA',
     'ENTERO',
     'REAL',
     'IDENTIFICADOR'
+
 ]
 
 reservadas = {
@@ -65,14 +81,8 @@ reservadas = {
 'PROTECTED':'protected',
 'PRIVATE':'private',
 'NEW':'new',
-'EXTENDS':'extends',
-'OPERLOGICO_AND': 'operlogico_and',
-'INICIO' : 'inicio',
-'FIN' : 'fin',
-'CADENA' :'cadena',
-'ENTERO':'entero',
-'REAL':'real',
-'IDENTIFICADOR':'identificador'
+'EXTENDS':'extends'
+
 }
 
 tokens = tokens+list(reservadas.values())
@@ -106,19 +116,11 @@ t_OPERCOMBINADO_CAD = r'\.='
 t_OPERCOMPARACION = r'=='
 t_OPER_INCREMENTO = r'++'
 t_OPER_DECREMENTO = r'--'
-#t_OPERLOGICO_AND =('and') | ('&&')
 t_OPERLOGICO_OR = r'or'
 t_OPERLOGICO_XOR =r'xor'
 t_OPERLOGICO_OREXCLUSIVO =r'\|\|' #||
 t_OPERLOGICO_NOT = r'!'
 t_OPERASIG_ARRAY = r'=>'
-#t_INICIO = '<?php'
-#t_FIN = '?>'
-#t_CADENA = '\''(~['\''])*'\''
-#t_ENTERO = '([0-9])+'
-#t_REAL = '([0-9])+''.''([0-9])+'
-#t_IDENTIFICADOR = ['a-zA-z']['a-zA-z0-9_']
-
 #.
 #.
 #Cindy
