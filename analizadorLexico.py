@@ -1,4 +1,4 @@
-from turtle import update
+    from turtle import update
 import ply.lex as lex
 import re
 import codecs
@@ -128,6 +128,25 @@ def t_INICIO(t):
 
 def t_FIN(t):
     r'(\?>){1}'
+
 #.
 #.
 #Cindy
+
+#.
+#.
+#Daniel
+
+def t_OPERLOG_AND(t):
+    r'(["AND" | \&\&])'
+
+def t_IDENTIFICADOR(t):
+    r'([a-zA-Z_]+[a-zA-Z0-9_]*)'
+    t.type = reservadas.get(t.value, "IDENTIFICADOR")
+    return t
+
+def t_ENTERO(t):
+    r'([0-9]+)'
+#.
+#.
+#Daniel
