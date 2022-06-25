@@ -1,5 +1,5 @@
 <?php
-$var123 = 5
-PUBLIC $var25
-echo $var123
+$var123 = 5;
+PUBLIC $var25;
+echo $var123;
 ?>

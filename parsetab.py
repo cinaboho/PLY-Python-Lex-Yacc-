@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMBINADO_OPERARIT_DIVISION COMBINADO_OPERARIT_EXPONENCIACION COMBINADO_OPERARIT_MODULO COMBINADO_OPERARIT_MULTIPLICACION COMBINADO_OPERARIT_RESTA COMBINADO_OPERARIT_SUMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMBINADO_CAD OPERCOMPARACION OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND OPER_DECREMENTO OPER_INCREMENTO PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA break case class const continue default do echo else end_switch end_while extends for function global if new print private protected public return static switch whilecodigoFuente : valor\n                    | variablevalor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANOvariable : DOLAR IDENTIFICADOR'
+_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMBINADO_OPERARIT_DIVISION COMBINADO_OPERARIT_EXPONENCIACION COMBINADO_OPERARIT_MODULO COMBINADO_OPERARIT_MULTIPLICACION COMBINADO_OPERARIT_RESTA COMBINADO_OPERARIT_SUMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMBINADO_CAD OPERCOMPARACION OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND OPER_DECREMENTO OPER_INCREMENTO PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA break case class const continue default do echo else end_switch end_while extends for function global if new print private protected public return static switch whilecodigoFuente : valor\n                    | variable\n                    | impresionEcho\n                    | impresionPrint\n                    | valores\n                    | asignacion\n                    | operacionesAvalor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANOvariable : DOLAR IDENTIFICADORvalores :  valor COMA valores\n                | valor\n                | variableimpresionEcho : IDENTIFICADOR CADENA PUNTOYCOMAimpresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMAasignacion : variable OPERASIGNACION valor PUNTOYCOMAoperadoresA : SUMA\n                    | RESTA\n                    | MULTIPLICACION\n                    | DIVISION\n                    | MODULO\n                    | EXPONENCIACIONoperacionesA : valor operadoresA valor'
     
-_lr_action_items = {'CADENA':([0,],[4,]),'ENTERO':([0,],[5,]),'FLOTANTE':([0,],[6,]),'BOOLEANO':([0,],[7,]),'DOLAR':([0,],[8,]),'$end':([1,2,3,4,5,6,7,9,],[0,-1,-2,-3,-4,-5,-6,-7,]),'IDENTIFICADOR':([8,],[9,]),}
+_lr_action_items = {'CADENA':([0,14,15,16,17,18,19,20,21,22,23,26,],[9,25,9,9,-19,-20,-21,-22,-23,-24,9,9,]),'ENTERO':([0,15,16,17,18,19,20,21,22,23,26,],[10,10,10,-19,-20,-21,-22,-23,-24,10,10,]),'FLOTANTE':([0,15,16,17,18,19,20,21,22,23,26,],[11,11,11,-19,-20,-21,-22,-23,-24,11,11,]),'BOOLEANO':([0,15,16,17,18,19,20,21,22,23,26,],[12,12,12,-19,-20,-21,-22,-23,-24,12,12,]),'DOLAR':([0,15,26,],[13,13,13,]),'IDENTIFICADOR':([0,13,],[14,24,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,24,27,28,29,30,32,34,36,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-14,-13,-15,-25,-16,-18,-17,]),'COMA':([2,9,10,11,12,27,],[15,-8,-9,-10,-11,15,]),'SUMA':([2,9,10,11,12,],[17,-8,-9,-10,-11,]),'RESTA':([2,9,10,11,12,],[18,-8,-9,-10,-11,]),'MULTIPLICACION':([2,9,10,11,12,],[19,-8,-9,-10,-11,]),'DIVISION':([2,9,10,11,12,],[20,-8,-9,-10,-11,]),'MODULO':([2,9,10,11,12,],[21,-8,-9,-10,-11,]),'EXPONENCIACION':([2,9,10,11,12,],[22,-8,-9,-10,-11,]),'OPERASIGNACION':([3,24,],[23,-12,]),'PARENDER':([9,10,11,12,24,27,28,29,33,],[-8,-9,-10,-11,-12,-14,-13,-15,35,]),'PUNTOYCOMA':([9,10,11,12,25,31,35,],[-8,-9,-10,-11,32,34,36,]),'PARENIZQ':([14,],[26,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,],[2,]),'variable':([0,],[3,]),}
+_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,15,16,23,26,],[2,27,30,31,27,]),'variable':([0,15,26,],[3,29,29,]),'impresionEcho':([0,],[4,]),'impresionPrint':([0,],[5,]),'valores':([0,15,26,],[6,28,33,]),'asignacion':([0,],[7,]),'operacionesA':([0,],[8,]),'operadoresA':([2,],[16,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -29,9 +29,27 @@ _lr_productions = [
   ("S' -> codigoFuente","S'",1,None,None,None),
   ('codigoFuente -> valor','codigoFuente',1,'p_codigoFuente','main.py',9),
   ('codigoFuente -> variable','codigoFuente',1,'p_codigoFuente','main.py',10),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',13),
-  ('valor -> ENTERO','valor',1,'p_valor','main.py',14),
-  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',15),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',16),
-  ('variable -> DOLAR IDENTIFICADOR','variable',2,'p_variable','main.py',19),
+  ('codigoFuente -> impresionEcho','codigoFuente',1,'p_codigoFuente','main.py',11),
+  ('codigoFuente -> impresionPrint','codigoFuente',1,'p_codigoFuente','main.py',12),
+  ('codigoFuente -> valores','codigoFuente',1,'p_codigoFuente','main.py',13),
+  ('codigoFuente -> asignacion','codigoFuente',1,'p_codigoFuente','main.py',14),
+  ('codigoFuente -> operacionesA','codigoFuente',1,'p_codigoFuente','main.py',15),
+  ('valor -> CADENA','valor',1,'p_valor','main.py',18),
+  ('valor -> ENTERO','valor',1,'p_valor','main.py',19),
+  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',20),
+  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',21),
+  ('variable -> DOLAR IDENTIFICADOR','variable',2,'p_variable','main.py',24),
+  ('valores -> valor COMA valores','valores',3,'p_valores','main.py',27),
+  ('valores -> valor','valores',1,'p_valores','main.py',28),
+  ('valores -> variable','valores',1,'p_valores','main.py',29),
+  ('impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA','impresionEcho',3,'p_impresionEcho','main.py',32),
+  ('impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',35),
+  ('asignacion -> variable OPERASIGNACION valor PUNTOYCOMA','asignacion',4,'p_asignacion','main.py',38),
+  ('operadoresA -> SUMA','operadoresA',1,'p_operadoresA','main.py',41),
+  ('operadoresA -> RESTA','operadoresA',1,'p_operadoresA','main.py',42),
+  ('operadoresA -> MULTIPLICACION','operadoresA',1,'p_operadoresA','main.py',43),
+  ('operadoresA -> DIVISION','operadoresA',1,'p_operadoresA','main.py',44),
+  ('operadoresA -> MODULO','operadoresA',1,'p_operadoresA','main.py',45),
+  ('operadoresA -> EXPONENCIACION','operadoresA',1,'p_operadoresA','main.py',46),
+  ('operacionesA -> valor operadoresA valor','operacionesA',3,'p_operacionesA','main.py',49),
 ]

@@ -38,11 +38,14 @@ tokens = [
     'OPER_INCREMENTO',
     'OPER_DECREMENTO',
     'OPERLOGICO_OR',
+    'OPERLOGICO_AND',
     'OPERLOGICO_XOR',
     'OPERLOGICO_OREXCLUSIVO',
     'OPERLOGICO_NOT',
     'OPERASIG_ARRAY',
     'BOOLEANO',
+    'MAYORQUE',
+    'MENORQUE',
     #
     'INICIO',
     'FIN',
@@ -139,6 +142,10 @@ def t_FIN(t):
 #Cindy
 
 #Gabriela
+t_OPERLOGICO_AND = r'AND'
+t_MAYORQUE=r'>'
+t_MENORQUE = r'<'
+
 def t_BOOLEANO(t):
     r'(True|False)'
     return t
