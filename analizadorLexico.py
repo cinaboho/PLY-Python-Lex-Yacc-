@@ -66,6 +66,7 @@ reservadas = {
 'BREAK':'break',
 'CONTINUE':'continue',
 'DEFAULT':'default',
+'AS':'as',
     #PARA PALABRAS RESERVADAS
 'ECHO':'echo',
 'GLOBAL':'global',

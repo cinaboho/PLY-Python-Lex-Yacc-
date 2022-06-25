@@ -1,10 +1,9 @@
-#Grupo 5
-
-#Gabriela 
+#Grupo 5 
 import ply.yacc as yacc
 
 from analizadorLexico import tokens
 
+#Gabriela
 def p_codigoFuente(p):
     '''codigoFuente : valor
                     | variable
@@ -18,7 +17,17 @@ def p_codigoFuente(p):
                     | condIf
                     | opCombinadas
                     | bucleDoWhile
-                    |'''
+                    | crearArreglos
+                    | bucleForEach
+                    | metodosArray 
+                    | rellenoArreglos
+                    | opLogicos
+                    | operadoresA
+                    | operadoresC
+                    | sentencias
+                    | '''
+
+#metodos array => sort y count
 
 def p_valor(p):
     '''valor : CADENA
@@ -86,18 +95,23 @@ def p_opLogicos(p):
 def p_operacionesL(p):
     '''operacionesL : opLog opLogicos opLog'''
 
-def p_impresionPrint(p):
-    '''impresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
-                        | IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
-                        | IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
-                        | IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
-
 def p_sentencias(p):
     '''sentencias : operacionesL PUNTOYCOMA
                     | operacionesA PUNTOYCOMA
                     | operacionesC PUNTOYCOMA
                     | asignacion
                     | sentencias'''
+
+def p_opCombinadas(p):
+    '''opCombinadas : variable OPERASIGNACION operacionesA
+                    | variable OPERASIGNACION operacionesL
+                    | variable OPERASIGNACION operacionesC'''
+
+def p_impresionPrint(p):
+    '''impresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
+                        | IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
+                        | IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
+                        | IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
 
 def p_retornoBool(p):
     '''retornoBool : BOOLEANO
@@ -109,23 +123,34 @@ def p_condIf(p):
                 | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
                 | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
 
-def p_opCombinadas(p):
-    '''opCombinadas : variable OPERASIGNACION operacionesA
-                    | variable OPERASIGNACION operacionesL
-                    | variable OPERASIGNACION operacionesC'''
-
-
-
 def p_bucleDoWhile(p):
     '''bucleDoWhile : IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
                     | IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
                     | IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
 
+def p_rellenoArray(p):     #clave => valor
+    '''rellenoArray : valores OPERASIG_ARRAY valores COMA
+                    | valores
+                    | COMA valores OPERASIG_ARRAY valores COMA rellenoArray'''
+
+def p_crearArreglos(p):
+    '''crearArreglos : variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
+
+def p_bucleForEach(p):
+    '''bucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
+                    | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER'''
+
+def p_metodosArray(p):
+    '''metodosArray : IDENTIFICADOR PARENIZQ variable PARENDER PUNTOYCOMA
+                    | IDENTIFICADOR PARENIZQ crearArreglos PARENDER PUNTOYCOMA'''
+ 
+# -------------------
 
 
+#Bucle For y Break pendiente!!!!
 
 
-
+#Gabriela
 def p_error(p):
     if p:
       print("Error de sintaxis en token", p.type)
