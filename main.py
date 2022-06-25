@@ -148,8 +148,24 @@ def p_metodosArray(p):
 # -------------------
 
 
-#Bucle For y Break pendiente
-# Falta aplicar else en if!!!!
+#Daniel
+
+def p_crearMapa(p):
+    '''crearMapa : OPERAMAPA PARENIZQ valor COMA variable COMA variable PARENDER PUNTOYCOMA
+                   | OPERAMAPA PARENIZQ valor COMA valor COMA variable PARENDER PUNTOYCOMA
+                   | OPERAMAPA PARENIZQ valor COMA variable COMA valor PARENDER PUNTOYCOMA
+    '''
+
+def p_sumaMapa(p):
+    '''sumaMapa : valor PARENIZQ variable OPERALOGICO_MAP OPERACIONSUM PARENDER PUNTOYCOMA
+    ''''
+
+def p_mapPut(p):
+    '''mapPut : valor OPERALOGICO_MAP OPERAPUT PARENIZQ variable COMA variable PARENDER PUNTOYCOMA 
+
+    '''
+
+#Daniel
 
 
 #Gabriela
