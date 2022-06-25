@@ -19,8 +19,6 @@ Unused terminals:
     const
     continue
     default
-    do
-    echo
     else
     end_switch
     end_while
@@ -28,16 +26,13 @@ Unused terminals:
     for
     function
     global
-    if
     new
-    print
     private
     protected
     public
     return
     static
     switch
-    while
 
 Grammar
 
@@ -57,128 +52,136 @@ Rule 12    codigoFuente -> bucleDoWhile
 Rule 13    codigoFuente -> crearArreglos
 Rule 14    codigoFuente -> bucleForEach
 Rule 15    codigoFuente -> metodosArray
-Rule 16    codigoFuente -> <empty>
-Rule 17    valor -> CADENA
-Rule 18    valor -> ENTERO
-Rule 19    valor -> FLOTANTE
-Rule 20    valor -> BOOLEANO
-Rule 21    variable -> DOLAR IDENTIFICADOR
-Rule 22    valores -> valor
-Rule 23    valores -> variable
-Rule 24    operacionesV -> FLOTANTE
-Rule 25    operacionesV -> ENTERO
-Rule 26    operacionesV -> variable
-Rule 27    opLog -> BOOLEANO
-Rule 28    opLog -> variable
-Rule 29    impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA
-Rule 30    asignacion -> variable OPERASIGNACION valor PUNTOYCOMA
-Rule 31    operadoresA -> SUMA
-Rule 32    operadoresA -> RESTA
-Rule 33    operadoresA -> MULTIPLICACION
-Rule 34    operadoresA -> DIVISION
-Rule 35    operadoresA -> MODULO
-Rule 36    operadoresA -> EXPONENCIACION
-Rule 37    operacionesA -> operacionesV operadoresA operacionesV
-Rule 38    operacionesA -> operacionesV operadoresA operacionesA
-Rule 39    operadoresC -> OPERCOMPARACION
-Rule 40    operadoresC -> OPERCOMPARACION OPERASIGNACION
-Rule 41    operadoresC -> OPERLOGICO_NOT OPERASIGNACION
-Rule 42    operadoresC -> MENORQUE MAYORQUE
-Rule 43    operadoresC -> OPERLOGICO_NOT OPERCOMPARACION
-Rule 44    operadoresC -> MENORQUE
-Rule 45    operadoresC -> MAYORQUE
-Rule 46    operadoresC -> MENORQUE OPERASIGNACION
-Rule 47    operadoresC -> MAYORQUE OPERASIGNACION
-Rule 48    operadoresC -> MENORQUE OPERASIGNACION MAYORQUE
-Rule 49    operacionesC -> valores operadoresC valores
-Rule 50    opLogicos -> OPERLOGICO_AND
-Rule 51    opLogicos -> OPERLOGICO_OR
-Rule 52    opLogicos -> OPERLOGICO_XOR
-Rule 53    opLogicos -> OPERLOGICO_NOT
-Rule 54    opLogicos -> AMPERSAND AMPERSAND
-Rule 55    opLogicos -> OPERLOGICO_OREXCLUSIVO
-Rule 56    operacionesL -> opLog opLogicos opLog
-Rule 57    sentencias -> operacionesL PUNTOYCOMA
-Rule 58    sentencias -> operacionesA PUNTOYCOMA
-Rule 59    sentencias -> operacionesC PUNTOYCOMA
-Rule 60    sentencias -> asignacion
-Rule 61    sentencias -> sentencias
-Rule 62    opCombinadas -> variable OPERASIGNACION operacionesA
-Rule 63    opCombinadas -> variable OPERASIGNACION operacionesL
-Rule 64    opCombinadas -> variable OPERASIGNACION operacionesC
-Rule 65    impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
-Rule 66    impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
-Rule 67    impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
-Rule 68    impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA
-Rule 69    retornoBool -> BOOLEANO
-Rule 70    retornoBool -> operacionesL
-Rule 71    retornoBool -> operacionesC
-Rule 72    condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 73    condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-Rule 74    condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-Rule 75    condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
-Rule 76    bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 77    bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 78    bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 79    rellenoArray -> valores OPERASIG_ARRAY valores COMA
-Rule 80    rellenoArray -> valores
-Rule 81    rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray
-Rule 82    crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-Rule 83    bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
-Rule 84    bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
-Rule 85    metodosArray -> IDENTIFICADOR PARENIZQ variable PARENDER PUNTOYCOMA
-Rule 86    metodosArray -> IDENTIFICADOR PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+Rule 16    codigoFuente -> opLogicos
+Rule 17    codigoFuente -> operadoresA
+Rule 18    codigoFuente -> operadoresC
+Rule 19    codigoFuente -> sentencias
+Rule 20    codigoFuente -> <empty>
+Rule 21    valor -> CADENA
+Rule 22    valor -> ENTERO
+Rule 23    valor -> FLOTANTE
+Rule 24    valor -> BOOLEANO
+Rule 25    variable -> DOLAR IDENTIFICADOR
+Rule 26    valores -> valor
+Rule 27    valores -> variable
+Rule 28    operacionesV -> FLOTANTE
+Rule 29    operacionesV -> ENTERO
+Rule 30    operacionesV -> variable
+Rule 31    opLog -> BOOLEANO
+Rule 32    opLog -> variable
+Rule 33    impresionEcho -> echo CADENA PUNTOYCOMA
+Rule 34    asignacion -> variable OPERASIGNACION valor PUNTOYCOMA
+Rule 35    operadoresA -> SUMA
+Rule 36    operadoresA -> RESTA
+Rule 37    operadoresA -> MULTIPLICACION
+Rule 38    operadoresA -> DIVISION
+Rule 39    operadoresA -> MODULO
+Rule 40    operadoresA -> EXPONENCIACION
+Rule 41    operacionesA -> operacionesV operadoresA operacionesV
+Rule 42    operacionesA -> operacionesV operadoresA operacionesA
+Rule 43    operadoresC -> OPERCOMPARACION
+Rule 44    operadoresC -> OPERCOMPARACION OPERASIGNACION
+Rule 45    operadoresC -> OPERLOGICO_NOT OPERASIGNACION
+Rule 46    operadoresC -> MENORQUE MAYORQUE
+Rule 47    operadoresC -> OPERLOGICO_NOT OPERCOMPARACION
+Rule 48    operadoresC -> MENORQUE
+Rule 49    operadoresC -> MAYORQUE
+Rule 50    operadoresC -> MENORQUE OPERASIGNACION
+Rule 51    operadoresC -> MAYORQUE OPERASIGNACION
+Rule 52    operadoresC -> MENORQUE OPERASIGNACION MAYORQUE
+Rule 53    operacionesC -> valores operadoresC valores
+Rule 54    opLogicos -> OPERLOGICO_AND
+Rule 55    opLogicos -> OPERLOGICO_OR
+Rule 56    opLogicos -> OPERLOGICO_XOR
+Rule 57    opLogicos -> OPERLOGICO_NOT
+Rule 58    opLogicos -> AMPERSAND AMPERSAND
+Rule 59    opLogicos -> OPERLOGICO_OREXCLUSIVO
+Rule 60    operacionesL -> opLog opLogicos opLog
+Rule 61    sentencias -> operacionesL PUNTOYCOMA
+Rule 62    sentencias -> operacionesA PUNTOYCOMA
+Rule 63    sentencias -> operacionesC PUNTOYCOMA
+Rule 64    sentencias -> asignacion
+Rule 65    sentencias -> sentencias
+Rule 66    opCombinadas -> variable OPERASIGNACION operacionesA
+Rule 67    opCombinadas -> variable OPERASIGNACION operacionesL
+Rule 68    opCombinadas -> variable OPERASIGNACION operacionesC
+Rule 69    impresionPrint -> print PARENIZQ valores PARENDER PUNTOYCOMA
+Rule 70    impresionPrint -> print PARENIZQ operacionesL PARENDER PUNTOYCOMA
+Rule 71    impresionPrint -> print PARENIZQ operacionesC PARENDER PUNTOYCOMA
+Rule 72    impresionPrint -> print PARENIZQ operacionesA PARENDER PUNTOYCOMA
+Rule 73    retornoBool -> BOOLEANO
+Rule 74    retornoBool -> operacionesL
+Rule 75    retornoBool -> operacionesC
+Rule 76    condIf -> if PARENIZQ retornoBool PARENDER PUNTOYCOMA
+Rule 77    condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+Rule 78    condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+Rule 79    condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
+Rule 80    bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+Rule 81    bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+Rule 82    bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+Rule 83    rellenoArray -> valores OPERASIG_ARRAY valores COMA
+Rule 84    rellenoArray -> valores
+Rule 85    rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray
+Rule 86    crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
+Rule 87    bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
+Rule 88    bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
+Rule 89    metodosArray -> rsort PARENIZQ variable PARENDER PUNTOYCOMA
+Rule 90    metodosArray -> rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+Rule 91    metodosArray -> count PARENIZQ variable PARENDER PUNTOYCOMA
+Rule 92    metodosArray -> count PARENIZQ crearArreglos PARENDER PUNTOYCOMA
 
 Terminals, with rules where they appear
 
-AMPERSAND            : 54 54
-BOOLEANO             : 20 27 69
-CADENA               : 17 29
-COMA                 : 79 81 81
+AMPERSAND            : 58 58
+BOOLEANO             : 24 31 73
+CADENA               : 21 33
+COMA                 : 83 85 85
 COMENTARIO_ABIERTO   : 
 COMENTARIO_CERRADO   : 
 COMENTARIO_UNA_LINEA : 
 CORCHDER             : 
 CORCHIZQ             : 
-DIVISION             : 34
-DOLAR                : 21
+DIVISION             : 38
+DOLAR                : 25
 DOSPUNTOS            : 
-ENTERO               : 18 25
-EXPONENCIACION       : 36
+ENTERO               : 22 29
+EXPONENCIACION       : 40
 FIN                  : 
-FLOTANTE             : 19 24
-IDENTIFICADOR        : 21 29 65 66 67 68 72 73 74 75 76 76 77 77 78 78 82 83 84 85 86
+FLOTANTE             : 23 28
+IDENTIFICADOR        : 25 87 88
 INICIO               : 
-LLAVEDER             : 73 74 75 76 77 78 83 84
-LLAVEIZQ             : 73 74 75 76 77 78 83 84
-MAYORQUE             : 42 45 47 48
-MENORQUE             : 42 44 46 48
-MODULO               : 35
-MULTIPLICACION       : 33
-OPERASIGNACION       : 30 40 41 46 47 48 62 63 64 82
-OPERASIG_ARRAY       : 79 81 84
-OPERCOMPARACION      : 39 40 43
-OPERLOGICO_AND       : 50
-OPERLOGICO_NOT       : 41 43 53
-OPERLOGICO_OR        : 51
-OPERLOGICO_OREXCLUSIVO : 55
-OPERLOGICO_XOR       : 52
+LLAVEDER             : 77 78 79 80 81 82 87 88
+LLAVEIZQ             : 77 78 79 80 81 82 87 88
+MAYORQUE             : 46 49 51 52
+MENORQUE             : 46 48 50 52
+MODULO               : 39
+MULTIPLICACION       : 37
+OPERASIGNACION       : 34 44 45 50 51 52 66 67 68 86
+OPERASIG_ARRAY       : 83 85 88
+OPERCOMPARACION      : 43 44 47
+OPERLOGICO_AND       : 54
+OPERLOGICO_NOT       : 45 47 57
+OPERLOGICO_OR        : 55
+OPERLOGICO_OREXCLUSIVO : 59
+OPERLOGICO_XOR       : 56
 OPERLOG_AND          : 
-PARENDER             : 65 66 67 68 72 73 74 75 76 77 78 82 85 86
-PARENIZQ             : 65 66 67 68 72 73 74 75 76 77 78 82 85 86
+PARENDER             : 69 70 71 72 76 77 78 79 80 81 82 86 89 90 91 92
+PARENIZQ             : 69 70 71 72 76 77 78 79 80 81 82 86 89 90 91 92
 PUNTO                : 
-PUNTOYCOMA           : 29 30 57 58 59 65 66 67 68 72 76 77 78 82 85 86
-RESTA                : 32
-SUMA                 : 31
+PUNTOYCOMA           : 33 34 61 62 63 69 70 71 72 76 80 81 82 86 89 90 91 92
+RESTA                : 36
+SUMA                 : 35
+array                : 86
 as                   : 
 break                : 
 case                 : 
 class                : 
 const                : 
 continue             : 
+count                : 91 92
 default              : 
-do                   : 
-echo                 : 
+do                   : 80 81 82
+echo                 : 33
 else                 : 
 end_switch           : 
 end_while            : 
@@ -187,43 +190,44 @@ extends              :
 for                  : 
 function             : 
 global               : 
-if                   : 
+if                   : 76 77 78 79
 new                  : 
-print                : 
+print                : 69 70 71 72
 private              : 
 protected            : 
 public               : 
 return               : 
+rsort                : 89 90
 static               : 
 switch               : 
-while                : 
+while                : 80 81 82
 
 Nonterminals, with rules where they appear
 
-asignacion           : 6 60
+asignacion           : 6 64
 bucleDoWhile         : 12
 bucleForEach         : 14
 codigoFuente         : 0
 condIf               : 10
-crearArreglos        : 13 86
-impresionEcho        : 3 75 78
-impresionPrint       : 4 74 77
+crearArreglos        : 13 90 92
+impresionEcho        : 3 79 82
+impresionPrint       : 4 78 81
 metodosArray         : 15
 opCombinadas         : 11
-opLog                : 56 56
-opLogicos            : 56
-operacionesA         : 7 38 58 62 68
-operacionesC         : 8 59 64 67 71
-operacionesL         : 9 57 63 66 70
-operacionesV         : 37 37 38
-operadoresA          : 37 38
-operadoresC          : 49
-rellenoArray         : 81 82
-retornoBool          : 72 73 74 75 76 77 78
-sentencias           : 61 73 76 83 84
-valor                : 1 22 30
-valores              : 5 49 49 65 79 79 80 81 81
-variable             : 2 23 26 28 30 62 63 64 82 83 83 84 84 84 85
+opLog                : 60 60
+opLogicos            : 16 60
+operacionesA         : 7 42 62 66 72
+operacionesC         : 8 63 68 71 75
+operacionesL         : 9 61 67 70 74
+operacionesV         : 41 41 42
+operadoresA          : 17 41 42
+operadoresC          : 18 53
+rellenoArray         : 85 86
+retornoBool          : 76 77 78 79 80 81 82
+sentencias           : 19 65 77 80 87 88
+valor                : 1 26 34
+valores              : 5 53 53 69 83 83 84 85 85
+variable             : 2 27 30 32 34 66 67 68 86 87 87 88 88 88 89 91
 
 Parsing method: LALR
 
@@ -245,52 +249,105 @@ state 0
     (13) codigoFuente -> . crearArreglos
     (14) codigoFuente -> . bucleForEach
     (15) codigoFuente -> . metodosArray
-    (16) codigoFuente -> .
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (29) impresionEcho -> . IDENTIFICADOR CADENA PUNTOYCOMA
-    (65) impresionPrint -> . IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (30) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (49) operacionesC -> . valores operadoresC valores
-    (56) operacionesL -> . opLog opLogicos opLog
-    (72) condIf -> . IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (73) condIf -> . IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-    (74) condIf -> . IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-    (75) condIf -> . IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
-    (62) opCombinadas -> . variable OPERASIGNACION operacionesA
-    (63) opCombinadas -> . variable OPERASIGNACION operacionesL
-    (64) opCombinadas -> . variable OPERASIGNACION operacionesC
-    (76) bucleDoWhile -> . IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (77) bucleDoWhile -> . IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (78) bucleDoWhile -> . IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (82) crearArreglos -> . variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-    (83) bucleForEach -> . variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
-    (84) bucleForEach -> . variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
-    (85) metodosArray -> . IDENTIFICADOR PARENIZQ variable PARENDER PUNTOYCOMA
-    (86) metodosArray -> . IDENTIFICADOR PARENIZQ crearArreglos PARENDER PUNTOYCOMA
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
+    (16) codigoFuente -> . opLogicos
+    (17) codigoFuente -> . operadoresA
+    (18) codigoFuente -> . operadoresC
+    (19) codigoFuente -> . sentencias
+    (20) codigoFuente -> .
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (33) impresionEcho -> . echo CADENA PUNTOYCOMA
+    (69) impresionPrint -> . print PARENIZQ valores PARENDER PUNTOYCOMA
+    (70) impresionPrint -> . print PARENIZQ operacionesL PARENDER PUNTOYCOMA
+    (71) impresionPrint -> . print PARENIZQ operacionesC PARENDER PUNTOYCOMA
+    (72) impresionPrint -> . print PARENIZQ operacionesA PARENDER PUNTOYCOMA
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (34) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (53) operacionesC -> . valores operadoresC valores
+    (60) operacionesL -> . opLog opLogicos opLog
+    (76) condIf -> . if PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (77) condIf -> . if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+    (78) condIf -> . if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+    (79) condIf -> . if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (66) opCombinadas -> . variable OPERASIGNACION operacionesA
+    (67) opCombinadas -> . variable OPERASIGNACION operacionesL
+    (68) opCombinadas -> . variable OPERASIGNACION operacionesC
+    (80) bucleDoWhile -> . do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (81) bucleDoWhile -> . do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (82) bucleDoWhile -> . do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (86) crearArreglos -> . variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
+    (87) bucleForEach -> . variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
+    (88) bucleForEach -> . variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
+    (89) metodosArray -> . rsort PARENIZQ variable PARENDER PUNTOYCOMA
+    (90) metodosArray -> . rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+    (91) metodosArray -> . count PARENIZQ variable PARENDER PUNTOYCOMA
+    (92) metodosArray -> . count PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+    (54) opLogicos -> . OPERLOGICO_AND
+    (55) opLogicos -> . OPERLOGICO_OR
+    (56) opLogicos -> . OPERLOGICO_XOR
+    (57) opLogicos -> . OPERLOGICO_NOT
+    (58) opLogicos -> . AMPERSAND AMPERSAND
+    (59) opLogicos -> . OPERLOGICO_OREXCLUSIVO
+    (35) operadoresA -> . SUMA
+    (36) operadoresA -> . RESTA
+    (37) operadoresA -> . MULTIPLICACION
+    (38) operadoresA -> . DIVISION
+    (39) operadoresA -> . MODULO
+    (40) operadoresA -> . EXPONENCIACION
+    (43) operadoresC -> . OPERCOMPARACION
+    (44) operadoresC -> . OPERCOMPARACION OPERASIGNACION
+    (45) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
+    (46) operadoresC -> . MENORQUE MAYORQUE
+    (47) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
+    (48) operadoresC -> . MENORQUE
+    (49) operadoresC -> . MAYORQUE
+    (50) operadoresC -> . MENORQUE OPERASIGNACION
+    (51) operadoresC -> . MAYORQUE OPERASIGNACION
+    (52) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
+    (61) sentencias -> . operacionesL PUNTOYCOMA
+    (62) sentencias -> . operacionesA PUNTOYCOMA
+    (63) sentencias -> . operacionesC PUNTOYCOMA
+    (64) sentencias -> . asignacion
+    (65) sentencias -> . sentencias
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
 
-    $end            reduce using rule 16 (codigoFuente -> .)
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 18
-    FLOTANTE        shift and go to state 19
-    BOOLEANO        shift and go to state 20
-    DOLAR           shift and go to state 21
-    IDENTIFICADOR   shift and go to state 22
+    $end            reduce using rule 20 (codigoFuente -> .)
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 22
+    FLOTANTE        shift and go to state 23
+    BOOLEANO        shift and go to state 24
+    DOLAR           shift and go to state 25
+    echo            shift and go to state 26
+    print           shift and go to state 27
+    if              shift and go to state 30
+    do              shift and go to state 31
+    rsort           shift and go to state 32
+    count           shift and go to state 33
+    OPERLOGICO_AND  shift and go to state 34
+    OPERLOGICO_OR   shift and go to state 35
+    OPERLOGICO_XOR  shift and go to state 36
+    OPERLOGICO_NOT  shift and go to state 37
+    AMPERSAND       shift and go to state 38
+    OPERLOGICO_OREXCLUSIVO shift and go to state 39
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
+    MODULO          shift and go to state 44
+    EXPONENCIACION  shift and go to state 45
+    OPERCOMPARACION shift and go to state 46
+    MENORQUE        shift and go to state 47
+    MAYORQUE        shift and go to state 48
 
     codigoFuente                   shift and go to state 1
     valor                          shift and go to state 2
@@ -308,8 +365,12 @@ state 0
     crearArreglos                  shift and go to state 14
     bucleForEach                   shift and go to state 15
     metodosArray                   shift and go to state 16
-    operacionesV                   shift and go to state 23
-    opLog                          shift and go to state 24
+    opLogicos                      shift and go to state 17
+    operadoresA                    shift and go to state 18
+    operadoresC                    shift and go to state 19
+    sentencias                     shift and go to state 20
+    operacionesV                   shift and go to state 28
+    opLog                          shift and go to state 29
 
 state 1
 
@@ -320,55 +381,55 @@ state 1
 state 2
 
     (1) codigoFuente -> valor .
-    (22) valores -> valor .
+    (26) valores -> valor .
 
   ! reduce/reduce conflict for $end resolved using rule 1 (codigoFuente -> valor .)
     $end            reduce using rule 1 (codigoFuente -> valor .)
-    OPERCOMPARACION reduce using rule 22 (valores -> valor .)
-    OPERLOGICO_NOT  reduce using rule 22 (valores -> valor .)
-    MENORQUE        reduce using rule 22 (valores -> valor .)
-    MAYORQUE        reduce using rule 22 (valores -> valor .)
+    OPERCOMPARACION reduce using rule 26 (valores -> valor .)
+    OPERLOGICO_NOT  reduce using rule 26 (valores -> valor .)
+    MENORQUE        reduce using rule 26 (valores -> valor .)
+    MAYORQUE        reduce using rule 26 (valores -> valor .)
 
-  ! $end            [ reduce using rule 22 (valores -> valor .) ]
+  ! $end            [ reduce using rule 26 (valores -> valor .) ]
 
 
 state 3
 
     (2) codigoFuente -> variable .
-    (23) valores -> variable .
-    (30) asignacion -> variable . OPERASIGNACION valor PUNTOYCOMA
-    (62) opCombinadas -> variable . OPERASIGNACION operacionesA
-    (63) opCombinadas -> variable . OPERASIGNACION operacionesL
-    (64) opCombinadas -> variable . OPERASIGNACION operacionesC
-    (82) crearArreglos -> variable . OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-    (83) bucleForEach -> variable . IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
-    (84) bucleForEach -> variable . IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
-    (26) operacionesV -> variable .
-    (28) opLog -> variable .
+    (27) valores -> variable .
+    (34) asignacion -> variable . OPERASIGNACION valor PUNTOYCOMA
+    (66) opCombinadas -> variable . OPERASIGNACION operacionesA
+    (67) opCombinadas -> variable . OPERASIGNACION operacionesL
+    (68) opCombinadas -> variable . OPERASIGNACION operacionesC
+    (86) crearArreglos -> variable . OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
+    (87) bucleForEach -> variable . IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
+    (88) bucleForEach -> variable . IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
+    (30) operacionesV -> variable .
+    (32) opLog -> variable .
 
   ! reduce/reduce conflict for $end resolved using rule 2 (codigoFuente -> variable .)
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 23 (valores -> variable .)
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 27 (valores -> variable .)
     $end            reduce using rule 2 (codigoFuente -> variable .)
-    OPERCOMPARACION reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_NOT  reduce using rule 23 (valores -> variable .)
-    MENORQUE        reduce using rule 23 (valores -> variable .)
-    MAYORQUE        reduce using rule 23 (valores -> variable .)
-    OPERASIGNACION  shift and go to state 25
-    IDENTIFICADOR   shift and go to state 26
-    SUMA            reduce using rule 26 (operacionesV -> variable .)
-    RESTA           reduce using rule 26 (operacionesV -> variable .)
-    MULTIPLICACION  reduce using rule 26 (operacionesV -> variable .)
-    DIVISION        reduce using rule 26 (operacionesV -> variable .)
-    MODULO          reduce using rule 26 (operacionesV -> variable .)
-    EXPONENCIACION  reduce using rule 26 (operacionesV -> variable .)
-    OPERLOGICO_AND  reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OR   reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_XOR  reduce using rule 28 (opLog -> variable .)
-    AMPERSAND       reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 28 (opLog -> variable .)
+    OPERCOMPARACION reduce using rule 27 (valores -> variable .)
+    OPERLOGICO_NOT  reduce using rule 27 (valores -> variable .)
+    MENORQUE        reduce using rule 27 (valores -> variable .)
+    MAYORQUE        reduce using rule 27 (valores -> variable .)
+    OPERASIGNACION  shift and go to state 49
+    IDENTIFICADOR   shift and go to state 50
+    SUMA            reduce using rule 30 (operacionesV -> variable .)
+    RESTA           reduce using rule 30 (operacionesV -> variable .)
+    MULTIPLICACION  reduce using rule 30 (operacionesV -> variable .)
+    DIVISION        reduce using rule 30 (operacionesV -> variable .)
+    MODULO          reduce using rule 30 (operacionesV -> variable .)
+    EXPONENCIACION  reduce using rule 30 (operacionesV -> variable .)
+    OPERLOGICO_AND  reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OR   reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_XOR  reduce using rule 32 (opLog -> variable .)
+    AMPERSAND       reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 32 (opLog -> variable .)
 
-  ! $end            [ reduce using rule 23 (valores -> variable .) ]
-  ! OPERLOGICO_NOT  [ reduce using rule 28 (opLog -> variable .) ]
+  ! $end            [ reduce using rule 27 (valores -> variable .) ]
+  ! OPERLOGICO_NOT  [ reduce using rule 32 (opLog -> variable .) ]
 
 
 state 4
@@ -388,52 +449,62 @@ state 5
 state 6
 
     (5) codigoFuente -> valores .
-    (49) operacionesC -> valores . operadoresC valores
-    (39) operadoresC -> . OPERCOMPARACION
-    (40) operadoresC -> . OPERCOMPARACION OPERASIGNACION
-    (41) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
-    (42) operadoresC -> . MENORQUE MAYORQUE
-    (43) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
-    (44) operadoresC -> . MENORQUE
-    (45) operadoresC -> . MAYORQUE
-    (46) operadoresC -> . MENORQUE OPERASIGNACION
-    (47) operadoresC -> . MAYORQUE OPERASIGNACION
-    (48) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
+    (53) operacionesC -> valores . operadoresC valores
+    (43) operadoresC -> . OPERCOMPARACION
+    (44) operadoresC -> . OPERCOMPARACION OPERASIGNACION
+    (45) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
+    (46) operadoresC -> . MENORQUE MAYORQUE
+    (47) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
+    (48) operadoresC -> . MENORQUE
+    (49) operadoresC -> . MAYORQUE
+    (50) operadoresC -> . MENORQUE OPERASIGNACION
+    (51) operadoresC -> . MAYORQUE OPERASIGNACION
+    (52) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
 
     $end            reduce using rule 5 (codigoFuente -> valores .)
-    OPERCOMPARACION shift and go to state 28
-    OPERLOGICO_NOT  shift and go to state 29
-    MENORQUE        shift and go to state 30
-    MAYORQUE        shift and go to state 31
+    OPERCOMPARACION shift and go to state 46
+    OPERLOGICO_NOT  shift and go to state 52
+    MENORQUE        shift and go to state 47
+    MAYORQUE        shift and go to state 48
 
-    operadoresC                    shift and go to state 27
+    operadoresC                    shift and go to state 51
 
 state 7
 
     (6) codigoFuente -> asignacion .
+    (64) sentencias -> asignacion .
 
+  ! reduce/reduce conflict for $end resolved using rule 6 (codigoFuente -> asignacion .)
     $end            reduce using rule 6 (codigoFuente -> asignacion .)
+
+  ! $end            [ reduce using rule 64 (sentencias -> asignacion .) ]
 
 
 state 8
 
     (7) codigoFuente -> operacionesA .
+    (62) sentencias -> operacionesA . PUNTOYCOMA
 
     $end            reduce using rule 7 (codigoFuente -> operacionesA .)
+    PUNTOYCOMA      shift and go to state 53
 
 
 state 9
 
     (8) codigoFuente -> operacionesC .
+    (63) sentencias -> operacionesC . PUNTOYCOMA
 
     $end            reduce using rule 8 (codigoFuente -> operacionesC .)
+    PUNTOYCOMA      shift and go to state 54
 
 
 state 10
 
     (9) codigoFuente -> operacionesL .
+    (61) sentencias -> operacionesL . PUNTOYCOMA
 
     $end            reduce using rule 9 (codigoFuente -> operacionesL .)
+    PUNTOYCOMA      shift and go to state 55
 
 
 state 11
@@ -480,2133 +551,2201 @@ state 16
 
 state 17
 
-    (17) valor -> CADENA .
+    (16) codigoFuente -> opLogicos .
 
-    $end            reduce using rule 17 (valor -> CADENA .)
-    OPERCOMPARACION reduce using rule 17 (valor -> CADENA .)
-    OPERLOGICO_NOT  reduce using rule 17 (valor -> CADENA .)
-    MENORQUE        reduce using rule 17 (valor -> CADENA .)
-    MAYORQUE        reduce using rule 17 (valor -> CADENA .)
-    PUNTOYCOMA      reduce using rule 17 (valor -> CADENA .)
-    PARENDER        reduce using rule 17 (valor -> CADENA .)
-    OPERASIG_ARRAY  reduce using rule 17 (valor -> CADENA .)
-    COMA            reduce using rule 17 (valor -> CADENA .)
+    $end            reduce using rule 16 (codigoFuente -> opLogicos .)
 
 
 state 18
 
-    (18) valor -> ENTERO .
-    (25) operacionesV -> ENTERO .
+    (17) codigoFuente -> operadoresA .
 
-    $end            reduce using rule 18 (valor -> ENTERO .)
-    OPERCOMPARACION reduce using rule 18 (valor -> ENTERO .)
-    OPERLOGICO_NOT  reduce using rule 18 (valor -> ENTERO .)
-    MENORQUE        reduce using rule 18 (valor -> ENTERO .)
-    MAYORQUE        reduce using rule 18 (valor -> ENTERO .)
-    PUNTOYCOMA      reduce using rule 18 (valor -> ENTERO .)
-    PARENDER        reduce using rule 18 (valor -> ENTERO .)
-    SUMA            reduce using rule 25 (operacionesV -> ENTERO .)
-    RESTA           reduce using rule 25 (operacionesV -> ENTERO .)
-    MULTIPLICACION  reduce using rule 25 (operacionesV -> ENTERO .)
-    DIVISION        reduce using rule 25 (operacionesV -> ENTERO .)
-    MODULO          reduce using rule 25 (operacionesV -> ENTERO .)
-    EXPONENCIACION  reduce using rule 25 (operacionesV -> ENTERO .)
+    $end            reduce using rule 17 (codigoFuente -> operadoresA .)
 
 
 state 19
 
-    (19) valor -> FLOTANTE .
-    (24) operacionesV -> FLOTANTE .
+    (18) codigoFuente -> operadoresC .
 
-    $end            reduce using rule 19 (valor -> FLOTANTE .)
-    OPERCOMPARACION reduce using rule 19 (valor -> FLOTANTE .)
-    OPERLOGICO_NOT  reduce using rule 19 (valor -> FLOTANTE .)
-    MENORQUE        reduce using rule 19 (valor -> FLOTANTE .)
-    MAYORQUE        reduce using rule 19 (valor -> FLOTANTE .)
-    PUNTOYCOMA      reduce using rule 19 (valor -> FLOTANTE .)
-    PARENDER        reduce using rule 19 (valor -> FLOTANTE .)
-    SUMA            reduce using rule 24 (operacionesV -> FLOTANTE .)
-    RESTA           reduce using rule 24 (operacionesV -> FLOTANTE .)
-    MULTIPLICACION  reduce using rule 24 (operacionesV -> FLOTANTE .)
-    DIVISION        reduce using rule 24 (operacionesV -> FLOTANTE .)
-    MODULO          reduce using rule 24 (operacionesV -> FLOTANTE .)
-    EXPONENCIACION  reduce using rule 24 (operacionesV -> FLOTANTE .)
+    $end            reduce using rule 18 (codigoFuente -> operadoresC .)
 
 
 state 20
 
-    (20) valor -> BOOLEANO .
-    (27) opLog -> BOOLEANO .
+    (19) codigoFuente -> sentencias .
+    (65) sentencias -> sentencias .
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 20 (valor -> BOOLEANO .)
-    $end            reduce using rule 20 (valor -> BOOLEANO .)
-    OPERCOMPARACION reduce using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_NOT  reduce using rule 20 (valor -> BOOLEANO .)
-    MENORQUE        reduce using rule 20 (valor -> BOOLEANO .)
-    MAYORQUE        reduce using rule 20 (valor -> BOOLEANO .)
-    PUNTOYCOMA      reduce using rule 20 (valor -> BOOLEANO .)
-    PARENDER        reduce using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_AND  reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OR   reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_XOR  reduce using rule 27 (opLog -> BOOLEANO .)
-    AMPERSAND       reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 27 (opLog -> BOOLEANO .)
+  ! reduce/reduce conflict for $end resolved using rule 19 (codigoFuente -> sentencias .)
+    $end            reduce using rule 19 (codigoFuente -> sentencias .)
 
-  ! OPERLOGICO_NOT  [ reduce using rule 27 (opLog -> BOOLEANO .) ]
+  ! $end            [ reduce using rule 65 (sentencias -> sentencias .) ]
 
 
 state 21
 
-    (21) variable -> DOLAR . IDENTIFICADOR
+    (21) valor -> CADENA .
 
-    IDENTIFICADOR   shift and go to state 32
+    $end            reduce using rule 21 (valor -> CADENA .)
+    OPERCOMPARACION reduce using rule 21 (valor -> CADENA .)
+    OPERLOGICO_NOT  reduce using rule 21 (valor -> CADENA .)
+    MENORQUE        reduce using rule 21 (valor -> CADENA .)
+    MAYORQUE        reduce using rule 21 (valor -> CADENA .)
+    PUNTOYCOMA      reduce using rule 21 (valor -> CADENA .)
+    PARENDER        reduce using rule 21 (valor -> CADENA .)
+    OPERASIG_ARRAY  reduce using rule 21 (valor -> CADENA .)
+    COMA            reduce using rule 21 (valor -> CADENA .)
 
 
 state 22
 
-    (29) impresionEcho -> IDENTIFICADOR . CADENA PUNTOYCOMA
-    (65) impresionPrint -> IDENTIFICADOR . PARENIZQ valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> IDENTIFICADOR . PARENIZQ operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> IDENTIFICADOR . PARENIZQ operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> IDENTIFICADOR . PARENIZQ operacionesA PARENDER PUNTOYCOMA
-    (72) condIf -> IDENTIFICADOR . PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (73) condIf -> IDENTIFICADOR . PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-    (74) condIf -> IDENTIFICADOR . PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-    (75) condIf -> IDENTIFICADOR . PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
-    (76) bucleDoWhile -> IDENTIFICADOR . LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (77) bucleDoWhile -> IDENTIFICADOR . LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (78) bucleDoWhile -> IDENTIFICADOR . LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (85) metodosArray -> IDENTIFICADOR . PARENIZQ variable PARENDER PUNTOYCOMA
-    (86) metodosArray -> IDENTIFICADOR . PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+    (22) valor -> ENTERO .
+    (29) operacionesV -> ENTERO .
 
-    CADENA          shift and go to state 33
-    PARENIZQ        shift and go to state 34
-    LLAVEIZQ        shift and go to state 35
+    $end            reduce using rule 22 (valor -> ENTERO .)
+    OPERCOMPARACION reduce using rule 22 (valor -> ENTERO .)
+    OPERLOGICO_NOT  reduce using rule 22 (valor -> ENTERO .)
+    MENORQUE        reduce using rule 22 (valor -> ENTERO .)
+    MAYORQUE        reduce using rule 22 (valor -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 22 (valor -> ENTERO .)
+    PARENDER        reduce using rule 22 (valor -> ENTERO .)
+    SUMA            reduce using rule 29 (operacionesV -> ENTERO .)
+    RESTA           reduce using rule 29 (operacionesV -> ENTERO .)
+    MULTIPLICACION  reduce using rule 29 (operacionesV -> ENTERO .)
+    DIVISION        reduce using rule 29 (operacionesV -> ENTERO .)
+    MODULO          reduce using rule 29 (operacionesV -> ENTERO .)
+    EXPONENCIACION  reduce using rule 29 (operacionesV -> ENTERO .)
 
 
 state 23
 
-    (37) operacionesA -> operacionesV . operadoresA operacionesV
-    (38) operacionesA -> operacionesV . operadoresA operacionesA
-    (31) operadoresA -> . SUMA
-    (32) operadoresA -> . RESTA
-    (33) operadoresA -> . MULTIPLICACION
-    (34) operadoresA -> . DIVISION
-    (35) operadoresA -> . MODULO
-    (36) operadoresA -> . EXPONENCIACION
+    (23) valor -> FLOTANTE .
+    (28) operacionesV -> FLOTANTE .
 
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
-    MODULO          shift and go to state 41
-    EXPONENCIACION  shift and go to state 42
+    $end            reduce using rule 23 (valor -> FLOTANTE .)
+    OPERCOMPARACION reduce using rule 23 (valor -> FLOTANTE .)
+    OPERLOGICO_NOT  reduce using rule 23 (valor -> FLOTANTE .)
+    MENORQUE        reduce using rule 23 (valor -> FLOTANTE .)
+    MAYORQUE        reduce using rule 23 (valor -> FLOTANTE .)
+    PUNTOYCOMA      reduce using rule 23 (valor -> FLOTANTE .)
+    PARENDER        reduce using rule 23 (valor -> FLOTANTE .)
+    SUMA            reduce using rule 28 (operacionesV -> FLOTANTE .)
+    RESTA           reduce using rule 28 (operacionesV -> FLOTANTE .)
+    MULTIPLICACION  reduce using rule 28 (operacionesV -> FLOTANTE .)
+    DIVISION        reduce using rule 28 (operacionesV -> FLOTANTE .)
+    MODULO          reduce using rule 28 (operacionesV -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 28 (operacionesV -> FLOTANTE .)
 
-    operadoresA                    shift and go to state 36
 
 state 24
 
-    (56) operacionesL -> opLog . opLogicos opLog
-    (50) opLogicos -> . OPERLOGICO_AND
-    (51) opLogicos -> . OPERLOGICO_OR
-    (52) opLogicos -> . OPERLOGICO_XOR
-    (53) opLogicos -> . OPERLOGICO_NOT
-    (54) opLogicos -> . AMPERSAND AMPERSAND
-    (55) opLogicos -> . OPERLOGICO_OREXCLUSIVO
+    (24) valor -> BOOLEANO .
+    (31) opLog -> BOOLEANO .
 
-    OPERLOGICO_AND  shift and go to state 44
-    OPERLOGICO_OR   shift and go to state 45
-    OPERLOGICO_XOR  shift and go to state 46
-    OPERLOGICO_NOT  shift and go to state 47
-    AMPERSAND       shift and go to state 48
-    OPERLOGICO_OREXCLUSIVO shift and go to state 49
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 24 (valor -> BOOLEANO .)
+    $end            reduce using rule 24 (valor -> BOOLEANO .)
+    OPERCOMPARACION reduce using rule 24 (valor -> BOOLEANO .)
+    OPERLOGICO_NOT  reduce using rule 24 (valor -> BOOLEANO .)
+    MENORQUE        reduce using rule 24 (valor -> BOOLEANO .)
+    MAYORQUE        reduce using rule 24 (valor -> BOOLEANO .)
+    PUNTOYCOMA      reduce using rule 24 (valor -> BOOLEANO .)
+    PARENDER        reduce using rule 24 (valor -> BOOLEANO .)
+    OPERLOGICO_AND  reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_OR   reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_XOR  reduce using rule 31 (opLog -> BOOLEANO .)
+    AMPERSAND       reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 31 (opLog -> BOOLEANO .)
 
-    opLogicos                      shift and go to state 43
+  ! OPERLOGICO_NOT  [ reduce using rule 31 (opLog -> BOOLEANO .) ]
+
 
 state 25
 
-    (30) asignacion -> variable OPERASIGNACION . valor PUNTOYCOMA
-    (62) opCombinadas -> variable OPERASIGNACION . operacionesA
-    (63) opCombinadas -> variable OPERASIGNACION . operacionesL
-    (64) opCombinadas -> variable OPERASIGNACION . operacionesC
-    (82) crearArreglos -> variable OPERASIGNACION . IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (56) operacionesL -> . opLog opLogicos opLog
-    (49) operacionesC -> . valores operadoresC valores
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (25) variable -> DOLAR . IDENTIFICADOR
 
-    IDENTIFICADOR   shift and go to state 55
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 18
-    FLOTANTE        shift and go to state 19
-    BOOLEANO        shift and go to state 20
-    DOLAR           shift and go to state 21
+    IDENTIFICADOR   shift and go to state 56
 
-    variable                       shift and go to state 50
-    valor                          shift and go to state 51
-    operacionesA                   shift and go to state 52
-    operacionesL                   shift and go to state 53
-    operacionesC                   shift and go to state 54
-    operacionesV                   shift and go to state 23
-    opLog                          shift and go to state 24
-    valores                        shift and go to state 56
 
 state 26
 
-    (83) bucleForEach -> variable IDENTIFICADOR . variable LLAVEIZQ sentencias LLAVEDER
-    (84) bucleForEach -> variable IDENTIFICADOR . variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (33) impresionEcho -> echo . CADENA PUNTOYCOMA
 
-    DOLAR           shift and go to state 21
+    CADENA          shift and go to state 57
 
-    variable                       shift and go to state 57
 
 state 27
 
-    (49) operacionesC -> valores operadoresC . valores
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (69) impresionPrint -> print . PARENIZQ valores PARENDER PUNTOYCOMA
+    (70) impresionPrint -> print . PARENIZQ operacionesL PARENDER PUNTOYCOMA
+    (71) impresionPrint -> print . PARENIZQ operacionesC PARENDER PUNTOYCOMA
+    (72) impresionPrint -> print . PARENIZQ operacionesA PARENDER PUNTOYCOMA
 
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
-    DOLAR           shift and go to state 21
+    PARENIZQ        shift and go to state 58
 
-    valores                        shift and go to state 58
-    valor                          shift and go to state 59
-    variable                       shift and go to state 60
 
 state 28
 
-    (39) operadoresC -> OPERCOMPARACION .
-    (40) operadoresC -> OPERCOMPARACION . OPERASIGNACION
+    (41) operacionesA -> operacionesV . operadoresA operacionesV
+    (42) operacionesA -> operacionesV . operadoresA operacionesA
+    (35) operadoresA -> . SUMA
+    (36) operadoresA -> . RESTA
+    (37) operadoresA -> . MULTIPLICACION
+    (38) operadoresA -> . DIVISION
+    (39) operadoresA -> . MODULO
+    (40) operadoresA -> . EXPONENCIACION
 
-    CADENA          reduce using rule 39 (operadoresC -> OPERCOMPARACION .)
-    ENTERO          reduce using rule 39 (operadoresC -> OPERCOMPARACION .)
-    FLOTANTE        reduce using rule 39 (operadoresC -> OPERCOMPARACION .)
-    BOOLEANO        reduce using rule 39 (operadoresC -> OPERCOMPARACION .)
-    DOLAR           reduce using rule 39 (operadoresC -> OPERCOMPARACION .)
-    OPERASIGNACION  shift and go to state 64
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
+    MODULO          shift and go to state 44
+    EXPONENCIACION  shift and go to state 45
 
+    operadoresA                    shift and go to state 59
 
 state 29
 
-    (41) operadoresC -> OPERLOGICO_NOT . OPERASIGNACION
-    (43) operadoresC -> OPERLOGICO_NOT . OPERCOMPARACION
+    (60) operacionesL -> opLog . opLogicos opLog
+    (54) opLogicos -> . OPERLOGICO_AND
+    (55) opLogicos -> . OPERLOGICO_OR
+    (56) opLogicos -> . OPERLOGICO_XOR
+    (57) opLogicos -> . OPERLOGICO_NOT
+    (58) opLogicos -> . AMPERSAND AMPERSAND
+    (59) opLogicos -> . OPERLOGICO_OREXCLUSIVO
 
-    OPERASIGNACION  shift and go to state 65
-    OPERCOMPARACION shift and go to state 66
+    OPERLOGICO_AND  shift and go to state 34
+    OPERLOGICO_OR   shift and go to state 35
+    OPERLOGICO_XOR  shift and go to state 36
+    OPERLOGICO_NOT  shift and go to state 61
+    AMPERSAND       shift and go to state 38
+    OPERLOGICO_OREXCLUSIVO shift and go to state 39
 
+    opLogicos                      shift and go to state 60
 
 state 30
 
-    (42) operadoresC -> MENORQUE . MAYORQUE
-    (44) operadoresC -> MENORQUE .
-    (46) operadoresC -> MENORQUE . OPERASIGNACION
-    (48) operadoresC -> MENORQUE . OPERASIGNACION MAYORQUE
+    (76) condIf -> if . PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (77) condIf -> if . PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+    (78) condIf -> if . PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+    (79) condIf -> if . PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
 
-    MAYORQUE        shift and go to state 67
-    CADENA          reduce using rule 44 (operadoresC -> MENORQUE .)
-    ENTERO          reduce using rule 44 (operadoresC -> MENORQUE .)
-    FLOTANTE        reduce using rule 44 (operadoresC -> MENORQUE .)
-    BOOLEANO        reduce using rule 44 (operadoresC -> MENORQUE .)
-    DOLAR           reduce using rule 44 (operadoresC -> MENORQUE .)
-    OPERASIGNACION  shift and go to state 68
+    PARENIZQ        shift and go to state 62
 
 
 state 31
 
-    (45) operadoresC -> MAYORQUE .
-    (47) operadoresC -> MAYORQUE . OPERASIGNACION
+    (80) bucleDoWhile -> do . LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (81) bucleDoWhile -> do . LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (82) bucleDoWhile -> do . LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    CADENA          reduce using rule 45 (operadoresC -> MAYORQUE .)
-    ENTERO          reduce using rule 45 (operadoresC -> MAYORQUE .)
-    FLOTANTE        reduce using rule 45 (operadoresC -> MAYORQUE .)
-    BOOLEANO        reduce using rule 45 (operadoresC -> MAYORQUE .)
-    DOLAR           reduce using rule 45 (operadoresC -> MAYORQUE .)
-    OPERASIGNACION  shift and go to state 69
+    LLAVEIZQ        shift and go to state 63
 
 
 state 32
 
-    (21) variable -> DOLAR IDENTIFICADOR .
+    (89) metodosArray -> rsort . PARENIZQ variable PARENDER PUNTOYCOMA
+    (90) metodosArray -> rsort . PARENIZQ crearArreglos PARENDER PUNTOYCOMA
 
-    OPERASIGNACION  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    IDENTIFICADOR   reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    $end            reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERCOMPARACION reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERLOGICO_NOT  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    MENORQUE        reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    MAYORQUE        reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    SUMA            reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    RESTA           reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    MULTIPLICACION  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    DIVISION        reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    MODULO          reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    EXPONENCIACION  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERLOGICO_AND  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERLOGICO_OR   reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERLOGICO_XOR  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    AMPERSAND       reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    LLAVEIZQ        reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    OPERASIG_ARRAY  reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    PARENDER        reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    PUNTOYCOMA      reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
-    COMA            reduce using rule 21 (variable -> DOLAR IDENTIFICADOR .)
+    PARENIZQ        shift and go to state 64
 
 
 state 33
 
-    (29) impresionEcho -> IDENTIFICADOR CADENA . PUNTOYCOMA
+    (91) metodosArray -> count . PARENIZQ variable PARENDER PUNTOYCOMA
+    (92) metodosArray -> count . PARENIZQ crearArreglos PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 70
+    PARENIZQ        shift and go to state 65
 
 
 state 34
 
-    (65) impresionPrint -> IDENTIFICADOR PARENIZQ . valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> IDENTIFICADOR PARENIZQ . operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> IDENTIFICADOR PARENIZQ . operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> IDENTIFICADOR PARENIZQ . operacionesA PARENDER PUNTOYCOMA
-    (72) condIf -> IDENTIFICADOR PARENIZQ . retornoBool PARENDER PUNTOYCOMA
-    (73) condIf -> IDENTIFICADOR PARENIZQ . retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-    (74) condIf -> IDENTIFICADOR PARENIZQ . retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-    (75) condIf -> IDENTIFICADOR PARENIZQ . retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
-    (85) metodosArray -> IDENTIFICADOR PARENIZQ . variable PARENDER PUNTOYCOMA
-    (86) metodosArray -> IDENTIFICADOR PARENIZQ . crearArreglos PARENDER PUNTOYCOMA
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (56) operacionesL -> . opLog opLogicos opLog
-    (49) operacionesC -> . valores operadoresC valores
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (69) retornoBool -> . BOOLEANO
-    (70) retornoBool -> . operacionesL
-    (71) retornoBool -> . operacionesC
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (82) crearArreglos -> . variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
+    (54) opLogicos -> OPERLOGICO_AND .
 
-    BOOLEANO        shift and go to state 78
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 18
-    FLOTANTE        shift and go to state 19
+    $end            reduce using rule 54 (opLogicos -> OPERLOGICO_AND .)
+    BOOLEANO        reduce using rule 54 (opLogicos -> OPERLOGICO_AND .)
+    DOLAR           reduce using rule 54 (opLogicos -> OPERLOGICO_AND .)
 
-    valores                        shift and go to state 71
-    operacionesL                   shift and go to state 72
-    operacionesC                   shift and go to state 73
-    operacionesA                   shift and go to state 74
-    retornoBool                    shift and go to state 75
-    variable                       shift and go to state 76
-    crearArreglos                  shift and go to state 77
-    valor                          shift and go to state 59
-    opLog                          shift and go to state 24
-    operacionesV                   shift and go to state 23
 
 state 35
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ . sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ . impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ . impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (57) sentencias -> . operacionesL PUNTOYCOMA
-    (58) sentencias -> . operacionesA PUNTOYCOMA
-    (59) sentencias -> . operacionesC PUNTOYCOMA
-    (60) sentencias -> . asignacion
-    (61) sentencias -> . sentencias
-    (65) impresionPrint -> . IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA
-    (29) impresionEcho -> . IDENTIFICADOR CADENA PUNTOYCOMA
-    (56) operacionesL -> . opLog opLogicos opLog
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (49) operacionesC -> . valores operadoresC valores
-    (30) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (55) opLogicos -> OPERLOGICO_OR .
 
-    IDENTIFICADOR   shift and go to state 79
-    BOOLEANO        shift and go to state 88
-    FLOTANTE        shift and go to state 89
-    ENTERO          shift and go to state 90
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
+    $end            reduce using rule 55 (opLogicos -> OPERLOGICO_OR .)
+    BOOLEANO        reduce using rule 55 (opLogicos -> OPERLOGICO_OR .)
+    DOLAR           reduce using rule 55 (opLogicos -> OPERLOGICO_OR .)
 
-    sentencias                     shift and go to state 80
-    impresionPrint                 shift and go to state 81
-    impresionEcho                  shift and go to state 82
-    operacionesL                   shift and go to state 83
-    operacionesA                   shift and go to state 84
-    operacionesC                   shift and go to state 85
-    asignacion                     shift and go to state 86
-    valores                        shift and go to state 56
-    opLog                          shift and go to state 24
-    operacionesV                   shift and go to state 23
-    variable                       shift and go to state 87
-    valor                          shift and go to state 59
 
 state 36
 
-    (37) operacionesA -> operacionesV operadoresA . operacionesV
-    (38) operacionesA -> operacionesV operadoresA . operacionesA
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (56) opLogicos -> OPERLOGICO_XOR .
 
-    FLOTANTE        shift and go to state 93
-    ENTERO          shift and go to state 94
-    DOLAR           shift and go to state 21
+    $end            reduce using rule 56 (opLogicos -> OPERLOGICO_XOR .)
+    BOOLEANO        reduce using rule 56 (opLogicos -> OPERLOGICO_XOR .)
+    DOLAR           reduce using rule 56 (opLogicos -> OPERLOGICO_XOR .)
 
-    operacionesV                   shift and go to state 91
-    operacionesA                   shift and go to state 92
-    variable                       shift and go to state 95
 
 state 37
 
-    (31) operadoresA -> SUMA .
+    (57) opLogicos -> OPERLOGICO_NOT .
+    (45) operadoresC -> OPERLOGICO_NOT . OPERASIGNACION
+    (47) operadoresC -> OPERLOGICO_NOT . OPERCOMPARACION
 
-    FLOTANTE        reduce using rule 31 (operadoresA -> SUMA .)
-    ENTERO          reduce using rule 31 (operadoresA -> SUMA .)
-    DOLAR           reduce using rule 31 (operadoresA -> SUMA .)
+    $end            reduce using rule 57 (opLogicos -> OPERLOGICO_NOT .)
+    OPERASIGNACION  shift and go to state 66
+    OPERCOMPARACION shift and go to state 67
 
 
 state 38
 
-    (32) operadoresA -> RESTA .
+    (58) opLogicos -> AMPERSAND . AMPERSAND
 
-    FLOTANTE        reduce using rule 32 (operadoresA -> RESTA .)
-    ENTERO          reduce using rule 32 (operadoresA -> RESTA .)
-    DOLAR           reduce using rule 32 (operadoresA -> RESTA .)
+    AMPERSAND       shift and go to state 68
 
 
 state 39
 
-    (33) operadoresA -> MULTIPLICACION .
+    (59) opLogicos -> OPERLOGICO_OREXCLUSIVO .
 
-    FLOTANTE        reduce using rule 33 (operadoresA -> MULTIPLICACION .)
-    ENTERO          reduce using rule 33 (operadoresA -> MULTIPLICACION .)
-    DOLAR           reduce using rule 33 (operadoresA -> MULTIPLICACION .)
+    $end            reduce using rule 59 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
+    BOOLEANO        reduce using rule 59 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
+    DOLAR           reduce using rule 59 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
 
 
 state 40
 
-    (34) operadoresA -> DIVISION .
+    (35) operadoresA -> SUMA .
 
-    FLOTANTE        reduce using rule 34 (operadoresA -> DIVISION .)
-    ENTERO          reduce using rule 34 (operadoresA -> DIVISION .)
-    DOLAR           reduce using rule 34 (operadoresA -> DIVISION .)
+    $end            reduce using rule 35 (operadoresA -> SUMA .)
+    FLOTANTE        reduce using rule 35 (operadoresA -> SUMA .)
+    ENTERO          reduce using rule 35 (operadoresA -> SUMA .)
+    DOLAR           reduce using rule 35 (operadoresA -> SUMA .)
 
 
 state 41
 
-    (35) operadoresA -> MODULO .
+    (36) operadoresA -> RESTA .
 
-    FLOTANTE        reduce using rule 35 (operadoresA -> MODULO .)
-    ENTERO          reduce using rule 35 (operadoresA -> MODULO .)
-    DOLAR           reduce using rule 35 (operadoresA -> MODULO .)
+    $end            reduce using rule 36 (operadoresA -> RESTA .)
+    FLOTANTE        reduce using rule 36 (operadoresA -> RESTA .)
+    ENTERO          reduce using rule 36 (operadoresA -> RESTA .)
+    DOLAR           reduce using rule 36 (operadoresA -> RESTA .)
 
 
 state 42
 
-    (36) operadoresA -> EXPONENCIACION .
+    (37) operadoresA -> MULTIPLICACION .
 
-    FLOTANTE        reduce using rule 36 (operadoresA -> EXPONENCIACION .)
-    ENTERO          reduce using rule 36 (operadoresA -> EXPONENCIACION .)
-    DOLAR           reduce using rule 36 (operadoresA -> EXPONENCIACION .)
+    $end            reduce using rule 37 (operadoresA -> MULTIPLICACION .)
+    FLOTANTE        reduce using rule 37 (operadoresA -> MULTIPLICACION .)
+    ENTERO          reduce using rule 37 (operadoresA -> MULTIPLICACION .)
+    DOLAR           reduce using rule 37 (operadoresA -> MULTIPLICACION .)
 
 
 state 43
 
-    (56) operacionesL -> opLog opLogicos . opLog
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (38) operadoresA -> DIVISION .
 
-    BOOLEANO        shift and go to state 97
-    DOLAR           shift and go to state 21
+    $end            reduce using rule 38 (operadoresA -> DIVISION .)
+    FLOTANTE        reduce using rule 38 (operadoresA -> DIVISION .)
+    ENTERO          reduce using rule 38 (operadoresA -> DIVISION .)
+    DOLAR           reduce using rule 38 (operadoresA -> DIVISION .)
 
-    opLog                          shift and go to state 96
-    variable                       shift and go to state 98
 
 state 44
 
-    (50) opLogicos -> OPERLOGICO_AND .
+    (39) operadoresA -> MODULO .
 
-    BOOLEANO        reduce using rule 50 (opLogicos -> OPERLOGICO_AND .)
-    DOLAR           reduce using rule 50 (opLogicos -> OPERLOGICO_AND .)
+    $end            reduce using rule 39 (operadoresA -> MODULO .)
+    FLOTANTE        reduce using rule 39 (operadoresA -> MODULO .)
+    ENTERO          reduce using rule 39 (operadoresA -> MODULO .)
+    DOLAR           reduce using rule 39 (operadoresA -> MODULO .)
 
 
 state 45
 
-    (51) opLogicos -> OPERLOGICO_OR .
+    (40) operadoresA -> EXPONENCIACION .
 
-    BOOLEANO        reduce using rule 51 (opLogicos -> OPERLOGICO_OR .)
-    DOLAR           reduce using rule 51 (opLogicos -> OPERLOGICO_OR .)
+    $end            reduce using rule 40 (operadoresA -> EXPONENCIACION .)
+    FLOTANTE        reduce using rule 40 (operadoresA -> EXPONENCIACION .)
+    ENTERO          reduce using rule 40 (operadoresA -> EXPONENCIACION .)
+    DOLAR           reduce using rule 40 (operadoresA -> EXPONENCIACION .)
 
 
 state 46
 
-    (52) opLogicos -> OPERLOGICO_XOR .
+    (43) operadoresC -> OPERCOMPARACION .
+    (44) operadoresC -> OPERCOMPARACION . OPERASIGNACION
 
-    BOOLEANO        reduce using rule 52 (opLogicos -> OPERLOGICO_XOR .)
-    DOLAR           reduce using rule 52 (opLogicos -> OPERLOGICO_XOR .)
+    $end            reduce using rule 43 (operadoresC -> OPERCOMPARACION .)
+    CADENA          reduce using rule 43 (operadoresC -> OPERCOMPARACION .)
+    ENTERO          reduce using rule 43 (operadoresC -> OPERCOMPARACION .)
+    FLOTANTE        reduce using rule 43 (operadoresC -> OPERCOMPARACION .)
+    BOOLEANO        reduce using rule 43 (operadoresC -> OPERCOMPARACION .)
+    DOLAR           reduce using rule 43 (operadoresC -> OPERCOMPARACION .)
+    OPERASIGNACION  shift and go to state 69
 
 
 state 47
 
-    (53) opLogicos -> OPERLOGICO_NOT .
+    (46) operadoresC -> MENORQUE . MAYORQUE
+    (48) operadoresC -> MENORQUE .
+    (50) operadoresC -> MENORQUE . OPERASIGNACION
+    (52) operadoresC -> MENORQUE . OPERASIGNACION MAYORQUE
 
-    BOOLEANO        reduce using rule 53 (opLogicos -> OPERLOGICO_NOT .)
-    DOLAR           reduce using rule 53 (opLogicos -> OPERLOGICO_NOT .)
+    MAYORQUE        shift and go to state 70
+    $end            reduce using rule 48 (operadoresC -> MENORQUE .)
+    CADENA          reduce using rule 48 (operadoresC -> MENORQUE .)
+    ENTERO          reduce using rule 48 (operadoresC -> MENORQUE .)
+    FLOTANTE        reduce using rule 48 (operadoresC -> MENORQUE .)
+    BOOLEANO        reduce using rule 48 (operadoresC -> MENORQUE .)
+    DOLAR           reduce using rule 48 (operadoresC -> MENORQUE .)
+    OPERASIGNACION  shift and go to state 71
 
 
 state 48
 
-    (54) opLogicos -> AMPERSAND . AMPERSAND
+    (49) operadoresC -> MAYORQUE .
+    (51) operadoresC -> MAYORQUE . OPERASIGNACION
 
-    AMPERSAND       shift and go to state 99
+    $end            reduce using rule 49 (operadoresC -> MAYORQUE .)
+    CADENA          reduce using rule 49 (operadoresC -> MAYORQUE .)
+    ENTERO          reduce using rule 49 (operadoresC -> MAYORQUE .)
+    FLOTANTE        reduce using rule 49 (operadoresC -> MAYORQUE .)
+    BOOLEANO        reduce using rule 49 (operadoresC -> MAYORQUE .)
+    DOLAR           reduce using rule 49 (operadoresC -> MAYORQUE .)
+    OPERASIGNACION  shift and go to state 72
 
 
 state 49
 
-    (55) opLogicos -> OPERLOGICO_OREXCLUSIVO .
+    (34) asignacion -> variable OPERASIGNACION . valor PUNTOYCOMA
+    (66) opCombinadas -> variable OPERASIGNACION . operacionesA
+    (67) opCombinadas -> variable OPERASIGNACION . operacionesL
+    (68) opCombinadas -> variable OPERASIGNACION . operacionesC
+    (86) crearArreglos -> variable OPERASIGNACION . array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (60) operacionesL -> . opLog opLogicos opLog
+    (53) operacionesC -> . valores operadoresC valores
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    BOOLEANO        reduce using rule 55 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
-    DOLAR           reduce using rule 55 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
+    array           shift and go to state 78
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 22
+    FLOTANTE        shift and go to state 23
+    BOOLEANO        shift and go to state 24
+    DOLAR           shift and go to state 25
 
+    variable                       shift and go to state 73
+    valor                          shift and go to state 74
+    operacionesA                   shift and go to state 75
+    operacionesL                   shift and go to state 76
+    operacionesC                   shift and go to state 77
+    operacionesV                   shift and go to state 28
+    opLog                          shift and go to state 29
+    valores                        shift and go to state 79
 
 state 50
 
-    (26) operacionesV -> variable .
-    (28) opLog -> variable .
-    (23) valores -> variable .
+    (87) bucleForEach -> variable IDENTIFICADOR . variable LLAVEIZQ sentencias LLAVEDER
+    (88) bucleForEach -> variable IDENTIFICADOR . variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 23 (valores -> variable .)
-    SUMA            reduce using rule 26 (operacionesV -> variable .)
-    RESTA           reduce using rule 26 (operacionesV -> variable .)
-    MULTIPLICACION  reduce using rule 26 (operacionesV -> variable .)
-    DIVISION        reduce using rule 26 (operacionesV -> variable .)
-    MODULO          reduce using rule 26 (operacionesV -> variable .)
-    EXPONENCIACION  reduce using rule 26 (operacionesV -> variable .)
-    OPERLOGICO_AND  reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OR   reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_XOR  reduce using rule 28 (opLog -> variable .)
-    AMPERSAND       reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 28 (opLog -> variable .)
-    OPERCOMPARACION reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_NOT  reduce using rule 23 (valores -> variable .)
-    MENORQUE        reduce using rule 23 (valores -> variable .)
-    MAYORQUE        reduce using rule 23 (valores -> variable .)
+    DOLAR           shift and go to state 25
 
-  ! OPERLOGICO_NOT  [ reduce using rule 28 (opLog -> variable .) ]
-
+    variable                       shift and go to state 80
 
 state 51
 
-    (30) asignacion -> variable OPERASIGNACION valor . PUNTOYCOMA
-    (22) valores -> valor .
+    (53) operacionesC -> valores operadoresC . valores
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    PUNTOYCOMA      shift and go to state 100
-    OPERCOMPARACION reduce using rule 22 (valores -> valor .)
-    OPERLOGICO_NOT  reduce using rule 22 (valores -> valor .)
-    MENORQUE        reduce using rule 22 (valores -> valor .)
-    MAYORQUE        reduce using rule 22 (valores -> valor .)
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
+    DOLAR           shift and go to state 25
 
+    valores                        shift and go to state 81
+    valor                          shift and go to state 82
+    variable                       shift and go to state 83
 
 state 52
 
-    (62) opCombinadas -> variable OPERASIGNACION operacionesA .
+    (45) operadoresC -> OPERLOGICO_NOT . OPERASIGNACION
+    (47) operadoresC -> OPERLOGICO_NOT . OPERCOMPARACION
 
-    $end            reduce using rule 62 (opCombinadas -> variable OPERASIGNACION operacionesA .)
+    OPERASIGNACION  shift and go to state 66
+    OPERCOMPARACION shift and go to state 67
 
 
 state 53
 
-    (63) opCombinadas -> variable OPERASIGNACION operacionesL .
+    (62) sentencias -> operacionesA PUNTOYCOMA .
 
-    $end            reduce using rule 63 (opCombinadas -> variable OPERASIGNACION operacionesL .)
+    $end            reduce using rule 62 (sentencias -> operacionesA PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 62 (sentencias -> operacionesA PUNTOYCOMA .)
 
 
 state 54
 
-    (64) opCombinadas -> variable OPERASIGNACION operacionesC .
+    (63) sentencias -> operacionesC PUNTOYCOMA .
 
-    $end            reduce using rule 64 (opCombinadas -> variable OPERASIGNACION operacionesC .)
+    $end            reduce using rule 63 (sentencias -> operacionesC PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 63 (sentencias -> operacionesC PUNTOYCOMA .)
 
 
 state 55
 
-    (82) crearArreglos -> variable OPERASIGNACION IDENTIFICADOR . PARENIZQ rellenoArray PARENDER PUNTOYCOMA
+    (61) sentencias -> operacionesL PUNTOYCOMA .
 
-    PARENIZQ        shift and go to state 101
+    $end            reduce using rule 61 (sentencias -> operacionesL PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 61 (sentencias -> operacionesL PUNTOYCOMA .)
 
 
 state 56
 
-    (49) operacionesC -> valores . operadoresC valores
-    (39) operadoresC -> . OPERCOMPARACION
-    (40) operadoresC -> . OPERCOMPARACION OPERASIGNACION
-    (41) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
-    (42) operadoresC -> . MENORQUE MAYORQUE
-    (43) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
-    (44) operadoresC -> . MENORQUE
-    (45) operadoresC -> . MAYORQUE
-    (46) operadoresC -> . MENORQUE OPERASIGNACION
-    (47) operadoresC -> . MAYORQUE OPERASIGNACION
-    (48) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
+    (25) variable -> DOLAR IDENTIFICADOR .
 
-    OPERCOMPARACION shift and go to state 28
-    OPERLOGICO_NOT  shift and go to state 29
-    MENORQUE        shift and go to state 30
-    MAYORQUE        shift and go to state 31
+    OPERASIGNACION  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    IDENTIFICADOR   reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    $end            reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERCOMPARACION reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERLOGICO_NOT  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    MENORQUE        reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    MAYORQUE        reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    SUMA            reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    RESTA           reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    MULTIPLICACION  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    DIVISION        reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    MODULO          reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    EXPONENCIACION  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERLOGICO_AND  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERLOGICO_OR   reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERLOGICO_XOR  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    AMPERSAND       reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    LLAVEIZQ        reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    OPERASIG_ARRAY  reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    PUNTOYCOMA      reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    PARENDER        reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
+    COMA            reduce using rule 25 (variable -> DOLAR IDENTIFICADOR .)
 
-    operadoresC                    shift and go to state 27
 
 state 57
 
-    (83) bucleForEach -> variable IDENTIFICADOR variable . LLAVEIZQ sentencias LLAVEDER
-    (84) bucleForEach -> variable IDENTIFICADOR variable . OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
+    (33) impresionEcho -> echo CADENA . PUNTOYCOMA
 
-    LLAVEIZQ        shift and go to state 102
-    OPERASIG_ARRAY  shift and go to state 103
+    PUNTOYCOMA      shift and go to state 87
 
 
 state 58
 
-    (49) operacionesC -> valores operadoresC valores .
+    (69) impresionPrint -> print PARENIZQ . valores PARENDER PUNTOYCOMA
+    (70) impresionPrint -> print PARENIZQ . operacionesL PARENDER PUNTOYCOMA
+    (71) impresionPrint -> print PARENIZQ . operacionesC PARENDER PUNTOYCOMA
+    (72) impresionPrint -> print PARENIZQ . operacionesA PARENDER PUNTOYCOMA
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (60) operacionesL -> . opLog opLogicos opLog
+    (53) operacionesC -> . valores operadoresC valores
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
 
-    $end            reduce using rule 49 (operacionesC -> valores operadoresC valores .)
-    PARENDER        reduce using rule 49 (operacionesC -> valores operadoresC valores .)
-    PUNTOYCOMA      reduce using rule 49 (operacionesC -> valores operadoresC valores .)
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 22
+    FLOTANTE        shift and go to state 23
+    BOOLEANO        shift and go to state 24
+    DOLAR           shift and go to state 25
 
+    valores                        shift and go to state 88
+    operacionesL                   shift and go to state 89
+    operacionesC                   shift and go to state 90
+    operacionesA                   shift and go to state 91
+    valor                          shift and go to state 82
+    variable                       shift and go to state 92
+    opLog                          shift and go to state 29
+    operacionesV                   shift and go to state 28
 
 state 59
 
-    (22) valores -> valor .
+    (41) operacionesA -> operacionesV operadoresA . operacionesV
+    (42) operacionesA -> operacionesV operadoresA . operacionesA
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    $end            reduce using rule 22 (valores -> valor .)
-    PARENDER        reduce using rule 22 (valores -> valor .)
-    PUNTOYCOMA      reduce using rule 22 (valores -> valor .)
-    OPERCOMPARACION reduce using rule 22 (valores -> valor .)
-    OPERLOGICO_NOT  reduce using rule 22 (valores -> valor .)
-    MENORQUE        reduce using rule 22 (valores -> valor .)
-    MAYORQUE        reduce using rule 22 (valores -> valor .)
-    OPERASIG_ARRAY  reduce using rule 22 (valores -> valor .)
-    COMA            reduce using rule 22 (valores -> valor .)
+    FLOTANTE        shift and go to state 95
+    ENTERO          shift and go to state 96
+    DOLAR           shift and go to state 25
 
+    operacionesV                   shift and go to state 93
+    operacionesA                   shift and go to state 94
+    variable                       shift and go to state 97
 
 state 60
 
-    (23) valores -> variable .
+    (60) operacionesL -> opLog opLogicos . opLog
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    $end            reduce using rule 23 (valores -> variable .)
-    PARENDER        reduce using rule 23 (valores -> variable .)
-    PUNTOYCOMA      reduce using rule 23 (valores -> variable .)
-    OPERASIG_ARRAY  reduce using rule 23 (valores -> variable .)
-    COMA            reduce using rule 23 (valores -> variable .)
+    BOOLEANO        shift and go to state 99
+    DOLAR           shift and go to state 25
 
+    opLog                          shift and go to state 98
+    variable                       shift and go to state 100
 
 state 61
 
-    (18) valor -> ENTERO .
+    (57) opLogicos -> OPERLOGICO_NOT .
 
-    $end            reduce using rule 18 (valor -> ENTERO .)
-    PARENDER        reduce using rule 18 (valor -> ENTERO .)
-    PUNTOYCOMA      reduce using rule 18 (valor -> ENTERO .)
-    OPERASIG_ARRAY  reduce using rule 18 (valor -> ENTERO .)
-    COMA            reduce using rule 18 (valor -> ENTERO .)
-    OPERCOMPARACION reduce using rule 18 (valor -> ENTERO .)
-    OPERLOGICO_NOT  reduce using rule 18 (valor -> ENTERO .)
-    MENORQUE        reduce using rule 18 (valor -> ENTERO .)
-    MAYORQUE        reduce using rule 18 (valor -> ENTERO .)
+    BOOLEANO        reduce using rule 57 (opLogicos -> OPERLOGICO_NOT .)
+    DOLAR           reduce using rule 57 (opLogicos -> OPERLOGICO_NOT .)
 
 
 state 62
 
-    (19) valor -> FLOTANTE .
+    (76) condIf -> if PARENIZQ . retornoBool PARENDER PUNTOYCOMA
+    (77) condIf -> if PARENIZQ . retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+    (78) condIf -> if PARENIZQ . retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+    (79) condIf -> if PARENIZQ . retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (73) retornoBool -> . BOOLEANO
+    (74) retornoBool -> . operacionesL
+    (75) retornoBool -> . operacionesC
+    (60) operacionesL -> . opLog opLogicos opLog
+    (53) operacionesC -> . valores operadoresC valores
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    $end            reduce using rule 19 (valor -> FLOTANTE .)
-    PARENDER        reduce using rule 19 (valor -> FLOTANTE .)
-    PUNTOYCOMA      reduce using rule 19 (valor -> FLOTANTE .)
-    OPERASIG_ARRAY  reduce using rule 19 (valor -> FLOTANTE .)
-    COMA            reduce using rule 19 (valor -> FLOTANTE .)
-    OPERCOMPARACION reduce using rule 19 (valor -> FLOTANTE .)
-    OPERLOGICO_NOT  reduce using rule 19 (valor -> FLOTANTE .)
-    MENORQUE        reduce using rule 19 (valor -> FLOTANTE .)
-    MAYORQUE        reduce using rule 19 (valor -> FLOTANTE .)
+    BOOLEANO        shift and go to state 102
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
 
+    retornoBool                    shift and go to state 101
+    operacionesL                   shift and go to state 103
+    operacionesC                   shift and go to state 104
+    opLog                          shift and go to state 29
+    valores                        shift and go to state 79
+    variable                       shift and go to state 105
+    valor                          shift and go to state 82
 
 state 63
 
-    (20) valor -> BOOLEANO .
+    (80) bucleDoWhile -> do LLAVEIZQ . sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (81) bucleDoWhile -> do LLAVEIZQ . impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (82) bucleDoWhile -> do LLAVEIZQ . impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (61) sentencias -> . operacionesL PUNTOYCOMA
+    (62) sentencias -> . operacionesA PUNTOYCOMA
+    (63) sentencias -> . operacionesC PUNTOYCOMA
+    (64) sentencias -> . asignacion
+    (65) sentencias -> . sentencias
+    (69) impresionPrint -> . print PARENIZQ valores PARENDER PUNTOYCOMA
+    (70) impresionPrint -> . print PARENIZQ operacionesL PARENDER PUNTOYCOMA
+    (71) impresionPrint -> . print PARENIZQ operacionesC PARENDER PUNTOYCOMA
+    (72) impresionPrint -> . print PARENIZQ operacionesA PARENDER PUNTOYCOMA
+    (33) impresionEcho -> . echo CADENA PUNTOYCOMA
+    (60) operacionesL -> . opLog opLogicos opLog
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (53) operacionesC -> . valores operadoresC valores
+    (34) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    $end            reduce using rule 20 (valor -> BOOLEANO .)
-    PARENDER        reduce using rule 20 (valor -> BOOLEANO .)
-    PUNTOYCOMA      reduce using rule 20 (valor -> BOOLEANO .)
-    OPERASIG_ARRAY  reduce using rule 20 (valor -> BOOLEANO .)
-    COMA            reduce using rule 20 (valor -> BOOLEANO .)
+    print           shift and go to state 27
+    echo            shift and go to state 26
+    BOOLEANO        shift and go to state 114
+    FLOTANTE        shift and go to state 115
+    ENTERO          shift and go to state 116
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
 
+    sentencias                     shift and go to state 106
+    impresionPrint                 shift and go to state 107
+    impresionEcho                  shift and go to state 108
+    operacionesL                   shift and go to state 109
+    operacionesA                   shift and go to state 110
+    operacionesC                   shift and go to state 111
+    asignacion                     shift and go to state 112
+    valores                        shift and go to state 79
+    opLog                          shift and go to state 29
+    operacionesV                   shift and go to state 28
+    variable                       shift and go to state 113
+    valor                          shift and go to state 82
 
 state 64
 
-    (40) operadoresC -> OPERCOMPARACION OPERASIGNACION .
+    (89) metodosArray -> rsort PARENIZQ . variable PARENDER PUNTOYCOMA
+    (90) metodosArray -> rsort PARENIZQ . crearArreglos PARENDER PUNTOYCOMA
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (86) crearArreglos -> . variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
 
-    CADENA          reduce using rule 40 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
-    ENTERO          reduce using rule 40 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
-    FLOTANTE        reduce using rule 40 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
-    BOOLEANO        reduce using rule 40 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
-    DOLAR           reduce using rule 40 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
+    DOLAR           shift and go to state 25
 
+    variable                       shift and go to state 117
+    crearArreglos                  shift and go to state 118
 
 state 65
 
-    (41) operadoresC -> OPERLOGICO_NOT OPERASIGNACION .
+    (91) metodosArray -> count PARENIZQ . variable PARENDER PUNTOYCOMA
+    (92) metodosArray -> count PARENIZQ . crearArreglos PARENDER PUNTOYCOMA
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (86) crearArreglos -> . variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
 
-    CADENA          reduce using rule 41 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
-    ENTERO          reduce using rule 41 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
-    FLOTANTE        reduce using rule 41 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
-    BOOLEANO        reduce using rule 41 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
-    DOLAR           reduce using rule 41 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
+    DOLAR           shift and go to state 25
 
+    variable                       shift and go to state 119
+    crearArreglos                  shift and go to state 120
 
 state 66
 
-    (43) operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .
+    (45) operadoresC -> OPERLOGICO_NOT OPERASIGNACION .
 
-    CADENA          reduce using rule 43 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
-    ENTERO          reduce using rule 43 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
-    FLOTANTE        reduce using rule 43 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
-    BOOLEANO        reduce using rule 43 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
-    DOLAR           reduce using rule 43 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
+    $end            reduce using rule 45 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
+    CADENA          reduce using rule 45 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
+    ENTERO          reduce using rule 45 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
+    FLOTANTE        reduce using rule 45 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
+    BOOLEANO        reduce using rule 45 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
+    DOLAR           reduce using rule 45 (operadoresC -> OPERLOGICO_NOT OPERASIGNACION .)
 
 
 state 67
 
-    (42) operadoresC -> MENORQUE MAYORQUE .
+    (47) operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .
 
-    CADENA          reduce using rule 42 (operadoresC -> MENORQUE MAYORQUE .)
-    ENTERO          reduce using rule 42 (operadoresC -> MENORQUE MAYORQUE .)
-    FLOTANTE        reduce using rule 42 (operadoresC -> MENORQUE MAYORQUE .)
-    BOOLEANO        reduce using rule 42 (operadoresC -> MENORQUE MAYORQUE .)
-    DOLAR           reduce using rule 42 (operadoresC -> MENORQUE MAYORQUE .)
+    $end            reduce using rule 47 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
+    CADENA          reduce using rule 47 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
+    ENTERO          reduce using rule 47 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
+    FLOTANTE        reduce using rule 47 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
+    BOOLEANO        reduce using rule 47 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
+    DOLAR           reduce using rule 47 (operadoresC -> OPERLOGICO_NOT OPERCOMPARACION .)
 
 
 state 68
 
-    (46) operadoresC -> MENORQUE OPERASIGNACION .
-    (48) operadoresC -> MENORQUE OPERASIGNACION . MAYORQUE
+    (58) opLogicos -> AMPERSAND AMPERSAND .
 
-    CADENA          reduce using rule 46 (operadoresC -> MENORQUE OPERASIGNACION .)
-    ENTERO          reduce using rule 46 (operadoresC -> MENORQUE OPERASIGNACION .)
-    FLOTANTE        reduce using rule 46 (operadoresC -> MENORQUE OPERASIGNACION .)
-    BOOLEANO        reduce using rule 46 (operadoresC -> MENORQUE OPERASIGNACION .)
-    DOLAR           reduce using rule 46 (operadoresC -> MENORQUE OPERASIGNACION .)
-    MAYORQUE        shift and go to state 104
+    $end            reduce using rule 58 (opLogicos -> AMPERSAND AMPERSAND .)
+    BOOLEANO        reduce using rule 58 (opLogicos -> AMPERSAND AMPERSAND .)
+    DOLAR           reduce using rule 58 (opLogicos -> AMPERSAND AMPERSAND .)
 
 
 state 69
 
-    (47) operadoresC -> MAYORQUE OPERASIGNACION .
+    (44) operadoresC -> OPERCOMPARACION OPERASIGNACION .
 
-    CADENA          reduce using rule 47 (operadoresC -> MAYORQUE OPERASIGNACION .)
-    ENTERO          reduce using rule 47 (operadoresC -> MAYORQUE OPERASIGNACION .)
-    FLOTANTE        reduce using rule 47 (operadoresC -> MAYORQUE OPERASIGNACION .)
-    BOOLEANO        reduce using rule 47 (operadoresC -> MAYORQUE OPERASIGNACION .)
-    DOLAR           reduce using rule 47 (operadoresC -> MAYORQUE OPERASIGNACION .)
+    $end            reduce using rule 44 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
+    CADENA          reduce using rule 44 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
+    ENTERO          reduce using rule 44 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
+    FLOTANTE        reduce using rule 44 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
+    BOOLEANO        reduce using rule 44 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
+    DOLAR           reduce using rule 44 (operadoresC -> OPERCOMPARACION OPERASIGNACION .)
 
 
 state 70
 
-    (29) impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA .
+    (46) operadoresC -> MENORQUE MAYORQUE .
 
-    $end            reduce using rule 29 (impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 29 (impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA .)
+    $end            reduce using rule 46 (operadoresC -> MENORQUE MAYORQUE .)
+    CADENA          reduce using rule 46 (operadoresC -> MENORQUE MAYORQUE .)
+    ENTERO          reduce using rule 46 (operadoresC -> MENORQUE MAYORQUE .)
+    FLOTANTE        reduce using rule 46 (operadoresC -> MENORQUE MAYORQUE .)
+    BOOLEANO        reduce using rule 46 (operadoresC -> MENORQUE MAYORQUE .)
+    DOLAR           reduce using rule 46 (operadoresC -> MENORQUE MAYORQUE .)
 
 
 state 71
 
-    (65) impresionPrint -> IDENTIFICADOR PARENIZQ valores . PARENDER PUNTOYCOMA
-    (49) operacionesC -> valores . operadoresC valores
-    (39) operadoresC -> . OPERCOMPARACION
-    (40) operadoresC -> . OPERCOMPARACION OPERASIGNACION
-    (41) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
-    (42) operadoresC -> . MENORQUE MAYORQUE
-    (43) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
-    (44) operadoresC -> . MENORQUE
-    (45) operadoresC -> . MAYORQUE
-    (46) operadoresC -> . MENORQUE OPERASIGNACION
-    (47) operadoresC -> . MAYORQUE OPERASIGNACION
-    (48) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
+    (50) operadoresC -> MENORQUE OPERASIGNACION .
+    (52) operadoresC -> MENORQUE OPERASIGNACION . MAYORQUE
 
-    PARENDER        shift and go to state 105
-    OPERCOMPARACION shift and go to state 28
-    OPERLOGICO_NOT  shift and go to state 29
-    MENORQUE        shift and go to state 30
-    MAYORQUE        shift and go to state 31
+    $end            reduce using rule 50 (operadoresC -> MENORQUE OPERASIGNACION .)
+    CADENA          reduce using rule 50 (operadoresC -> MENORQUE OPERASIGNACION .)
+    ENTERO          reduce using rule 50 (operadoresC -> MENORQUE OPERASIGNACION .)
+    FLOTANTE        reduce using rule 50 (operadoresC -> MENORQUE OPERASIGNACION .)
+    BOOLEANO        reduce using rule 50 (operadoresC -> MENORQUE OPERASIGNACION .)
+    DOLAR           reduce using rule 50 (operadoresC -> MENORQUE OPERASIGNACION .)
+    MAYORQUE        shift and go to state 121
 
-    operadoresC                    shift and go to state 27
 
 state 72
 
-    (66) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL . PARENDER PUNTOYCOMA
-    (70) retornoBool -> operacionesL .
+    (51) operadoresC -> MAYORQUE OPERASIGNACION .
 
-  ! shift/reduce conflict for PARENDER resolved as shift
-    PARENDER        shift and go to state 106
-
-  ! PARENDER        [ reduce using rule 70 (retornoBool -> operacionesL .) ]
+    $end            reduce using rule 51 (operadoresC -> MAYORQUE OPERASIGNACION .)
+    CADENA          reduce using rule 51 (operadoresC -> MAYORQUE OPERASIGNACION .)
+    ENTERO          reduce using rule 51 (operadoresC -> MAYORQUE OPERASIGNACION .)
+    FLOTANTE        reduce using rule 51 (operadoresC -> MAYORQUE OPERASIGNACION .)
+    BOOLEANO        reduce using rule 51 (operadoresC -> MAYORQUE OPERASIGNACION .)
+    DOLAR           reduce using rule 51 (operadoresC -> MAYORQUE OPERASIGNACION .)
 
 
 state 73
 
-    (67) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC . PARENDER PUNTOYCOMA
-    (71) retornoBool -> operacionesC .
+    (30) operacionesV -> variable .
+    (32) opLog -> variable .
+    (27) valores -> variable .
 
-  ! shift/reduce conflict for PARENDER resolved as shift
-    PARENDER        shift and go to state 107
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 27 (valores -> variable .)
+    SUMA            reduce using rule 30 (operacionesV -> variable .)
+    RESTA           reduce using rule 30 (operacionesV -> variable .)
+    MULTIPLICACION  reduce using rule 30 (operacionesV -> variable .)
+    DIVISION        reduce using rule 30 (operacionesV -> variable .)
+    MODULO          reduce using rule 30 (operacionesV -> variable .)
+    EXPONENCIACION  reduce using rule 30 (operacionesV -> variable .)
+    OPERLOGICO_AND  reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OR   reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_XOR  reduce using rule 32 (opLog -> variable .)
+    AMPERSAND       reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 32 (opLog -> variable .)
+    OPERCOMPARACION reduce using rule 27 (valores -> variable .)
+    OPERLOGICO_NOT  reduce using rule 27 (valores -> variable .)
+    MENORQUE        reduce using rule 27 (valores -> variable .)
+    MAYORQUE        reduce using rule 27 (valores -> variable .)
 
-  ! PARENDER        [ reduce using rule 71 (retornoBool -> operacionesC .) ]
+  ! OPERLOGICO_NOT  [ reduce using rule 32 (opLog -> variable .) ]
 
 
 state 74
 
-    (68) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA . PARENDER PUNTOYCOMA
+    (34) asignacion -> variable OPERASIGNACION valor . PUNTOYCOMA
+    (26) valores -> valor .
 
-    PARENDER        shift and go to state 108
+    PUNTOYCOMA      shift and go to state 122
+    OPERCOMPARACION reduce using rule 26 (valores -> valor .)
+    OPERLOGICO_NOT  reduce using rule 26 (valores -> valor .)
+    MENORQUE        reduce using rule 26 (valores -> valor .)
+    MAYORQUE        reduce using rule 26 (valores -> valor .)
 
 
 state 75
 
-    (72) condIf -> IDENTIFICADOR PARENIZQ retornoBool . PARENDER PUNTOYCOMA
-    (73) condIf -> IDENTIFICADOR PARENIZQ retornoBool . PARENDER LLAVEIZQ sentencias LLAVEDER
-    (74) condIf -> IDENTIFICADOR PARENIZQ retornoBool . PARENDER LLAVEIZQ impresionPrint LLAVEDER
-    (75) condIf -> IDENTIFICADOR PARENIZQ retornoBool . PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (66) opCombinadas -> variable OPERASIGNACION operacionesA .
 
-    PARENDER        shift and go to state 109
+    $end            reduce using rule 66 (opCombinadas -> variable OPERASIGNACION operacionesA .)
 
 
 state 76
 
-    (85) metodosArray -> IDENTIFICADOR PARENIZQ variable . PARENDER PUNTOYCOMA
-    (23) valores -> variable .
-    (82) crearArreglos -> variable . OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-    (28) opLog -> variable .
-    (26) operacionesV -> variable .
+    (67) opCombinadas -> variable OPERASIGNACION operacionesL .
 
-  ! shift/reduce conflict for PARENDER resolved as shift
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 23 (valores -> variable .)
-    PARENDER        shift and go to state 110
-    OPERCOMPARACION reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_NOT  reduce using rule 23 (valores -> variable .)
-    MENORQUE        reduce using rule 23 (valores -> variable .)
-    MAYORQUE        reduce using rule 23 (valores -> variable .)
-    OPERASIGNACION  shift and go to state 111
-    OPERLOGICO_AND  reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OR   reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_XOR  reduce using rule 28 (opLog -> variable .)
-    AMPERSAND       reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 28 (opLog -> variable .)
-    SUMA            reduce using rule 26 (operacionesV -> variable .)
-    RESTA           reduce using rule 26 (operacionesV -> variable .)
-    MULTIPLICACION  reduce using rule 26 (operacionesV -> variable .)
-    DIVISION        reduce using rule 26 (operacionesV -> variable .)
-    MODULO          reduce using rule 26 (operacionesV -> variable .)
-    EXPONENCIACION  reduce using rule 26 (operacionesV -> variable .)
-
-  ! PARENDER        [ reduce using rule 23 (valores -> variable .) ]
-  ! OPERLOGICO_NOT  [ reduce using rule 28 (opLog -> variable .) ]
+    $end            reduce using rule 67 (opCombinadas -> variable OPERASIGNACION operacionesL .)
 
 
 state 77
 
-    (86) metodosArray -> IDENTIFICADOR PARENIZQ crearArreglos . PARENDER PUNTOYCOMA
+    (68) opCombinadas -> variable OPERASIGNACION operacionesC .
 
-    PARENDER        shift and go to state 112
+    $end            reduce using rule 68 (opCombinadas -> variable OPERASIGNACION operacionesC .)
 
 
 state 78
 
-    (69) retornoBool -> BOOLEANO .
-    (20) valor -> BOOLEANO .
-    (27) opLog -> BOOLEANO .
+    (86) crearArreglos -> variable OPERASIGNACION array . PARENIZQ rellenoArray PARENDER PUNTOYCOMA
 
-  ! reduce/reduce conflict for PARENDER resolved using rule 20 (valor -> BOOLEANO .)
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 20 (valor -> BOOLEANO .)
-    PARENDER        reduce using rule 20 (valor -> BOOLEANO .)
-    OPERCOMPARACION reduce using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_NOT  reduce using rule 20 (valor -> BOOLEANO .)
-    MENORQUE        reduce using rule 20 (valor -> BOOLEANO .)
-    MAYORQUE        reduce using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_AND  reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OR   reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_XOR  reduce using rule 27 (opLog -> BOOLEANO .)
-    AMPERSAND       reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 27 (opLog -> BOOLEANO .)
-
-  ! PARENDER        [ reduce using rule 69 (retornoBool -> BOOLEANO .) ]
-  ! OPERLOGICO_NOT  [ reduce using rule 27 (opLog -> BOOLEANO .) ]
+    PARENIZQ        shift and go to state 123
 
 
 state 79
 
-    (65) impresionPrint -> IDENTIFICADOR . PARENIZQ valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> IDENTIFICADOR . PARENIZQ operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> IDENTIFICADOR . PARENIZQ operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> IDENTIFICADOR . PARENIZQ operacionesA PARENDER PUNTOYCOMA
-    (29) impresionEcho -> IDENTIFICADOR . CADENA PUNTOYCOMA
+    (53) operacionesC -> valores . operadoresC valores
+    (43) operadoresC -> . OPERCOMPARACION
+    (44) operadoresC -> . OPERCOMPARACION OPERASIGNACION
+    (45) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
+    (46) operadoresC -> . MENORQUE MAYORQUE
+    (47) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
+    (48) operadoresC -> . MENORQUE
+    (49) operadoresC -> . MAYORQUE
+    (50) operadoresC -> . MENORQUE OPERASIGNACION
+    (51) operadoresC -> . MAYORQUE OPERASIGNACION
+    (52) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
 
-    PARENIZQ        shift and go to state 113
-    CADENA          shift and go to state 33
+    OPERCOMPARACION shift and go to state 46
+    OPERLOGICO_NOT  shift and go to state 52
+    MENORQUE        shift and go to state 47
+    MAYORQUE        shift and go to state 48
 
+    operadoresC                    shift and go to state 51
 
 state 80
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias . LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-    (61) sentencias -> sentencias .
+    (87) bucleForEach -> variable IDENTIFICADOR variable . LLAVEIZQ sentencias LLAVEDER
+    (88) bucleForEach -> variable IDENTIFICADOR variable . OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
 
-  ! shift/reduce conflict for LLAVEDER resolved as shift
-    LLAVEDER        shift and go to state 114
-
-  ! LLAVEDER        [ reduce using rule 61 (sentencias -> sentencias .) ]
+    LLAVEIZQ        shift and go to state 124
+    OPERASIG_ARRAY  shift and go to state 125
 
 
 state 81
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint . LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (53) operacionesC -> valores operadoresC valores .
 
-    LLAVEDER        shift and go to state 115
+    PUNTOYCOMA      reduce using rule 53 (operacionesC -> valores operadoresC valores .)
+    $end            reduce using rule 53 (operacionesC -> valores operadoresC valores .)
+    PARENDER        reduce using rule 53 (operacionesC -> valores operadoresC valores .)
 
 
 state 82
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho . LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (26) valores -> valor .
 
-    LLAVEDER        shift and go to state 116
+    PUNTOYCOMA      reduce using rule 26 (valores -> valor .)
+    $end            reduce using rule 26 (valores -> valor .)
+    PARENDER        reduce using rule 26 (valores -> valor .)
+    OPERCOMPARACION reduce using rule 26 (valores -> valor .)
+    OPERLOGICO_NOT  reduce using rule 26 (valores -> valor .)
+    MENORQUE        reduce using rule 26 (valores -> valor .)
+    MAYORQUE        reduce using rule 26 (valores -> valor .)
+    OPERASIG_ARRAY  reduce using rule 26 (valores -> valor .)
+    COMA            reduce using rule 26 (valores -> valor .)
 
 
 state 83
 
-    (57) sentencias -> operacionesL . PUNTOYCOMA
+    (27) valores -> variable .
 
-    PUNTOYCOMA      shift and go to state 117
+    PUNTOYCOMA      reduce using rule 27 (valores -> variable .)
+    $end            reduce using rule 27 (valores -> variable .)
+    PARENDER        reduce using rule 27 (valores -> variable .)
+    OPERASIG_ARRAY  reduce using rule 27 (valores -> variable .)
+    COMA            reduce using rule 27 (valores -> variable .)
 
 
 state 84
 
-    (58) sentencias -> operacionesA . PUNTOYCOMA
+    (22) valor -> ENTERO .
 
-    PUNTOYCOMA      shift and go to state 118
+    PUNTOYCOMA      reduce using rule 22 (valor -> ENTERO .)
+    $end            reduce using rule 22 (valor -> ENTERO .)
+    PARENDER        reduce using rule 22 (valor -> ENTERO .)
+    OPERCOMPARACION reduce using rule 22 (valor -> ENTERO .)
+    OPERLOGICO_NOT  reduce using rule 22 (valor -> ENTERO .)
+    MENORQUE        reduce using rule 22 (valor -> ENTERO .)
+    MAYORQUE        reduce using rule 22 (valor -> ENTERO .)
+    OPERASIG_ARRAY  reduce using rule 22 (valor -> ENTERO .)
+    COMA            reduce using rule 22 (valor -> ENTERO .)
 
 
 state 85
 
-    (59) sentencias -> operacionesC . PUNTOYCOMA
+    (23) valor -> FLOTANTE .
 
-    PUNTOYCOMA      shift and go to state 119
+    PUNTOYCOMA      reduce using rule 23 (valor -> FLOTANTE .)
+    $end            reduce using rule 23 (valor -> FLOTANTE .)
+    PARENDER        reduce using rule 23 (valor -> FLOTANTE .)
+    OPERCOMPARACION reduce using rule 23 (valor -> FLOTANTE .)
+    OPERLOGICO_NOT  reduce using rule 23 (valor -> FLOTANTE .)
+    MENORQUE        reduce using rule 23 (valor -> FLOTANTE .)
+    MAYORQUE        reduce using rule 23 (valor -> FLOTANTE .)
+    OPERASIG_ARRAY  reduce using rule 23 (valor -> FLOTANTE .)
+    COMA            reduce using rule 23 (valor -> FLOTANTE .)
 
 
 state 86
 
-    (60) sentencias -> asignacion .
+    (24) valor -> BOOLEANO .
 
-    LLAVEDER        reduce using rule 60 (sentencias -> asignacion .)
+    PUNTOYCOMA      reduce using rule 24 (valor -> BOOLEANO .)
+    $end            reduce using rule 24 (valor -> BOOLEANO .)
+    PARENDER        reduce using rule 24 (valor -> BOOLEANO .)
+    OPERASIG_ARRAY  reduce using rule 24 (valor -> BOOLEANO .)
+    COMA            reduce using rule 24 (valor -> BOOLEANO .)
 
 
 state 87
 
-    (30) asignacion -> variable . OPERASIGNACION valor PUNTOYCOMA
-    (28) opLog -> variable .
-    (26) operacionesV -> variable .
-    (23) valores -> variable .
+    (33) impresionEcho -> echo CADENA PUNTOYCOMA .
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 23 (valores -> variable .)
-    OPERASIGNACION  shift and go to state 120
-    OPERLOGICO_AND  reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OR   reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_XOR  reduce using rule 28 (opLog -> variable .)
-    AMPERSAND       reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 28 (opLog -> variable .)
-    SUMA            reduce using rule 26 (operacionesV -> variable .)
-    RESTA           reduce using rule 26 (operacionesV -> variable .)
-    MULTIPLICACION  reduce using rule 26 (operacionesV -> variable .)
-    DIVISION        reduce using rule 26 (operacionesV -> variable .)
-    MODULO          reduce using rule 26 (operacionesV -> variable .)
-    EXPONENCIACION  reduce using rule 26 (operacionesV -> variable .)
-    OPERCOMPARACION reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_NOT  reduce using rule 23 (valores -> variable .)
-    MENORQUE        reduce using rule 23 (valores -> variable .)
-    MAYORQUE        reduce using rule 23 (valores -> variable .)
-
-  ! OPERLOGICO_NOT  [ reduce using rule 28 (opLog -> variable .) ]
+    $end            reduce using rule 33 (impresionEcho -> echo CADENA PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 33 (impresionEcho -> echo CADENA PUNTOYCOMA .)
 
 
 state 88
 
-    (27) opLog -> BOOLEANO .
-    (20) valor -> BOOLEANO .
+    (69) impresionPrint -> print PARENIZQ valores . PARENDER PUNTOYCOMA
+    (53) operacionesC -> valores . operadoresC valores
+    (43) operadoresC -> . OPERCOMPARACION
+    (44) operadoresC -> . OPERCOMPARACION OPERASIGNACION
+    (45) operadoresC -> . OPERLOGICO_NOT OPERASIGNACION
+    (46) operadoresC -> . MENORQUE MAYORQUE
+    (47) operadoresC -> . OPERLOGICO_NOT OPERCOMPARACION
+    (48) operadoresC -> . MENORQUE
+    (49) operadoresC -> . MAYORQUE
+    (50) operadoresC -> . MENORQUE OPERASIGNACION
+    (51) operadoresC -> . MAYORQUE OPERASIGNACION
+    (52) operadoresC -> . MENORQUE OPERASIGNACION MAYORQUE
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_AND  reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OR   reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_XOR  reduce using rule 27 (opLog -> BOOLEANO .)
-    AMPERSAND       reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERCOMPARACION reduce using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_NOT  reduce using rule 20 (valor -> BOOLEANO .)
-    MENORQUE        reduce using rule 20 (valor -> BOOLEANO .)
-    MAYORQUE        reduce using rule 20 (valor -> BOOLEANO .)
+    PARENDER        shift and go to state 126
+    OPERCOMPARACION shift and go to state 46
+    OPERLOGICO_NOT  shift and go to state 52
+    MENORQUE        shift and go to state 47
+    MAYORQUE        shift and go to state 48
 
-  ! OPERLOGICO_NOT  [ reduce using rule 27 (opLog -> BOOLEANO .) ]
-
+    operadoresC                    shift and go to state 51
 
 state 89
 
-    (24) operacionesV -> FLOTANTE .
-    (19) valor -> FLOTANTE .
+    (70) impresionPrint -> print PARENIZQ operacionesL . PARENDER PUNTOYCOMA
 
-    SUMA            reduce using rule 24 (operacionesV -> FLOTANTE .)
-    RESTA           reduce using rule 24 (operacionesV -> FLOTANTE .)
-    MULTIPLICACION  reduce using rule 24 (operacionesV -> FLOTANTE .)
-    DIVISION        reduce using rule 24 (operacionesV -> FLOTANTE .)
-    MODULO          reduce using rule 24 (operacionesV -> FLOTANTE .)
-    EXPONENCIACION  reduce using rule 24 (operacionesV -> FLOTANTE .)
-    OPERCOMPARACION reduce using rule 19 (valor -> FLOTANTE .)
-    OPERLOGICO_NOT  reduce using rule 19 (valor -> FLOTANTE .)
-    MENORQUE        reduce using rule 19 (valor -> FLOTANTE .)
-    MAYORQUE        reduce using rule 19 (valor -> FLOTANTE .)
+    PARENDER        shift and go to state 127
 
 
 state 90
 
-    (25) operacionesV -> ENTERO .
-    (18) valor -> ENTERO .
+    (71) impresionPrint -> print PARENIZQ operacionesC . PARENDER PUNTOYCOMA
 
-    SUMA            reduce using rule 25 (operacionesV -> ENTERO .)
-    RESTA           reduce using rule 25 (operacionesV -> ENTERO .)
-    MULTIPLICACION  reduce using rule 25 (operacionesV -> ENTERO .)
-    DIVISION        reduce using rule 25 (operacionesV -> ENTERO .)
-    MODULO          reduce using rule 25 (operacionesV -> ENTERO .)
-    EXPONENCIACION  reduce using rule 25 (operacionesV -> ENTERO .)
-    OPERCOMPARACION reduce using rule 18 (valor -> ENTERO .)
-    OPERLOGICO_NOT  reduce using rule 18 (valor -> ENTERO .)
-    MENORQUE        reduce using rule 18 (valor -> ENTERO .)
-    MAYORQUE        reduce using rule 18 (valor -> ENTERO .)
+    PARENDER        shift and go to state 128
 
 
 state 91
 
-    (37) operacionesA -> operacionesV operadoresA operacionesV .
-    (37) operacionesA -> operacionesV . operadoresA operacionesV
-    (38) operacionesA -> operacionesV . operadoresA operacionesA
-    (31) operadoresA -> . SUMA
-    (32) operadoresA -> . RESTA
-    (33) operadoresA -> . MULTIPLICACION
-    (34) operadoresA -> . DIVISION
-    (35) operadoresA -> . MODULO
-    (36) operadoresA -> . EXPONENCIACION
+    (72) impresionPrint -> print PARENIZQ operacionesA . PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 37 (operacionesA -> operacionesV operadoresA operacionesV .)
-    PARENDER        reduce using rule 37 (operacionesA -> operacionesV operadoresA operacionesV .)
-    PUNTOYCOMA      reduce using rule 37 (operacionesA -> operacionesV operadoresA operacionesV .)
-    SUMA            shift and go to state 37
-    RESTA           shift and go to state 38
-    MULTIPLICACION  shift and go to state 39
-    DIVISION        shift and go to state 40
-    MODULO          shift and go to state 41
-    EXPONENCIACION  shift and go to state 42
+    PARENDER        shift and go to state 129
 
-    operadoresA                    shift and go to state 36
 
 state 92
 
-    (38) operacionesA -> operacionesV operadoresA operacionesA .
+    (27) valores -> variable .
+    (32) opLog -> variable .
+    (30) operacionesV -> variable .
 
-    $end            reduce using rule 38 (operacionesA -> operacionesV operadoresA operacionesA .)
-    PARENDER        reduce using rule 38 (operacionesA -> operacionesV operadoresA operacionesA .)
-    PUNTOYCOMA      reduce using rule 38 (operacionesA -> operacionesV operadoresA operacionesA .)
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 27 (valores -> variable .)
+    PARENDER        reduce using rule 27 (valores -> variable .)
+    OPERCOMPARACION reduce using rule 27 (valores -> variable .)
+    OPERLOGICO_NOT  reduce using rule 27 (valores -> variable .)
+    MENORQUE        reduce using rule 27 (valores -> variable .)
+    MAYORQUE        reduce using rule 27 (valores -> variable .)
+    OPERLOGICO_AND  reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OR   reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_XOR  reduce using rule 32 (opLog -> variable .)
+    AMPERSAND       reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 32 (opLog -> variable .)
+    SUMA            reduce using rule 30 (operacionesV -> variable .)
+    RESTA           reduce using rule 30 (operacionesV -> variable .)
+    MULTIPLICACION  reduce using rule 30 (operacionesV -> variable .)
+    DIVISION        reduce using rule 30 (operacionesV -> variable .)
+    MODULO          reduce using rule 30 (operacionesV -> variable .)
+    EXPONENCIACION  reduce using rule 30 (operacionesV -> variable .)
+
+  ! OPERLOGICO_NOT  [ reduce using rule 32 (opLog -> variable .) ]
 
 
 state 93
 
-    (24) operacionesV -> FLOTANTE .
+    (41) operacionesA -> operacionesV operadoresA operacionesV .
+    (41) operacionesA -> operacionesV . operadoresA operacionesV
+    (42) operacionesA -> operacionesV . operadoresA operacionesA
+    (35) operadoresA -> . SUMA
+    (36) operadoresA -> . RESTA
+    (37) operadoresA -> . MULTIPLICACION
+    (38) operadoresA -> . DIVISION
+    (39) operadoresA -> . MODULO
+    (40) operadoresA -> . EXPONENCIACION
 
-    SUMA            reduce using rule 24 (operacionesV -> FLOTANTE .)
-    RESTA           reduce using rule 24 (operacionesV -> FLOTANTE .)
-    MULTIPLICACION  reduce using rule 24 (operacionesV -> FLOTANTE .)
-    DIVISION        reduce using rule 24 (operacionesV -> FLOTANTE .)
-    MODULO          reduce using rule 24 (operacionesV -> FLOTANTE .)
-    EXPONENCIACION  reduce using rule 24 (operacionesV -> FLOTANTE .)
-    $end            reduce using rule 24 (operacionesV -> FLOTANTE .)
-    PARENDER        reduce using rule 24 (operacionesV -> FLOTANTE .)
-    PUNTOYCOMA      reduce using rule 24 (operacionesV -> FLOTANTE .)
+    PUNTOYCOMA      reduce using rule 41 (operacionesA -> operacionesV operadoresA operacionesV .)
+    $end            reduce using rule 41 (operacionesA -> operacionesV operadoresA operacionesV .)
+    PARENDER        reduce using rule 41 (operacionesA -> operacionesV operadoresA operacionesV .)
+    SUMA            shift and go to state 40
+    RESTA           shift and go to state 41
+    MULTIPLICACION  shift and go to state 42
+    DIVISION        shift and go to state 43
+    MODULO          shift and go to state 44
+    EXPONENCIACION  shift and go to state 45
 
+    operadoresA                    shift and go to state 59
 
 state 94
 
-    (25) operacionesV -> ENTERO .
+    (42) operacionesA -> operacionesV operadoresA operacionesA .
 
-    SUMA            reduce using rule 25 (operacionesV -> ENTERO .)
-    RESTA           reduce using rule 25 (operacionesV -> ENTERO .)
-    MULTIPLICACION  reduce using rule 25 (operacionesV -> ENTERO .)
-    DIVISION        reduce using rule 25 (operacionesV -> ENTERO .)
-    MODULO          reduce using rule 25 (operacionesV -> ENTERO .)
-    EXPONENCIACION  reduce using rule 25 (operacionesV -> ENTERO .)
-    $end            reduce using rule 25 (operacionesV -> ENTERO .)
-    PARENDER        reduce using rule 25 (operacionesV -> ENTERO .)
-    PUNTOYCOMA      reduce using rule 25 (operacionesV -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 42 (operacionesA -> operacionesV operadoresA operacionesA .)
+    $end            reduce using rule 42 (operacionesA -> operacionesV operadoresA operacionesA .)
+    PARENDER        reduce using rule 42 (operacionesA -> operacionesV operadoresA operacionesA .)
 
 
 state 95
 
-    (26) operacionesV -> variable .
+    (28) operacionesV -> FLOTANTE .
 
-    SUMA            reduce using rule 26 (operacionesV -> variable .)
-    RESTA           reduce using rule 26 (operacionesV -> variable .)
-    MULTIPLICACION  reduce using rule 26 (operacionesV -> variable .)
-    DIVISION        reduce using rule 26 (operacionesV -> variable .)
-    MODULO          reduce using rule 26 (operacionesV -> variable .)
-    EXPONENCIACION  reduce using rule 26 (operacionesV -> variable .)
-    $end            reduce using rule 26 (operacionesV -> variable .)
-    PARENDER        reduce using rule 26 (operacionesV -> variable .)
-    PUNTOYCOMA      reduce using rule 26 (operacionesV -> variable .)
+    SUMA            reduce using rule 28 (operacionesV -> FLOTANTE .)
+    RESTA           reduce using rule 28 (operacionesV -> FLOTANTE .)
+    MULTIPLICACION  reduce using rule 28 (operacionesV -> FLOTANTE .)
+    DIVISION        reduce using rule 28 (operacionesV -> FLOTANTE .)
+    MODULO          reduce using rule 28 (operacionesV -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 28 (operacionesV -> FLOTANTE .)
+    PUNTOYCOMA      reduce using rule 28 (operacionesV -> FLOTANTE .)
+    $end            reduce using rule 28 (operacionesV -> FLOTANTE .)
+    PARENDER        reduce using rule 28 (operacionesV -> FLOTANTE .)
 
 
 state 96
 
-    (56) operacionesL -> opLog opLogicos opLog .
+    (29) operacionesV -> ENTERO .
 
-    $end            reduce using rule 56 (operacionesL -> opLog opLogicos opLog .)
-    PARENDER        reduce using rule 56 (operacionesL -> opLog opLogicos opLog .)
-    PUNTOYCOMA      reduce using rule 56 (operacionesL -> opLog opLogicos opLog .)
+    SUMA            reduce using rule 29 (operacionesV -> ENTERO .)
+    RESTA           reduce using rule 29 (operacionesV -> ENTERO .)
+    MULTIPLICACION  reduce using rule 29 (operacionesV -> ENTERO .)
+    DIVISION        reduce using rule 29 (operacionesV -> ENTERO .)
+    MODULO          reduce using rule 29 (operacionesV -> ENTERO .)
+    EXPONENCIACION  reduce using rule 29 (operacionesV -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 29 (operacionesV -> ENTERO .)
+    $end            reduce using rule 29 (operacionesV -> ENTERO .)
+    PARENDER        reduce using rule 29 (operacionesV -> ENTERO .)
 
 
 state 97
 
-    (27) opLog -> BOOLEANO .
+    (30) operacionesV -> variable .
 
-    $end            reduce using rule 27 (opLog -> BOOLEANO .)
-    PARENDER        reduce using rule 27 (opLog -> BOOLEANO .)
-    PUNTOYCOMA      reduce using rule 27 (opLog -> BOOLEANO .)
+    SUMA            reduce using rule 30 (operacionesV -> variable .)
+    RESTA           reduce using rule 30 (operacionesV -> variable .)
+    MULTIPLICACION  reduce using rule 30 (operacionesV -> variable .)
+    DIVISION        reduce using rule 30 (operacionesV -> variable .)
+    MODULO          reduce using rule 30 (operacionesV -> variable .)
+    EXPONENCIACION  reduce using rule 30 (operacionesV -> variable .)
+    PUNTOYCOMA      reduce using rule 30 (operacionesV -> variable .)
+    $end            reduce using rule 30 (operacionesV -> variable .)
+    PARENDER        reduce using rule 30 (operacionesV -> variable .)
 
 
 state 98
 
-    (28) opLog -> variable .
+    (60) operacionesL -> opLog opLogicos opLog .
 
-    $end            reduce using rule 28 (opLog -> variable .)
-    PARENDER        reduce using rule 28 (opLog -> variable .)
-    PUNTOYCOMA      reduce using rule 28 (opLog -> variable .)
+    PUNTOYCOMA      reduce using rule 60 (operacionesL -> opLog opLogicos opLog .)
+    $end            reduce using rule 60 (operacionesL -> opLog opLogicos opLog .)
+    PARENDER        reduce using rule 60 (operacionesL -> opLog opLogicos opLog .)
 
 
 state 99
 
-    (54) opLogicos -> AMPERSAND AMPERSAND .
+    (31) opLog -> BOOLEANO .
 
-    BOOLEANO        reduce using rule 54 (opLogicos -> AMPERSAND AMPERSAND .)
-    DOLAR           reduce using rule 54 (opLogicos -> AMPERSAND AMPERSAND .)
+    PUNTOYCOMA      reduce using rule 31 (opLog -> BOOLEANO .)
+    $end            reduce using rule 31 (opLog -> BOOLEANO .)
+    PARENDER        reduce using rule 31 (opLog -> BOOLEANO .)
 
 
 state 100
 
-    (30) asignacion -> variable OPERASIGNACION valor PUNTOYCOMA .
+    (32) opLog -> variable .
 
-    $end            reduce using rule 30 (asignacion -> variable OPERASIGNACION valor PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 30 (asignacion -> variable OPERASIGNACION valor PUNTOYCOMA .)
+    PUNTOYCOMA      reduce using rule 32 (opLog -> variable .)
+    $end            reduce using rule 32 (opLog -> variable .)
+    PARENDER        reduce using rule 32 (opLog -> variable .)
 
 
 state 101
 
-    (82) crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ . rellenoArray PARENDER PUNTOYCOMA
-    (79) rellenoArray -> . valores OPERASIG_ARRAY valores COMA
-    (80) rellenoArray -> . valores
-    (81) rellenoArray -> . COMA valores OPERASIG_ARRAY valores COMA rellenoArray
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (76) condIf -> if PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+    (77) condIf -> if PARENIZQ retornoBool . PARENDER LLAVEIZQ sentencias LLAVEDER
+    (78) condIf -> if PARENIZQ retornoBool . PARENDER LLAVEIZQ impresionPrint LLAVEDER
+    (79) condIf -> if PARENIZQ retornoBool . PARENDER LLAVEIZQ impresionEcho LLAVEDER
 
-    COMA            shift and go to state 123
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
-    DOLAR           shift and go to state 21
+    PARENDER        shift and go to state 130
 
-    variable                       shift and go to state 60
-    rellenoArray                   shift and go to state 121
-    valores                        shift and go to state 122
-    valor                          shift and go to state 59
 
 state 102
 
-    (83) bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ . sentencias LLAVEDER
-    (57) sentencias -> . operacionesL PUNTOYCOMA
-    (58) sentencias -> . operacionesA PUNTOYCOMA
-    (59) sentencias -> . operacionesC PUNTOYCOMA
-    (60) sentencias -> . asignacion
-    (61) sentencias -> . sentencias
-    (56) operacionesL -> . opLog opLogicos opLog
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (49) operacionesC -> . valores operadoresC valores
-    (30) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (73) retornoBool -> BOOLEANO .
+    (31) opLog -> BOOLEANO .
+    (24) valor -> BOOLEANO .
 
-    BOOLEANO        shift and go to state 88
-    FLOTANTE        shift and go to state 89
-    ENTERO          shift and go to state 90
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 24 (valor -> BOOLEANO .)
+    PARENDER        reduce using rule 73 (retornoBool -> BOOLEANO .)
+    OPERLOGICO_AND  reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_OR   reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_XOR  reduce using rule 31 (opLog -> BOOLEANO .)
+    AMPERSAND       reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERCOMPARACION reduce using rule 24 (valor -> BOOLEANO .)
+    OPERLOGICO_NOT  reduce using rule 24 (valor -> BOOLEANO .)
+    MENORQUE        reduce using rule 24 (valor -> BOOLEANO .)
+    MAYORQUE        reduce using rule 24 (valor -> BOOLEANO .)
 
-    variable                       shift and go to state 87
-    sentencias                     shift and go to state 124
-    operacionesL                   shift and go to state 83
-    operacionesA                   shift and go to state 84
-    operacionesC                   shift and go to state 85
-    asignacion                     shift and go to state 86
-    opLog                          shift and go to state 24
-    operacionesV                   shift and go to state 23
-    valores                        shift and go to state 56
-    valor                          shift and go to state 59
+  ! OPERLOGICO_NOT  [ reduce using rule 31 (opLog -> BOOLEANO .) ]
+
 
 state 103
 
-    (84) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY . variable LLAVEIZQ sentencias LLAVEDER
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (74) retornoBool -> operacionesL .
 
-    DOLAR           shift and go to state 21
+    PARENDER        reduce using rule 74 (retornoBool -> operacionesL .)
 
-    variable                       shift and go to state 125
 
 state 104
 
-    (48) operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .
+    (75) retornoBool -> operacionesC .
 
-    CADENA          reduce using rule 48 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
-    ENTERO          reduce using rule 48 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
-    FLOTANTE        reduce using rule 48 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
-    BOOLEANO        reduce using rule 48 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
-    DOLAR           reduce using rule 48 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
+    PARENDER        reduce using rule 75 (retornoBool -> operacionesC .)
 
 
 state 105
 
-    (65) impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER . PUNTOYCOMA
+    (32) opLog -> variable .
+    (27) valores -> variable .
 
-    PUNTOYCOMA      shift and go to state 126
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 27 (valores -> variable .)
+    OPERLOGICO_AND  reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OR   reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_XOR  reduce using rule 32 (opLog -> variable .)
+    AMPERSAND       reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 32 (opLog -> variable .)
+    OPERCOMPARACION reduce using rule 27 (valores -> variable .)
+    OPERLOGICO_NOT  reduce using rule 27 (valores -> variable .)
+    MENORQUE        reduce using rule 27 (valores -> variable .)
+    MAYORQUE        reduce using rule 27 (valores -> variable .)
+
+  ! OPERLOGICO_NOT  [ reduce using rule 32 (opLog -> variable .) ]
 
 
 state 106
 
-    (66) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL PARENDER . PUNTOYCOMA
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias . LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (65) sentencias -> sentencias .
 
-    PUNTOYCOMA      shift and go to state 127
+  ! shift/reduce conflict for LLAVEDER resolved as shift
+    LLAVEDER        shift and go to state 131
+
+  ! LLAVEDER        [ reduce using rule 65 (sentencias -> sentencias .) ]
 
 
 state 107
 
-    (67) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC PARENDER . PUNTOYCOMA
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint . LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 128
+    LLAVEDER        shift and go to state 132
 
 
 state 108
 
-    (68) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA PARENDER . PUNTOYCOMA
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho . LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 129
+    LLAVEDER        shift and go to state 133
 
 
 state 109
 
-    (72) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER . PUNTOYCOMA
-    (73) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER . LLAVEIZQ sentencias LLAVEDER
-    (74) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER . LLAVEIZQ impresionPrint LLAVEDER
-    (75) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER . LLAVEIZQ impresionEcho LLAVEDER
+    (61) sentencias -> operacionesL . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 130
-    LLAVEIZQ        shift and go to state 131
+    PUNTOYCOMA      shift and go to state 55
 
 
 state 110
 
-    (85) metodosArray -> IDENTIFICADOR PARENIZQ variable PARENDER . PUNTOYCOMA
+    (62) sentencias -> operacionesA . PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 132
+    PUNTOYCOMA      shift and go to state 53
 
 
 state 111
 
-    (82) crearArreglos -> variable OPERASIGNACION . IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA
+    (63) sentencias -> operacionesC . PUNTOYCOMA
 
-    IDENTIFICADOR   shift and go to state 55
+    PUNTOYCOMA      shift and go to state 54
 
 
 state 112
 
-    (86) metodosArray -> IDENTIFICADOR PARENIZQ crearArreglos PARENDER . PUNTOYCOMA
+    (64) sentencias -> asignacion .
 
-    PUNTOYCOMA      shift and go to state 133
+    LLAVEDER        reduce using rule 64 (sentencias -> asignacion .)
 
 
 state 113
 
-    (65) impresionPrint -> IDENTIFICADOR PARENIZQ . valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> IDENTIFICADOR PARENIZQ . operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> IDENTIFICADOR PARENIZQ . operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> IDENTIFICADOR PARENIZQ . operacionesA PARENDER PUNTOYCOMA
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (56) operacionesL -> . opLog opLogicos opLog
-    (49) operacionesC -> . valores operadoresC valores
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
+    (34) asignacion -> variable . OPERASIGNACION valor PUNTOYCOMA
+    (32) opLog -> variable .
+    (30) operacionesV -> variable .
+    (27) valores -> variable .
 
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 18
-    FLOTANTE        shift and go to state 19
-    BOOLEANO        shift and go to state 20
-    DOLAR           shift and go to state 21
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 27 (valores -> variable .)
+    OPERASIGNACION  shift and go to state 134
+    OPERLOGICO_AND  reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OR   reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_XOR  reduce using rule 32 (opLog -> variable .)
+    AMPERSAND       reduce using rule 32 (opLog -> variable .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 32 (opLog -> variable .)
+    SUMA            reduce using rule 30 (operacionesV -> variable .)
+    RESTA           reduce using rule 30 (operacionesV -> variable .)
+    MULTIPLICACION  reduce using rule 30 (operacionesV -> variable .)
+    DIVISION        reduce using rule 30 (operacionesV -> variable .)
+    MODULO          reduce using rule 30 (operacionesV -> variable .)
+    EXPONENCIACION  reduce using rule 30 (operacionesV -> variable .)
+    OPERCOMPARACION reduce using rule 27 (valores -> variable .)
+    OPERLOGICO_NOT  reduce using rule 27 (valores -> variable .)
+    MENORQUE        reduce using rule 27 (valores -> variable .)
+    MAYORQUE        reduce using rule 27 (valores -> variable .)
 
-    valores                        shift and go to state 71
-    operacionesL                   shift and go to state 134
-    operacionesC                   shift and go to state 135
-    operacionesA                   shift and go to state 74
-    valor                          shift and go to state 59
-    variable                       shift and go to state 136
-    opLog                          shift and go to state 24
-    operacionesV                   shift and go to state 23
+  ! OPERLOGICO_NOT  [ reduce using rule 32 (opLog -> variable .) ]
+
 
 state 114
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER . IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (31) opLog -> BOOLEANO .
+    (24) valor -> BOOLEANO .
 
-    IDENTIFICADOR   shift and go to state 137
+  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 24 (valor -> BOOLEANO .)
+    OPERLOGICO_AND  reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_OR   reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_XOR  reduce using rule 31 (opLog -> BOOLEANO .)
+    AMPERSAND       reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 31 (opLog -> BOOLEANO .)
+    OPERCOMPARACION reduce using rule 24 (valor -> BOOLEANO .)
+    OPERLOGICO_NOT  reduce using rule 24 (valor -> BOOLEANO .)
+    MENORQUE        reduce using rule 24 (valor -> BOOLEANO .)
+    MAYORQUE        reduce using rule 24 (valor -> BOOLEANO .)
+
+  ! OPERLOGICO_NOT  [ reduce using rule 31 (opLog -> BOOLEANO .) ]
 
 
 state 115
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER . IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (28) operacionesV -> FLOTANTE .
+    (23) valor -> FLOTANTE .
 
-    IDENTIFICADOR   shift and go to state 138
+    SUMA            reduce using rule 28 (operacionesV -> FLOTANTE .)
+    RESTA           reduce using rule 28 (operacionesV -> FLOTANTE .)
+    MULTIPLICACION  reduce using rule 28 (operacionesV -> FLOTANTE .)
+    DIVISION        reduce using rule 28 (operacionesV -> FLOTANTE .)
+    MODULO          reduce using rule 28 (operacionesV -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 28 (operacionesV -> FLOTANTE .)
+    OPERCOMPARACION reduce using rule 23 (valor -> FLOTANTE .)
+    OPERLOGICO_NOT  reduce using rule 23 (valor -> FLOTANTE .)
+    MENORQUE        reduce using rule 23 (valor -> FLOTANTE .)
+    MAYORQUE        reduce using rule 23 (valor -> FLOTANTE .)
 
 
 state 116
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER . IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (29) operacionesV -> ENTERO .
+    (22) valor -> ENTERO .
 
-    IDENTIFICADOR   shift and go to state 139
+    SUMA            reduce using rule 29 (operacionesV -> ENTERO .)
+    RESTA           reduce using rule 29 (operacionesV -> ENTERO .)
+    MULTIPLICACION  reduce using rule 29 (operacionesV -> ENTERO .)
+    DIVISION        reduce using rule 29 (operacionesV -> ENTERO .)
+    MODULO          reduce using rule 29 (operacionesV -> ENTERO .)
+    EXPONENCIACION  reduce using rule 29 (operacionesV -> ENTERO .)
+    OPERCOMPARACION reduce using rule 22 (valor -> ENTERO .)
+    OPERLOGICO_NOT  reduce using rule 22 (valor -> ENTERO .)
+    MENORQUE        reduce using rule 22 (valor -> ENTERO .)
+    MAYORQUE        reduce using rule 22 (valor -> ENTERO .)
 
 
 state 117
 
-    (57) sentencias -> operacionesL PUNTOYCOMA .
+    (89) metodosArray -> rsort PARENIZQ variable . PARENDER PUNTOYCOMA
+    (86) crearArreglos -> variable . OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
 
-    LLAVEDER        reduce using rule 57 (sentencias -> operacionesL PUNTOYCOMA .)
+    PARENDER        shift and go to state 135
+    OPERASIGNACION  shift and go to state 136
 
 
 state 118
 
-    (58) sentencias -> operacionesA PUNTOYCOMA .
+    (90) metodosArray -> rsort PARENIZQ crearArreglos . PARENDER PUNTOYCOMA
 
-    LLAVEDER        reduce using rule 58 (sentencias -> operacionesA PUNTOYCOMA .)
+    PARENDER        shift and go to state 137
 
 
 state 119
 
-    (59) sentencias -> operacionesC PUNTOYCOMA .
+    (91) metodosArray -> count PARENIZQ variable . PARENDER PUNTOYCOMA
+    (86) crearArreglos -> variable . OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
 
-    LLAVEDER        reduce using rule 59 (sentencias -> operacionesC PUNTOYCOMA .)
+    PARENDER        shift and go to state 138
+    OPERASIGNACION  shift and go to state 136
 
 
 state 120
 
-    (30) asignacion -> variable OPERASIGNACION . valor PUNTOYCOMA
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (92) metodosArray -> count PARENIZQ crearArreglos . PARENDER PUNTOYCOMA
 
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
+    PARENDER        shift and go to state 139
 
-    valor                          shift and go to state 140
 
 state 121
 
-    (82) crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray . PARENDER PUNTOYCOMA
+    (52) operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .
 
-    PARENDER        shift and go to state 141
+    $end            reduce using rule 52 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
+    CADENA          reduce using rule 52 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
+    ENTERO          reduce using rule 52 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
+    FLOTANTE        reduce using rule 52 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
+    BOOLEANO        reduce using rule 52 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
+    DOLAR           reduce using rule 52 (operadoresC -> MENORQUE OPERASIGNACION MAYORQUE .)
 
 
 state 122
 
-    (79) rellenoArray -> valores . OPERASIG_ARRAY valores COMA
-    (80) rellenoArray -> valores .
+    (34) asignacion -> variable OPERASIGNACION valor PUNTOYCOMA .
 
-    OPERASIG_ARRAY  shift and go to state 142
-    PARENDER        reduce using rule 80 (rellenoArray -> valores .)
+    $end            reduce using rule 34 (asignacion -> variable OPERASIGNACION valor PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 34 (asignacion -> variable OPERASIGNACION valor PUNTOYCOMA .)
 
 
 state 123
 
-    (81) rellenoArray -> COMA . valores OPERASIG_ARRAY valores COMA rellenoArray
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (86) crearArreglos -> variable OPERASIGNACION array PARENIZQ . rellenoArray PARENDER PUNTOYCOMA
+    (83) rellenoArray -> . valores OPERASIG_ARRAY valores COMA
+    (84) rellenoArray -> . valores
+    (85) rellenoArray -> . COMA valores OPERASIG_ARRAY valores COMA rellenoArray
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
-    DOLAR           shift and go to state 21
+    COMA            shift and go to state 142
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
+    DOLAR           shift and go to state 25
 
-    valores                        shift and go to state 143
-    valor                          shift and go to state 59
-    variable                       shift and go to state 60
+    variable                       shift and go to state 83
+    rellenoArray                   shift and go to state 140
+    valores                        shift and go to state 141
+    valor                          shift and go to state 82
 
 state 124
 
-    (83) bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias . LLAVEDER
-    (61) sentencias -> sentencias .
+    (87) bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ . sentencias LLAVEDER
+    (61) sentencias -> . operacionesL PUNTOYCOMA
+    (62) sentencias -> . operacionesA PUNTOYCOMA
+    (63) sentencias -> . operacionesC PUNTOYCOMA
+    (64) sentencias -> . asignacion
+    (65) sentencias -> . sentencias
+    (60) operacionesL -> . opLog opLogicos opLog
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (53) operacionesC -> . valores operadoresC valores
+    (34) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-  ! shift/reduce conflict for LLAVEDER resolved as shift
-    LLAVEDER        shift and go to state 144
+    BOOLEANO        shift and go to state 114
+    FLOTANTE        shift and go to state 115
+    ENTERO          shift and go to state 116
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
 
-  ! LLAVEDER        [ reduce using rule 61 (sentencias -> sentencias .) ]
-
+    variable                       shift and go to state 113
+    sentencias                     shift and go to state 143
+    operacionesL                   shift and go to state 109
+    operacionesA                   shift and go to state 110
+    operacionesC                   shift and go to state 111
+    asignacion                     shift and go to state 112
+    opLog                          shift and go to state 29
+    operacionesV                   shift and go to state 28
+    valores                        shift and go to state 79
+    valor                          shift and go to state 82
 
 state 125
 
-    (84) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable . LLAVEIZQ sentencias LLAVEDER
+    (88) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY . variable LLAVEIZQ sentencias LLAVEDER
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    LLAVEIZQ        shift and go to state 145
+    DOLAR           shift and go to state 25
 
+    variable                       shift and go to state 144
 
 state 126
 
-    (65) impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA .
+    (69) impresionPrint -> print PARENIZQ valores PARENDER . PUNTOYCOMA
 
-    $end            reduce using rule 65 (impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 65 (impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 145
 
 
 state 127
 
-    (66) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA .
+    (70) impresionPrint -> print PARENIZQ operacionesL PARENDER . PUNTOYCOMA
 
-    $end            reduce using rule 66 (impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 66 (impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 146
 
 
 state 128
 
-    (67) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA .
+    (71) impresionPrint -> print PARENIZQ operacionesC PARENDER . PUNTOYCOMA
 
-    $end            reduce using rule 67 (impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 67 (impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 147
 
 
 state 129
 
-    (68) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA .
+    (72) impresionPrint -> print PARENIZQ operacionesA PARENDER . PUNTOYCOMA
 
-    $end            reduce using rule 68 (impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 68 (impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 148
 
 
 state 130
 
-    (72) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+    (76) condIf -> if PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+    (77) condIf -> if PARENIZQ retornoBool PARENDER . LLAVEIZQ sentencias LLAVEDER
+    (78) condIf -> if PARENIZQ retornoBool PARENDER . LLAVEIZQ impresionPrint LLAVEDER
+    (79) condIf -> if PARENIZQ retornoBool PARENDER . LLAVEIZQ impresionEcho LLAVEDER
 
-    $end            reduce using rule 72 (condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 149
+    LLAVEIZQ        shift and go to state 150
 
 
 state 131
 
-    (73) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ . sentencias LLAVEDER
-    (74) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ . impresionPrint LLAVEDER
-    (75) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ . impresionEcho LLAVEDER
-    (57) sentencias -> . operacionesL PUNTOYCOMA
-    (58) sentencias -> . operacionesA PUNTOYCOMA
-    (59) sentencias -> . operacionesC PUNTOYCOMA
-    (60) sentencias -> . asignacion
-    (61) sentencias -> . sentencias
-    (65) impresionPrint -> . IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
-    (66) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
-    (67) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
-    (68) impresionPrint -> . IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA
-    (29) impresionEcho -> . IDENTIFICADOR CADENA PUNTOYCOMA
-    (56) operacionesL -> . opLog opLogicos opLog
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (49) operacionesC -> . valores operadoresC valores
-    (30) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER . while PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    IDENTIFICADOR   shift and go to state 79
-    BOOLEANO        shift and go to state 88
-    FLOTANTE        shift and go to state 89
-    ENTERO          shift and go to state 90
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
+    while           shift and go to state 151
 
-    sentencias                     shift and go to state 146
-    impresionPrint                 shift and go to state 147
-    impresionEcho                  shift and go to state 148
-    operacionesL                   shift and go to state 83
-    operacionesA                   shift and go to state 84
-    operacionesC                   shift and go to state 85
-    asignacion                     shift and go to state 86
-    valores                        shift and go to state 56
-    opLog                          shift and go to state 24
-    operacionesV                   shift and go to state 23
-    variable                       shift and go to state 87
-    valor                          shift and go to state 59
 
 state 132
 
-    (85) metodosArray -> IDENTIFICADOR PARENIZQ variable PARENDER PUNTOYCOMA .
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER . while PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 85 (metodosArray -> IDENTIFICADOR PARENIZQ variable PARENDER PUNTOYCOMA .)
+    while           shift and go to state 152
 
 
 state 133
 
-    (86) metodosArray -> IDENTIFICADOR PARENIZQ crearArreglos PARENDER PUNTOYCOMA .
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER . while PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 86 (metodosArray -> IDENTIFICADOR PARENIZQ crearArreglos PARENDER PUNTOYCOMA .)
+    while           shift and go to state 153
 
 
 state 134
 
-    (66) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL . PARENDER PUNTOYCOMA
+    (34) asignacion -> variable OPERASIGNACION . valor PUNTOYCOMA
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    PARENDER        shift and go to state 106
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
 
+    valor                          shift and go to state 154
 
 state 135
 
-    (67) impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC . PARENDER PUNTOYCOMA
+    (89) metodosArray -> rsort PARENIZQ variable PARENDER . PUNTOYCOMA
 
-    PARENDER        shift and go to state 107
+    PUNTOYCOMA      shift and go to state 155
 
 
 state 136
 
-    (23) valores -> variable .
-    (28) opLog -> variable .
-    (26) operacionesV -> variable .
+    (86) crearArreglos -> variable OPERASIGNACION . array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 23 (valores -> variable .)
-    PARENDER        reduce using rule 23 (valores -> variable .)
-    OPERCOMPARACION reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_NOT  reduce using rule 23 (valores -> variable .)
-    MENORQUE        reduce using rule 23 (valores -> variable .)
-    MAYORQUE        reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_AND  reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OR   reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_XOR  reduce using rule 28 (opLog -> variable .)
-    AMPERSAND       reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 28 (opLog -> variable .)
-    SUMA            reduce using rule 26 (operacionesV -> variable .)
-    RESTA           reduce using rule 26 (operacionesV -> variable .)
-    MULTIPLICACION  reduce using rule 26 (operacionesV -> variable .)
-    DIVISION        reduce using rule 26 (operacionesV -> variable .)
-    MODULO          reduce using rule 26 (operacionesV -> variable .)
-    EXPONENCIACION  reduce using rule 26 (operacionesV -> variable .)
-
-  ! OPERLOGICO_NOT  [ reduce using rule 28 (opLog -> variable .) ]
+    array           shift and go to state 78
 
 
 state 137
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR . PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (90) metodosArray -> rsort PARENIZQ crearArreglos PARENDER . PUNTOYCOMA
 
-    PARENIZQ        shift and go to state 149
+    PUNTOYCOMA      shift and go to state 156
 
 
 state 138
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR . PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (91) metodosArray -> count PARENIZQ variable PARENDER . PUNTOYCOMA
 
-    PARENIZQ        shift and go to state 150
+    PUNTOYCOMA      shift and go to state 157
 
 
 state 139
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR . PARENIZQ retornoBool PARENDER PUNTOYCOMA
+    (92) metodosArray -> count PARENIZQ crearArreglos PARENDER . PUNTOYCOMA
 
-    PARENIZQ        shift and go to state 151
+    PUNTOYCOMA      shift and go to state 158
 
 
 state 140
 
-    (30) asignacion -> variable OPERASIGNACION valor . PUNTOYCOMA
+    (86) crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray . PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 100
+    PARENDER        shift and go to state 159
 
 
 state 141
 
-    (82) crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER . PUNTOYCOMA
+    (83) rellenoArray -> valores . OPERASIG_ARRAY valores COMA
+    (84) rellenoArray -> valores .
 
-    PUNTOYCOMA      shift and go to state 152
+    OPERASIG_ARRAY  shift and go to state 160
+    PARENDER        reduce using rule 84 (rellenoArray -> valores .)
 
 
 state 142
 
-    (79) rellenoArray -> valores OPERASIG_ARRAY . valores COMA
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (85) rellenoArray -> COMA . valores OPERASIG_ARRAY valores COMA rellenoArray
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
-    DOLAR           shift and go to state 21
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
+    DOLAR           shift and go to state 25
 
-    valores                        shift and go to state 153
-    valor                          shift and go to state 59
-    variable                       shift and go to state 60
+    valores                        shift and go to state 161
+    valor                          shift and go to state 82
+    variable                       shift and go to state 83
 
 state 143
 
-    (81) rellenoArray -> COMA valores . OPERASIG_ARRAY valores COMA rellenoArray
+    (87) bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias . LLAVEDER
+    (65) sentencias -> sentencias .
 
-    OPERASIG_ARRAY  shift and go to state 154
+  ! shift/reduce conflict for LLAVEDER resolved as shift
+    LLAVEDER        shift and go to state 162
+
+  ! LLAVEDER        [ reduce using rule 65 (sentencias -> sentencias .) ]
 
 
 state 144
 
-    (83) bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER .
+    (88) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable . LLAVEIZQ sentencias LLAVEDER
 
-    $end            reduce using rule 83 (bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER .)
+    LLAVEIZQ        shift and go to state 163
 
 
 state 145
 
-    (84) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ . sentencias LLAVEDER
-    (57) sentencias -> . operacionesL PUNTOYCOMA
-    (58) sentencias -> . operacionesA PUNTOYCOMA
-    (59) sentencias -> . operacionesC PUNTOYCOMA
-    (60) sentencias -> . asignacion
-    (61) sentencias -> . sentencias
-    (56) operacionesL -> . opLog opLogicos opLog
-    (37) operacionesA -> . operacionesV operadoresA operacionesV
-    (38) operacionesA -> . operacionesV operadoresA operacionesA
-    (49) operacionesC -> . valores operadoresC valores
-    (30) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (24) operacionesV -> . FLOTANTE
-    (25) operacionesV -> . ENTERO
-    (26) operacionesV -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (69) impresionPrint -> print PARENIZQ valores PARENDER PUNTOYCOMA .
 
-    BOOLEANO        shift and go to state 88
-    FLOTANTE        shift and go to state 89
-    ENTERO          shift and go to state 90
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
+    $end            reduce using rule 69 (impresionPrint -> print PARENIZQ valores PARENDER PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 69 (impresionPrint -> print PARENIZQ valores PARENDER PUNTOYCOMA .)
 
-    variable                       shift and go to state 87
-    sentencias                     shift and go to state 155
-    operacionesL                   shift and go to state 83
-    operacionesA                   shift and go to state 84
-    operacionesC                   shift and go to state 85
-    asignacion                     shift and go to state 86
-    opLog                          shift and go to state 24
-    operacionesV                   shift and go to state 23
-    valores                        shift and go to state 56
-    valor                          shift and go to state 59
 
 state 146
 
-    (73) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias . LLAVEDER
-    (61) sentencias -> sentencias .
+    (70) impresionPrint -> print PARENIZQ operacionesL PARENDER PUNTOYCOMA .
 
-  ! shift/reduce conflict for LLAVEDER resolved as shift
-    LLAVEDER        shift and go to state 156
-
-  ! LLAVEDER        [ reduce using rule 61 (sentencias -> sentencias .) ]
+    $end            reduce using rule 70 (impresionPrint -> print PARENIZQ operacionesL PARENDER PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 70 (impresionPrint -> print PARENIZQ operacionesL PARENDER PUNTOYCOMA .)
 
 
 state 147
 
-    (74) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint . LLAVEDER
+    (71) impresionPrint -> print PARENIZQ operacionesC PARENDER PUNTOYCOMA .
 
-    LLAVEDER        shift and go to state 157
+    $end            reduce using rule 71 (impresionPrint -> print PARENIZQ operacionesC PARENDER PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 71 (impresionPrint -> print PARENIZQ operacionesC PARENDER PUNTOYCOMA .)
 
 
 state 148
 
-    (75) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho . LLAVEDER
+    (72) impresionPrint -> print PARENIZQ operacionesA PARENDER PUNTOYCOMA .
 
-    LLAVEDER        shift and go to state 158
+    $end            reduce using rule 72 (impresionPrint -> print PARENIZQ operacionesA PARENDER PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 72 (impresionPrint -> print PARENIZQ operacionesA PARENDER PUNTOYCOMA .)
 
 
 state 149
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ . retornoBool PARENDER PUNTOYCOMA
-    (69) retornoBool -> . BOOLEANO
-    (70) retornoBool -> . operacionesL
-    (71) retornoBool -> . operacionesC
-    (56) operacionesL -> . opLog opLogicos opLog
-    (49) operacionesC -> . valores operadoresC valores
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (76) condIf -> if PARENIZQ retornoBool PARENDER PUNTOYCOMA .
 
-    BOOLEANO        shift and go to state 160
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
+    $end            reduce using rule 76 (condIf -> if PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
 
-    retornoBool                    shift and go to state 159
-    operacionesL                   shift and go to state 161
-    operacionesC                   shift and go to state 162
-    opLog                          shift and go to state 24
-    valores                        shift and go to state 56
-    variable                       shift and go to state 163
-    valor                          shift and go to state 59
 
 state 150
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ . retornoBool PARENDER PUNTOYCOMA
-    (69) retornoBool -> . BOOLEANO
-    (70) retornoBool -> . operacionesL
-    (71) retornoBool -> . operacionesC
-    (56) operacionesL -> . opLog opLogicos opLog
-    (49) operacionesC -> . valores operadoresC valores
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (77) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ . sentencias LLAVEDER
+    (78) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ . impresionPrint LLAVEDER
+    (79) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ . impresionEcho LLAVEDER
+    (61) sentencias -> . operacionesL PUNTOYCOMA
+    (62) sentencias -> . operacionesA PUNTOYCOMA
+    (63) sentencias -> . operacionesC PUNTOYCOMA
+    (64) sentencias -> . asignacion
+    (65) sentencias -> . sentencias
+    (69) impresionPrint -> . print PARENIZQ valores PARENDER PUNTOYCOMA
+    (70) impresionPrint -> . print PARENIZQ operacionesL PARENDER PUNTOYCOMA
+    (71) impresionPrint -> . print PARENIZQ operacionesC PARENDER PUNTOYCOMA
+    (72) impresionPrint -> . print PARENIZQ operacionesA PARENDER PUNTOYCOMA
+    (33) impresionEcho -> . echo CADENA PUNTOYCOMA
+    (60) operacionesL -> . opLog opLogicos opLog
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (53) operacionesC -> . valores operadoresC valores
+    (34) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    BOOLEANO        shift and go to state 160
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
+    print           shift and go to state 27
+    echo            shift and go to state 26
+    BOOLEANO        shift and go to state 114
+    FLOTANTE        shift and go to state 115
+    ENTERO          shift and go to state 116
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
 
-    retornoBool                    shift and go to state 164
-    operacionesL                   shift and go to state 161
-    operacionesC                   shift and go to state 162
-    opLog                          shift and go to state 24
-    valores                        shift and go to state 56
-    variable                       shift and go to state 163
-    valor                          shift and go to state 59
+    sentencias                     shift and go to state 164
+    impresionPrint                 shift and go to state 165
+    impresionEcho                  shift and go to state 166
+    operacionesL                   shift and go to state 109
+    operacionesA                   shift and go to state 110
+    operacionesC                   shift and go to state 111
+    asignacion                     shift and go to state 112
+    valores                        shift and go to state 79
+    opLog                          shift and go to state 29
+    operacionesV                   shift and go to state 28
+    variable                       shift and go to state 113
+    valor                          shift and go to state 82
 
 state 151
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ . retornoBool PARENDER PUNTOYCOMA
-    (69) retornoBool -> . BOOLEANO
-    (70) retornoBool -> . operacionesL
-    (71) retornoBool -> . operacionesC
-    (56) operacionesL -> . opLog opLogicos opLog
-    (49) operacionesC -> . valores operadoresC valores
-    (27) opLog -> . BOOLEANO
-    (28) opLog -> . variable
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (21) variable -> . DOLAR IDENTIFICADOR
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while . PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    BOOLEANO        shift and go to state 160
-    DOLAR           shift and go to state 21
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
+    PARENIZQ        shift and go to state 167
 
-    retornoBool                    shift and go to state 165
-    operacionesL                   shift and go to state 161
-    operacionesC                   shift and go to state 162
-    opLog                          shift and go to state 24
-    valores                        shift and go to state 56
-    variable                       shift and go to state 163
-    valor                          shift and go to state 59
 
 state 152
 
-    (82) crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA .
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while . PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 82 (crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA .)
-    PARENDER        reduce using rule 82 (crearArreglos -> variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA .)
+    PARENIZQ        shift and go to state 168
 
 
 state 153
 
-    (79) rellenoArray -> valores OPERASIG_ARRAY valores . COMA
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while . PARENIZQ retornoBool PARENDER PUNTOYCOMA
 
-    COMA            shift and go to state 166
+    PARENIZQ        shift and go to state 169
 
 
 state 154
 
-    (81) rellenoArray -> COMA valores OPERASIG_ARRAY . valores COMA rellenoArray
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (34) asignacion -> variable OPERASIGNACION valor . PUNTOYCOMA
 
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
-    DOLAR           shift and go to state 21
+    PUNTOYCOMA      shift and go to state 122
 
-    valores                        shift and go to state 167
-    valor                          shift and go to state 59
-    variable                       shift and go to state 60
 
 state 155
 
-    (84) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias . LLAVEDER
-    (61) sentencias -> sentencias .
+    (89) metodosArray -> rsort PARENIZQ variable PARENDER PUNTOYCOMA .
 
-  ! shift/reduce conflict for LLAVEDER resolved as shift
-    LLAVEDER        shift and go to state 168
-
-  ! LLAVEDER        [ reduce using rule 61 (sentencias -> sentencias .) ]
+    $end            reduce using rule 89 (metodosArray -> rsort PARENIZQ variable PARENDER PUNTOYCOMA .)
 
 
 state 156
 
-    (73) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER .
+    (90) metodosArray -> rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA .
 
-    $end            reduce using rule 73 (condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER .)
+    $end            reduce using rule 90 (metodosArray -> rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA .)
 
 
 state 157
 
-    (74) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER .
+    (91) metodosArray -> count PARENIZQ variable PARENDER PUNTOYCOMA .
 
-    $end            reduce using rule 74 (condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER .)
+    $end            reduce using rule 91 (metodosArray -> count PARENIZQ variable PARENDER PUNTOYCOMA .)
 
 
 state 158
 
-    (75) condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER .
+    (92) metodosArray -> count PARENIZQ crearArreglos PARENDER PUNTOYCOMA .
 
-    $end            reduce using rule 75 (condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER .)
+    $end            reduce using rule 92 (metodosArray -> count PARENIZQ crearArreglos PARENDER PUNTOYCOMA .)
 
 
 state 159
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+    (86) crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER . PUNTOYCOMA
 
-    PARENDER        shift and go to state 169
+    PUNTOYCOMA      shift and go to state 170
 
 
 state 160
 
-    (69) retornoBool -> BOOLEANO .
-    (27) opLog -> BOOLEANO .
-    (20) valor -> BOOLEANO .
+    (83) rellenoArray -> valores OPERASIG_ARRAY . valores COMA
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 20 (valor -> BOOLEANO .)
-    PARENDER        reduce using rule 69 (retornoBool -> BOOLEANO .)
-    OPERLOGICO_AND  reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OR   reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_XOR  reduce using rule 27 (opLog -> BOOLEANO .)
-    AMPERSAND       reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 27 (opLog -> BOOLEANO .)
-    OPERCOMPARACION reduce using rule 20 (valor -> BOOLEANO .)
-    OPERLOGICO_NOT  reduce using rule 20 (valor -> BOOLEANO .)
-    MENORQUE        reduce using rule 20 (valor -> BOOLEANO .)
-    MAYORQUE        reduce using rule 20 (valor -> BOOLEANO .)
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
+    DOLAR           shift and go to state 25
 
-  ! OPERLOGICO_NOT  [ reduce using rule 27 (opLog -> BOOLEANO .) ]
-
+    valores                        shift and go to state 171
+    valor                          shift and go to state 82
+    variable                       shift and go to state 83
 
 state 161
 
-    (70) retornoBool -> operacionesL .
+    (85) rellenoArray -> COMA valores . OPERASIG_ARRAY valores COMA rellenoArray
 
-    PARENDER        reduce using rule 70 (retornoBool -> operacionesL .)
+    OPERASIG_ARRAY  shift and go to state 172
 
 
 state 162
 
-    (71) retornoBool -> operacionesC .
+    (87) bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER .
 
-    PARENDER        reduce using rule 71 (retornoBool -> operacionesC .)
+    $end            reduce using rule 87 (bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER .)
 
 
 state 163
 
-    (28) opLog -> variable .
-    (23) valores -> variable .
+    (88) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ . sentencias LLAVEDER
+    (61) sentencias -> . operacionesL PUNTOYCOMA
+    (62) sentencias -> . operacionesA PUNTOYCOMA
+    (63) sentencias -> . operacionesC PUNTOYCOMA
+    (64) sentencias -> . asignacion
+    (65) sentencias -> . sentencias
+    (60) operacionesL -> . opLog opLogicos opLog
+    (41) operacionesA -> . operacionesV operadoresA operacionesV
+    (42) operacionesA -> . operacionesV operadoresA operacionesA
+    (53) operacionesC -> . valores operadoresC valores
+    (34) asignacion -> . variable OPERASIGNACION valor PUNTOYCOMA
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (28) operacionesV -> . FLOTANTE
+    (29) operacionesV -> . ENTERO
+    (30) operacionesV -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-  ! reduce/reduce conflict for OPERLOGICO_NOT resolved using rule 23 (valores -> variable .)
-    OPERLOGICO_AND  reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OR   reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_XOR  reduce using rule 28 (opLog -> variable .)
-    AMPERSAND       reduce using rule 28 (opLog -> variable .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 28 (opLog -> variable .)
-    OPERCOMPARACION reduce using rule 23 (valores -> variable .)
-    OPERLOGICO_NOT  reduce using rule 23 (valores -> variable .)
-    MENORQUE        reduce using rule 23 (valores -> variable .)
-    MAYORQUE        reduce using rule 23 (valores -> variable .)
+    BOOLEANO        shift and go to state 114
+    FLOTANTE        shift and go to state 115
+    ENTERO          shift and go to state 116
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
 
-  ! OPERLOGICO_NOT  [ reduce using rule 28 (opLog -> variable .) ]
-
+    variable                       shift and go to state 113
+    sentencias                     shift and go to state 173
+    operacionesL                   shift and go to state 109
+    operacionesA                   shift and go to state 110
+    operacionesC                   shift and go to state 111
+    asignacion                     shift and go to state 112
+    opLog                          shift and go to state 29
+    operacionesV                   shift and go to state 28
+    valores                        shift and go to state 79
+    valor                          shift and go to state 82
 
 state 164
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+    (77) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias . LLAVEDER
+    (65) sentencias -> sentencias .
 
-    PARENDER        shift and go to state 170
+  ! shift/reduce conflict for LLAVEDER resolved as shift
+    LLAVEDER        shift and go to state 174
+
+  ! LLAVEDER        [ reduce using rule 65 (sentencias -> sentencias .) ]
 
 
 state 165
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+    (78) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint . LLAVEDER
 
-    PARENDER        shift and go to state 171
+    LLAVEDER        shift and go to state 175
 
 
 state 166
 
-    (79) rellenoArray -> valores OPERASIG_ARRAY valores COMA .
+    (79) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho . LLAVEDER
 
-    PARENDER        reduce using rule 79 (rellenoArray -> valores OPERASIG_ARRAY valores COMA .)
+    LLAVEDER        shift and go to state 176
 
 
 state 167
 
-    (81) rellenoArray -> COMA valores OPERASIG_ARRAY valores . COMA rellenoArray
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ . retornoBool PARENDER PUNTOYCOMA
+    (73) retornoBool -> . BOOLEANO
+    (74) retornoBool -> . operacionesL
+    (75) retornoBool -> . operacionesC
+    (60) operacionesL -> . opLog opLogicos opLog
+    (53) operacionesC -> . valores operadoresC valores
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    COMA            shift and go to state 172
+    BOOLEANO        shift and go to state 102
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
 
+    retornoBool                    shift and go to state 177
+    operacionesL                   shift and go to state 103
+    operacionesC                   shift and go to state 104
+    opLog                          shift and go to state 29
+    valores                        shift and go to state 79
+    variable                       shift and go to state 105
+    valor                          shift and go to state 82
 
 state 168
 
-    (84) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER .
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ . retornoBool PARENDER PUNTOYCOMA
+    (73) retornoBool -> . BOOLEANO
+    (74) retornoBool -> . operacionesL
+    (75) retornoBool -> . operacionesC
+    (60) operacionesL -> . opLog opLogicos opLog
+    (53) operacionesC -> . valores operadoresC valores
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    $end            reduce using rule 84 (bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER .)
+    BOOLEANO        shift and go to state 102
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
 
+    retornoBool                    shift and go to state 178
+    operacionesL                   shift and go to state 103
+    operacionesC                   shift and go to state 104
+    opLog                          shift and go to state 29
+    valores                        shift and go to state 79
+    variable                       shift and go to state 105
+    valor                          shift and go to state 82
 
 state 169
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ . retornoBool PARENDER PUNTOYCOMA
+    (73) retornoBool -> . BOOLEANO
+    (74) retornoBool -> . operacionesL
+    (75) retornoBool -> . operacionesC
+    (60) operacionesL -> . opLog opLogicos opLog
+    (53) operacionesC -> . valores operadoresC valores
+    (31) opLog -> . BOOLEANO
+    (32) opLog -> . variable
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (25) variable -> . DOLAR IDENTIFICADOR
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
 
-    PUNTOYCOMA      shift and go to state 173
+    BOOLEANO        shift and go to state 102
+    DOLAR           shift and go to state 25
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
 
+    retornoBool                    shift and go to state 179
+    operacionesL                   shift and go to state 103
+    operacionesC                   shift and go to state 104
+    opLog                          shift and go to state 29
+    valores                        shift and go to state 79
+    variable                       shift and go to state 105
+    valor                          shift and go to state 82
 
 state 170
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+    (86) crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA .
 
-    PUNTOYCOMA      shift and go to state 174
+    $end            reduce using rule 86 (crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA .)
+    PARENDER        reduce using rule 86 (crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA .)
 
 
 state 171
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+    (83) rellenoArray -> valores OPERASIG_ARRAY valores . COMA
 
-    PUNTOYCOMA      shift and go to state 175
+    COMA            shift and go to state 180
 
 
 state 172
 
-    (81) rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA . rellenoArray
-    (79) rellenoArray -> . valores OPERASIG_ARRAY valores COMA
-    (80) rellenoArray -> . valores
-    (81) rellenoArray -> . COMA valores OPERASIG_ARRAY valores COMA rellenoArray
-    (22) valores -> . valor
-    (23) valores -> . variable
-    (17) valor -> . CADENA
-    (18) valor -> . ENTERO
-    (19) valor -> . FLOTANTE
-    (20) valor -> . BOOLEANO
-    (21) variable -> . DOLAR IDENTIFICADOR
+    (85) rellenoArray -> COMA valores OPERASIG_ARRAY . valores COMA rellenoArray
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
 
-    COMA            shift and go to state 123
-    CADENA          shift and go to state 17
-    ENTERO          shift and go to state 61
-    FLOTANTE        shift and go to state 62
-    BOOLEANO        shift and go to state 63
-    DOLAR           shift and go to state 21
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
+    DOLAR           shift and go to state 25
 
-    valores                        shift and go to state 122
-    rellenoArray                   shift and go to state 176
-    valor                          shift and go to state 59
-    variable                       shift and go to state 60
+    valores                        shift and go to state 181
+    valor                          shift and go to state 82
+    variable                       shift and go to state 83
 
 state 173
 
-    (76) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+    (88) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias . LLAVEDER
+    (65) sentencias -> sentencias .
 
-    $end            reduce using rule 76 (bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+  ! shift/reduce conflict for LLAVEDER resolved as shift
+    LLAVEDER        shift and go to state 182
+
+  ! LLAVEDER        [ reduce using rule 65 (sentencias -> sentencias .) ]
 
 
 state 174
 
-    (77) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+    (77) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER .
 
-    $end            reduce using rule 77 (bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+    $end            reduce using rule 77 (condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER .)
 
 
 state 175
 
-    (78) bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+    (78) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER .
 
-    $end            reduce using rule 78 (bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+    $end            reduce using rule 78 (condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER .)
 
 
 state 176
 
-    (81) rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray .
+    (79) condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER .
 
-    PARENDER        reduce using rule 81 (rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray .)
+    $end            reduce using rule 79 (condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER .)
+
+
+state 177
+
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+
+    PARENDER        shift and go to state 183
+
+
+state 178
+
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+
+    PARENDER        shift and go to state 184
+
+
+state 179
+
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool . PARENDER PUNTOYCOMA
+
+    PARENDER        shift and go to state 185
+
+
+state 180
+
+    (83) rellenoArray -> valores OPERASIG_ARRAY valores COMA .
+
+    PARENDER        reduce using rule 83 (rellenoArray -> valores OPERASIG_ARRAY valores COMA .)
+
+
+state 181
+
+    (85) rellenoArray -> COMA valores OPERASIG_ARRAY valores . COMA rellenoArray
+
+    COMA            shift and go to state 186
+
+
+state 182
+
+    (88) bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER .
+
+    $end            reduce using rule 88 (bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER .)
+
+
+state 183
+
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 187
+
+
+state 184
+
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 188
+
+
+state 185
+
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 189
+
+
+state 186
+
+    (85) rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA . rellenoArray
+    (83) rellenoArray -> . valores OPERASIG_ARRAY valores COMA
+    (84) rellenoArray -> . valores
+    (85) rellenoArray -> . COMA valores OPERASIG_ARRAY valores COMA rellenoArray
+    (26) valores -> . valor
+    (27) valores -> . variable
+    (21) valor -> . CADENA
+    (22) valor -> . ENTERO
+    (23) valor -> . FLOTANTE
+    (24) valor -> . BOOLEANO
+    (25) variable -> . DOLAR IDENTIFICADOR
+
+    COMA            shift and go to state 142
+    CADENA          shift and go to state 21
+    ENTERO          shift and go to state 84
+    FLOTANTE        shift and go to state 85
+    BOOLEANO        shift and go to state 86
+    DOLAR           shift and go to state 25
+
+    valores                        shift and go to state 141
+    rellenoArray                   shift and go to state 190
+    valor                          shift and go to state 82
+    variable                       shift and go to state 83
+
+state 187
+
+    (80) bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+
+    $end            reduce using rule 80 (bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+
+
+state 188
+
+    (81) bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+
+    $end            reduce using rule 81 (bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+
+
+state 189
+
+    (82) bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA .
+
+    $end            reduce using rule 82 (bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA .)
+
+
+state 190
+
+    (85) rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray .
+
+    PARENDER        reduce using rule 85 (rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PARENDER in state 72 resolved as shift
-WARNING: shift/reduce conflict for PARENDER in state 73 resolved as shift
-WARNING: shift/reduce conflict for PARENDER in state 76 resolved as shift
-WARNING: shift/reduce conflict for LLAVEDER in state 80 resolved as shift
-WARNING: shift/reduce conflict for LLAVEDER in state 124 resolved as shift
-WARNING: shift/reduce conflict for LLAVEDER in state 146 resolved as shift
-WARNING: shift/reduce conflict for LLAVEDER in state 155 resolved as shift
+WARNING: shift/reduce conflict for LLAVEDER in state 106 resolved as shift
+WARNING: shift/reduce conflict for LLAVEDER in state 143 resolved as shift
+WARNING: shift/reduce conflict for LLAVEDER in state 164 resolved as shift
+WARNING: shift/reduce conflict for LLAVEDER in state 173 resolved as shift
 WARNING: reduce/reduce conflict in state 2 resolved using rule (codigoFuente -> valor)
 WARNING: rejected rule (valores -> valor) in state 2
 WARNING: reduce/reduce conflict in state 3 resolved using rule (codigoFuente -> variable)
 WARNING: rejected rule (valores -> variable) in state 3
 WARNING: reduce/reduce conflict in state 3 resolved using rule (valores -> variable)
 WARNING: rejected rule (opLog -> variable) in state 3
-WARNING: reduce/reduce conflict in state 20 resolved using rule (valor -> BOOLEANO)
-WARNING: rejected rule (opLog -> BOOLEANO) in state 20
-WARNING: reduce/reduce conflict in state 50 resolved using rule (valores -> variable)
-WARNING: rejected rule (opLog -> variable) in state 50
-WARNING: reduce/reduce conflict in state 76 resolved using rule (valores -> variable)
-WARNING: rejected rule (opLog -> variable) in state 76
-WARNING: reduce/reduce conflict in state 78 resolved using rule (valor -> BOOLEANO)
-WARNING: rejected rule (retornoBool -> BOOLEANO) in state 78
-WARNING: reduce/reduce conflict in state 78 resolved using rule (valor -> BOOLEANO)
-WARNING: rejected rule (opLog -> BOOLEANO) in state 78
-WARNING: reduce/reduce conflict in state 87 resolved using rule (valores -> variable)
-WARNING: rejected rule (opLog -> variable) in state 87
-WARNING: reduce/reduce conflict in state 88 resolved using rule (valor -> BOOLEANO)
-WARNING: rejected rule (opLog -> BOOLEANO) in state 88
-WARNING: reduce/reduce conflict in state 136 resolved using rule (valores -> variable)
-WARNING: rejected rule (opLog -> variable) in state 136
-WARNING: reduce/reduce conflict in state 160 resolved using rule (valor -> BOOLEANO)
-WARNING: rejected rule (opLog -> BOOLEANO) in state 160
-WARNING: reduce/reduce conflict in state 163 resolved using rule (valores -> variable)
-WARNING: rejected rule (opLog -> variable) in state 163
+WARNING: reduce/reduce conflict in state 7 resolved using rule (codigoFuente -> asignacion)
+WARNING: rejected rule (sentencias -> asignacion) in state 7
+WARNING: reduce/reduce conflict in state 20 resolved using rule (codigoFuente -> sentencias)
+WARNING: rejected rule (sentencias -> sentencias) in state 20
+WARNING: reduce/reduce conflict in state 24 resolved using rule (valor -> BOOLEANO)
+WARNING: rejected rule (opLog -> BOOLEANO) in state 24
+WARNING: reduce/reduce conflict in state 73 resolved using rule (valores -> variable)
+WARNING: rejected rule (opLog -> variable) in state 73
+WARNING: reduce/reduce conflict in state 92 resolved using rule (valores -> variable)
+WARNING: rejected rule (opLog -> variable) in state 92
+WARNING: reduce/reduce conflict in state 102 resolved using rule (valor -> BOOLEANO)
+WARNING: rejected rule (opLog -> BOOLEANO) in state 102
+WARNING: reduce/reduce conflict in state 105 resolved using rule (valores -> variable)
+WARNING: rejected rule (opLog -> variable) in state 105
+WARNING: reduce/reduce conflict in state 113 resolved using rule (valores -> variable)
+WARNING: rejected rule (opLog -> variable) in state 113
+WARNING: reduce/reduce conflict in state 114 resolved using rule (valor -> BOOLEANO)
+WARNING: rejected rule (opLog -> BOOLEANO) in state 114
+WARNING: Rule (sentencias -> sentencias) is never reduced

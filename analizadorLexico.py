@@ -67,6 +67,9 @@ reservadas = {
 'CONTINUE':'continue',
 'DEFAULT':'default',
 'AS':'as',
+'RSORT':'rsort',
+'COUNT':'count',
+'ARRAY':'array',
     #PARA PALABRAS RESERVADAS
 'ECHO':'echo',
 'GLOBAL':'global',

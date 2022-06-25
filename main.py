@@ -19,8 +19,7 @@ def p_codigoFuente(p):
                     | bucleDoWhile
                     | crearArreglos
                     | bucleForEach
-                    | metodosArray 
-                    | rellenoArreglos
+                    | metodosArray
                     | opLogicos
                     | operadoresA
                     | operadoresC
@@ -39,7 +38,7 @@ def p_variable(p):
     '''variable : DOLAR IDENTIFICADOR'''
 
 def p_valores(p):
-    '''valores :  valor
+    '''valores : valor
                 | variable'''
 
 def p_operacionesV(p):
@@ -52,7 +51,7 @@ def p_opLog(p):
                 | variable'''
 
 def p_impresionEcho(p):
-    '''impresionEcho : IDENTIFICADOR CADENA PUNTOYCOMA'''
+    '''impresionEcho : echo CADENA PUNTOYCOMA'''
 
 def p_asignacion(p):
     '''asignacion : variable OPERASIGNACION valor PUNTOYCOMA'''
@@ -67,7 +66,7 @@ def p_operadoresA(p):
 
 def p_operacionesA(p):
     '''operacionesA : operacionesV operadoresA operacionesV
-                        | operacionesV operadoresA operacionesA'''
+                    | operacionesV operadoresA operacionesA'''
 
 def p_operadoresC(p):
     '''operadoresC : OPERCOMPARACION
@@ -108,25 +107,25 @@ def p_opCombinadas(p):
                     | variable OPERASIGNACION operacionesC'''
 
 def p_impresionPrint(p):
-    '''impresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
-                        | IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
-                        | IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
-                        | IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
+    '''impresionPrint : print PARENIZQ valores PARENDER PUNTOYCOMA
+                        | print PARENIZQ operacionesL PARENDER PUNTOYCOMA
+                        | print PARENIZQ operacionesC PARENDER PUNTOYCOMA
+                        | print PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
 
 def p_retornoBool(p):
     '''retornoBool : BOOLEANO
                     | operacionesL
                     | operacionesC'''
 def p_condIf(p):
-    '''condIf : IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+    '''condIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
 
 def p_bucleDoWhile(p):
-    '''bucleDoWhile : IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-                    | IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
-                    | IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
+    '''bucleDoWhile : do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                    | do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                    | do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
 
 def p_rellenoArray(p):     #clave => valor
     '''rellenoArray : valores OPERASIG_ARRAY valores COMA
@@ -134,20 +133,23 @@ def p_rellenoArray(p):     #clave => valor
                     | COMA valores OPERASIG_ARRAY valores COMA rellenoArray'''
 
 def p_crearArreglos(p):
-    '''crearArreglos : variable OPERASIGNACION IDENTIFICADOR PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
+    '''crearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
 
 def p_bucleForEach(p):
     '''bucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
                     | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER'''
 
 def p_metodosArray(p):
-    '''metodosArray : IDENTIFICADOR PARENIZQ variable PARENDER PUNTOYCOMA
-                    | IDENTIFICADOR PARENIZQ crearArreglos PARENDER PUNTOYCOMA'''
+    '''metodosArray : rsort PARENIZQ variable PARENDER PUNTOYCOMA
+                    | rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+                    | count PARENIZQ variable PARENDER PUNTOYCOMA
+                    | count PARENIZQ crearArreglos PARENDER PUNTOYCOMA'''
  
 # -------------------
 
 
-#Bucle For y Break pendiente!!!!
+#Bucle For y Break pendiente
+# Falta aplicar else en if!!!!
 
 
 #Gabriela
