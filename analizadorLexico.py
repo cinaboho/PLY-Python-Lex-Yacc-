@@ -48,7 +48,11 @@ tokens = [
     'COMENTARIO_UNA_LINEA',
     'COMENTARIO_ABIERTO',
     'COMENTARIO_CERRADO',
-    'IDENTIFICADOR'
+    'IDENTIFICADOR',
+    'OPERAMAPA',
+    'OPERALOGICO_MAP',
+    'OPERACIONSUM',
+    'OPERAPUT'
 
 ]
 
@@ -114,6 +118,10 @@ t_OPERLOGICO_XOR =r'xor'
 t_OPERLOGICO_OREXCLUSIVO =r'\|\|' #||
 t_OPERLOGICO_NOT = r'!'
 t_OPERASIG_ARRAY = r'=>'
+t_OPERAMAPA = r'array\_map'
+t_OPERALOGICO_MAP = r'\->'
+t_OPERACIONSUM = r'sum\(\)'
+t_OPERAPUT = r'put'
 
 def t_INICIO(t):
     r'(<\?php){1}'
