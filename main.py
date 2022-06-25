@@ -13,7 +13,12 @@ def p_codigoFuente(p):
                     | valores
                     | asignacion
                     | operacionesA
-                    | '''
+                    | operacionesC
+                    | operacionesL
+                    | condIf
+                    | opCombinadas
+                    | bucleDoWhile
+                    |'''
 
 def p_valor(p):
     '''valor : CADENA
@@ -29,13 +34,13 @@ def p_valores(p):
                 | variable'''
 
 def p_operacionesV(p):
-    '''operaciones : FLOTANTE
+    '''operacionesV : FLOTANTE
                     | ENTERO
                     | variable'''
 
 def p_opLog(p):
     '''opLog : BOOLEANO
-            | variable'''
+                | variable'''
 
 def p_impresionEcho(p):
     '''impresionEcho : IDENTIFICADOR CADENA PUNTOYCOMA'''
@@ -52,10 +57,11 @@ def p_operadoresA(p):
                     | EXPONENCIACION'''
 
 def p_operacionesA(p):
-    '''operacionesA : operacionesV operadoresA operacionesV'''
+    '''operacionesA : operacionesV operadoresA operacionesV
+                        | operacionesV operadoresA operacionesA'''
 
 def p_operadoresC(p):
-    '''operacionesC : OPERCOMPARACION
+    '''operadoresC : OPERCOMPARACION
                     | OPERCOMPARACION OPERASIGNACION
                     | OPERLOGICO_NOT OPERASIGNACION
                     | MENORQUE MAYORQUE
@@ -71,27 +77,54 @@ def p_operacionesC(p):
 
 def p_opLogicos(p):
     '''opLogicos : OPERLOGICO_AND
-                | OPERLOGICO_OR
-                | OPERLOGICO_XOR
-                | OPERLOGICO_NOT
-                | AMPERSAND AMPERSAND
-                | OPERLOGICO_OREXCLUSIVO'''
+                    | OPERLOGICO_OR
+                    | OPERLOGICO_XOR
+                    | OPERLOGICO_NOT
+                    | AMPERSAND AMPERSAND
+                    | OPERLOGICO_OREXCLUSIVO'''
 
 def p_operacionesL(p):
     '''operacionesL : opLog opLogicos opLog'''
-
-
-
-
-
-
-
 
 def p_impresionPrint(p):
     '''impresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA
                         | IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA
                         | IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA
                         | IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
+
+def p_sentencias(p):
+    '''sentencias : operacionesL PUNTOYCOMA
+                    | operacionesA PUNTOYCOMA
+                    | operacionesC PUNTOYCOMA
+                    | asignacion
+                    | sentencias'''
+
+def p_retornoBool(p):
+    '''retornoBool : BOOLEANO
+                    | operacionesL
+                    | operacionesC'''
+def p_condIf(p):
+    '''condIf : IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+
+def p_opCombinadas(p):
+    '''opCombinadas : variable OPERASIGNACION operacionesA
+                    | variable OPERASIGNACION operacionesL
+                    | variable OPERASIGNACION operacionesC'''
+
+
+
+def p_bucleDoWhile(p):
+    '''bucleDoWhile : IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                    | IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                    | IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
+
+
+
+
+
 
 def p_error(p):
     if p:

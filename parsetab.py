@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMBINADO_OPERARIT_DIVISION COMBINADO_OPERARIT_EXPONENCIACION COMBINADO_OPERARIT_MODULO COMBINADO_OPERARIT_MULTIPLICACION COMBINADO_OPERARIT_RESTA COMBINADO_OPERARIT_SUMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMBINADO_CAD OPERCOMPARACION OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND OPER_DECREMENTO OPER_INCREMENTO PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA break case class const continue default do echo else end_switch end_while extends for function global if new print private protected public return static switch whilecodigoFuente : valor\n                    | variable\n                    | impresionEcho\n                    | impresionPrint\n                    | valores\n                    | asignacion\n                    | operacionesAvalor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANOvariable : DOLAR IDENTIFICADORvalores :  valor COMA valores\n                | valor\n                | variableimpresionEcho : IDENTIFICADOR CADENA PUNTOYCOMAimpresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMAasignacion : variable OPERASIGNACION valor PUNTOYCOMAoperadoresA : SUMA\n                    | RESTA\n                    | MULTIPLICACION\n                    | DIVISION\n                    | MODULO\n                    | EXPONENCIACIONoperacionesA : valor operadoresA valor'
+_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MAYORQUE MENORQUE MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA break case class const continue default do echo else end_switch end_while extends for function global if new print private protected public return static switch whilecodigoFuente : valor\n                    | variable\n                    | impresionEcho\n                    | impresionPrint\n                    | valores\n                    | asignacion\n                    | operacionesA\n                    | operacionesC\n                    | operacionesL\n                    | condIf\n                    | opCombinadas\n                    | bucleDoWhile\n                    |valor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANOvariable : DOLAR IDENTIFICADORvalores :  valor\n                | variableoperacionesV : FLOTANTE\n                    | ENTERO\n                    | variableopLog : BOOLEANO\n                | variableimpresionEcho : IDENTIFICADOR CADENA PUNTOYCOMAasignacion : variable OPERASIGNACION valor PUNTOYCOMAoperadoresA : SUMA\n                    | RESTA\n                    | MULTIPLICACION\n                    | DIVISION\n                    | MODULO\n                    | EXPONENCIACIONoperacionesA : operacionesV operadoresA operacionesV\n                        | operacionesV operadoresA operacionesAoperadoresC : OPERCOMPARACION\n                    | OPERCOMPARACION OPERASIGNACION\n                    | OPERLOGICO_NOT OPERASIGNACION\n                    | MENORQUE MAYORQUE\n                    | OPERLOGICO_NOT OPERCOMPARACION\n                    | MENORQUE\n                    | MAYORQUE\n                    | MENORQUE OPERASIGNACION\n                    | MAYORQUE OPERASIGNACION\n                    | MENORQUE OPERASIGNACION MAYORQUEoperacionesC : valores operadoresC valoresopLogicos : OPERLOGICO_AND\n                    | OPERLOGICO_OR\n                    | OPERLOGICO_XOR\n                    | OPERLOGICO_NOT\n                    | AMPERSAND AMPERSAND\n                    | OPERLOGICO_OREXCLUSIVOoperacionesL : opLog opLogicos opLogimpresionPrint : IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA\n                        | IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA\n                        | IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA\n                        | IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMAsentencias : operacionesL PUNTOYCOMA\n                    | operacionesA PUNTOYCOMA\n                    | operacionesC PUNTOYCOMA\n                    | asignacion\n                    | sentenciasretornoBool : BOOLEANO\n                    | operacionesL\n                    | operacionesCcondIf : IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA\n                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER\n                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER\n                | IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDERopCombinadas : variable OPERASIGNACION operacionesA\n                    | variable OPERASIGNACION operacionesL\n                    | variable OPERASIGNACION operacionesCbucleDoWhile : IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA\n                    | IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA\n                    | IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA'
     
-_lr_action_items = {'CADENA':([0,14,15,16,17,18,19,20,21,22,23,26,],[9,25,9,9,-19,-20,-21,-22,-23,-24,9,9,]),'ENTERO':([0,15,16,17,18,19,20,21,22,23,26,],[10,10,10,-19,-20,-21,-22,-23,-24,10,10,]),'FLOTANTE':([0,15,16,17,18,19,20,21,22,23,26,],[11,11,11,-19,-20,-21,-22,-23,-24,11,11,]),'BOOLEANO':([0,15,16,17,18,19,20,21,22,23,26,],[12,12,12,-19,-20,-21,-22,-23,-24,12,12,]),'DOLAR':([0,15,26,],[13,13,13,]),'IDENTIFICADOR':([0,13,],[14,24,]),'$end':([1,2,3,4,5,6,7,8,9,10,11,12,24,27,28,29,30,32,34,36,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-14,-13,-15,-25,-16,-18,-17,]),'COMA':([2,9,10,11,12,27,],[15,-8,-9,-10,-11,15,]),'SUMA':([2,9,10,11,12,],[17,-8,-9,-10,-11,]),'RESTA':([2,9,10,11,12,],[18,-8,-9,-10,-11,]),'MULTIPLICACION':([2,9,10,11,12,],[19,-8,-9,-10,-11,]),'DIVISION':([2,9,10,11,12,],[20,-8,-9,-10,-11,]),'MODULO':([2,9,10,11,12,],[21,-8,-9,-10,-11,]),'EXPONENCIACION':([2,9,10,11,12,],[22,-8,-9,-10,-11,]),'OPERASIGNACION':([3,24,],[23,-12,]),'PARENDER':([9,10,11,12,24,27,28,29,33,],[-8,-9,-10,-11,-12,-14,-13,-15,35,]),'PUNTOYCOMA':([9,10,11,12,25,31,35,],[-8,-9,-10,-11,32,34,36,]),'PARENIZQ':([14,],[26,]),}
+_lr_action_items = {'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,28,48,49,50,52,53,54,55,56,57,64,84,85,86,87,88,89,90,91,93,108,109,110,111,112,126,127,128,139,140,141,],[-13,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-14,-15,-16,-17,-18,-70,-71,-72,-46,-19,-20,-15,-16,-17,-26,-34,-35,-21,-22,-23,-53,-24,-25,-27,-54,-55,-56,-57,-66,-67,-68,-69,-73,-74,-75,]),'CADENA':([0,19,22,23,24,26,27,30,31,58,59,60,61,62,63,72,94,100,107,113,123,124,125,],[14,29,14,14,-36,-41,-42,14,14,-37,-38,-40,-39,-43,-44,29,-45,14,14,14,14,14,14,]),'ENTERO':([0,22,23,24,26,27,30,31,32,33,34,35,36,37,38,58,59,60,61,62,63,94,100,107,113,123,124,125,],[15,15,55,-36,-41,-42,15,83,87,-28,-29,-30,-31,-32,-33,-37,-38,-40,-39,-43,-44,-45,15,55,83,55,55,55,]),'FLOTANTE':([0,22,23,24,26,27,30,31,32,33,34,35,36,37,38,58,59,60,61,62,63,94,100,107,113,123,124,125,],[16,16,56,-36,-41,-42,16,82,86,-28,-29,-30,-31,-32,-33,-37,-38,-40,-39,-43,-44,-45,16,56,82,56,56,56,]),'BOOLEANO':([0,22,23,24,26,27,30,31,39,40,41,42,43,45,58,59,60,61,62,63,92,94,100,107,113,123,124,125,],[17,17,57,-36,-41,-42,71,81,90,-47,-48,-49,-50,-52,-37,-38,-40,-39,-43,-44,-51,-45,17,57,81,130,130,130,]),'DOLAR':([0,22,23,24,26,27,30,31,32,33,34,35,36,37,38,39,40,41,42,43,45,58,59,60,61,62,63,92,94,100,113,123,124,125,],[18,18,18,-36,-41,-42,18,18,18,-28,-29,-30,-31,-32,-33,18,-47,-48,-49,-50,-52,-37,-38,-40,-39,-43,-44,-51,-45,18,18,18,18,18,]),'IDENTIFICADOR':([0,18,31,101,102,103,113,],[19,28,72,116,117,118,72,]),'OPERCOMPARACION':([2,3,6,14,15,16,17,25,28,46,47,51,53,55,56,65,70,71,80,81,82,83,130,133,],[-19,-20,24,-14,-15,-16,-17,60,-18,-20,-19,24,-19,-15,-16,24,-20,-17,-20,-17,-16,-15,-17,-20,]),'OPERLOGICO_NOT':([2,3,6,14,15,16,17,21,28,46,47,51,53,55,56,65,70,71,80,81,82,83,130,133,],[-19,-20,25,-14,-15,-16,-17,43,-18,-20,-19,25,-19,-15,-16,25,-20,-17,-20,-17,-16,-15,-17,-20,]),'MENORQUE':([2,3,6,14,15,16,17,28,46,47,51,53,55,56,65,70,71,80,81,82,83,130,133,],[-19,-20,26,-14,-15,-16,-17,-18,-20,-19,26,-19,-15,-16,26,-20,-17,-20,-17,-16,-15,-17,-20,]),'MAYORQUE':([2,3,6,14,15,16,17,26,28,46,47,51,53,55,56,62,65,70,71,80,81,82,83,130,133,],[-19,-20,27,-14,-15,-16,-17,61,-18,-20,-19,27,-19,-15,-16,94,27,-20,-17,-20,-17,-16,-15,-17,-20,]),'OPERASIGNACION':([3,24,25,26,27,28,80,],[22,58,59,62,63,-18,107,]),'SUMA':([3,15,16,20,28,46,70,80,82,83,84,86,87,88,],[-23,-22,-21,33,-18,-23,-23,-23,-21,-22,33,-21,-22,-23,]),'RESTA':([3,15,16,20,28,46,70,80,82,83,84,86,87,88,],[-23,-22,-21,34,-18,-23,-23,-23,-21,-22,34,-21,-22,-23,]),'MULTIPLICACION':([3,15,16,20,28,46,70,80,82,83,84,86,87,88,],[-23,-22,-21,35,-18,-23,-23,-23,-21,-22,35,-21,-22,-23,]),'DIVISION':([3,15,16,20,28,46,70,80,82,83,84,86,87,88,],[-23,-22,-21,36,-18,-23,-23,-23,-21,-22,36,-21,-22,-23,]),'MODULO':([3,15,16,20,28,46,70,80,82,83,84,86,87,88,],[-23,-22,-21,37,-18,-23,-23,-23,-21,-22,37,-21,-22,-23,]),'EXPONENCIACION':([3,15,16,20,28,46,70,80,82,83,84,86,87,88,],[-23,-22,-21,38,-18,-23,-23,-23,-21,-22,38,-21,-22,-23,]),'OPERLOGICO_AND':([3,17,21,28,46,70,71,80,81,130,133,],[-25,-24,40,-18,-25,-25,-24,-25,-24,-24,-25,]),'OPERLOGICO_OR':([3,17,21,28,46,70,71,80,81,130,133,],[-25,-24,41,-18,-25,-25,-24,-25,-24,-24,-25,]),'OPERLOGICO_XOR':([3,17,21,28,46,70,71,80,81,130,133,],[-25,-24,42,-18,-25,-25,-24,-25,-24,-24,-25,]),'AMPERSAND':([3,17,21,28,44,46,70,71,80,81,130,133,],[-25,-24,44,-18,92,-25,-25,-24,-25,-24,-24,-25,]),'OPERLOGICO_OREXCLUSIVO':([3,17,21,28,46,70,71,80,81,130,133,],[-25,-24,45,-18,-25,-25,-24,-25,-24,-24,-25,]),'PUNTOYCOMA':([14,15,16,17,28,29,47,52,53,54,55,56,57,76,77,78,84,85,86,87,88,89,90,91,95,96,97,98,99,119,136,137,138,],[-14,-15,-16,-17,-18,64,93,-46,-19,-20,-15,-16,-17,104,105,106,-34,-35,-21,-22,-23,-53,-24,-25,108,109,110,111,112,93,139,140,141,]),'PARENDER':([14,15,16,17,28,52,53,54,55,56,57,65,66,67,68,69,70,71,84,85,86,87,88,89,90,91,114,115,129,130,131,132,134,135,],[-14,-15,-16,-17,-18,-46,-19,-20,-15,-16,-17,95,96,97,98,99,-20,-17,-34,-35,-21,-22,-23,-53,-24,-25,96,97,136,-63,-64,-65,137,138,]),'PARENIZQ':([19,72,116,117,118,],[30,100,123,124,125,]),'LLAVEIZQ':([19,99,],[31,113,]),'LLAVEDER':([64,73,74,75,79,93,104,105,106,108,109,110,111,120,121,122,],[-26,101,102,103,-61,-27,-58,-59,-60,-54,-55,-56,-57,126,127,128,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,15,16,23,26,],[2,27,30,31,27,]),'variable':([0,15,26,],[3,29,29,]),'impresionEcho':([0,],[4,]),'impresionPrint':([0,],[5,]),'valores':([0,15,26,],[6,28,33,]),'asignacion':([0,],[7,]),'operacionesA':([0,],[8,]),'operadoresA':([2,],[16,]),}
+_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,22,23,30,31,100,107,113,123,124,125,],[2,47,53,53,53,53,119,53,53,53,53,]),'variable':([0,22,23,30,31,32,39,100,113,123,124,125,],[3,46,54,70,80,88,91,70,80,133,133,133,]),'impresionEcho':([0,31,113,],[4,75,122,]),'impresionPrint':([0,31,113,],[5,74,121,]),'valores':([0,22,23,30,31,100,113,123,124,125,],[6,51,52,65,51,65,51,51,51,51,]),'asignacion':([0,31,113,],[7,79,79,]),'operacionesA':([0,22,30,31,32,100,113,],[8,48,68,77,85,68,77,]),'operacionesC':([0,22,30,31,100,113,123,124,125,],[9,50,67,78,115,78,132,132,132,]),'operacionesL':([0,22,30,31,100,113,123,124,125,],[10,49,66,76,114,76,131,131,131,]),'condIf':([0,],[11,]),'opCombinadas':([0,],[12,]),'bucleDoWhile':([0,],[13,]),'operacionesV':([0,22,30,31,32,100,113,],[20,20,20,20,84,20,20,]),'opLog':([0,22,30,31,39,100,113,123,124,125,],[21,21,21,21,89,21,21,21,21,21,]),'operadoresC':([6,51,65,],[23,23,23,]),'operadoresA':([20,84,],[32,32,]),'opLogicos':([21,],[39,]),'retornoBool':([30,123,124,125,],[69,129,134,135,]),'sentencias':([31,113,],[73,120,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -34,22 +34,72 @@ _lr_productions = [
   ('codigoFuente -> valores','codigoFuente',1,'p_codigoFuente','main.py',13),
   ('codigoFuente -> asignacion','codigoFuente',1,'p_codigoFuente','main.py',14),
   ('codigoFuente -> operacionesA','codigoFuente',1,'p_codigoFuente','main.py',15),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',18),
-  ('valor -> ENTERO','valor',1,'p_valor','main.py',19),
-  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',20),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',21),
-  ('variable -> DOLAR IDENTIFICADOR','variable',2,'p_variable','main.py',24),
-  ('valores -> valor COMA valores','valores',3,'p_valores','main.py',27),
-  ('valores -> valor','valores',1,'p_valores','main.py',28),
-  ('valores -> variable','valores',1,'p_valores','main.py',29),
-  ('impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA','impresionEcho',3,'p_impresionEcho','main.py',32),
-  ('impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',35),
-  ('asignacion -> variable OPERASIGNACION valor PUNTOYCOMA','asignacion',4,'p_asignacion','main.py',38),
-  ('operadoresA -> SUMA','operadoresA',1,'p_operadoresA','main.py',41),
-  ('operadoresA -> RESTA','operadoresA',1,'p_operadoresA','main.py',42),
-  ('operadoresA -> MULTIPLICACION','operadoresA',1,'p_operadoresA','main.py',43),
-  ('operadoresA -> DIVISION','operadoresA',1,'p_operadoresA','main.py',44),
-  ('operadoresA -> MODULO','operadoresA',1,'p_operadoresA','main.py',45),
-  ('operadoresA -> EXPONENCIACION','operadoresA',1,'p_operadoresA','main.py',46),
-  ('operacionesA -> valor operadoresA valor','operacionesA',3,'p_operacionesA','main.py',49),
+  ('codigoFuente -> operacionesC','codigoFuente',1,'p_codigoFuente','main.py',16),
+  ('codigoFuente -> operacionesL','codigoFuente',1,'p_codigoFuente','main.py',17),
+  ('codigoFuente -> condIf','codigoFuente',1,'p_codigoFuente','main.py',18),
+  ('codigoFuente -> opCombinadas','codigoFuente',1,'p_codigoFuente','main.py',19),
+  ('codigoFuente -> bucleDoWhile','codigoFuente',1,'p_codigoFuente','main.py',20),
+  ('codigoFuente -> <empty>','codigoFuente',0,'p_codigoFuente','main.py',21),
+  ('valor -> CADENA','valor',1,'p_valor','main.py',24),
+  ('valor -> ENTERO','valor',1,'p_valor','main.py',25),
+  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',26),
+  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',27),
+  ('variable -> DOLAR IDENTIFICADOR','variable',2,'p_variable','main.py',30),
+  ('valores -> valor','valores',1,'p_valores','main.py',33),
+  ('valores -> variable','valores',1,'p_valores','main.py',34),
+  ('operacionesV -> FLOTANTE','operacionesV',1,'p_operacionesV','main.py',37),
+  ('operacionesV -> ENTERO','operacionesV',1,'p_operacionesV','main.py',38),
+  ('operacionesV -> variable','operacionesV',1,'p_operacionesV','main.py',39),
+  ('opLog -> BOOLEANO','opLog',1,'p_opLog','main.py',42),
+  ('opLog -> variable','opLog',1,'p_opLog','main.py',43),
+  ('impresionEcho -> IDENTIFICADOR CADENA PUNTOYCOMA','impresionEcho',3,'p_impresionEcho','main.py',46),
+  ('asignacion -> variable OPERASIGNACION valor PUNTOYCOMA','asignacion',4,'p_asignacion','main.py',49),
+  ('operadoresA -> SUMA','operadoresA',1,'p_operadoresA','main.py',52),
+  ('operadoresA -> RESTA','operadoresA',1,'p_operadoresA','main.py',53),
+  ('operadoresA -> MULTIPLICACION','operadoresA',1,'p_operadoresA','main.py',54),
+  ('operadoresA -> DIVISION','operadoresA',1,'p_operadoresA','main.py',55),
+  ('operadoresA -> MODULO','operadoresA',1,'p_operadoresA','main.py',56),
+  ('operadoresA -> EXPONENCIACION','operadoresA',1,'p_operadoresA','main.py',57),
+  ('operacionesA -> operacionesV operadoresA operacionesV','operacionesA',3,'p_operacionesA','main.py',60),
+  ('operacionesA -> operacionesV operadoresA operacionesA','operacionesA',3,'p_operacionesA','main.py',61),
+  ('operadoresC -> OPERCOMPARACION','operadoresC',1,'p_operadoresC','main.py',64),
+  ('operadoresC -> OPERCOMPARACION OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',65),
+  ('operadoresC -> OPERLOGICO_NOT OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',66),
+  ('operadoresC -> MENORQUE MAYORQUE','operadoresC',2,'p_operadoresC','main.py',67),
+  ('operadoresC -> OPERLOGICO_NOT OPERCOMPARACION','operadoresC',2,'p_operadoresC','main.py',68),
+  ('operadoresC -> MENORQUE','operadoresC',1,'p_operadoresC','main.py',69),
+  ('operadoresC -> MAYORQUE','operadoresC',1,'p_operadoresC','main.py',70),
+  ('operadoresC -> MENORQUE OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',71),
+  ('operadoresC -> MAYORQUE OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',72),
+  ('operadoresC -> MENORQUE OPERASIGNACION MAYORQUE','operadoresC',3,'p_operadoresC','main.py',73),
+  ('operacionesC -> valores operadoresC valores','operacionesC',3,'p_operacionesC','main.py',76),
+  ('opLogicos -> OPERLOGICO_AND','opLogicos',1,'p_opLogicos','main.py',79),
+  ('opLogicos -> OPERLOGICO_OR','opLogicos',1,'p_opLogicos','main.py',80),
+  ('opLogicos -> OPERLOGICO_XOR','opLogicos',1,'p_opLogicos','main.py',81),
+  ('opLogicos -> OPERLOGICO_NOT','opLogicos',1,'p_opLogicos','main.py',82),
+  ('opLogicos -> AMPERSAND AMPERSAND','opLogicos',2,'p_opLogicos','main.py',83),
+  ('opLogicos -> OPERLOGICO_OREXCLUSIVO','opLogicos',1,'p_opLogicos','main.py',84),
+  ('operacionesL -> opLog opLogicos opLog','operacionesL',3,'p_operacionesL','main.py',87),
+  ('impresionPrint -> IDENTIFICADOR PARENIZQ valores PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',90),
+  ('impresionPrint -> IDENTIFICADOR PARENIZQ operacionesL PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',91),
+  ('impresionPrint -> IDENTIFICADOR PARENIZQ operacionesC PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',92),
+  ('impresionPrint -> IDENTIFICADOR PARENIZQ operacionesA PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',93),
+  ('sentencias -> operacionesL PUNTOYCOMA','sentencias',2,'p_sentencias','main.py',96),
+  ('sentencias -> operacionesA PUNTOYCOMA','sentencias',2,'p_sentencias','main.py',97),
+  ('sentencias -> operacionesC PUNTOYCOMA','sentencias',2,'p_sentencias','main.py',98),
+  ('sentencias -> asignacion','sentencias',1,'p_sentencias','main.py',99),
+  ('sentencias -> sentencias','sentencias',1,'p_sentencias','main.py',100),
+  ('retornoBool -> BOOLEANO','retornoBool',1,'p_retornoBool','main.py',103),
+  ('retornoBool -> operacionesL','retornoBool',1,'p_retornoBool','main.py',104),
+  ('retornoBool -> operacionesC','retornoBool',1,'p_retornoBool','main.py',105),
+  ('condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA','condIf',5,'p_condIf','main.py',107),
+  ('condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER','condIf',7,'p_condIf','main.py',108),
+  ('condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER','condIf',7,'p_condIf','main.py',109),
+  ('condIf -> IDENTIFICADOR PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER','condIf',7,'p_condIf','main.py',110),
+  ('opCombinadas -> variable OPERASIGNACION operacionesA','opCombinadas',3,'p_opCombinadas','main.py',113),
+  ('opCombinadas -> variable OPERASIGNACION operacionesL','opCombinadas',3,'p_opCombinadas','main.py',114),
+  ('opCombinadas -> variable OPERASIGNACION operacionesC','opCombinadas',3,'p_opCombinadas','main.py',115),
+  ('bucleDoWhile -> IDENTIFICADOR LLAVEIZQ sentencias LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA','bucleDoWhile',9,'p_bucleDoWhile','main.py',120),
+  ('bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionPrint LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA','bucleDoWhile',9,'p_bucleDoWhile','main.py',121),
+  ('bucleDoWhile -> IDENTIFICADOR LLAVEIZQ impresionEcho LLAVEDER IDENTIFICADOR PARENIZQ retornoBool PARENDER PUNTOYCOMA','bucleDoWhile',9,'p_bucleDoWhile','main.py',122),
 ]
