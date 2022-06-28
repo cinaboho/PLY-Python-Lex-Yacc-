@@ -158,7 +158,7 @@ def p_crearMapa(p):
 
 def p_sumaMapa(p):
     '''sumaMapa : valor PARENIZQ variable OPERALOGICO_MAP OPERACIONSUM PARENDER PUNTOYCOMA
-    ''''
+    '''
 
 def p_mapPut(p):
     '''mapPut : valor OPERALOGICO_MAP OPERAPUT PARENIZQ variable COMA variable PARENDER PUNTOYCOMA 
