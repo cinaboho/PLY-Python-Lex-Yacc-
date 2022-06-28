@@ -1,3 +1,4 @@
+from ast import keyword
 from turtle import update
 import ply.lex as lex
 import re
@@ -168,8 +169,10 @@ def t_OPERLOG_AND(t):
     r'(["AND" | \&\&])'
 
 def t_IDENTIFICADOR(t):
-    r'([a-zA-Z_][a-zA-Z0-9_]*)'
-    t.type = reservadas.get(t.value, "IDENTIFICADOR")
+    r'$[a-zA-Z_][a-zA-Z0-9_]*'
+    if t.value.upper() in keyword:
+        t.value = t.value.upper()
+        t.type = reservadas.get(t.value, "IDENTIFICADOR")
     return t
 
 def t_ENTERO(t):
