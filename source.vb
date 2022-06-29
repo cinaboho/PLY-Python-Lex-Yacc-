@@ -1,5 +1,7 @@
 <?php
 $var123 = 5;
-PUBLIC $var25;
+public $var25;
 echo $var123;
+$var="hola";
+'hola';
 ?>

@@ -35,7 +35,7 @@ def p_valor(p):
             | BOOLEANO'''
 
 def p_variable(p):
-    '''variable : DOLAR IDENTIFICADOR'''
+    '''variable : IDENTIFICADOR'''
 
 def p_valores(p):
     '''valores : valor

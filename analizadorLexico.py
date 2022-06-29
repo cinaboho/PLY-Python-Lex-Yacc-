@@ -1,15 +1,49 @@
-from ast import keyword
-from turtle import update
 import ply.lex as lex
-import re
-import codecs
-import os
-import sys
 # Cindy
 # .
 # .
-tokens = [
-    'DOLAR',
+reservadas = {
+    #PARA ESTRUCTURAS DE CONTROL
+    'if':'IF',
+    'else':'ELSE',
+    'do':'DO',
+    'while':'WHILE',
+    'end_while':'END_WHILE',
+    'for':'FOR',
+    'switch':'SWITCH',
+    'case':'CASE',
+    'end_switch':'END_SWITCH',
+    'break':'BREAK',
+    'continue':'CONTINUE',
+    'default':'DEFAULT',
+    'as':'AS',
+    'rsort':'RSORT',
+    'count':'COUNT',
+    'array':'ARRAY',
+    #PARA PALABRAS RESERVADAS
+    'echo':'ECHO',
+    'global':'GLOBAL',
+    'static':'STATIC',
+    'const':'CONST',
+    'print':'PRINT',
+    'function':'FUNCTION',
+    'return':'RETURN',
+    'class':'CLASS',
+    'public':'PUBLIC',
+    'protected':'PROTECTED',
+    'private':'PRIVATE',
+    'new':'NEW',
+    'extends':'EXTENDS',
+    'int':'INTEGER',
+    'string':'STRING',
+    'bool':'BOOLEAN',
+    'float':'FLOAT',
+    'null':'NULL',
+    'true':'TRUE',
+    'false':'FALSE'    
+}
+
+tokens = (
     'PUNTOYCOMA',
     'PUNTO',
     'COMA',
@@ -47,54 +81,14 @@ tokens = [
     'ENTERO',
     'FLOTANTE',
     'COMENTARIO_UNA_LINEA',
-    'COMENTARIO_ABIERTO',
-    'COMENTARIO_CERRADO',
-    'IDENTIFICADOR',
+    'COMENTARIO_LARGO',
+    'VARIABLE',
     'OPERAMAPA',    
     'OPERALOGICO_MAP',
     'OPERACIONSUM',
     'OPERAPUT'
+) + tuple(reservadas.values())
 
-]
-
-reservadas = {
-    #PARA ESTRUCTURAS DE CONTROL
-'If':'IF',
-'Else':'ELSE',
-'Do':'DO',
-'While':'WHILE',
-'End_while':'END_WHILE',
-'For':'FOR',
-'Switch':'SWITCH',
-'Case':'CASE',
-'End_switch':'END_SWITCH',
-'Break':'BREAK',
-'Continue':'CONTINUE',
-'Default':'DEFAULT',
-'As':'AS',
-'Rsort':'RSORT',
-'Count':'COUNT',
-'Array':'ARRAY',
-    #PARA PALABRAS RESERVADAS
-'Echo':'ECHO',
-'Global':'GLOBAL',
-'Static':'STATIC',
-'Const':'CONST',
-'Print':'PRINT',
-'Function':'FUNCTION',
-'Return':'RETURN',
-'Class':'CLASS',
-'Public':'PUBLIC',
-'Protected':'PROTECTED',
-'Private':'PRIVATE',
-'New':'NEW',
-'Extends':'EXTENDS'
-
-}
-
-tokens = tokens+list(reservadas.values())
-
-t_DOLAR = r'\$'
 t_PUNTOYCOMA = r';'
 t_PUNTO = r'\.'
 t_COMA = r','
@@ -125,11 +119,11 @@ t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
 def t_INICIO(t):
-    r'(<\?php){1}'
+    r'<\?php'
     return t
 
 def t_FIN(t):
-    r'(\?>){1}'
+    r'\?>'
     return t
 
 #.
@@ -146,19 +140,21 @@ def t_BOOLEANO(t):
     return t
 
 def t_CADENA(t):
-    r'".+"'
-    t.type = reservadas.get(t.value, "CADENA")
+    r'\"(.)+\"|\'(.)+\''
     return t
 
-t_COMENTARIO_UNA_LINEA =r'//'
-t_COMENTARIO_ABIERTO = r'/\*'
-t_COMENTARIO_CERRADO = r'\*/'
+t_COMENTARIO_UNA_LINEA =r'//'+'.*'
+t_COMENTARIO_LARGO = r'/\*'+'.*'+'\*/'
 
 def t_FLOTANTE(t):
     r'\d+\.\d+'
     t.value = float(t.value)
     return t
 
+def t_VARIABLE(t):
+    r'\$[a-zA-Z_][a-zA-Z0-9_]*'
+    t.type = reservadas.get(t.value, "VARIABLE")
+    return t
 #--------------
 
 #.
@@ -167,13 +163,6 @@ def t_FLOTANTE(t):
 
 def t_OPERLOG_AND(t):
     r'(["AND" | \&\&])'
-
-def t_IDENTIFICADOR(t):
-    r'$[a-zA-Z_][a-zA-Z0-9_]*'
-    if t.value.upper() in keyword:
-        t.value = t.value.upper()
-        t.type = reservadas.get(t.value, "IDENTIFICADOR")
-    return t
 
 def t_ENTERO(t):
     r'\d+'
@@ -192,7 +181,7 @@ def t_error(t):
     print(f"Caracter no reconocido {t.value[0]} en línea {t.lineno}")
     t.lexer.skip(1)
 
-lexer = lex.lex()
+validador = lex.lex()
 
 def getTokens(lexer):
     while True:
@@ -204,8 +193,8 @@ def getTokens(lexer):
 linea=" "
 codigo = open("source.vb")
 for linea in codigo:
-  lexer.input(linea)
-  getTokens(lexer)
+  validador.input(linea)
+  getTokens(validador)
 codigo.close()
 
 print("Análisis Léxico terminado... :)")
