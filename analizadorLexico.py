@@ -21,7 +21,6 @@ reservadas = {
     'count':'COUNT',
     'array':'ARRAY',
     #PARA PALABRAS RESERVADAS
-    'echo':'ECHO',
     'global':'GLOBAL',
     'static':'STATIC',
     'const':'CONST',
@@ -29,9 +28,6 @@ reservadas = {
     'function':'FUNCTION',
     'return':'RETURN',
     'class':'CLASS',
-    'public':'PUBLIC',
-    'protected':'PROTECTED',
-    'private':'PRIVATE',
     'new':'NEW',
     'extends':'EXTENDS',
     'int':'INTEGER',
@@ -83,10 +79,15 @@ tokens = (
     'COMENTARIO_UNA_LINEA',
     'COMENTARIO_LARGO',
     'VARIABLE',
-    'OPERAMAPA',    
+    'OPERAMAPA',
     'OPERALOGICO_MAP',
     'OPERACIONSUM',
-    'OPERAPUT'
+    'OPERAPUT',
+    'ECHO',
+    #VISIBILIDAD
+    'PUBLIC',
+    'PROTECTED',
+    'PRIVATE'
 ) + tuple(reservadas.values())
 
 t_PUNTOYCOMA = r';'
@@ -124,6 +125,21 @@ def t_INICIO(t):
 
 def t_FIN(t):
     r'\?>'
+    return t
+def t_ECHO(t):
+    r'echo'
+    return t
+
+def t_PUBLIC(t):
+    r'public'
+    return t
+
+def t_PROTECTED(t):
+    r'protected'
+    return t
+
+def t_PRIVATE(t):
+    r'private'
     return t
 
 #.
@@ -172,13 +188,13 @@ def t_ENTERO(t):
 #.
 #Daniel
 
-#Gabriela 
+#Gabriela
 def t_contadorLineas(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
-    
+
 def t_error(t):
-    print(f"Caracter no reconocido {t.value[0]} en línea {t.lineno}")
+    print("Caracter no reconocido {t.value[0]} en línea {t.lineno}")
     t.lexer.skip(1)
 
 validador = lex.lex()
@@ -187,7 +203,7 @@ def getTokens(lexer):
     while True:
         tok = lexer.token()
         if not tok:
-            break 
+            break
         print(tok)
 
 linea=" "
@@ -200,3 +216,5 @@ codigo.close()
 print("Análisis Léxico terminado... :)")
 
 #-------------
+
+
