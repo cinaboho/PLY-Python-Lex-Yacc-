@@ -1,9 +1,11 @@
-#Grupo 5 
+#Grupo 5
 import ply.yacc as yacc
 
 from analizadorLexico import tokens
 
 #Gabriela
+
+
 def p_codigoFuente(p):
     '''codigoFuente : valor
                     | variable
@@ -24,128 +26,48 @@ def p_codigoFuente(p):
                     | operadoresA
                     | operadoresC
                     | sentencias
+                    | crearMapa
+                    | sumaMapa
+                    | mapPut
                     | '''
 
 #metodos array => sort y count
 
-def p_valor(p):
+
+def p_valor(p) :
     '''valor : CADENA
             | ENTERO
             | FLOTANTE
             | BOOLEANO'''
 
-def p_variable(p):
-    '''variable : IDENTIFICADOR'''
 
-def p_valores(p):
+def p_variable(p) :
+    '''variable : VARIABLE'''
+
+
+def p_valores(p) :
     '''valores : valor
                 | variable'''
 
-def p_operacionesV(p):
+
+def p_operacionesV(p) :
     '''operacionesV : FLOTANTE
                     | ENTERO
                     | variable'''
 
-def p_opLog(p):
+def p_opLog(p) :
     '''opLog : BOOLEANO
                 | variable'''
 
-def p_impresionEcho(p):
+
+def p_impresionEcho(p) :
     '''impresionEcho : echo CADENA PUNTOYCOMA'''
 
-def p_asignacion(p):
+
+def p_asignacion(p) :
     '''asignacion : variable OPERASIGNACION valor PUNTOYCOMA'''
 
-def p_operadoresA(p):
-    '''operadoresA : SUMA
-                    | RESTA
-                    | MULTIPLICACION
-                    | DIVISION
-                    | MODULO
-                    | EXPONENCIACION'''
-
-def p_operacionesA(p):
-    '''operacionesA : operacionesV operadoresA operacionesV
-                    | operacionesV operadoresA operacionesA'''
-
-def p_operadoresC(p):
-    '''operadoresC : OPERCOMPARACION
-                    | OPERCOMPARACION OPERASIGNACION
-                    | OPERLOGICO_NOT OPERASIGNACION
-                    | MENORQUE MAYORQUE
-                    | OPERLOGICO_NOT OPERCOMPARACION
-                    | MENORQUE
-                    | MAYORQUE
-                    | MENORQUE OPERASIGNACION
-                    | MAYORQUE OPERASIGNACION
-                    | MENORQUE OPERASIGNACION MAYORQUE'''
-
-def p_operacionesC(p):
-    '''operacionesC : valores operadoresC valores'''
-
-def p_opLogicos(p):
-    '''opLogicos : OPERLOGICO_AND
-                    | OPERLOGICO_OR
-                    | OPERLOGICO_XOR
-                    | OPERLOGICO_NOT
-                    | AMPERSAND AMPERSAND
-                    | OPERLOGICO_OREXCLUSIVO'''
-
-def p_operacionesL(p):
-    '''operacionesL : opLog opLogicos opLog'''
-
-def p_sentencias(p):
-    '''sentencias : operacionesL PUNTOYCOMA
-                    | operacionesA PUNTOYCOMA
-                    | operacionesC PUNTOYCOMA
-                    | asignacion
-                    | sentencias'''
-
-def p_opCombinadas(p):
-    '''opCombinadas : variable OPERASIGNACION operacionesA
-                    | variable OPERASIGNACION operacionesL
-                    | variable OPERASIGNACION operacionesC'''
-
-def p_impresionPrint(p):
-    '''impresionPrint : print PARENIZQ valores PARENDER PUNTOYCOMA
-                        | print PARENIZQ operacionesL PARENDER PUNTOYCOMA
-                        | print PARENIZQ operacionesC PARENDER PUNTOYCOMA
-                        | print PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
-
-def p_retornoBool(p):
-    '''retornoBool : BOOLEANO
-                    | operacionesL
-                    | operacionesC'''
-def p_condIf(p):
-    '''condIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA
-                | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
-
-def p_bucleDoWhile(p):
-    '''bucleDoWhile : do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-                    | do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-                    | do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
-
-def p_rellenoArray(p):     #clave => valor
-    '''rellenoArray : valores OPERASIG_ARRAY valores COMA
-                    | valores
-                    | COMA valores OPERASIG_ARRAY valores COMA rellenoArray'''
-
-def p_crearArreglos(p):
-    '''crearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
-
-def p_bucleForEach(p):
-    '''bucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
-                    | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER'''
-
-def p_metodosArray(p):
-    '''metodosArray : rsort PARENIZQ variable PARENDER PUNTOYCOMA
-                    | rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
-                    | count PARENIZQ variable PARENDER PUNTOYCOMA
-                    | count PARENIZQ crearArreglos PARENDER PUNTOYCOMA'''
- 
-# -------------------
+#....#Gabriela
 
 
 #Daniel
@@ -156,43 +78,151 @@ def p_crearMapa(p):
                    | OPERAMAPA PARENIZQ valor COMA variable COMA valor PARENDER PUNTOYCOMA
     '''
 
+
 def p_sumaMapa(p):
-    '''sumaMapa : valor PARENIZQ variable OPERALOGICO_MAP OPERACIONSUM PARENDER PUNTOYCOMA
-    '''
+    '''sumaMapa : valor PARENIZQ variable OPERALOGICO_MAP OPERACIONSUM PARENDER PUNTOYCOMA'''
+
 
 def p_mapPut(p):
-    '''mapPut : valor OPERALOGICO_MAP OPERAPUT PARENIZQ variable COMA variable PARENDER PUNTOYCOMA 
-
-    '''
+    '''mapPut : valor OPERALOGICO_MAP OPERAPUT PARENIZQ variable COMA variable PARENDER PUNTOYCOMA '''
 
 #Daniel
 
+#Cidy
+def p_operadoresA(p) :
+    '''operadoresA : SUMA
+                    | RESTA
+                    | MULTIPLICACION
+                    | DIVISION
+                    | MODULO
+                    | EXPONENCIACION
+                    '''
 
+
+def p_operacionesA(p) :
+    '''operacionesA : operacionesV operadoresA operacionesV
+                    | operacionesV operadoresA operacionesA
+                    '''
+
+
+def p_operadoresC(p) :
+    '''operadoresC : OPERCOMPARACION
+                    | OPERCOMPARACION OPERASIGNACION
+                    | OPERLOGICO_NOT OPERASIGNACION
+                    | MENORQUE MAYORQUE
+                    | OPERLOGICO_NOT OPERCOMPARACION
+                    | MENORQUE
+                    | MAYORQUE
+                    | MENORQUE OPERASIGNACION
+                    | MAYORQUE OPERASIGNACION
+                    | MENORQUE OPERASIGNACION MAYORQUE
+                    '''
+
+
+def p_operacionesC(p) :
+    '''operacionesC : valores operadoresC valores'''
+
+
+def p_opLogicos(p) :
+    '''opLogicos : OPERLOGICO_AND
+                    | OPERLOGICO_OR
+                    | OPERLOGICO_XOR
+                    | OPERLOGICO_NOT
+                    | AMPERSAND AMPERSAND
+                    | OPERLOGICO_OREXCLUSIVO'''
+
+
+def p_operacionesL(p) :
+    '''operacionesL : opLog opLogicos opLog'''
+
+
+def p_sentencias(p) :
+    '''sentencias : operacionesL PUNTOYCOMA
+                    | operacionesA PUNTOYCOMA
+                    | operacionesC PUNTOYCOMA
+                    | asignacion
+                    | sentencias'''
+
+
+def p_opCombinadas(p) :
+    '''opCombinadas : variable OPERASIGNACION operacionesA
+                    | variable OPERASIGNACION operacionesL
+                    | variable OPERASIGNACION operacionesC'''
+
+
+def p_impresionPrint(p) :
+    '''impresionPrint : print PARENIZQ valores PARENDER PUNTOYCOMA
+                        | print PARENIZQ operacionesL PARENDER PUNTOYCOMA
+                        | print PARENIZQ operacionesC PARENDER PUNTOYCOMA
+                        | print PARENIZQ operacionesA PARENDER PUNTOYCOMA'''
+
+
+def p_retornoBool(p):
+    '''retornoBool : BOOLEANO
+                    | operacionesL
+                    | operacionesC'''
+
+
+def p_condIf(p) :
+    '''condIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+
+
+def p_bucleDoWhile(p):
+    '''bucleDoWhile : do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                    | do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+                    | do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
+
+
+def p_rellenoArray(p):  # clave => valor
+    '''rellenoArray : valores OPERASIG_ARRAY valores COMA
+                    | valores
+                    | COMA valores OPERASIG_ARRAY valores COMA rellenoArray'''
+
+
+def p_crearArreglos(p):
+    '''crearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
+
+
+def p_bucleForEach(p):
+    '''bucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
+                    | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER'''
+
+
+def p_metodosArray(p):
+    '''metodosArray : rsort PARENIZQ variable PARENDER PUNTOYCOMA
+                    | rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+                    | count PARENIZQ variable PARENDER PUNTOYCOMA
+                    | count PARENIZQ crearArreglos PARENDER PUNTOYCOMA'''
+
+# -------------------
 #Gabriela
 def p_error(p):
-    if p:
-      print("Error de sintaxis en token", p.type)
-      sintactico.errok()
-        # Just discard the token and tell the parser it's okay.
-    else:
-        print("Error de sintaxis EOF")
+    print("Syntax error")
 
-# Construye el parser
-sintactico = yacc.yacc()
+
+#Construye el parser
+parser = yacc.yacc()
 
 while True:
     try:
-      linea = input('vb.net>> ')
+      linea = input('calc > ')
     except EOFError:
         break
-    if not linea: continue
-    result = sintactico.parse(linea)
+    if not linea:
+        continue
+    result = parser.parse(linea)
     print(result)
 
-'''linea=" "
-codigo = open("source.vb")
-result = sintactico.parse(codigo.read())
-codigo.close()
 
-print("Proyecto casi terminado... :)")'''
+
+
+# linea=" "
+# codigo = open("source.vb")
+# result = parser.parse(codigo.read())
+# codigo.close()
+
+# print("Proyecto casi terminado... :)")
 #---------------
