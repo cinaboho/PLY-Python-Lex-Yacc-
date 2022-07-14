@@ -4,6 +4,7 @@ from analizadorLexico import tokens
 def p_sentencias(p):
     '''sentencias : valor
                   | operacion
+                  | asignacion
 
     '''
 def p_valor(p):
@@ -29,7 +30,7 @@ def p_operador(p):
                 | EXPONENCIACION
     '''
 def p_asignacion(p):
-    '''asignacion : VARIABLE OPERASIGNACION VALOR
+    '''asignacion : VARIABLE OPERASIGNACION valor
     '''
 
 def p_error(p):
