@@ -93,7 +93,8 @@ Rule 19    asignacion -> VARIABLE OPERASIGNACION valor
 Rule 20    asignacion_abreviado -> MASIGUAL
 Rule 21    asignacion_abreviado -> MENOSIGUAL
 Rule 22    asignacion_abreviado -> ASTERISCOIGUAL
-Rule 23    asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico
+Rule 23    asignacion_abreviado -> BARRAIGUAL
+Rule 24    asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico
 
 Terminals, with rules where they appear
 
@@ -101,6 +102,7 @@ AMPERSAND            :
 ARRAY                : 
 AS                   : 
 ASTERISCOIGUAL       : 22
+BARRAIGUAL           : 23
 BOOLEAN              : 
 BOOLEANO             : 10
 BREAK                : 
@@ -175,20 +177,20 @@ STATIC               :
 STRING               : 
 SWITCH               : 
 TRUE                 : 
-VARIABLE             : 9 19 23
+VARIABLE             : 9 19 24
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
 asignacion           : 3
-asignacion_abreviado : 23
+asignacion_abreviado : 24
 asignacion_abreviatura_op : 4
 operacion            : 2 12
 operador             : 12
 sentencias           : 0
 valor                : 1 19
-valorNumerico        : 5 11 12 23
+valorNumerico        : 5 11 12 24
 
 Parsing method: LALR
 
@@ -204,7 +206,7 @@ state 0
     (11) operacion -> . valorNumerico
     (12) operacion -> . valorNumerico operador operacion
     (19) asignacion -> . VARIABLE OPERASIGNACION valor
-    (23) asignacion_abreviatura_op -> . VARIABLE asignacion_abreviado valorNumerico
+    (24) asignacion_abreviatura_op -> . VARIABLE asignacion_abreviado valorNumerico
     (7) valorNumerico -> . ENTERO
     (8) valorNumerico -> . FLOTANTE
     (9) valorNumerico -> . VARIABLE
@@ -292,11 +294,12 @@ state 7
 state 8
 
     (19) asignacion -> VARIABLE . OPERASIGNACION valor
-    (23) asignacion_abreviatura_op -> VARIABLE . asignacion_abreviado valorNumerico
+    (24) asignacion_abreviatura_op -> VARIABLE . asignacion_abreviado valorNumerico
     (9) valorNumerico -> VARIABLE .
     (20) asignacion_abreviado -> . MASIGUAL
     (21) asignacion_abreviado -> . MENOSIGUAL
     (22) asignacion_abreviado -> . ASTERISCOIGUAL
+    (23) asignacion_abreviado -> . BARRAIGUAL
 
     OPERASIGNACION  shift and go to state 19
     MAS             reduce using rule 9 (valorNumerico -> VARIABLE .)
@@ -309,6 +312,7 @@ state 8
     MASIGUAL        shift and go to state 21
     MENOSIGUAL      shift and go to state 22
     ASTERISCOIGUAL  shift and go to state 23
+    BARRAIGUAL      shift and go to state 24
 
     asignacion_abreviado           shift and go to state 20
 
@@ -363,11 +367,11 @@ state 12
 
     ENTERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 26
+    VARIABLE        shift and go to state 27
     BOOLEANO        shift and go to state 11
 
-    valorNumerico                  shift and go to state 24
-    operacion                      shift and go to state 25
+    valorNumerico                  shift and go to state 25
+    operacion                      shift and go to state 26
 
 state 13
 
@@ -442,15 +446,15 @@ state 19
     CADENA          shift and go to state 7
     ENTERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 26
+    VARIABLE        shift and go to state 27
     BOOLEANO        shift and go to state 11
 
-    valor                          shift and go to state 27
-    valorNumerico                  shift and go to state 28
+    valor                          shift and go to state 28
+    valorNumerico                  shift and go to state 29
 
 state 20
 
-    (23) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado . valorNumerico
+    (24) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado . valorNumerico
     (7) valorNumerico -> . ENTERO
     (8) valorNumerico -> . FLOTANTE
     (9) valorNumerico -> . VARIABLE
@@ -458,10 +462,10 @@ state 20
 
     ENTERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 26
+    VARIABLE        shift and go to state 27
     BOOLEANO        shift and go to state 11
 
-    valorNumerico                  shift and go to state 29
+    valorNumerico                  shift and go to state 30
 
 state 21
 
@@ -495,6 +499,16 @@ state 23
 
 state 24
 
+    (23) asignacion_abreviado -> BARRAIGUAL .
+
+    ENTERO          reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
+    FLOTANTE        reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
+    VARIABLE        reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
+    BOOLEANO        reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
+
+
+state 25
+
     (11) operacion -> valorNumerico .
     (12) operacion -> valorNumerico . operador operacion
     (13) operador -> . MAS
@@ -514,14 +528,14 @@ state 24
 
     operador                       shift and go to state 12
 
-state 25
+state 26
 
     (12) operacion -> valorNumerico operador operacion .
 
     $end            reduce using rule 12 (operacion -> valorNumerico operador operacion .)
 
 
-state 26
+state 27
 
     (9) valorNumerico -> VARIABLE .
 
@@ -534,25 +548,25 @@ state 26
     $end            reduce using rule 9 (valorNumerico -> VARIABLE .)
 
 
-state 27
+state 28
 
     (19) asignacion -> VARIABLE OPERASIGNACION valor .
 
     $end            reduce using rule 19 (asignacion -> VARIABLE OPERASIGNACION valor .)
 
 
-state 28
+state 29
 
     (5) valor -> valorNumerico .
 
     $end            reduce using rule 5 (valor -> valorNumerico .)
 
 
-state 29
+state 30
 
-    (23) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .
+    (24) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .
 
-    $end            reduce using rule 23 (asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .)
+    $end            reduce using rule 24 (asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .)
 
 WARNING: 
 WARNING: Conflicts:

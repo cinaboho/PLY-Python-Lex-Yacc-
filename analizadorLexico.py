@@ -61,7 +61,7 @@ tokens = (
     'MASIGUAL',
     'MENOSIGUAL',
     'ASTERISCOIGUAL',
-    # 'BARRAIGUAL',
+    'BARRAIGUAL',
     # 'PORCENTAJEIGUAL',
     # 'DOBLEASTERISCOIGUAL'
     'OPERCOMPARACION',
@@ -117,7 +117,7 @@ t_EXPONENCIACION = r'\*\*'
 t_MASIGUAL = r'\+\='
 t_MENOSIGUAL = r'\-\='
 t_ASTERISCOIGUAL = r'\*\='
-# t_BARRAIGUAL = r'/='
+t_BARRAIGUAL = r'\/\='
 # t_PORCENTAJEIGUAL = r'%='
 # t_DOBLEASTERISCOIGUAL = r'\*\*\='
 t_OPERCOMPARACION = r'=='
