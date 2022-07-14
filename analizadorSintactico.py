@@ -3,16 +3,17 @@ from analizadorLexico import tokens
 
 def p_sentencias(p):
     '''sentencias : valor
+                  | suma
     '''
 def p_valor(p):
     '''valor : valorNumerico
              | CADENA
              | BOOLEANO
-             | VARIABLE
     '''
 def p_valorNumerico(p):
     '''valorNumerico : ENTERO
                      | FLOTANTE
+                     | VARIABLE
     '''
 def p_suma(p):
     '''suma : valorNumerico

@@ -73,20 +73,21 @@ Grammar
 
 Rule 0     S' -> sentencias
 Rule 1     sentencias -> valor
-Rule 2     valor -> valorNumerico
-Rule 3     valor -> CADENA
-Rule 4     valor -> BOOLEANO
-Rule 5     valor -> VARIABLE
+Rule 2     sentencias -> suma
+Rule 3     valor -> valorNumerico
+Rule 4     valor -> CADENA
+Rule 5     valor -> BOOLEANO
 Rule 6     valorNumerico -> ENTERO
 Rule 7     valorNumerico -> FLOTANTE
-Rule 8     suma -> valorNumerico
-Rule 9     suma -> valorNumerico operador suma
-Rule 10    operador -> MAS
-Rule 11    operador -> MENOS
-Rule 12    operador -> MULTIPLICA
-Rule 13    operador -> DIVIDE
-Rule 14    operador -> MODULO
-Rule 15    operador -> EXPONENCIACION
+Rule 8     valorNumerico -> VARIABLE
+Rule 9     suma -> valorNumerico
+Rule 10    suma -> valorNumerico operador suma
+Rule 11    operador -> MAS
+Rule 12    operador -> MENOS
+Rule 13    operador -> MULTIPLICA
+Rule 14    operador -> DIVIDE
+Rule 15    operador -> MODULO
+Rule 16    operador -> EXPONENCIACION
 
 Terminals, with rules where they appear
 
@@ -94,9 +95,9 @@ AMPERSAND            :
 ARRAY                : 
 AS                   : 
 BOOLEAN              : 
-BOOLEANO             : 4
+BOOLEANO             : 5
 BREAK                : 
-CADENA               : 3
+CADENA               : 4
 CASE                 : 
 CLASS                : 
 COMA                 : 
@@ -108,7 +109,7 @@ CORCHDER             :
 CORCHIZQ             : 
 COUNT                : 
 DEFAULT              : 
-DIVIDE               : 13
+DIVIDE               : 14
 DO                   : 
 DOSPUNTOS            : 
 ECHO                 : 
@@ -116,7 +117,7 @@ ELSE                 :
 END_SWITCH           : 
 END_WHILE            : 
 ENTERO               : 6
-EXPONENCIACION       : 15
+EXPONENCIACION       : 16
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
@@ -130,12 +131,12 @@ INICIO               :
 INTEGER              : 
 LLAVEDER             : 
 LLAVEIZQ             : 
-MAS                  : 10
+MAS                  : 11
 MAYORQUE             : 
 MENORQUE             : 
-MENOS                : 11
-MODULO               : 14
-MULTIPLICA           : 12
+MENOS                : 12
+MODULO               : 15
+MULTIPLICA           : 13
 NEW                  : 
 NULL                 : 
 OPERACIONSUM         : 
@@ -165,17 +166,17 @@ STATIC               :
 STRING               : 
 SWITCH               : 
 TRUE                 : 
-VARIABLE             : 5
+VARIABLE             : 8
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-operador             : 9
+operador             : 10
 sentencias           : 0
-suma                 : 9
+suma                 : 2 10
 valor                : 1
-valorNumerico        : 2 8 9
+valorNumerico        : 3 9 10
 
 Parsing method: LALR
 
@@ -183,22 +184,26 @@ state 0
 
     (0) S' -> . sentencias
     (1) sentencias -> . valor
-    (2) valor -> . valorNumerico
-    (3) valor -> . CADENA
-    (4) valor -> . BOOLEANO
-    (5) valor -> . VARIABLE
+    (2) sentencias -> . suma
+    (3) valor -> . valorNumerico
+    (4) valor -> . CADENA
+    (5) valor -> . BOOLEANO
+    (9) suma -> . valorNumerico
+    (10) suma -> . valorNumerico operador suma
     (6) valorNumerico -> . ENTERO
     (7) valorNumerico -> . FLOTANTE
+    (8) valorNumerico -> . VARIABLE
 
-    CADENA          shift and go to state 4
-    BOOLEANO        shift and go to state 5
-    VARIABLE        shift and go to state 6
+    CADENA          shift and go to state 5
+    BOOLEANO        shift and go to state 6
     ENTERO          shift and go to state 7
     FLOTANTE        shift and go to state 8
+    VARIABLE        shift and go to state 9
 
     sentencias                     shift and go to state 1
     valor                          shift and go to state 2
-    valorNumerico                  shift and go to state 3
+    suma                           shift and go to state 3
+    valorNumerico                  shift and go to state 4
 
 state 1
 
@@ -215,36 +220,60 @@ state 2
 
 state 3
 
-    (2) valor -> valorNumerico .
+    (2) sentencias -> suma .
 
-    $end            reduce using rule 2 (valor -> valorNumerico .)
+    $end            reduce using rule 2 (sentencias -> suma .)
 
 
 state 4
 
-    (3) valor -> CADENA .
+    (3) valor -> valorNumerico .
+    (9) suma -> valorNumerico .
+    (10) suma -> valorNumerico . operador suma
+    (11) operador -> . MAS
+    (12) operador -> . MENOS
+    (13) operador -> . MULTIPLICA
+    (14) operador -> . DIVIDE
+    (15) operador -> . MODULO
+    (16) operador -> . EXPONENCIACION
 
-    $end            reduce using rule 3 (valor -> CADENA .)
+  ! reduce/reduce conflict for $end resolved using rule 3 (valor -> valorNumerico .)
+    $end            reduce using rule 3 (valor -> valorNumerico .)
+    MAS             shift and go to state 11
+    MENOS           shift and go to state 12
+    MULTIPLICA      shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MODULO          shift and go to state 15
+    EXPONENCIACION  shift and go to state 16
 
+  ! $end            [ reduce using rule 9 (suma -> valorNumerico .) ]
+
+    operador                       shift and go to state 10
 
 state 5
 
-    (4) valor -> BOOLEANO .
+    (4) valor -> CADENA .
 
-    $end            reduce using rule 4 (valor -> BOOLEANO .)
+    $end            reduce using rule 4 (valor -> CADENA .)
 
 
 state 6
 
-    (5) valor -> VARIABLE .
+    (5) valor -> BOOLEANO .
 
-    $end            reduce using rule 5 (valor -> VARIABLE .)
+    $end            reduce using rule 5 (valor -> BOOLEANO .)
 
 
 state 7
 
     (6) valorNumerico -> ENTERO .
 
+    MAS             reduce using rule 6 (valorNumerico -> ENTERO .)
+    MENOS           reduce using rule 6 (valorNumerico -> ENTERO .)
+    MULTIPLICA      reduce using rule 6 (valorNumerico -> ENTERO .)
+    DIVIDE          reduce using rule 6 (valorNumerico -> ENTERO .)
+    MODULO          reduce using rule 6 (valorNumerico -> ENTERO .)
+    EXPONENCIACION  reduce using rule 6 (valorNumerico -> ENTERO .)
     $end            reduce using rule 6 (valorNumerico -> ENTERO .)
 
 
@@ -252,5 +281,127 @@ state 8
 
     (7) valorNumerico -> FLOTANTE .
 
+    MAS             reduce using rule 7 (valorNumerico -> FLOTANTE .)
+    MENOS           reduce using rule 7 (valorNumerico -> FLOTANTE .)
+    MULTIPLICA      reduce using rule 7 (valorNumerico -> FLOTANTE .)
+    DIVIDE          reduce using rule 7 (valorNumerico -> FLOTANTE .)
+    MODULO          reduce using rule 7 (valorNumerico -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 7 (valorNumerico -> FLOTANTE .)
     $end            reduce using rule 7 (valorNumerico -> FLOTANTE .)
 
+
+state 9
+
+    (8) valorNumerico -> VARIABLE .
+
+    MAS             reduce using rule 8 (valorNumerico -> VARIABLE .)
+    MENOS           reduce using rule 8 (valorNumerico -> VARIABLE .)
+    MULTIPLICA      reduce using rule 8 (valorNumerico -> VARIABLE .)
+    DIVIDE          reduce using rule 8 (valorNumerico -> VARIABLE .)
+    MODULO          reduce using rule 8 (valorNumerico -> VARIABLE .)
+    EXPONENCIACION  reduce using rule 8 (valorNumerico -> VARIABLE .)
+    $end            reduce using rule 8 (valorNumerico -> VARIABLE .)
+
+
+state 10
+
+    (10) suma -> valorNumerico operador . suma
+    (9) suma -> . valorNumerico
+    (10) suma -> . valorNumerico operador suma
+    (6) valorNumerico -> . ENTERO
+    (7) valorNumerico -> . FLOTANTE
+    (8) valorNumerico -> . VARIABLE
+
+    ENTERO          shift and go to state 7
+    FLOTANTE        shift and go to state 8
+    VARIABLE        shift and go to state 9
+
+    valorNumerico                  shift and go to state 17
+    suma                           shift and go to state 18
+
+state 11
+
+    (11) operador -> MAS .
+
+    ENTERO          reduce using rule 11 (operador -> MAS .)
+    FLOTANTE        reduce using rule 11 (operador -> MAS .)
+    VARIABLE        reduce using rule 11 (operador -> MAS .)
+
+
+state 12
+
+    (12) operador -> MENOS .
+
+    ENTERO          reduce using rule 12 (operador -> MENOS .)
+    FLOTANTE        reduce using rule 12 (operador -> MENOS .)
+    VARIABLE        reduce using rule 12 (operador -> MENOS .)
+
+
+state 13
+
+    (13) operador -> MULTIPLICA .
+
+    ENTERO          reduce using rule 13 (operador -> MULTIPLICA .)
+    FLOTANTE        reduce using rule 13 (operador -> MULTIPLICA .)
+    VARIABLE        reduce using rule 13 (operador -> MULTIPLICA .)
+
+
+state 14
+
+    (14) operador -> DIVIDE .
+
+    ENTERO          reduce using rule 14 (operador -> DIVIDE .)
+    FLOTANTE        reduce using rule 14 (operador -> DIVIDE .)
+    VARIABLE        reduce using rule 14 (operador -> DIVIDE .)
+
+
+state 15
+
+    (15) operador -> MODULO .
+
+    ENTERO          reduce using rule 15 (operador -> MODULO .)
+    FLOTANTE        reduce using rule 15 (operador -> MODULO .)
+    VARIABLE        reduce using rule 15 (operador -> MODULO .)
+
+
+state 16
+
+    (16) operador -> EXPONENCIACION .
+
+    ENTERO          reduce using rule 16 (operador -> EXPONENCIACION .)
+    FLOTANTE        reduce using rule 16 (operador -> EXPONENCIACION .)
+    VARIABLE        reduce using rule 16 (operador -> EXPONENCIACION .)
+
+
+state 17
+
+    (9) suma -> valorNumerico .
+    (10) suma -> valorNumerico . operador suma
+    (11) operador -> . MAS
+    (12) operador -> . MENOS
+    (13) operador -> . MULTIPLICA
+    (14) operador -> . DIVIDE
+    (15) operador -> . MODULO
+    (16) operador -> . EXPONENCIACION
+
+    $end            reduce using rule 9 (suma -> valorNumerico .)
+    MAS             shift and go to state 11
+    MENOS           shift and go to state 12
+    MULTIPLICA      shift and go to state 13
+    DIVIDE          shift and go to state 14
+    MODULO          shift and go to state 15
+    EXPONENCIACION  shift and go to state 16
+
+    operador                       shift and go to state 10
+
+state 18
+
+    (10) suma -> valorNumerico operador suma .
+
+    $end            reduce using rule 10 (suma -> valorNumerico operador suma .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 4 resolved using rule (valor -> valorNumerico)
+WARNING: rejected rule (suma -> valorNumerico) in state 4
