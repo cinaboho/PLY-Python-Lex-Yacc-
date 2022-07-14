@@ -95,7 +95,8 @@ Rule 21    asignacion_abreviado -> MENOSIGUAL
 Rule 22    asignacion_abreviado -> ASTERISCOIGUAL
 Rule 23    asignacion_abreviado -> BARRAIGUAL
 Rule 24    asignacion_abreviado -> PORCENTAJEIGUAL
-Rule 25    asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico
+Rule 25    asignacion_abreviado -> DOBLEASTERISCOIGUAL
+Rule 26    asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico
 
 Terminals, with rules where they appear
 
@@ -121,6 +122,7 @@ COUNT                :
 DEFAULT              : 
 DIVIDE               : 16
 DO                   : 
+DOBLEASTERISCOIGUAL  : 25
 DOSPUNTOS            : 
 ECHO                 : 
 ELSE                 : 
@@ -179,20 +181,20 @@ STATIC               :
 STRING               : 
 SWITCH               : 
 TRUE                 : 
-VARIABLE             : 9 19 25
+VARIABLE             : 9 19 26
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
 asignacion           : 3
-asignacion_abreviado : 25
+asignacion_abreviado : 26
 asignacion_abreviatura_op : 4
 operacion            : 2 12
 operador             : 12
 sentencias           : 0
 valor                : 1 19
-valorNumerico        : 5 11 12 25
+valorNumerico        : 5 11 12 26
 
 Parsing method: LALR
 
@@ -208,7 +210,7 @@ state 0
     (11) operacion -> . valorNumerico
     (12) operacion -> . valorNumerico operador operacion
     (19) asignacion -> . VARIABLE OPERASIGNACION valor
-    (25) asignacion_abreviatura_op -> . VARIABLE asignacion_abreviado valorNumerico
+    (26) asignacion_abreviatura_op -> . VARIABLE asignacion_abreviado valorNumerico
     (7) valorNumerico -> . ENTERO
     (8) valorNumerico -> . FLOTANTE
     (9) valorNumerico -> . VARIABLE
@@ -296,13 +298,14 @@ state 7
 state 8
 
     (19) asignacion -> VARIABLE . OPERASIGNACION valor
-    (25) asignacion_abreviatura_op -> VARIABLE . asignacion_abreviado valorNumerico
+    (26) asignacion_abreviatura_op -> VARIABLE . asignacion_abreviado valorNumerico
     (9) valorNumerico -> VARIABLE .
     (20) asignacion_abreviado -> . MASIGUAL
     (21) asignacion_abreviado -> . MENOSIGUAL
     (22) asignacion_abreviado -> . ASTERISCOIGUAL
     (23) asignacion_abreviado -> . BARRAIGUAL
     (24) asignacion_abreviado -> . PORCENTAJEIGUAL
+    (25) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
 
     OPERASIGNACION  shift and go to state 19
     MAS             reduce using rule 9 (valorNumerico -> VARIABLE .)
@@ -317,6 +320,7 @@ state 8
     ASTERISCOIGUAL  shift and go to state 23
     BARRAIGUAL      shift and go to state 24
     PORCENTAJEIGUAL shift and go to state 25
+    DOBLEASTERISCOIGUAL shift and go to state 26
 
     asignacion_abreviado           shift and go to state 20
 
@@ -371,11 +375,11 @@ state 12
 
     ENTERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 28
+    VARIABLE        shift and go to state 29
     BOOLEANO        shift and go to state 11
 
-    valorNumerico                  shift and go to state 26
-    operacion                      shift and go to state 27
+    valorNumerico                  shift and go to state 27
+    operacion                      shift and go to state 28
 
 state 13
 
@@ -450,15 +454,15 @@ state 19
     CADENA          shift and go to state 7
     ENTERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 28
+    VARIABLE        shift and go to state 29
     BOOLEANO        shift and go to state 11
 
-    valor                          shift and go to state 29
-    valorNumerico                  shift and go to state 30
+    valor                          shift and go to state 30
+    valorNumerico                  shift and go to state 31
 
 state 20
 
-    (25) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado . valorNumerico
+    (26) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado . valorNumerico
     (7) valorNumerico -> . ENTERO
     (8) valorNumerico -> . FLOTANTE
     (9) valorNumerico -> . VARIABLE
@@ -466,10 +470,10 @@ state 20
 
     ENTERO          shift and go to state 9
     FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 28
+    VARIABLE        shift and go to state 29
     BOOLEANO        shift and go to state 11
 
-    valorNumerico                  shift and go to state 31
+    valorNumerico                  shift and go to state 32
 
 state 21
 
@@ -523,6 +527,16 @@ state 25
 
 state 26
 
+    (25) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
+
+    ENTERO          reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    VARIABLE        reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+
+
+state 27
+
     (11) operacion -> valorNumerico .
     (12) operacion -> valorNumerico . operador operacion
     (13) operador -> . MAS
@@ -542,14 +556,14 @@ state 26
 
     operador                       shift and go to state 12
 
-state 27
+state 28
 
     (12) operacion -> valorNumerico operador operacion .
 
     $end            reduce using rule 12 (operacion -> valorNumerico operador operacion .)
 
 
-state 28
+state 29
 
     (9) valorNumerico -> VARIABLE .
 
@@ -562,25 +576,25 @@ state 28
     $end            reduce using rule 9 (valorNumerico -> VARIABLE .)
 
 
-state 29
+state 30
 
     (19) asignacion -> VARIABLE OPERASIGNACION valor .
 
     $end            reduce using rule 19 (asignacion -> VARIABLE OPERASIGNACION valor .)
 
 
-state 30
+state 31
 
     (5) valor -> valorNumerico .
 
     $end            reduce using rule 5 (valor -> valorNumerico .)
 
 
-state 31
+state 32
 
-    (25) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .
+    (26) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .
 
-    $end            reduce using rule 25 (asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .)
+    $end            reduce using rule 26 (asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .)
 
 WARNING: 
 WARNING: Conflicts:
