@@ -5,6 +5,7 @@ def p_sentencias(p):
     '''sentencias : valor
                   | operacion
                   | asignacion
+                  | OpAsignacion
 
     '''
 def p_valor(p):
@@ -32,12 +33,14 @@ def p_operador(p):
 def p_asignacion(p):
     '''asignacion : VARIABLE OPERASIGNACION valor
     '''
+def p_OpAsignacion(p):
+    '''OpAsignacion : VARIABLE MASIGUAL valorNumerico
+    '''
 
 def p_error(p):
     print("Syntax error")
 
 parser = yacc.yacc()
-
 while True:
     try:
         s = input("calc >")

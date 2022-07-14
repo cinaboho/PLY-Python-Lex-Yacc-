@@ -58,6 +58,12 @@ tokens = (
     'DIVIDE',
     'MODULO',
     'EXPONENCIACION',
+    'MASIGUAL',
+    'MENOSIGUAL',
+    # 'ASTERISCOIGUAL',
+    # 'BARRAIGUAL',
+    # 'PORCENTAJEIGUAL',
+    # 'DOBLEASTERISCOIGUAL'
     'OPERCOMPARACION',
     'OPERLOGICO_OR',
     'OPERLOGICO_AND',
@@ -108,6 +114,12 @@ t_MULTIPLICA = r'\*'
 t_DIVIDE = r'/'
 t_MODULO = r'%'
 t_EXPONENCIACION = r'\*\*'
+t_MASIGUAL = r'\+\='
+t_MENOSIGUAL = r'\-\='
+# t_ASTERISCOIGUAL = r'\*\='
+# t_BARRAIGUAL = r'/='
+# t_PORCENTAJEIGUAL = r'%='
+# t_DOBLEASTERISCOIGUAL = r'\*\*\='
 t_OPERCOMPARACION = r'=='
 t_OPERLOGICO_OR = r'or'
 t_OPERLOGICO_XOR =r'xor'
@@ -118,6 +130,7 @@ t_OPERAMAPA = r'array\_map'
 t_OPERALOGICO_MAP = r'\->'
 t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
+
 
 def t_INICIO(t):
     r'<\?php'
@@ -206,14 +219,14 @@ def getTokens(lexer):
             break
         print(tok)
 
-# linea=" "
-# codigo = open("source.vb")
-# for linea in codigo:
-#   validador.input(linea)
-#   getTokens(validador)
-# codigo.close()
+linea=" "
+codigo = open("source.vb")
+for linea in codigo:
+  validador.input(linea)
+  getTokens(validador)
+codigo.close()
 
-# print("Análisis Léxico terminado... :)")
+print("Análisis Léxico terminado... :)")
 
 #-------------
 
