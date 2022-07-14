@@ -19,7 +19,7 @@ def p_valorNumerico(p):
     '''
 def p_operacion(p):
     '''operacion : valorNumerico
-            | valorNumerico operador operacion
+                 | valorNumerico operador operacion
     '''
 def p_operador(p):
     '''operador : MAS
