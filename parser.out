@@ -73,15 +73,15 @@ Grammar
 
 Rule 0     S' -> sentencias
 Rule 1     sentencias -> valor
-Rule 2     sentencias -> suma
+Rule 2     sentencias -> operacion
 Rule 3     valor -> valorNumerico
 Rule 4     valor -> CADENA
 Rule 5     valor -> BOOLEANO
 Rule 6     valorNumerico -> ENTERO
 Rule 7     valorNumerico -> FLOTANTE
 Rule 8     valorNumerico -> VARIABLE
-Rule 9     suma -> valorNumerico
-Rule 10    suma -> valorNumerico operador suma
+Rule 9     operacion -> valorNumerico
+Rule 10    operacion -> valorNumerico operador operacion
 Rule 11    operador -> MAS
 Rule 12    operador -> MENOS
 Rule 13    operador -> MULTIPLICA
@@ -172,9 +172,9 @@ error                :
 
 Nonterminals, with rules where they appear
 
+operacion            : 2 10
 operador             : 10
 sentencias           : 0
-suma                 : 2 10
 valor                : 1
 valorNumerico        : 3 9 10
 
@@ -184,12 +184,12 @@ state 0
 
     (0) S' -> . sentencias
     (1) sentencias -> . valor
-    (2) sentencias -> . suma
+    (2) sentencias -> . operacion
     (3) valor -> . valorNumerico
     (4) valor -> . CADENA
     (5) valor -> . BOOLEANO
-    (9) suma -> . valorNumerico
-    (10) suma -> . valorNumerico operador suma
+    (9) operacion -> . valorNumerico
+    (10) operacion -> . valorNumerico operador operacion
     (6) valorNumerico -> . ENTERO
     (7) valorNumerico -> . FLOTANTE
     (8) valorNumerico -> . VARIABLE
@@ -202,7 +202,7 @@ state 0
 
     sentencias                     shift and go to state 1
     valor                          shift and go to state 2
-    suma                           shift and go to state 3
+    operacion                      shift and go to state 3
     valorNumerico                  shift and go to state 4
 
 state 1
@@ -220,16 +220,16 @@ state 2
 
 state 3
 
-    (2) sentencias -> suma .
+    (2) sentencias -> operacion .
 
-    $end            reduce using rule 2 (sentencias -> suma .)
+    $end            reduce using rule 2 (sentencias -> operacion .)
 
 
 state 4
 
     (3) valor -> valorNumerico .
-    (9) suma -> valorNumerico .
-    (10) suma -> valorNumerico . operador suma
+    (9) operacion -> valorNumerico .
+    (10) operacion -> valorNumerico . operador operacion
     (11) operador -> . MAS
     (12) operador -> . MENOS
     (13) operador -> . MULTIPLICA
@@ -246,7 +246,7 @@ state 4
     MODULO          shift and go to state 15
     EXPONENCIACION  shift and go to state 16
 
-  ! $end            [ reduce using rule 9 (suma -> valorNumerico .) ]
+  ! $end            [ reduce using rule 9 (operacion -> valorNumerico .) ]
 
     operador                       shift and go to state 10
 
@@ -305,9 +305,9 @@ state 9
 
 state 10
 
-    (10) suma -> valorNumerico operador . suma
-    (9) suma -> . valorNumerico
-    (10) suma -> . valorNumerico operador suma
+    (10) operacion -> valorNumerico operador . operacion
+    (9) operacion -> . valorNumerico
+    (10) operacion -> . valorNumerico operador operacion
     (6) valorNumerico -> . ENTERO
     (7) valorNumerico -> . FLOTANTE
     (8) valorNumerico -> . VARIABLE
@@ -317,7 +317,7 @@ state 10
     VARIABLE        shift and go to state 9
 
     valorNumerico                  shift and go to state 17
-    suma                           shift and go to state 18
+    operacion                      shift and go to state 18
 
 state 11
 
@@ -375,8 +375,8 @@ state 16
 
 state 17
 
-    (9) suma -> valorNumerico .
-    (10) suma -> valorNumerico . operador suma
+    (9) operacion -> valorNumerico .
+    (10) operacion -> valorNumerico . operador operacion
     (11) operador -> . MAS
     (12) operador -> . MENOS
     (13) operador -> . MULTIPLICA
@@ -384,7 +384,7 @@ state 17
     (15) operador -> . MODULO
     (16) operador -> . EXPONENCIACION
 
-    $end            reduce using rule 9 (suma -> valorNumerico .)
+    $end            reduce using rule 9 (operacion -> valorNumerico .)
     MAS             shift and go to state 11
     MENOS           shift and go to state 12
     MULTIPLICA      shift and go to state 13
@@ -396,12 +396,12 @@ state 17
 
 state 18
 
-    (10) suma -> valorNumerico operador suma .
+    (10) operacion -> valorNumerico operador operacion .
 
-    $end            reduce using rule 10 (suma -> valorNumerico operador suma .)
+    $end            reduce using rule 10 (operacion -> valorNumerico operador operacion .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
 WARNING: reduce/reduce conflict in state 4 resolved using rule (valor -> valorNumerico)
-WARNING: rejected rule (suma -> valorNumerico) in state 4
+WARNING: rejected rule (operacion -> valorNumerico) in state 4

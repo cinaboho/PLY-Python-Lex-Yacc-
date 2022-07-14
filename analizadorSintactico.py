@@ -3,7 +3,7 @@ from analizadorLexico import tokens
 
 def p_sentencias(p):
     '''sentencias : valor
-                  | suma
+                  | operacion
     '''
 def p_valor(p):
     '''valor : valorNumerico
@@ -15,9 +15,9 @@ def p_valorNumerico(p):
                      | FLOTANTE
                      | VARIABLE
     '''
-def p_suma(p):
-    '''suma : valorNumerico
-            | valorNumerico operador suma
+def p_operacion(p):
+    '''operacion : valorNumerico
+            | valorNumerico operador operacion
     '''
 def p_operador(p):
     '''operador : MAS
