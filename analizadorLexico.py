@@ -53,9 +53,9 @@ tokens = (
     'AMPERSAND',
     'OPERASIGNACION',
     'MAS',
-    'RESTA',
-    'MULTIPLICACION',
-    'DIVISION',
+    'MENOS',
+    'MULTIPLICA',
+    'DIVIDE',
     'MODULO',
     'EXPONENCIACION',
     'OPERCOMPARACION',
@@ -103,9 +103,9 @@ t_CORCHDER = r'\]'
 t_AMPERSAND = r'&'
 t_OPERASIGNACION = r'='
 t_MAS = r'\+'
-t_RESTA = r'\-'
-t_MULTIPLICACION = r'\*'
-t_DIVISION = r'/'
+t_MENOS = r'\-'
+t_MULTIPLICA = r'\*'
+t_DIVIDE = r'/'
 t_MODULO = r'%'
 t_EXPONENCIACION = r'\*\*'
 t_OPERCOMPARACION = r'=='

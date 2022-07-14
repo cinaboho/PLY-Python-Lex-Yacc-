@@ -18,14 +18,12 @@ Unused terminals:
     CORCHIZQ
     COUNT
     DEFAULT
-    DIVISION
     DO
     DOSPUNTOS
     ECHO
     ELSE
     END_SWITCH
     END_WHILE
-    EXPONENCIACION
     EXTENDS
     FALSE
     FIN
@@ -40,8 +38,6 @@ Unused terminals:
     LLAVEIZQ
     MAYORQUE
     MENORQUE
-    MODULO
-    MULTIPLICACION
     NEW
     NULL
     OPERACIONSUM
@@ -65,7 +61,6 @@ Unused terminals:
     PUBLIC
     PUNTO
     PUNTOYCOMA
-    RESTA
     RETURN
     RSORT
     STATIC
@@ -85,7 +80,13 @@ Rule 5     valor -> VARIABLE
 Rule 6     valorNumerico -> ENTERO
 Rule 7     valorNumerico -> FLOTANTE
 Rule 8     suma -> valorNumerico
-Rule 9     suma -> valorNumerico MAS suma
+Rule 9     suma -> valorNumerico operador suma
+Rule 10    operador -> MAS
+Rule 11    operador -> MENOS
+Rule 12    operador -> MULTIPLICA
+Rule 13    operador -> DIVIDE
+Rule 14    operador -> MODULO
+Rule 15    operador -> EXPONENCIACION
 
 Terminals, with rules where they appear
 
@@ -107,7 +108,7 @@ CORCHDER             :
 CORCHIZQ             : 
 COUNT                : 
 DEFAULT              : 
-DIVISION             : 
+DIVIDE               : 13
 DO                   : 
 DOSPUNTOS            : 
 ECHO                 : 
@@ -115,7 +116,7 @@ ELSE                 :
 END_SWITCH           : 
 END_WHILE            : 
 ENTERO               : 6
-EXPONENCIACION       : 
+EXPONENCIACION       : 15
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
@@ -129,11 +130,12 @@ INICIO               :
 INTEGER              : 
 LLAVEDER             : 
 LLAVEIZQ             : 
-MAS                  : 9
+MAS                  : 10
 MAYORQUE             : 
 MENORQUE             : 
-MODULO               : 
-MULTIPLICACION       : 
+MENOS                : 11
+MODULO               : 14
+MULTIPLICA           : 12
 NEW                  : 
 NULL                 : 
 OPERACIONSUM         : 
@@ -157,7 +159,6 @@ PROTECTED            :
 PUBLIC               : 
 PUNTO                : 
 PUNTOYCOMA           : 
-RESTA                : 
 RETURN               : 
 RSORT                : 
 STATIC               : 
@@ -170,6 +171,7 @@ error                :
 
 Nonterminals, with rules where they appear
 
+operador             : 9
 sentencias           : 0
 suma                 : 9
 valor                : 1

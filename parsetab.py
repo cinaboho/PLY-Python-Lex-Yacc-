@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AMPERSAND ARRAY AS BOOLEAN BOOLEANO BREAK CADENA CASE CLASS COMA COMENTARIO_LARGO COMENTARIO_UNA_LINEA CONST CONTINUE CORCHDER CORCHIZQ COUNT DEFAULT DIVISION DO DOSPUNTOS ECHO ELSE END_SWITCH END_WHILE ENTERO EXPONENCIACION EXTENDS FALSE FIN FLOAT FLOTANTE FOR FUNCTION GLOBAL IF INICIO INTEGER LLAVEDER LLAVEIZQ MAS MAYORQUE MENORQUE MODULO MULTIPLICACION NEW NULL OPERACIONSUM OPERALOGICO_MAP OPERAMAPA OPERAPUT OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PRINT PRIVATE PROTECTED PUBLIC PUNTO PUNTOYCOMA RESTA RETURN RSORT STATIC STRING SWITCH TRUE VARIABLE WHILEsentencias : valor\n    valor : valorNumerico\n             | CADENA\n             | BOOLEANO\n             | VARIABLE\n    valorNumerico : ENTERO\n                     | FLOTANTE\n    suma : valorNumerico\n            | valorNumerico MAS suma\n    '
+_lr_signature = 'AMPERSAND ARRAY AS BOOLEAN BOOLEANO BREAK CADENA CASE CLASS COMA COMENTARIO_LARGO COMENTARIO_UNA_LINEA CONST CONTINUE CORCHDER CORCHIZQ COUNT DEFAULT DIVIDE DO DOSPUNTOS ECHO ELSE END_SWITCH END_WHILE ENTERO EXPONENCIACION EXTENDS FALSE FIN FLOAT FLOTANTE FOR FUNCTION GLOBAL IF INICIO INTEGER LLAVEDER LLAVEIZQ MAS MAYORQUE MENORQUE MENOS MODULO MULTIPLICA NEW NULL OPERACIONSUM OPERALOGICO_MAP OPERAMAPA OPERAPUT OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PRINT PRIVATE PROTECTED PUBLIC PUNTO PUNTOYCOMA RETURN RSORT STATIC STRING SWITCH TRUE VARIABLE WHILEsentencias : valor\n    valor : valorNumerico\n             | CADENA\n             | BOOLEANO\n             | VARIABLE\n    valorNumerico : ENTERO\n                     | FLOTANTE\n    suma : valorNumerico\n            | valorNumerico operador suma\n    operador : MAS\n                | MENOS\n                | MULTIPLICA\n                | DIVIDE\n                | MODULO\n                | EXPONENCIACION\n    '
     
 _lr_action_items = {'CADENA':([0,],[4,]),'BOOLEANO':([0,],[5,]),'VARIABLE':([0,],[6,]),'ENTERO':([0,],[7,]),'FLOTANTE':([0,],[8,]),'$end':([1,2,3,4,5,6,7,8,],[0,-1,-2,-3,-4,-5,-6,-7,]),}
 
@@ -35,5 +35,11 @@ _lr_productions = [
   ('valorNumerico -> ENTERO','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',14),
   ('valorNumerico -> FLOTANTE','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',15),
   ('suma -> valorNumerico','suma',1,'p_suma','analizadorSintactico.py',18),
-  ('suma -> valorNumerico MAS suma','suma',3,'p_suma','analizadorSintactico.py',19),
+  ('suma -> valorNumerico operador suma','suma',3,'p_suma','analizadorSintactico.py',19),
+  ('operador -> MAS','operador',1,'p_operador','analizadorSintactico.py',22),
+  ('operador -> MENOS','operador',1,'p_operador','analizadorSintactico.py',23),
+  ('operador -> MULTIPLICA','operador',1,'p_operador','analizadorSintactico.py',24),
+  ('operador -> DIVIDE','operador',1,'p_operador','analizadorSintactico.py',25),
+  ('operador -> MODULO','operador',1,'p_operador','analizadorSintactico.py',26),
+  ('operador -> EXPONENCIACION','operador',1,'p_operador','analizadorSintactico.py',27),
 ]

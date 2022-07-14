@@ -16,7 +16,15 @@ def p_valorNumerico(p):
     '''
 def p_suma(p):
     '''suma : valorNumerico
-            | valorNumerico MAS suma
+            | valorNumerico operador suma
+    '''
+def p_operador(p):
+    '''operador : MAS
+                | MENOS
+                | MULTIPLICA
+                | DIVIDE
+                | MODULO
+                | EXPONENCIACION
     '''
 
 def p_error(p):
