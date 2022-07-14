@@ -4,16 +4,17 @@ from analizadorLexico import tokens
 def p_sentencias(p):
     '''sentencias : valor
                   | operacion
+
     '''
 def p_valor(p):
     '''valor : valorNumerico
              | CADENA
-             | BOOLEANO
     '''
 def p_valorNumerico(p):
     '''valorNumerico : ENTERO
                      | FLOTANTE
                      | VARIABLE
+                     | BOOLEANO
     '''
 def p_operacion(p):
     '''operacion : valorNumerico
@@ -26,6 +27,9 @@ def p_operador(p):
                 | DIVIDE
                 | MODULO
                 | EXPONENCIACION
+    '''
+def p_asignacion(p):
+    '''asignacion : VARIABLE OPERASIGNACION VALOR
     '''
 
 def p_error(p):
