@@ -29,14 +29,17 @@ def p_operador(p):
                 | DIVIDE
                 | MODULO
                 | EXPONENCIACION
-                | MASIGUAL
-                | MENOSIGUAL
     '''
 def p_asignacion(p):
     '''asignacion : VARIABLE OPERASIGNACION valor
     '''
+def p_asignacion_abreviado(p):
+    '''asignacion_abreviado : MASIGUAL
+                            | MENOSIGUAL
+                            | ASTERISCOIGUAL
+    '''
 def p_asignacion_abreviatura_op(p):
-    '''asignacion_abreviatura_op : VARIABLE operador valorNumerico
+    '''asignacion_abreviatura_op : VARIABLE asignacion_abreviado valorNumerico
     '''
 
 def p_error(p):

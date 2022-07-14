@@ -60,7 +60,7 @@ tokens = (
     'EXPONENCIACION',
     'MASIGUAL',
     'MENOSIGUAL',
-    # 'ASTERISCOIGUAL',
+    'ASTERISCOIGUAL',
     # 'BARRAIGUAL',
     # 'PORCENTAJEIGUAL',
     # 'DOBLEASTERISCOIGUAL'
@@ -116,7 +116,7 @@ t_MODULO = r'%'
 t_EXPONENCIACION = r'\*\*'
 t_MASIGUAL = r'\+\='
 t_MENOSIGUAL = r'\-\='
-# t_ASTERISCOIGUAL = r'\*\='
+t_ASTERISCOIGUAL = r'\*\='
 # t_BARRAIGUAL = r'/='
 # t_PORCENTAJEIGUAL = r'%='
 # t_DOBLEASTERISCOIGUAL = r'\*\*\='
