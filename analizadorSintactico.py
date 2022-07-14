@@ -5,7 +5,7 @@ def p_sentencias(p):
     '''sentencias : valor
                   | operacion
                   | asignacion
-                  | OpAsignacion
+                  | asignacion_abreviatura_op
 
     '''
 def p_valor(p):
@@ -29,12 +29,14 @@ def p_operador(p):
                 | DIVIDE
                 | MODULO
                 | EXPONENCIACION
+                | MASIGUAL
+                | MENOSIGUAL
     '''
 def p_asignacion(p):
     '''asignacion : VARIABLE OPERASIGNACION valor
     '''
-def p_OpAsignacion(p):
-    '''OpAsignacion : VARIABLE MASIGUAL valorNumerico
+def p_asignacion_abreviatura_op(p):
+    '''asignacion_abreviatura_op : VARIABLE operador valorNumerico
     '''
 
 def p_error(p):
