@@ -5,11 +5,18 @@ def p_sentencias(p):
     '''sentencias : valor
     '''
 def p_valor(p):
-    '''valor : BOOLEANO
+    '''valor : valorNumerico
              | CADENA
-             | ENTERO
-             | FLOTANTE
+             | BOOLEANO
              | VARIABLE
+    '''
+def p_valorNumerico(p):
+    '''valorNumerico : ENTERO
+                     | FLOTANTE
+    '''
+def p_suma(p):
+    '''suma : valorNumerico
+            | valorNumerico MAS suma
     '''
 
 def p_error(p):

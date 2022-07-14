@@ -70,7 +70,6 @@ Unused terminals:
     RSORT
     STATIC
     STRING
-    SUMA
     SWITCH
     TRUE
     WHILE
@@ -79,11 +78,14 @@ Grammar
 
 Rule 0     S' -> sentencias
 Rule 1     sentencias -> valor
-Rule 2     valor -> ENTERO
-Rule 3     valor -> FLOTANTE
-Rule 4     valor -> VARIABLE
-Rule 5     valor -> CADENA
-Rule 6     valor -> BOOLEANO
+Rule 2     valor -> valorNumerico
+Rule 3     valor -> CADENA
+Rule 4     valor -> BOOLEANO
+Rule 5     valor -> VARIABLE
+Rule 6     valorNumerico -> ENTERO
+Rule 7     valorNumerico -> FLOTANTE
+Rule 8     suma -> valorNumerico
+Rule 9     suma -> valorNumerico MAS suma
 
 Terminals, with rules where they appear
 
@@ -91,9 +93,9 @@ AMPERSAND            :
 ARRAY                : 
 AS                   : 
 BOOLEAN              : 
-BOOLEANO             : 6
+BOOLEANO             : 4
 BREAK                : 
-CADENA               : 5
+CADENA               : 3
 CASE                 : 
 CLASS                : 
 COMA                 : 
@@ -112,13 +114,13 @@ ECHO                 :
 ELSE                 : 
 END_SWITCH           : 
 END_WHILE            : 
-ENTERO               : 2
+ENTERO               : 6
 EXPONENCIACION       : 
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
 FLOAT                : 
-FLOTANTE             : 3
+FLOTANTE             : 7
 FOR                  : 
 FUNCTION             : 
 GLOBAL               : 
@@ -127,6 +129,7 @@ INICIO               :
 INTEGER              : 
 LLAVEDER             : 
 LLAVEIZQ             : 
+MAS                  : 9
 MAYORQUE             : 
 MENORQUE             : 
 MODULO               : 
@@ -159,17 +162,18 @@ RETURN               :
 RSORT                : 
 STATIC               : 
 STRING               : 
-SUMA                 : 
 SWITCH               : 
 TRUE                 : 
-VARIABLE             : 4
+VARIABLE             : 5
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
 sentencias           : 0
+suma                 : 9
 valor                : 1
+valorNumerico        : 2 8 9
 
 Parsing method: LALR
 
@@ -177,20 +181,22 @@ state 0
 
     (0) S' -> . sentencias
     (1) sentencias -> . valor
-    (2) valor -> . ENTERO
-    (3) valor -> . FLOTANTE
-    (4) valor -> . VARIABLE
-    (5) valor -> . CADENA
-    (6) valor -> . BOOLEANO
+    (2) valor -> . valorNumerico
+    (3) valor -> . CADENA
+    (4) valor -> . BOOLEANO
+    (5) valor -> . VARIABLE
+    (6) valorNumerico -> . ENTERO
+    (7) valorNumerico -> . FLOTANTE
 
-    ENTERO          shift and go to state 3
-    FLOTANTE        shift and go to state 4
-    VARIABLE        shift and go to state 5
-    CADENA          shift and go to state 6
-    BOOLEANO        shift and go to state 7
+    CADENA          shift and go to state 4
+    BOOLEANO        shift and go to state 5
+    VARIABLE        shift and go to state 6
+    ENTERO          shift and go to state 7
+    FLOTANTE        shift and go to state 8
 
     sentencias                     shift and go to state 1
     valor                          shift and go to state 2
+    valorNumerico                  shift and go to state 3
 
 state 1
 
@@ -207,35 +213,42 @@ state 2
 
 state 3
 
-    (2) valor -> ENTERO .
+    (2) valor -> valorNumerico .
 
-    $end            reduce using rule 2 (valor -> ENTERO .)
+    $end            reduce using rule 2 (valor -> valorNumerico .)
 
 
 state 4
 
-    (3) valor -> FLOTANTE .
+    (3) valor -> CADENA .
 
-    $end            reduce using rule 3 (valor -> FLOTANTE .)
+    $end            reduce using rule 3 (valor -> CADENA .)
 
 
 state 5
 
-    (4) valor -> VARIABLE .
+    (4) valor -> BOOLEANO .
 
-    $end            reduce using rule 4 (valor -> VARIABLE .)
+    $end            reduce using rule 4 (valor -> BOOLEANO .)
 
 
 state 6
 
-    (5) valor -> CADENA .
+    (5) valor -> VARIABLE .
 
-    $end            reduce using rule 5 (valor -> CADENA .)
+    $end            reduce using rule 5 (valor -> VARIABLE .)
 
 
 state 7
 
-    (6) valor -> BOOLEANO .
+    (6) valorNumerico -> ENTERO .
 
-    $end            reduce using rule 6 (valor -> BOOLEANO .)
+    $end            reduce using rule 6 (valorNumerico -> ENTERO .)
+
+
+state 8
+
+    (7) valorNumerico -> FLOTANTE .
+
+    $end            reduce using rule 7 (valorNumerico -> FLOTANTE .)
 

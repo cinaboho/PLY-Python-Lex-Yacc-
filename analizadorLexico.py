@@ -52,7 +52,7 @@ tokens = (
     'CORCHDER',
     'AMPERSAND',
     'OPERASIGNACION',
-    'SUMA',
+    'MAS',
     'RESTA',
     'MULTIPLICACION',
     'DIVISION',
@@ -102,7 +102,7 @@ t_CORCHIZQ = r'\['
 t_CORCHDER = r'\]'
 t_AMPERSAND = r'&'
 t_OPERASIGNACION = r'='
-t_SUMA = r'\+'
+t_MAS = r'\+'
 t_RESTA = r'\-'
 t_MULTIPLICACION = r'\*'
 t_DIVISION = r'/'
