@@ -2,12 +2,14 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    AMPERSAND
     ARRAY
     AS
     BOOLEAN
     BREAK
     CASE
     CLASS
+    COMA
     COMENTARIO_LARGO
     COMENTARIO_UNA_LINEA
     CONST
@@ -16,12 +18,14 @@ Unused terminals:
     CORCHIZQ
     COUNT
     DEFAULT
+    DIVISION
     DO
     DOSPUNTOS
     ECHO
     ELSE
     END_SWITCH
     END_WHILE
+    EXPONENCIACION
     EXTENDS
     FALSE
     FIN
@@ -32,139 +36,67 @@ Unused terminals:
     IF
     INICIO
     INTEGER
+    LLAVEDER
+    LLAVEIZQ
+    MAYORQUE
+    MENORQUE
+    MODULO
+    MULTIPLICACION
     NEW
     NULL
+    OPERACIONSUM
+    OPERALOGICO_MAP
+    OPERAMAPA
+    OPERAPUT
+    OPERASIGNACION
+    OPERASIG_ARRAY
+    OPERCOMPARACION
+    OPERLOGICO_AND
+    OPERLOGICO_NOT
+    OPERLOGICO_OR
+    OPERLOGICO_OREXCLUSIVO
+    OPERLOGICO_XOR
     OPERLOG_AND
+    PARENDER
+    PARENIZQ
     PRINT
     PRIVATE
     PROTECTED
     PUBLIC
     PUNTO
+    PUNTOYCOMA
+    RESTA
     RETURN
     RSORT
     STATIC
     STRING
+    SUMA
     SWITCH
     TRUE
-    VARIABLE
     WHILE
 
 Grammar
 
-Rule 0     S' -> codigoFuente
-Rule 1     codigoFuente -> valor
-Rule 2     codigoFuente -> variable
-Rule 3     codigoFuente -> impresionEcho
-Rule 4     codigoFuente -> impresionPrint
-Rule 5     codigoFuente -> valores
-Rule 6     codigoFuente -> asignacion
-Rule 7     codigoFuente -> operacionesA
-Rule 8     codigoFuente -> operacionesC
-Rule 9     codigoFuente -> operacionesL
-Rule 10    codigoFuente -> condIf
-Rule 11    codigoFuente -> opCombinadas
-Rule 12    codigoFuente -> bucleDoWhile
-Rule 13    codigoFuente -> crearArreglos
-Rule 14    codigoFuente -> bucleForEach
-Rule 15    codigoFuente -> metodosArray
-Rule 16    codigoFuente -> opLogicos
-Rule 17    codigoFuente -> operadoresA
-Rule 18    codigoFuente -> operadoresC
-Rule 19    codigoFuente -> sentencias
-Rule 20    codigoFuente -> crearMapa
-Rule 21    codigoFuente -> sumaMapa
-Rule 22    codigoFuente -> mapPut
-Rule 23    codigoFuente -> <empty>
-Rule 24    valor -> CADENA
-Rule 25    valor -> ENTERO
-Rule 26    valor -> FLOTANTE
-Rule 27    valor -> BOOLEANO
-Rule 28    variable -> IDENTIFICADOR
-Rule 29    valores -> valor
-Rule 30    valores -> variable
-Rule 31    operacionesV -> FLOTANTE
-Rule 32    operacionesV -> ENTERO
-Rule 33    operacionesV -> variable
-Rule 34    opLog -> BOOLEANO
-Rule 35    opLog -> variable
-Rule 36    impresionEcho -> echo CADENA PUNTOYCOMA
-Rule 37    asignacion -> variable OPERASIGNACION valor PUNTOYCOMA
-Rule 38    operadoresA -> SUMA
-Rule 39    operadoresA -> RESTA
-Rule 40    operadoresA -> MULTIPLICACION
-Rule 41    operadoresA -> DIVISION
-Rule 42    operadoresA -> MODULO
-Rule 43    operadoresA -> EXPONENCIACION
-Rule 44    operacionesA -> operacionesV operadoresA operacionesV
-Rule 45    operacionesA -> operacionesV operadoresA operacionesA
-Rule 46    operadoresC -> OPERCOMPARACION
-Rule 47    operadoresC -> OPERCOMPARACION OPERASIGNACION
-Rule 48    operadoresC -> OPERLOGICO_NOT OPERASIGNACION
-Rule 49    operadoresC -> MENORQUE MAYORQUE
-Rule 50    operadoresC -> OPERLOGICO_NOT OPERCOMPARACION
-Rule 51    operadoresC -> MENORQUE
-Rule 52    operadoresC -> MAYORQUE
-Rule 53    operadoresC -> MENORQUE OPERASIGNACION
-Rule 54    operadoresC -> MAYORQUE OPERASIGNACION
-Rule 55    operadoresC -> MENORQUE OPERASIGNACION MAYORQUE
-Rule 56    operacionesC -> valores operadoresC valores
-Rule 57    opLogicos -> OPERLOGICO_AND
-Rule 58    opLogicos -> OPERLOGICO_OR
-Rule 59    opLogicos -> OPERLOGICO_XOR
-Rule 60    opLogicos -> OPERLOGICO_NOT
-Rule 61    opLogicos -> AMPERSAND AMPERSAND
-Rule 62    opLogicos -> OPERLOGICO_OREXCLUSIVO
-Rule 63    operacionesL -> opLog opLogicos opLog
-Rule 64    sentencias -> operacionesL PUNTOYCOMA
-Rule 65    sentencias -> operacionesA PUNTOYCOMA
-Rule 66    sentencias -> operacionesC PUNTOYCOMA
-Rule 67    sentencias -> asignacion
-Rule 68    sentencias -> sentencias
-Rule 69    opCombinadas -> variable OPERASIGNACION operacionesA
-Rule 70    opCombinadas -> variable OPERASIGNACION operacionesL
-Rule 71    opCombinadas -> variable OPERASIGNACION operacionesC
-Rule 72    impresionPrint -> print PARENIZQ valores PARENDER PUNTOYCOMA
-Rule 73    impresionPrint -> print PARENIZQ operacionesL PARENDER PUNTOYCOMA
-Rule 74    impresionPrint -> print PARENIZQ operacionesC PARENDER PUNTOYCOMA
-Rule 75    impresionPrint -> print PARENIZQ operacionesA PARENDER PUNTOYCOMA
-Rule 76    retornoBool -> BOOLEANO
-Rule 77    retornoBool -> operacionesL
-Rule 78    retornoBool -> operacionesC
-Rule 79    condIf -> if PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 80    condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-Rule 81    condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-Rule 82    condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER
-Rule 83    bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 84    bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 85    bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-Rule 86    rellenoArray -> valores OPERASIG_ARRAY valores COMA
-Rule 87    rellenoArray -> valores
-Rule 88    rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray
-Rule 89    crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA
-Rule 90    bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
-Rule 91    bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER
-Rule 92    metodosArray -> rsort PARENIZQ variable PARENDER PUNTOYCOMA
-Rule 93    metodosArray -> rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
-Rule 94    metodosArray -> count PARENIZQ variable PARENDER PUNTOYCOMA
-Rule 95    metodosArray -> count PARENIZQ crearArreglos PARENDER PUNTOYCOMA
-Rule 96    crearMapa -> OPERAMAPA PARENIZQ valor COMA variable COMA variable PARENDER PUNTOYCOMA
-Rule 97    crearMapa -> OPERAMAPA PARENIZQ valor COMA valor COMA variable PARENDER PUNTOYCOMA
-Rule 98    crearMapa -> OPERAMAPA PARENIZQ valor COMA variable COMA valor PARENDER PUNTOYCOMA
-Rule 99    sumaMapa -> valor PARENIZQ variable OPERALOGICO_MAP OPERACIONSUM PARENDER PUNTOYCOMA
-Rule 100   mapPut -> valor OPERALOGICO_MAP OPERAPUT PARENIZQ variable COMA variable PARENDER PUNTOYCOMA
+Rule 0     S' -> sentencias
+Rule 1     sentencias -> valor
+Rule 2     valor -> ENTERO
+Rule 3     valor -> FLOTANTE
+Rule 4     valor -> VARIABLE
+Rule 5     valor -> CADENA
+Rule 6     valor -> BOOLEANO
 
 Terminals, with rules where they appear
 
-AMPERSAND            : 61 61
+AMPERSAND            : 
 ARRAY                : 
 AS                   : 
 BOOLEAN              : 
-BOOLEANO             : 27 34 76
+BOOLEANO             : 6
 BREAK                : 
-CADENA               : 24 36
+CADENA               : 5
 CASE                 : 
 CLASS                : 
-COMA                 : 86 88 88 96 96 97 97 98 98 100
+COMA                 : 
 COMENTARIO_LARGO     : 
 COMENTARIO_UNA_LINEA : 
 CONST                : 
@@ -173,103 +105,137 @@ CORCHDER             :
 CORCHIZQ             : 
 COUNT                : 
 DEFAULT              : 
-DIVISION             : 41
+DIVISION             : 
 DO                   : 
 DOSPUNTOS            : 
 ECHO                 : 
 ELSE                 : 
 END_SWITCH           : 
 END_WHILE            : 
-ENTERO               : 25 32
-EXPONENCIACION       : 43
+ENTERO               : 2
+EXPONENCIACION       : 
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
 FLOAT                : 
-FLOTANTE             : 26 31
+FLOTANTE             : 3
 FOR                  : 
 FUNCTION             : 
 GLOBAL               : 
 IF                   : 
 INICIO               : 
 INTEGER              : 
-LLAVEDER             : 80 81 82 83 84 85 90 91
-LLAVEIZQ             : 80 81 82 83 84 85 90 91
-MAYORQUE             : 49 52 54 55
-MENORQUE             : 49 51 53 55
-MODULO               : 42
-MULTIPLICACION       : 40
+LLAVEDER             : 
+LLAVEIZQ             : 
+MAYORQUE             : 
+MENORQUE             : 
+MODULO               : 
+MULTIPLICACION       : 
 NEW                  : 
 NULL                 : 
-OPERACIONSUM         : 99
-OPERALOGICO_MAP      : 99 100
-OPERAMAPA            : 96 97 98
-OPERAPUT             : 100
-OPERASIGNACION       : 37 47 48 53 54 55 69 70 71 89
-OPERASIG_ARRAY       : 86 88 91
-OPERCOMPARACION      : 46 47 50
-OPERLOGICO_AND       : 57
-OPERLOGICO_NOT       : 48 50 60
-OPERLOGICO_OR        : 58
-OPERLOGICO_OREXCLUSIVO : 62
-OPERLOGICO_XOR       : 59
+OPERACIONSUM         : 
+OPERALOGICO_MAP      : 
+OPERAMAPA            : 
+OPERAPUT             : 
+OPERASIGNACION       : 
+OPERASIG_ARRAY       : 
+OPERCOMPARACION      : 
+OPERLOGICO_AND       : 
+OPERLOGICO_NOT       : 
+OPERLOGICO_OR        : 
+OPERLOGICO_OREXCLUSIVO : 
+OPERLOGICO_XOR       : 
 OPERLOG_AND          : 
-PARENDER             : 72 73 74 75 79 80 81 82 83 84 85 89 92 93 94 95 96 97 98 99 100
-PARENIZQ             : 72 73 74 75 79 80 81 82 83 84 85 89 92 93 94 95 96 97 98 99 100
+PARENDER             : 
+PARENIZQ             : 
 PRINT                : 
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
 PUNTO                : 
-PUNTOYCOMA           : 36 37 64 65 66 72 73 74 75 79 83 84 85 89 92 93 94 95 96 97 98 99 100
-RESTA                : 39
+PUNTOYCOMA           : 
+RESTA                : 
 RETURN               : 
 RSORT                : 
 STATIC               : 
 STRING               : 
-SUMA                 : 38
+SUMA                 : 
 SWITCH               : 
 TRUE                 : 
-VARIABLE             : 
+VARIABLE             : 4
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-IDENTIFICADOR        : 28 90 91
-array                : 89
-asignacion           : 6 67
-bucleDoWhile         : 12
-bucleForEach         : 14
-codigoFuente         : 0
-condIf               : 10
-count                : 94 95
-crearArreglos        : 13 93 95
-crearMapa            : 20
-do                   : 83 84 85
-echo                 : 36
-if                   : 79 80 81 82
-impresionEcho        : 3 82 85
-impresionPrint       : 4 81 84
-mapPut               : 22
-metodosArray         : 15
-opCombinadas         : 11
-opLog                : 63 63
-opLogicos            : 16 63
-operacionesA         : 7 45 65 69 75
-operacionesC         : 8 66 71 74 78
-operacionesL         : 9 64 70 73 77
-operacionesV         : 44 44 45
-operadoresA          : 17 44 45
-operadoresC          : 18 56
-print                : 72 73 74 75
-rellenoArray         : 88 89
-retornoBool          : 79 80 81 82 83 84 85
-rsort                : 92 93
-sentencias           : 19 68 80 83 90 91
-sumaMapa             : 21
-valor                : 1 29 37 96 97 97 98 98 99 100
-valores              : 5 56 56 72 86 86 87 88 88
-variable             : 2 30 33 35 37 69 70 71 89 90 90 91 91 91 92 94 96 96 97 98 99 100 100
-while                : 83 84 85
+sentencias           : 0
+valor                : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . sentencias
+    (1) sentencias -> . valor
+    (2) valor -> . ENTERO
+    (3) valor -> . FLOTANTE
+    (4) valor -> . VARIABLE
+    (5) valor -> . CADENA
+    (6) valor -> . BOOLEANO
+
+    ENTERO          shift and go to state 3
+    FLOTANTE        shift and go to state 4
+    VARIABLE        shift and go to state 5
+    CADENA          shift and go to state 6
+    BOOLEANO        shift and go to state 7
+
+    sentencias                     shift and go to state 1
+    valor                          shift and go to state 2
+
+state 1
+
+    (0) S' -> sentencias .
+
+
+
+state 2
+
+    (1) sentencias -> valor .
+
+    $end            reduce using rule 1 (sentencias -> valor .)
+
+
+state 3
+
+    (2) valor -> ENTERO .
+
+    $end            reduce using rule 2 (valor -> ENTERO .)
+
+
+state 4
+
+    (3) valor -> FLOTANTE .
+
+    $end            reduce using rule 3 (valor -> FLOTANTE .)
+
+
+state 5
+
+    (4) valor -> VARIABLE .
+
+    $end            reduce using rule 4 (valor -> VARIABLE .)
+
+
+state 6
+
+    (5) valor -> CADENA .
+
+    $end            reduce using rule 5 (valor -> CADENA .)
+
+
+state 7
+
+    (6) valor -> BOOLEANO .
+
+    $end            reduce using rule 6 (valor -> BOOLEANO .)
 

@@ -206,14 +206,14 @@ def getTokens(lexer):
             break
         print(tok)
 
-linea=" "
-codigo = open("source.vb")
-for linea in codigo:
-  validador.input(linea)
-  getTokens(validador)
-codigo.close()
+# linea=" "
+# codigo = open("source.vb")
+# for linea in codigo:
+#   validador.input(linea)
+#   getTokens(validador)
+# codigo.close()
 
-print("Análisis Léxico terminado... :)")
+# print("Análisis Léxico terminado... :)")
 
 #-------------
 

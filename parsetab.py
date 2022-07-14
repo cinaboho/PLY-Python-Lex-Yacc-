@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AMPERSAND BOOLEANO CADENA COMA COMENTARIO_ABIERTO COMENTARIO_CERRADO COMENTARIO_UNA_LINEA CORCHDER CORCHIZQ DIVISION DOLAR DOSPUNTOS ENTERO EXPONENCIACION FIN FLOTANTE IDENTIFICADOR INICIO LLAVEDER LLAVEIZQ MAYORQUE MENORQUE MODULO MULTIPLICACION OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PUNTO PUNTOYCOMA RESTA SUMA array as break case class const continue count default do echo else end_switch end_while extends for function global if new print private protected public return rsort static switch whilecodigoFuente : valor\n                    | variable\n                    | impresionEcho\n                    | impresionPrint\n                    | valores\n                    | asignacion\n                    | operacionesA\n                    | operacionesC\n                    | operacionesL\n                    | condIf\n                    | opCombinadas\n                    | bucleDoWhile\n                    | crearArreglos\n                    | bucleForEach\n                    | metodosArray\n                    | opLogicos\n                    | operadoresA\n                    | operadoresC\n                    | sentencias\n                    | valor : CADENA\n            | ENTERO\n            | FLOTANTE\n            | BOOLEANOvariable : DOLAR IDENTIFICADORvalores : valor\n                | variableoperacionesV : FLOTANTE\n                    | ENTERO\n                    | variableopLog : BOOLEANO\n                | variableimpresionEcho : echo CADENA PUNTOYCOMAasignacion : variable OPERASIGNACION valor PUNTOYCOMAoperadoresA : SUMA\n                    | RESTA\n                    | MULTIPLICACION\n                    | DIVISION\n                    | MODULO\n                    | EXPONENCIACIONoperacionesA : operacionesV operadoresA operacionesV\n                    | operacionesV operadoresA operacionesAoperadoresC : OPERCOMPARACION\n                    | OPERCOMPARACION OPERASIGNACION\n                    | OPERLOGICO_NOT OPERASIGNACION\n                    | MENORQUE MAYORQUE\n                    | OPERLOGICO_NOT OPERCOMPARACION\n                    | MENORQUE\n                    | MAYORQUE\n                    | MENORQUE OPERASIGNACION\n                    | MAYORQUE OPERASIGNACION\n                    | MENORQUE OPERASIGNACION MAYORQUEoperacionesC : valores operadoresC valoresopLogicos : OPERLOGICO_AND\n                    | OPERLOGICO_OR\n                    | OPERLOGICO_XOR\n                    | OPERLOGICO_NOT\n                    | AMPERSAND AMPERSAND\n                    | OPERLOGICO_OREXCLUSIVOoperacionesL : opLog opLogicos opLogsentencias : operacionesL PUNTOYCOMA\n                    | operacionesA PUNTOYCOMA\n                    | operacionesC PUNTOYCOMA\n                    | asignacion\n                    | sentenciasopCombinadas : variable OPERASIGNACION operacionesA\n                    | variable OPERASIGNACION operacionesL\n                    | variable OPERASIGNACION operacionesCimpresionPrint : print PARENIZQ valores PARENDER PUNTOYCOMA\n                        | print PARENIZQ operacionesL PARENDER PUNTOYCOMA\n                        | print PARENIZQ operacionesC PARENDER PUNTOYCOMA\n                        | print PARENIZQ operacionesA PARENDER PUNTOYCOMAretornoBool : BOOLEANO\n                    | operacionesL\n                    | operacionesCcondIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA\n                | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER\n                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER\n                | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDERbucleDoWhile : do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA\n                    | do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA\n                    | do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMArellenoArray : valores OPERASIG_ARRAY valores COMA\n                    | valores\n                    | COMA valores OPERASIG_ARRAY valores COMA rellenoArraycrearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMAbucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER\n                    | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDERmetodosArray : rsort PARENIZQ variable PARENDER PUNTOYCOMA\n                    | rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA\n                    | count PARENIZQ variable PARENDER PUNTOYCOMA\n                    | count PARENIZQ crearArreglos PARENDER PUNTOYCOMA'
+_lr_signature = 'AMPERSAND ARRAY AS BOOLEAN BOOLEANO BREAK CADENA CASE CLASS COMA COMENTARIO_LARGO COMENTARIO_UNA_LINEA CONST CONTINUE CORCHDER CORCHIZQ COUNT DEFAULT DIVISION DO DOSPUNTOS ECHO ELSE END_SWITCH END_WHILE ENTERO EXPONENCIACION EXTENDS FALSE FIN FLOAT FLOTANTE FOR FUNCTION GLOBAL IF INICIO INTEGER LLAVEDER LLAVEIZQ MAYORQUE MENORQUE MODULO MULTIPLICACION NEW NULL OPERACIONSUM OPERALOGICO_MAP OPERAMAPA OPERAPUT OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PRINT PRIVATE PROTECTED PUBLIC PUNTO PUNTOYCOMA RESTA RETURN RSORT STATIC STRING SUMA SWITCH TRUE VARIABLE WHILEsentencias : valor\n    valor : ENTERO\n             | FLOTANTE\n             | VARIABLE\n             | CADENA\n             | BOOLEANO\n    '
     
-_lr_action_items = {'$end':([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,34,35,36,37,39,40,41,42,43,44,45,46,47,48,53,54,55,56,66,67,68,69,70,71,72,75,76,77,81,82,83,84,85,86,87,93,94,95,96,97,98,99,100,121,122,145,146,147,148,149,155,156,157,158,162,170,174,175,176,182,187,188,189,],[-20,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-21,-22,-23,-24,-54,-55,-56,-57,-59,-35,-36,-37,-38,-39,-40,-43,-48,-49,-62,-63,-61,-25,-45,-47,-58,-44,-46,-50,-51,-66,-67,-68,-53,-26,-27,-22,-23,-24,-33,-41,-42,-28,-29,-30,-60,-31,-32,-52,-34,-69,-70,-71,-72,-76,-89,-90,-91,-92,-87,-86,-77,-78,-79,-88,-80,-81,-82,]),'CADENA':([0,26,46,47,48,49,51,58,62,63,66,67,69,70,71,72,121,123,124,134,142,150,160,163,167,168,169,172,186,],[21,57,-43,-48,-49,21,21,21,21,21,-45,-47,-44,-46,-50,-51,-52,21,21,21,21,21,21,21,21,21,21,21,21,]),'ENTERO':([0,40,41,42,43,44,45,46,47,48,49,51,58,59,62,63,66,67,69,70,71,72,121,123,124,134,142,150,160,163,167,168,169,172,186,],[22,-35,-36,-37,-38,-39,-40,-43,-48,-49,22,84,22,96,84,116,-45,-47,-44,-46,-50,-51,-52,84,116,84,84,116,84,116,84,84,84,84,84,]),'FLOTANTE':([0,40,41,42,43,44,45,46,47,48,49,51,58,59,62,63,66,67,69,70,71,72,121,123,124,134,142,150,160,163,167,168,169,172,186,],[23,-35,-36,-37,-38,-39,-40,-43,-48,-49,23,85,23,95,85,115,-45,-47,-44,-46,-50,-51,-52,85,115,85,85,115,85,115,85,85,85,85,85,]),'BOOLEANO':([0,34,35,36,39,46,47,48,49,51,58,60,61,62,63,66,67,68,69,70,71,72,121,123,124,134,142,150,160,163,167,168,169,172,186,],[24,-54,-55,-56,-59,-43,-48,-49,24,86,24,99,-57,102,114,-45,-47,-58,-44,-46,-50,-51,-52,86,114,86,86,114,86,114,102,102,102,86,86,]),'DOLAR':([0,34,35,36,39,40,41,42,43,44,45,46,47,48,49,50,51,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,121,123,124,125,142,150,160,163,167,168,169,172,186,],[25,-54,-55,-56,-59,-35,-36,-37,-38,-39,-40,-43,-48,-49,25,25,25,25,25,25,-57,25,25,25,25,-45,-47,-58,-44,-46,-50,-51,-52,25,25,25,25,25,25,25,25,25,25,25,25,]),'echo':([0,63,150,],[26,26,26,]),'print':([0,63,150,],[27,27,27,]),'if':([0,],[30,]),'do':([0,],[31,]),'rsort':([0,],[32,]),'count':([0,],[33,]),'OPERLOGICO_AND':([0,3,24,29,56,73,92,102,105,113,114,],[34,-32,-31,34,-25,-32,-32,-31,-32,-32,-31,]),'OPERLOGICO_OR':([0,3,24,29,56,73,92,102,105,113,114,],[35,-32,-31,35,-25,-32,-32,-31,-32,-32,-31,]),'OPERLOGICO_XOR':([0,3,24,29,56,73,92,102,105,113,114,],[36,-32,-31,36,-25,-32,-32,-31,-32,-32,-31,]),'OPERLOGICO_NOT':([0,2,3,6,21,22,23,24,29,56,73,74,79,82,84,85,88,92,102,105,113,114,115,116,],[37,-26,-27,52,-21,-22,-23,-24,61,-25,-27,-26,52,-26,-22,-23,52,-27,-24,-27,-27,-24,-23,-22,]),'AMPERSAND':([0,3,24,29,38,56,73,92,102,105,113,114,],[38,-32,-31,38,68,-25,-32,-32,-31,-32,-32,-31,]),'OPERLOGICO_OREXCLUSIVO':([0,3,24,29,56,73,92,102,105,113,114,],[39,-32,-31,39,-25,-32,-32,-31,-32,-32,-31,]),'SUMA':([0,3,22,23,28,56,73,92,93,95,96,97,113,115,116,],[40,-30,-29,-28,40,-25,-30,-30,40,-28,-29,-30,-30,-28,-29,]),'RESTA':([0,3,22,23,28,56,73,92,93,95,96,97,113,115,116,],[41,-30,-29,-28,41,-25,-30,-30,41,-28,-29,-30,-30,-28,-29,]),'MULTIPLICACION':([0,3,22,23,28,56,73,92,93,95,96,97,113,115,116,],[42,-30,-29,-28,42,-25,-30,-30,42,-28,-29,-30,-30,-28,-29,]),'DIVISION':([0,3,22,23,28,56,73,92,93,95,96,97,113,115,116,],[43,-30,-29,-28,43,-25,-30,-30,43,-28,-29,-30,-30,-28,-29,]),'MODULO':([0,3,22,23,28,56,73,92,93,95,96,97,113,115,116,],[44,-30,-29,-28,44,-25,-30,-30,44,-28,-29,-30,-30,-28,-29,]),'EXPONENCIACION':([0,3,22,23,28,56,73,92,93,95,96,97,113,115,116,],[45,-30,-29,-28,45,-25,-30,-30,45,-28,-29,-30,-30,-28,-29,]),'OPERCOMPARACION':([0,2,3,6,21,22,23,24,37,52,56,73,74,79,82,84,85,88,92,102,105,113,114,115,116,],[46,-26,-27,46,-21,-22,-23,-24,67,67,-25,-27,-26,46,-26,-22,-23,46,-27,-24,-27,-27,-24,-23,-22,]),'MENORQUE':([0,2,3,6,21,22,23,24,56,73,74,79,82,84,85,88,92,102,105,113,114,115,116,],[47,-26,-27,47,-21,-22,-23,-24,-25,-27,-26,47,-26,-22,-23,47,-27,-24,-27,-27,-24,-23,-22,]),'MAYORQUE':([0,2,3,6,21,22,23,24,47,56,71,73,74,79,82,84,85,88,92,102,105,113,114,115,116,],[48,-26,-27,48,-21,-22,-23,-24,70,-25,121,-27,-26,48,-26,-22,-23,48,-27,-24,-27,-27,-24,-23,-22,]),'OPERASIGNACION':([3,37,46,47,48,52,56,113,117,119,],[49,66,69,71,72,66,-25,134,136,136,]),'IDENTIFICADOR':([3,25,56,],[50,56,-25,]),'PUNTOYCOMA':([8,9,10,21,22,23,24,56,57,74,81,82,83,84,85,86,93,94,95,96,97,98,99,100,109,110,111,126,127,128,129,130,135,137,138,139,154,159,183,184,185,],[53,54,55,-21,-22,-23,-24,-25,87,122,-53,-26,-27,-22,-23,-24,-41,-42,-28,-29,-30,-60,-31,-32,55,53,54,145,146,147,148,149,155,156,157,158,122,170,187,188,189,]),'PARENDER':([21,22,23,24,56,81,82,83,84,85,86,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,117,118,119,120,140,141,170,177,178,179,180,190,],[-21,-22,-23,-24,-25,-53,-26,-27,-22,-23,-24,126,127,128,129,-27,-41,-42,-28,-29,-30,-60,-31,-32,130,-73,-74,-75,135,137,138,139,159,-84,-86,183,184,185,-83,-85,]),'OPERASIG_ARRAY':([21,56,80,82,83,84,85,86,141,161,],[-21,-25,125,-26,-27,-22,-23,-24,160,172,]),'COMA':([21,56,82,83,84,85,86,123,171,181,186,],[-21,-25,-26,-27,-22,-23,-24,142,180,186,142,]),'PARENIZQ':([27,30,32,33,78,151,152,153,],[58,62,64,65,123,167,168,169,]),'LLAVEIZQ':([31,56,80,130,144,],[63,-25,124,150,163,]),'array':([49,136,],[78,78,]),'LLAVEDER':([53,54,55,87,106,107,108,112,122,143,145,146,147,148,164,165,166,173,],[-62,-63,-61,-33,131,132,133,-64,-34,162,-69,-70,-71,-72,174,175,176,182,]),'while':([131,132,133,],[151,152,153,]),}
+_lr_action_items = {'ENTERO':([0,],[3,]),'FLOTANTE':([0,],[4,]),'VARIABLE':([0,],[5,]),'CADENA':([0,],[6,]),'BOOLEANO':([0,],[7,]),'$end':([1,2,3,4,5,6,7,],[0,-1,-2,-3,-4,-5,-6,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'codigoFuente':([0,],[1,]),'valor':([0,49,51,58,62,63,123,124,134,142,150,160,163,167,168,169,172,186,],[2,74,82,82,82,82,82,82,154,82,82,82,82,82,82,82,82,82,]),'variable':([0,49,50,51,58,59,60,62,63,64,65,123,124,125,142,150,160,163,167,168,169,172,186,],[3,73,80,83,92,97,100,105,113,117,119,83,113,144,83,113,83,113,105,105,105,83,83,]),'impresionEcho':([0,63,150,],[4,108,166,]),'impresionPrint':([0,63,150,],[5,107,165,]),'valores':([0,49,51,58,62,63,123,124,142,150,160,163,167,168,169,172,186,],[6,79,81,88,79,79,141,79,161,79,171,79,79,79,79,181,141,]),'asignacion':([0,63,124,150,163,],[7,112,112,112,112,]),'operacionesA':([0,49,58,59,63,124,150,163,],[8,75,91,94,110,110,110,110,]),'operacionesC':([0,49,58,62,63,124,150,163,167,168,169,],[9,77,90,104,111,111,111,111,104,104,104,]),'operacionesL':([0,49,58,62,63,124,150,163,167,168,169,],[10,76,89,103,109,109,109,109,103,103,103,]),'condIf':([0,],[11,]),'opCombinadas':([0,],[12,]),'bucleDoWhile':([0,],[13,]),'crearArreglos':([0,64,65,],[14,118,120,]),'bucleForEach':([0,],[15,]),'metodosArray':([0,],[16,]),'opLogicos':([0,29,],[17,60,]),'operadoresA':([0,28,93,],[18,59,59,]),'operadoresC':([0,6,79,88,],[19,51,51,51,]),'sentencias':([0,63,124,150,163,],[20,106,143,164,173,]),'operacionesV':([0,49,58,59,63,124,150,163,],[28,28,28,93,28,28,28,28,]),'opLog':([0,49,58,60,62,63,124,150,163,167,168,169,],[29,29,29,98,29,29,29,29,29,29,29,29,]),'retornoBool':([62,167,168,169,],[101,177,178,179,]),'rellenoArray':([123,186,],[140,190,]),}
+_lr_goto_items = {'sentencias':([0,],[1,]),'valor':([0,],[2,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,97 +26,11 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> codigoFuente","S'",1,None,None,None),
-  ('codigoFuente -> valor','codigoFuente',1,'p_codigoFuente','main.py',8),
-  ('codigoFuente -> variable','codigoFuente',1,'p_codigoFuente','main.py',9),
-  ('codigoFuente -> impresionEcho','codigoFuente',1,'p_codigoFuente','main.py',10),
-  ('codigoFuente -> impresionPrint','codigoFuente',1,'p_codigoFuente','main.py',11),
-  ('codigoFuente -> valores','codigoFuente',1,'p_codigoFuente','main.py',12),
-  ('codigoFuente -> asignacion','codigoFuente',1,'p_codigoFuente','main.py',13),
-  ('codigoFuente -> operacionesA','codigoFuente',1,'p_codigoFuente','main.py',14),
-  ('codigoFuente -> operacionesC','codigoFuente',1,'p_codigoFuente','main.py',15),
-  ('codigoFuente -> operacionesL','codigoFuente',1,'p_codigoFuente','main.py',16),
-  ('codigoFuente -> condIf','codigoFuente',1,'p_codigoFuente','main.py',17),
-  ('codigoFuente -> opCombinadas','codigoFuente',1,'p_codigoFuente','main.py',18),
-  ('codigoFuente -> bucleDoWhile','codigoFuente',1,'p_codigoFuente','main.py',19),
-  ('codigoFuente -> crearArreglos','codigoFuente',1,'p_codigoFuente','main.py',20),
-  ('codigoFuente -> bucleForEach','codigoFuente',1,'p_codigoFuente','main.py',21),
-  ('codigoFuente -> metodosArray','codigoFuente',1,'p_codigoFuente','main.py',22),
-  ('codigoFuente -> opLogicos','codigoFuente',1,'p_codigoFuente','main.py',23),
-  ('codigoFuente -> operadoresA','codigoFuente',1,'p_codigoFuente','main.py',24),
-  ('codigoFuente -> operadoresC','codigoFuente',1,'p_codigoFuente','main.py',25),
-  ('codigoFuente -> sentencias','codigoFuente',1,'p_codigoFuente','main.py',26),
-  ('codigoFuente -> <empty>','codigoFuente',0,'p_codigoFuente','main.py',27),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',32),
-  ('valor -> ENTERO','valor',1,'p_valor','main.py',33),
-  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',34),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',35),
-  ('variable -> DOLAR IDENTIFICADOR','variable',2,'p_variable','main.py',38),
-  ('valores -> valor','valores',1,'p_valores','main.py',41),
-  ('valores -> variable','valores',1,'p_valores','main.py',42),
-  ('operacionesV -> FLOTANTE','operacionesV',1,'p_operacionesV','main.py',45),
-  ('operacionesV -> ENTERO','operacionesV',1,'p_operacionesV','main.py',46),
-  ('operacionesV -> variable','operacionesV',1,'p_operacionesV','main.py',47),
-  ('opLog -> BOOLEANO','opLog',1,'p_opLog','main.py',50),
-  ('opLog -> variable','opLog',1,'p_opLog','main.py',51),
-  ('impresionEcho -> echo CADENA PUNTOYCOMA','impresionEcho',3,'p_impresionEcho','main.py',54),
-  ('asignacion -> variable OPERASIGNACION valor PUNTOYCOMA','asignacion',4,'p_asignacion','main.py',57),
-  ('operadoresA -> SUMA','operadoresA',1,'p_operadoresA','main.py',60),
-  ('operadoresA -> RESTA','operadoresA',1,'p_operadoresA','main.py',61),
-  ('operadoresA -> MULTIPLICACION','operadoresA',1,'p_operadoresA','main.py',62),
-  ('operadoresA -> DIVISION','operadoresA',1,'p_operadoresA','main.py',63),
-  ('operadoresA -> MODULO','operadoresA',1,'p_operadoresA','main.py',64),
-  ('operadoresA -> EXPONENCIACION','operadoresA',1,'p_operadoresA','main.py',65),
-  ('operacionesA -> operacionesV operadoresA operacionesV','operacionesA',3,'p_operacionesA','main.py',68),
-  ('operacionesA -> operacionesV operadoresA operacionesA','operacionesA',3,'p_operacionesA','main.py',69),
-  ('operadoresC -> OPERCOMPARACION','operadoresC',1,'p_operadoresC','main.py',72),
-  ('operadoresC -> OPERCOMPARACION OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',73),
-  ('operadoresC -> OPERLOGICO_NOT OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',74),
-  ('operadoresC -> MENORQUE MAYORQUE','operadoresC',2,'p_operadoresC','main.py',75),
-  ('operadoresC -> OPERLOGICO_NOT OPERCOMPARACION','operadoresC',2,'p_operadoresC','main.py',76),
-  ('operadoresC -> MENORQUE','operadoresC',1,'p_operadoresC','main.py',77),
-  ('operadoresC -> MAYORQUE','operadoresC',1,'p_operadoresC','main.py',78),
-  ('operadoresC -> MENORQUE OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',79),
-  ('operadoresC -> MAYORQUE OPERASIGNACION','operadoresC',2,'p_operadoresC','main.py',80),
-  ('operadoresC -> MENORQUE OPERASIGNACION MAYORQUE','operadoresC',3,'p_operadoresC','main.py',81),
-  ('operacionesC -> valores operadoresC valores','operacionesC',3,'p_operacionesC','main.py',84),
-  ('opLogicos -> OPERLOGICO_AND','opLogicos',1,'p_opLogicos','main.py',87),
-  ('opLogicos -> OPERLOGICO_OR','opLogicos',1,'p_opLogicos','main.py',88),
-  ('opLogicos -> OPERLOGICO_XOR','opLogicos',1,'p_opLogicos','main.py',89),
-  ('opLogicos -> OPERLOGICO_NOT','opLogicos',1,'p_opLogicos','main.py',90),
-  ('opLogicos -> AMPERSAND AMPERSAND','opLogicos',2,'p_opLogicos','main.py',91),
-  ('opLogicos -> OPERLOGICO_OREXCLUSIVO','opLogicos',1,'p_opLogicos','main.py',92),
-  ('operacionesL -> opLog opLogicos opLog','operacionesL',3,'p_operacionesL','main.py',95),
-  ('sentencias -> operacionesL PUNTOYCOMA','sentencias',2,'p_sentencias','main.py',98),
-  ('sentencias -> operacionesA PUNTOYCOMA','sentencias',2,'p_sentencias','main.py',99),
-  ('sentencias -> operacionesC PUNTOYCOMA','sentencias',2,'p_sentencias','main.py',100),
-  ('sentencias -> asignacion','sentencias',1,'p_sentencias','main.py',101),
-  ('sentencias -> sentencias','sentencias',1,'p_sentencias','main.py',102),
-  ('opCombinadas -> variable OPERASIGNACION operacionesA','opCombinadas',3,'p_opCombinadas','main.py',105),
-  ('opCombinadas -> variable OPERASIGNACION operacionesL','opCombinadas',3,'p_opCombinadas','main.py',106),
-  ('opCombinadas -> variable OPERASIGNACION operacionesC','opCombinadas',3,'p_opCombinadas','main.py',107),
-  ('impresionPrint -> print PARENIZQ valores PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',110),
-  ('impresionPrint -> print PARENIZQ operacionesL PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',111),
-  ('impresionPrint -> print PARENIZQ operacionesC PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',112),
-  ('impresionPrint -> print PARENIZQ operacionesA PARENDER PUNTOYCOMA','impresionPrint',5,'p_impresionPrint','main.py',113),
-  ('retornoBool -> BOOLEANO','retornoBool',1,'p_retornoBool','main.py',116),
-  ('retornoBool -> operacionesL','retornoBool',1,'p_retornoBool','main.py',117),
-  ('retornoBool -> operacionesC','retornoBool',1,'p_retornoBool','main.py',118),
-  ('condIf -> if PARENIZQ retornoBool PARENDER PUNTOYCOMA','condIf',5,'p_condIf','main.py',120),
-  ('condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER','condIf',7,'p_condIf','main.py',121),
-  ('condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER','condIf',7,'p_condIf','main.py',122),
-  ('condIf -> if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER','condIf',7,'p_condIf','main.py',123),
-  ('bucleDoWhile -> do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA','bucleDoWhile',9,'p_bucleDoWhile','main.py',126),
-  ('bucleDoWhile -> do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA','bucleDoWhile',9,'p_bucleDoWhile','main.py',127),
-  ('bucleDoWhile -> do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA','bucleDoWhile',9,'p_bucleDoWhile','main.py',128),
-  ('rellenoArray -> valores OPERASIG_ARRAY valores COMA','rellenoArray',4,'p_rellenoArray','main.py',131),
-  ('rellenoArray -> valores','rellenoArray',1,'p_rellenoArray','main.py',132),
-  ('rellenoArray -> COMA valores OPERASIG_ARRAY valores COMA rellenoArray','rellenoArray',6,'p_rellenoArray','main.py',133),
-  ('crearArreglos -> variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA','crearArreglos',7,'p_crearArreglos','main.py',136),
-  ('bucleForEach -> variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER','bucleForEach',6,'p_bucleForEach','main.py',139),
-  ('bucleForEach -> variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER','bucleForEach',8,'p_bucleForEach','main.py',140),
-  ('metodosArray -> rsort PARENIZQ variable PARENDER PUNTOYCOMA','metodosArray',5,'p_metodosArray','main.py',143),
-  ('metodosArray -> rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA','metodosArray',5,'p_metodosArray','main.py',144),
-  ('metodosArray -> count PARENIZQ variable PARENDER PUNTOYCOMA','metodosArray',5,'p_metodosArray','main.py',145),
-  ('metodosArray -> count PARENIZQ crearArreglos PARENDER PUNTOYCOMA','metodosArray',5,'p_metodosArray','main.py',146),
+  ("S' -> sentencias","S'",1,None,None,None),
+  ('sentencias -> valor','sentencias',1,'p_sentencias','analizadorSintactico.py',5),
+  ('valor -> ENTERO','valor',1,'p_valor','analizadorSintactico.py',8),
+  ('valor -> FLOTANTE','valor',1,'p_valor','analizadorSintactico.py',9),
+  ('valor -> VARIABLE','valor',1,'p_valor','analizadorSintactico.py',10),
+  ('valor -> CADENA','valor',1,'p_valor','analizadorSintactico.py',11),
+  ('valor -> BOOLEANO','valor',1,'p_valor','analizadorSintactico.py',12),
 ]
