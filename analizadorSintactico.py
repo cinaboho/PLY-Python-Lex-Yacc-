@@ -38,6 +38,7 @@ def p_asignacion_abreviado(p):
                             | MENOSIGUAL
                             | ASTERISCOIGUAL
                             | BARRAIGUAL
+                            | PORCENTAJEIGUAL
     '''
 def p_asignacion_abreviatura_op(p):
     '''asignacion_abreviatura_op : VARIABLE asignacion_abreviado valorNumerico
