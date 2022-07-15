@@ -11,6 +11,10 @@ def p_sentencias(p):
                   | operacion_logica
                   | condIf
                   | bucleDoWhile
+                  | heapCreate
+                  | heapCompare
+                  | heapInsert
+                  | heapCurrent
 
     '''
 def p_valor(p):
@@ -64,7 +68,8 @@ def p_opLogicos(p) :
 
 def p_asignacion(p):
     '''asignacion : VARIABLE_PHP OPERASIGNACION valor
-    '''
+    '''    
+    
 def p_asignacion_abreviado(p):
     '''asignacion_abreviado : MASIGUAL
                             | MENOSIGUAL
@@ -76,24 +81,36 @@ def p_asignacion_abreviado(p):
 def p_asignacion_abreviatura_op(p):
     '''asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico
     '''
+#print();
+#print("");
+#print $a;
+#print("Hola mundo 1");
+
 def p_print(p):
     '''print : PRINT PARENIZQ PARENDER PUNTOYCOMA
              | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA
-             | PRINT PARENIZQ COMDOB  valor COMDOB PARENDER PUNTOYCOMA
+             | PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
+             | PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
+             | PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
+             | PRINT COMDOB TEXTOSENCILLO varphp COMDOB
     '''
 def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
 
 def p_condIf(p) :
-    '''condIf : IF PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
-                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
-                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+    '''condIf : IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
+                | IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER
+                | IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER
+                | IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    '''
+#do{$a+$b}while(True);
 
 def p_bucleDoWhile(p):
     '''bucleDoWhile : DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
                     | DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA'''
+                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
+    '''
 
 
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
@@ -121,6 +138,43 @@ def p_bucleDoWhile(p):
 
 #Gabriela  -Corregido Cindy
 
+def p_nombreFuncion(p):
+    '''nombreFuncion : VARIABLE PARENIZQ PARENDER
+    '''
+#$var = new hola();
+def p_crearHeap(p):
+    '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
+                 | nombreFuncion
+    '''
+
+def p_createFunction(p):
+    '''createFunction: FUNCTION VARIABLE PARENIZQ VARIABLE_PHP PARENDER LLAVEIZQ asignacionLogica LLAVEDER 
+    '''
+def p_asignacionLogica(p):
+    '''asignacionLogica: VARIABLE_PHP OPERALOGICO_MAP VARIABLE OPERASIGNACION VARIABLE_PHP PUNTOYCOMA
+    '''
+    
+def p_crearInstancia(p):
+    '''crearInstancia: NEW VARIABLE PARENIZQ PARENDER
+    '''
+
+def p_heapCompare(p):
+    '''heapCompare: 'COMPARE' PARENIZQ VARIABLE_PHP COMA VARIABLE_PHP PARENDER
+                   |'compare' PARENIZQ VARIABLE_PHP COMA VARIABLE_PHP PARENDER
+    '''
+
+def p_heapCurrent(p):
+    '''heapCurrent: 'CURRENT' PARENIZQ PARENDER
+                   |'current' PARENIZQ PARENDER
+    '''
+
+def p_heapCreate(p):
+    '''heapCreate: VARIABLE_PHP OPERASIGNACION crearInstancia
+    '''
+
+def p_heapInsert(p):
+    '''heapInsert: VARIABLE_PHP OPERALOGICO_MAP INSERT PARENIZQ ARRAY PARENIZQ VARIABLE OPERASIG_ARRAY valor PARENDER PARENDER
+    '''
 
 resultadog = []
 
@@ -131,6 +185,7 @@ def p_error(p):
 
 
 parser = yacc.yacc()
+<<<<<<< HEAD
 
 
 def prueba_s(data):
@@ -154,3 +209,14 @@ if __name__ == '__main__':
             continue
 
         prueba_s(s)
+=======
+while True:
+    try:
+        s = input("calc>  ")
+    except EOFError:
+        break
+    if not s: continue
+    result = parser.parse(s)
+    print(result)
+    
+>>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd

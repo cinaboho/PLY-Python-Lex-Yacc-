@@ -5,6 +5,7 @@ import ply.lex as lex
 # .
 # .
 reserved = {
+<<<<<<< HEAD
     'if': 'IF',
     'else': 'ELSE',
     'do': 'DO',
@@ -37,9 +38,45 @@ reserved = {
     'null': 'NULL',
     'true': 'TRUE',
     'false': 'FALSE'
+=======
+    'if' : 'IF',
+    'else' : 'ELSE',
+    'do' : 'DO',
+    'while' : 'WHILE',
+    'end_while' : 'END_WHILE',
+    'for' : 'FOR',
+    'switch' : 'SWITCH',
+    'case' : 'CASE',
+    'end_switch' : 'END_SWITCH',
+    'break' : 'BREAK',
+    'continue' : 'CONTINUE',
+    'default' : 'DEFAULT',
+    'as' : 'AS',
+    'rsort' : 'RSORT',
+    'count' : 'COUNT',
+    'array' : 'ARRAY',
+    'global' : 'GLOBAL',
+    'static' : 'STATIC',
+    'print' : 'PRINT',
+    'const' : 'CONST',
+    'function' : 'FUNCTION',
+    'return' : 'RETURN',
+    'class' : 'CLASS',
+    'new' : 'NEW',
+    'extends' : 'EXTENDS',
+    'int' : 'INTEGER',
+    'string' : 'STRING',
+    'bool' : 'BOOLEAN',
+    'float' : 'FLOAT',
+    'null' : 'NULL',
+    'true' : 'TRUE',
+    'false' : 'FALSE',
+    'insert' : 'INSERT'
+>>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd
 }
 tokens = [
     'PUNTOYCOMA',
+    'ESPACIOENBLANCO',
     'PUNTO',
     'COMA',
     'COMDOB',
@@ -90,8 +127,13 @@ tokens = [
     'ECHO',
     'PUBLIC',
     'PROTECTED',
+<<<<<<< HEAD
     'PRIVATE'
     #'PRINT'
+=======
+    'PRIVATE',
+    'TEXTOSENCILLO'
+>>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd
  ] + list(reserved.values())
 
 t_PUNTOYCOMA = r';'
@@ -120,6 +162,7 @@ t_BARRAIGUAL = r'\/\='
 t_PORCENTAJEIGUAL = r'\%\='
 t_DOBLEASTERISCOIGUAL = r'\*\*\='
 t_OPERCOMPARACION = r'=='
+t_ESPACIOENBLANCO = r'\ '
 #t_OPERASIG_ARRAY = r'=>'
 t_OPERAMAPA = r'array\_map'
 t_OPERALOGICO_MAP = r'\->'
@@ -127,10 +170,15 @@ t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
 #cindy
+<<<<<<< HEAD
 
 
 def t_OPERASIG_ARRAY(t):
     r'(\=){1}(\>){1}'
+=======
+def t_TEXTOSENCILLO(t):
+    r'([A-Z].*?[\.!?]|[A-Z].*(\ )*)'
+>>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd
     return t
 
 
