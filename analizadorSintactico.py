@@ -82,6 +82,41 @@ def p_print(p):
 def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
 
+#FALTA CORREGIR
+# def p_condIf(p) :
+#     '''condIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA
+#                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
+#                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
+#                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+
+
+# def p_bucleDoWhile(p):
+#     '''bucleDoWhile : do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+#                     | do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
+#                     | do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
+
+
+# def p_rellenoArray(p):  # clave => valor
+#     '''rellenoArray : valores OPERASIG_ARRAY valores COMA
+#                     | valores
+#                     | COMA valores OPERASIG_ARRAY valores COMA rellenoArray'''
+
+
+# def p_crearArreglos(p):
+#     '''crearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
+
+
+# def p_bucleForEach(p):
+#     '''bucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
+#                     | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER'''
+
+
+# def p_metodosArray(p):
+#     '''metodosArray : rsort PARENIZQ variable PARENDER PUNTOYCOMA
+#                     | rsort PARENIZQ crearArreglos PARENDER PUNTOYCOMA
+#                     | count PARENIZQ variable PARENDER PUNTOYCOMA
+#                     | count PARENIZQ crearArreglos PARENDER PUNTOYCOMA'''
+
 #Gabriela  -Corregido Cindy
 
 
