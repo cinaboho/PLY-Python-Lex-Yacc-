@@ -122,18 +122,35 @@ def p_bucleDoWhile(p):
 #Gabriela  -Corregido Cindy
 
 
+resultadog = []
 
 
 def p_error(p):
     print("Syntax error")
+    resultadog.append("Syntax error".format(str(p.type), str(p.value)))
+
 
 parser = yacc.yacc()
-while True:
-    try:
-        s = input("calc>  ")
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
-    
+
+
+def prueba_s(data):
+    global resultadog
+    resultadog.clear()
+    for item in data.splitlines():
+        if item:
+            gram = parser.parse(item)
+            resultadog.append(str(gram))
+    print("respuesta: ", resultadog)
+    return resultadog
+
+
+if __name__ == '__main__':
+    while True:
+        try:
+            s = input(' ingresa dato >>> ')
+        except EOFError:
+            continue
+        if not s:
+            continue
+
+        prueba_s(s)
