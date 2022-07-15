@@ -11,6 +11,10 @@ def p_sentencias(p):
                   | operacion_logica
                   | condIf
                   | bucleDoWhile
+                  | heapCreate
+                  | heapCompare
+                  | heapInsert
+                  | heapCurrent
 
     '''
 def p_valor(p):
@@ -64,7 +68,8 @@ def p_opLogicos(p) :
 
 def p_asignacion(p):
     '''asignacion : VARIABLE_PHP OPERASIGNACION valor
-    '''
+    '''    
+    
 def p_asignacion_abreviado(p):
     '''asignacion_abreviado : MASIGUAL
                             | MENOSIGUAL
@@ -108,7 +113,6 @@ def p_bucleDoWhile(p):
     '''
 
 
-
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
 
 # def p_rellenoArray(p):  # clave => valor
@@ -134,6 +138,22 @@ def p_bucleDoWhile(p):
 
 #Gabriela  -Corregido Cindy
 
+def p_nombreFuncion(p):
+    '''nombreFuncion : VARIABLE PARENIZQ PARENDER
+    '''
+#$var = new hola();
+def p_crearHeap(p):
+    '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
+                 | nombreFuncion
+    '''
+
+def p_createFunction(p):
+    '''createFunction: FUNCTION VARIABLE PARENIZQ VARIABLE_PHP PARENDER LLAVEIZQ asignacionLogica LLAVEDER 
+    '''
+def p_asignacionLogica(p):
+    '''asignacionLogica: VARIABLE_PHP OPERALOGICO_MAP VARIABLE OPERASIGNACION VARIABLE_PHP PUNTOYCOMA
+    '''
+    
 def p_crearInstancia(p):
     '''crearInstancia: NEW VARIABLE PARENIZQ PARENDER
     '''
@@ -152,7 +172,7 @@ def p_heapCreate(p):
     '''heapCreate: VARIABLE_PHP OPERASIGNACION crearInstancia
     '''
 
-    def p_heapInsert(p):
+def p_heapInsert(p):
     '''heapInsert: VARIABLE_PHP OPERALOGICO_MAP INSERT PARENIZQ ARRAY PARENIZQ VARIABLE OPERASIG_ARRAY valor PARENDER PARENDER
     '''
 
