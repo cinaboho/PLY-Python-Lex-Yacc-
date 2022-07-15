@@ -119,13 +119,17 @@ t_BARRAIGUAL = r'\/\='
 t_PORCENTAJEIGUAL = r'\%\='
 t_DOBLEASTERISCOIGUAL = r'\*\*\='
 t_OPERCOMPARACION = r'=='
-t_OPERASIG_ARRAY = r'=>'
+#t_OPERASIG_ARRAY = r'=>'
 t_OPERAMAPA = r'array\_map'
 t_OPERALOGICO_MAP = r'\->'
 t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
 #cindy
+def t_OPERASIG_ARRAY(t):
+    r'(\=){1}(\>){1}'
+    return t
+
 def t_OPERLOGICO_OR(t):
     r'or'
     return t

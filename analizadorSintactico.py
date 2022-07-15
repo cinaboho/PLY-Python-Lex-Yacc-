@@ -97,18 +97,6 @@ def p_bucleDoWhile(p):
 
 
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
-# def p_condIf(p) :
-#     '''condIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA
-#                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
-#                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionPrint LLAVEDER
-#                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
-
-
-# def p_bucleDoWhile(p):
-#     '''bucleDoWhile : do LLAVEIZQ sentencias LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-#                     | do LLAVEIZQ impresionPrint LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA
-#                     | do LLAVEIZQ impresionEcho LLAVEDER while PARENIZQ retornoBool PARENDER PUNTOYCOMA'''
-
 
 # def p_rellenoArray(p):  # clave => valor
 #     '''rellenoArray : valores OPERASIG_ARRAY valores COMA
@@ -142,7 +130,7 @@ def p_error(p):
 parser = yacc.yacc()
 while True:
     try:
-        s = input("calc>")
+        s = input("calc>  ")
     except EOFError:
         break
     if not s: continue
