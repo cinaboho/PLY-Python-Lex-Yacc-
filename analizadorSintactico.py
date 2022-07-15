@@ -8,22 +8,28 @@ def p_sentencias(p):
                   | asignacion_abreviatura_op
                   | print
                   | impresionEcho
+
     '''
 def p_valor(p):
     '''valor : valorNumerico
              | CADENA
     '''
+
+def p_varphp(p):
+    '''varphp : VARIABLE_PHP'''
+
 def p_valorNumerico(p):
     '''valorNumerico : ENTERO
                      | FLOTANTE
-                     | VARIABLE_PHP
+                     | varphp
                      | BOOLEANO
-                     
+
     '''
 def p_operacion(p):
     '''operacion : valorNumerico
                  | valorNumerico operador operacion
                  | valorNumerico comparacion operacion
+                 | varphp opLogicos varphp
     '''
 def p_operador(p):
     '''operador : MAS
@@ -40,7 +46,17 @@ def p_comparacion(p):
                    | MENORQUE OPERASIGNACION
                    | MAYORQUE OPERASIGNACION
                    | MENORQUE OPERASIGNACION MAYORQUE
+                   | MENORQUE MAYORQUE
     '''
+def p_opLogicos(p) :
+    '''opLogicos : OPERLOGICO_AND
+                    | OPERLOGICO_OR
+                    | OPERLOGICO_XOR
+                    | OPERLOGICO_NOT
+                    | AMPERSAND AMPERSAND
+                    | OPERLOGICO_OREXCLUSIVO
+    '''
+
 
 def p_asignacion(p):
     '''asignacion : VARIABLE_PHP OPERASIGNACION valor

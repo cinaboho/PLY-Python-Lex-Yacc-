@@ -105,7 +105,7 @@ t_LLAVEIZQ = r'\{'
 t_LLAVEDER = r'\}'
 t_CORCHIZQ = r'\['
 t_CORCHDER = r'\]'
-t_AMPERSAND = r'&'
+t_AMPERSAND = r'\&'
 t_OPERASIGNACION = r'='
 t_MAS = r'\+'
 t_MENOS = r'\-'
@@ -120,16 +120,26 @@ t_BARRAIGUAL = r'\/\='
 t_PORCENTAJEIGUAL = r'\%\='
 t_DOBLEASTERISCOIGUAL = r'\*\*\='
 t_OPERCOMPARACION = r'=='
-t_OPERLOGICO_OR = r'or'
-t_OPERLOGICO_XOR =r'xor'
-t_OPERLOGICO_OREXCLUSIVO =r'\|\|' #||
-t_OPERLOGICO_NOT = r'!'
 t_OPERASIG_ARRAY = r'=>'
 t_OPERAMAPA = r'array\_map'
 t_OPERALOGICO_MAP = r'\->'
 t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
+def t_OPERLOGICO_OR(t):
+    r'or'
+    return t
+def t_OPERLOGICO_XOR(t):
+    r'xor'
+    return t
+
+def t_OPERLOGICO_OREXCLUSIVO(t):
+    r'\|\|'
+    return t
+
+def t_OPERLOGICO_NOT(t):
+    r'!'
+    return t
 
 def t_INICIO(t):
     r'<\?php'
