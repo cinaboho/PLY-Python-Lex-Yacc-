@@ -9,6 +9,8 @@ def p_sentencias(p):
                   | print
                   | impresionEcho
                   | operacion_logica
+                  | condIf
+                  | bucleDoWhile
 
     '''
 def p_valor(p):
@@ -82,7 +84,19 @@ def p_print(p):
 def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
 
-#FALTA CORREGIR
+def p_condIf(p) :
+    '''condIf : IF PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
+                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
+                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+
+def p_bucleDoWhile(p):
+    '''bucleDoWhile : DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA'''
+
+
+#FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
 # def p_condIf(p) :
 #     '''condIf : if PARENIZQ retornoBool PARENDER PUNTOYCOMA
 #                 | if PARENIZQ retornoBool PARENDER LLAVEIZQ sentencias LLAVEDER
