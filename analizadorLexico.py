@@ -75,7 +75,6 @@ tokens = [
     'MENORQUE',
     'INICIO',
     'FIN',
-    'OPERLOG_AND',
     'CADENA',
     'ENTERO',
     'FLOTANTE',
@@ -126,11 +125,17 @@ t_OPERALOGICO_MAP = r'\->'
 t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
+#cindy
 def t_OPERLOGICO_OR(t):
     r'or'
     return t
 def t_OPERLOGICO_XOR(t):
     r'xor'
+    return t
+
+
+def t_OPERLOGICO_AND(t):
+    r'and'
     return t
 
 def t_OPERLOGICO_OREXCLUSIVO(t):
@@ -140,7 +145,7 @@ def t_OPERLOGICO_OREXCLUSIVO(t):
 def t_OPERLOGICO_NOT(t):
     r'!'
     return t
-
+#cindy
 def t_INICIO(t):
     r'<\?php'
     return t
@@ -169,7 +174,7 @@ def t_PRIVATE(t):
 #Cindy
 
 #Gabriela
-t_OPERLOGICO_AND = r'AND'
+
 t_MAYORQUE=r'>'
 t_MENORQUE = r'<'
 
@@ -211,8 +216,6 @@ def t_VARIABLE_PHP(t):
 #.
 #Daniel
 
-def t_OPERLOG_AND(t):
-    r'(["AND" | \&\&])'
 
 def t_ENTERO(t):
     r'\d+'

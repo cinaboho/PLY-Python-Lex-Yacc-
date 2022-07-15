@@ -8,6 +8,7 @@ def p_sentencias(p):
                   | asignacion_abreviatura_op
                   | print
                   | impresionEcho
+                  | operacion_logica
 
     '''
 def p_valor(p):
@@ -29,7 +30,9 @@ def p_operacion(p):
     '''operacion : valorNumerico
                  | valorNumerico operador operacion
                  | valorNumerico comparacion operacion
-                 | varphp opLogicos varphp
+    '''
+def p_operacion_logica(p):
+    '''operacion_logica : varphp opLogicos varphp
     '''
 def p_operador(p):
     '''operador : MAS
@@ -49,11 +52,10 @@ def p_comparacion(p):
                    | MENORQUE MAYORQUE
     '''
 def p_opLogicos(p) :
-    '''opLogicos : OPERLOGICO_AND
+    '''   opLogicos : OPERLOGICO_AND
                     | OPERLOGICO_OR
                     | OPERLOGICO_XOR
                     | OPERLOGICO_NOT
-                    | AMPERSAND AMPERSAND
                     | OPERLOGICO_OREXCLUSIVO
     '''
 
@@ -79,9 +81,6 @@ def p_print(p):
     '''
 def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
-
-def p_variable_dolar(p):
-    '''variable_dolar : VARIABLE_PHP'''
 
 #Gabriela  -Corregido Cindy
 
