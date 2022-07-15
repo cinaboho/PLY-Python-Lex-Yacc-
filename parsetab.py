@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AMPERSAND ARRAY AS ASTERISCOIGUAL BARRAIGUAL BOOLEAN BOOLEANO BREAK CADENA CASE CLASS COMA COMDOB COMENTARIO_LARGO COMENTARIO_UNA_LINEA CONST CONTINUE CORCHDER CORCHIZQ COUNT DEFAULT DIVIDE DO DOBLEASTERISCOIGUAL DOSPUNTOS ECHO ELSE END_SWITCH END_WHILE ENTERO EXPONENCIACION EXTENDS FALSE FIN FLOAT FLOTANTE FOR FUNCTION GLOBAL IF INICIO INTEGER LLAVEDER LLAVEIZQ MAS MASIGUAL MAYORQUE MENORQUE MENOS MENOSIGUAL MODULO MULTIPLICA NEW NULL OPERACIONSUM OPERALOGICO_MAP OPERAMAPA OPERAPUT OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PORCENTAJEIGUAL PRINT PRIVATE PROTECTED PUBLIC PUNTO PUNTOYCOMA RETURN RSORT STATIC STRING SWITCH TRUE VARIABLE VARIABLE_PHP WHILEsentencias : valor\n                  | operacion\n                  | asignacion\n                  | asignacion_abreviatura_op\n                  | print\n    valor : valorNumerico\n             | CADENA\n    valorNumerico : ENTERO\n                     | FLOTANTE\n                     | VARIABLE_PHP\n                     | BOOLEANO\n                     \n    operacion : valorNumerico\n                 | valorNumerico operador operacion\n    operador : MAS\n                | MENOS\n                | MULTIPLICA\n                | DIVIDE\n                | MODULO\n                | EXPONENCIACION\n    asignacion : VARIABLE_PHP OPERASIGNACION valor\n    asignacion_abreviado : MASIGUAL\n                            | MENOSIGUAL\n                            | ASTERISCOIGUAL\n                            | BARRAIGUAL\n                            | PORCENTAJEIGUAL\n                            | DOBLEASTERISCOIGUAL\n    asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico\n    print : PRINT PARENIZQ PARENDER PUNTOYCOMA\n             | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA\n             | PRINT PARENIZQ COMDOB  VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA\n    '
+_lr_signature = 'AMPERSAND ARRAY AS ASTERISCOIGUAL BARRAIGUAL BOOLEAN BOOLEANO BREAK CADENA CASE CLASS COMA COMDOB COMENTARIO_LARGO COMENTARIO_UNA_LINEA CONST CONTINUE CORCHDER CORCHIZQ COUNT DEFAULT DIVIDE DO DOBLEASTERISCOIGUAL DOSPUNTOS ECHO ELSE END_SWITCH END_WHILE ENTERO EXPONENCIACION EXTENDS FALSE FIN FLOAT FLOTANTE FOR FUNCTION GLOBAL IF INICIO INTEGER LLAVEDER LLAVEIZQ MAS MASIGUAL MAYORQUE MENORQUE MENOS MENOSIGUAL MODULO MULTIPLICA NEW NULL OPERACIONSUM OPERALOGICO_MAP OPERAMAPA OPERAPUT OPERASIGNACION OPERASIG_ARRAY OPERCOMPARACION OPERLOGICO_AND OPERLOGICO_NOT OPERLOGICO_OR OPERLOGICO_OREXCLUSIVO OPERLOGICO_XOR OPERLOG_AND PARENDER PARENIZQ PORCENTAJEIGUAL PRINT PRIVATE PROTECTED PUBLIC PUNTO PUNTOYCOMA RETURN RSORT STATIC STRING SWITCH TRUE VARIABLE VARIABLE_PHP WHILEsentencias : valor\n                  | operacion\n                  | asignacion\n                  | asignacion_abreviatura_op\n                  | print\n                  | impresionEcho\n    valor : valorNumerico\n             | CADENA\n    valorNumerico : ENTERO\n                     | FLOTANTE\n                     | VARIABLE_PHP\n                     | BOOLEANO\n                     \n    operacion : valorNumerico\n                 | valorNumerico operador operacion\n    operador : MAS\n                | MENOS\n                | MULTIPLICA\n                | DIVIDE\n                | MODULO\n                | EXPONENCIACION\n                \n    asignacion : VARIABLE_PHP OPERASIGNACION valor\n    asignacion_abreviado : MASIGUAL\n                            | MENOSIGUAL\n                            | ASTERISCOIGUAL\n                            | BARRAIGUAL\n                            | PORCENTAJEIGUAL\n                            | DOBLEASTERISCOIGUAL\n    asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico\n    print : PRINT PARENIZQ PARENDER PUNTOYCOMA\n             | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA\n             | PRINT PARENIZQ COMDOB  valor COMDOB PARENDER PUNTOYCOMA\n    impresionEcho : ECHO CADENA PUNTOYCOMA'
     
-_lr_action_items = {'CADENA':([0,21,],[8,8,]),'VARIABLE_PHP':([0,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,37,],[9,32,-14,-15,-16,-17,-18,-19,32,32,-21,-22,-23,-24,-25,-26,40,]),'PRINT':([0,],[10,]),'ENTERO':([0,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,],[11,11,-14,-15,-16,-17,-18,-19,11,11,-21,-22,-23,-24,-25,-26,]),'FLOTANTE':([0,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,],[12,12,-14,-15,-16,-17,-18,-19,12,12,-21,-22,-23,-24,-25,-26,]),'BOOLEANO':([0,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,],[13,13,-14,-15,-16,-17,-18,-19,13,13,-21,-22,-23,-24,-25,-26,]),'$end':([1,2,3,4,5,6,7,8,9,11,12,13,30,31,32,33,34,35,38,43,45,],[0,-1,-2,-3,-4,-5,-6,-7,-10,-8,-9,-11,-12,-13,-10,-20,-6,-27,-28,-29,-30,]),'MAS':([7,9,11,12,13,30,32,],[15,-10,-8,-9,-11,15,-10,]),'MENOS':([7,9,11,12,13,30,32,],[16,-10,-8,-9,-11,16,-10,]),'MULTIPLICA':([7,9,11,12,13,30,32,],[17,-10,-8,-9,-11,17,-10,]),'DIVIDE':([7,9,11,12,13,30,32,],[18,-10,-8,-9,-11,18,-10,]),'MODULO':([7,9,11,12,13,30,32,],[19,-10,-8,-9,-11,19,-10,]),'EXPONENCIACION':([7,9,11,12,13,30,32,],[20,-10,-8,-9,-11,20,-10,]),'OPERASIGNACION':([9,],[21,]),'MASIGUAL':([9,],[23,]),'MENOSIGUAL':([9,],[24,]),'ASTERISCOIGUAL':([9,],[25,]),'BARRAIGUAL':([9,],[26,]),'PORCENTAJEIGUAL':([9,],[27,]),'DOBLEASTERISCOIGUAL':([9,],[28,]),'PARENIZQ':([10,],[29,]),'PARENDER':([29,39,42,],[36,41,44,]),'COMDOB':([29,37,40,],[37,39,42,]),'PUNTOYCOMA':([36,41,44,],[38,43,45,]),}
+_lr_action_items = {'CADENA':([0,12,23,40,],[9,32,9,9,]),'VARIABLE_PHP':([0,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,40,],[10,35,-15,-16,-17,-18,-19,-20,35,35,-22,-23,-24,-25,-26,-27,35,]),'PRINT':([0,],[11,]),'ECHO':([0,],[12,]),'ENTERO':([0,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,40,],[13,13,-15,-16,-17,-18,-19,-20,13,13,-22,-23,-24,-25,-26,-27,13,]),'FLOTANTE':([0,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,40,],[14,14,-15,-16,-17,-18,-19,-20,14,14,-22,-23,-24,-25,-26,-27,14,]),'BOOLEANO':([0,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,40,],[15,15,-15,-16,-17,-18,-19,-20,15,15,-22,-23,-24,-25,-26,-27,15,]),'$end':([1,2,3,4,5,6,7,8,9,10,13,14,15,33,34,35,36,37,38,41,42,47,49,],[0,-1,-2,-3,-4,-5,-6,-7,-8,-11,-9,-10,-12,-13,-14,-11,-21,-7,-28,-32,-29,-30,-31,]),'MAS':([8,10,13,14,15,33,35,],[17,-11,-9,-10,-12,17,-11,]),'MENOS':([8,10,13,14,15,33,35,],[18,-11,-9,-10,-12,18,-11,]),'MULTIPLICA':([8,10,13,14,15,33,35,],[19,-11,-9,-10,-12,19,-11,]),'DIVIDE':([8,10,13,14,15,33,35,],[20,-11,-9,-10,-12,20,-11,]),'MODULO':([8,10,13,14,15,33,35,],[21,-11,-9,-10,-12,21,-11,]),'EXPONENCIACION':([8,10,13,14,15,33,35,],[22,-11,-9,-10,-12,22,-11,]),'COMDOB':([9,13,14,15,31,35,37,40,44,],[-8,-9,-10,-12,40,-11,-7,43,46,]),'OPERASIGNACION':([10,],[23,]),'MASIGUAL':([10,],[25,]),'MENOSIGUAL':([10,],[26,]),'ASTERISCOIGUAL':([10,],[27,]),'BARRAIGUAL':([10,],[28,]),'PORCENTAJEIGUAL':([10,],[29,]),'DOBLEASTERISCOIGUAL':([10,],[30,]),'PARENIZQ':([11,],[31,]),'PARENDER':([31,43,46,],[39,45,48,]),'PUNTOYCOMA':([32,39,45,48,],[41,42,47,49,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sentencias':([0,],[1,]),'valor':([0,21,],[2,33,]),'operacion':([0,14,],[3,31,]),'asignacion':([0,],[4,]),'asignacion_abreviatura_op':([0,],[5,]),'print':([0,],[6,]),'valorNumerico':([0,14,21,22,],[7,30,34,35,]),'operador':([7,30,],[14,14,]),'asignacion_abreviado':([9,],[22,]),}
+_lr_goto_items = {'sentencias':([0,],[1,]),'valor':([0,23,40,],[2,36,44,]),'operacion':([0,16,],[3,34,]),'asignacion':([0,],[4,]),'asignacion_abreviatura_op':([0,],[5,]),'print':([0,],[6,]),'impresionEcho':([0,],[7,]),'valorNumerico':([0,16,23,24,40,],[8,33,37,38,37,]),'operador':([8,33,],[16,16,]),'asignacion_abreviado':([10,],[24,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,29 +32,31 @@ _lr_productions = [
   ('sentencias -> asignacion','sentencias',1,'p_sentencias','analizadorSintactico.py',7),
   ('sentencias -> asignacion_abreviatura_op','sentencias',1,'p_sentencias','analizadorSintactico.py',8),
   ('sentencias -> print','sentencias',1,'p_sentencias','analizadorSintactico.py',9),
-  ('valor -> valorNumerico','valor',1,'p_valor','analizadorSintactico.py',12),
-  ('valor -> CADENA','valor',1,'p_valor','analizadorSintactico.py',13),
-  ('valorNumerico -> ENTERO','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',16),
-  ('valorNumerico -> FLOTANTE','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',17),
-  ('valorNumerico -> VARIABLE_PHP','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',18),
-  ('valorNumerico -> BOOLEANO','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',19),
-  ('operacion -> valorNumerico','operacion',1,'p_operacion','analizadorSintactico.py',23),
-  ('operacion -> valorNumerico operador operacion','operacion',3,'p_operacion','analizadorSintactico.py',24),
-  ('operador -> MAS','operador',1,'p_operador','analizadorSintactico.py',27),
-  ('operador -> MENOS','operador',1,'p_operador','analizadorSintactico.py',28),
-  ('operador -> MULTIPLICA','operador',1,'p_operador','analizadorSintactico.py',29),
-  ('operador -> DIVIDE','operador',1,'p_operador','analizadorSintactico.py',30),
-  ('operador -> MODULO','operador',1,'p_operador','analizadorSintactico.py',31),
-  ('operador -> EXPONENCIACION','operador',1,'p_operador','analizadorSintactico.py',32),
-  ('asignacion -> VARIABLE_PHP OPERASIGNACION valor','asignacion',3,'p_asignacion','analizadorSintactico.py',35),
-  ('asignacion_abreviado -> MASIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',38),
-  ('asignacion_abreviado -> MENOSIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',39),
-  ('asignacion_abreviado -> ASTERISCOIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',40),
-  ('asignacion_abreviado -> BARRAIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',41),
-  ('asignacion_abreviado -> PORCENTAJEIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',42),
-  ('asignacion_abreviado -> DOBLEASTERISCOIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',43),
-  ('asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico','asignacion_abreviatura_op',3,'p_asignacion_abreviatura_op','analizadorSintactico.py',46),
-  ('print -> PRINT PARENIZQ PARENDER PUNTOYCOMA','print',4,'p_print','analizadorSintactico.py',49),
-  ('print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA','print',6,'p_print','analizadorSintactico.py',50),
-  ('print -> PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA','print',7,'p_print','analizadorSintactico.py',51),
+  ('sentencias -> impresionEcho','sentencias',1,'p_sentencias','analizadorSintactico.py',10),
+  ('valor -> valorNumerico','valor',1,'p_valor','analizadorSintactico.py',13),
+  ('valor -> CADENA','valor',1,'p_valor','analizadorSintactico.py',14),
+  ('valorNumerico -> ENTERO','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',17),
+  ('valorNumerico -> FLOTANTE','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',18),
+  ('valorNumerico -> VARIABLE_PHP','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',19),
+  ('valorNumerico -> BOOLEANO','valorNumerico',1,'p_valorNumerico','analizadorSintactico.py',20),
+  ('operacion -> valorNumerico','operacion',1,'p_operacion','analizadorSintactico.py',24),
+  ('operacion -> valorNumerico operador operacion','operacion',3,'p_operacion','analizadorSintactico.py',25),
+  ('operador -> MAS','operador',1,'p_operador','analizadorSintactico.py',28),
+  ('operador -> MENOS','operador',1,'p_operador','analizadorSintactico.py',29),
+  ('operador -> MULTIPLICA','operador',1,'p_operador','analizadorSintactico.py',30),
+  ('operador -> DIVIDE','operador',1,'p_operador','analizadorSintactico.py',31),
+  ('operador -> MODULO','operador',1,'p_operador','analizadorSintactico.py',32),
+  ('operador -> EXPONENCIACION','operador',1,'p_operador','analizadorSintactico.py',33),
+  ('asignacion -> VARIABLE_PHP OPERASIGNACION valor','asignacion',3,'p_asignacion','analizadorSintactico.py',37),
+  ('asignacion_abreviado -> MASIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',40),
+  ('asignacion_abreviado -> MENOSIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',41),
+  ('asignacion_abreviado -> ASTERISCOIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',42),
+  ('asignacion_abreviado -> BARRAIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',43),
+  ('asignacion_abreviado -> PORCENTAJEIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',44),
+  ('asignacion_abreviado -> DOBLEASTERISCOIGUAL','asignacion_abreviado',1,'p_asignacion_abreviado','analizadorSintactico.py',45),
+  ('asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico','asignacion_abreviatura_op',3,'p_asignacion_abreviatura_op','analizadorSintactico.py',48),
+  ('print -> PRINT PARENIZQ PARENDER PUNTOYCOMA','print',4,'p_print','analizadorSintactico.py',51),
+  ('print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA','print',6,'p_print','analizadorSintactico.py',52),
+  ('print -> PRINT PARENIZQ COMDOB valor COMDOB PARENDER PUNTOYCOMA','print',7,'p_print','analizadorSintactico.py',53),
+  ('impresionEcho -> ECHO CADENA PUNTOYCOMA','impresionEcho',3,'p_impresionEcho','analizadorSintactico.py',56),
 ]

@@ -20,7 +20,6 @@ Unused terminals:
     DEFAULT
     DO
     DOSPUNTOS
-    ECHO
     ELSE
     END_SWITCH
     END_WHILE
@@ -73,47 +72,49 @@ Rule 2     sentencias -> operacion
 Rule 3     sentencias -> asignacion
 Rule 4     sentencias -> asignacion_abreviatura_op
 Rule 5     sentencias -> print
-Rule 6     valor -> valorNumerico
-Rule 7     valor -> CADENA
-Rule 8     valorNumerico -> ENTERO
-Rule 9     valorNumerico -> FLOTANTE
-Rule 10    valorNumerico -> VARIABLE_PHP
-Rule 11    valorNumerico -> BOOLEANO
-Rule 12    operacion -> valorNumerico
-Rule 13    operacion -> valorNumerico operador operacion
-Rule 14    operador -> MAS
-Rule 15    operador -> MENOS
-Rule 16    operador -> MULTIPLICA
-Rule 17    operador -> DIVIDE
-Rule 18    operador -> MODULO
-Rule 19    operador -> EXPONENCIACION
-Rule 20    asignacion -> VARIABLE_PHP OPERASIGNACION valor
-Rule 21    asignacion_abreviado -> MASIGUAL
-Rule 22    asignacion_abreviado -> MENOSIGUAL
-Rule 23    asignacion_abreviado -> ASTERISCOIGUAL
-Rule 24    asignacion_abreviado -> BARRAIGUAL
-Rule 25    asignacion_abreviado -> PORCENTAJEIGUAL
-Rule 26    asignacion_abreviado -> DOBLEASTERISCOIGUAL
-Rule 27    asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico
-Rule 28    print -> PRINT PARENIZQ PARENDER PUNTOYCOMA
-Rule 29    print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-Rule 30    print -> PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA
+Rule 6     sentencias -> impresionEcho
+Rule 7     valor -> valorNumerico
+Rule 8     valor -> CADENA
+Rule 9     valorNumerico -> ENTERO
+Rule 10    valorNumerico -> FLOTANTE
+Rule 11    valorNumerico -> VARIABLE_PHP
+Rule 12    valorNumerico -> BOOLEANO
+Rule 13    operacion -> valorNumerico
+Rule 14    operacion -> valorNumerico operador operacion
+Rule 15    operador -> MAS
+Rule 16    operador -> MENOS
+Rule 17    operador -> MULTIPLICA
+Rule 18    operador -> DIVIDE
+Rule 19    operador -> MODULO
+Rule 20    operador -> EXPONENCIACION
+Rule 21    asignacion -> VARIABLE_PHP OPERASIGNACION valor
+Rule 22    asignacion_abreviado -> MASIGUAL
+Rule 23    asignacion_abreviado -> MENOSIGUAL
+Rule 24    asignacion_abreviado -> ASTERISCOIGUAL
+Rule 25    asignacion_abreviado -> BARRAIGUAL
+Rule 26    asignacion_abreviado -> PORCENTAJEIGUAL
+Rule 27    asignacion_abreviado -> DOBLEASTERISCOIGUAL
+Rule 28    asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico
+Rule 29    print -> PRINT PARENIZQ PARENDER PUNTOYCOMA
+Rule 30    print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+Rule 31    print -> PRINT PARENIZQ COMDOB valor COMDOB PARENDER PUNTOYCOMA
+Rule 32    impresionEcho -> ECHO CADENA PUNTOYCOMA
 
 Terminals, with rules where they appear
 
 AMPERSAND            : 
 ARRAY                : 
 AS                   : 
-ASTERISCOIGUAL       : 23
-BARRAIGUAL           : 24
+ASTERISCOIGUAL       : 24
+BARRAIGUAL           : 25
 BOOLEAN              : 
-BOOLEANO             : 11
+BOOLEANO             : 12
 BREAK                : 
-CADENA               : 7
+CADENA               : 8 32
 CASE                 : 
 CLASS                : 
 COMA                 : 
-COMDOB               : 29 29 30 30
+COMDOB               : 30 30 31 31
 COMENTARIO_LARGO     : 
 COMENTARIO_UNA_LINEA : 
 CONST                : 
@@ -122,21 +123,21 @@ CORCHDER             :
 CORCHIZQ             : 
 COUNT                : 
 DEFAULT              : 
-DIVIDE               : 17
+DIVIDE               : 18
 DO                   : 
-DOBLEASTERISCOIGUAL  : 26
+DOBLEASTERISCOIGUAL  : 27
 DOSPUNTOS            : 
-ECHO                 : 
+ECHO                 : 32
 ELSE                 : 
 END_SWITCH           : 
 END_WHILE            : 
-ENTERO               : 8
-EXPONENCIACION       : 19
+ENTERO               : 9
+EXPONENCIACION       : 20
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
 FLOAT                : 
-FLOTANTE             : 9
+FLOTANTE             : 10
 FOR                  : 
 FUNCTION             : 
 GLOBAL               : 
@@ -145,21 +146,21 @@ INICIO               :
 INTEGER              : 
 LLAVEDER             : 
 LLAVEIZQ             : 
-MAS                  : 14
-MASIGUAL             : 21
+MAS                  : 15
+MASIGUAL             : 22
 MAYORQUE             : 
 MENORQUE             : 
-MENOS                : 15
-MENOSIGUAL           : 22
-MODULO               : 18
-MULTIPLICA           : 16
+MENOS                : 16
+MENOSIGUAL           : 23
+MODULO               : 19
+MULTIPLICA           : 17
 NEW                  : 
 NULL                 : 
 OPERACIONSUM         : 
 OPERALOGICO_MAP      : 
 OPERAMAPA            : 
 OPERAPUT             : 
-OPERASIGNACION       : 20
+OPERASIGNACION       : 21
 OPERASIG_ARRAY       : 
 OPERCOMPARACION      : 
 OPERLOGICO_AND       : 
@@ -168,15 +169,15 @@ OPERLOGICO_OR        :
 OPERLOGICO_OREXCLUSIVO : 
 OPERLOGICO_XOR       : 
 OPERLOG_AND          : 
-PARENDER             : 28 29 30
-PARENIZQ             : 28 29 30
-PORCENTAJEIGUAL      : 25
-PRINT                : 28 29 30
+PARENDER             : 29 30 31
+PARENIZQ             : 29 30 31
+PORCENTAJEIGUAL      : 26
+PRINT                : 29 30 31
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
 PUNTO                : 
-PUNTOYCOMA           : 28 29 30
+PUNTOYCOMA           : 29 30 31 32
 RETURN               : 
 RSORT                : 
 STATIC               : 
@@ -184,21 +185,22 @@ STRING               :
 SWITCH               : 
 TRUE                 : 
 VARIABLE             : 
-VARIABLE_PHP         : 10 20 27 30
+VARIABLE_PHP         : 11 21 28
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
 asignacion           : 3
-asignacion_abreviado : 27
+asignacion_abreviado : 28
 asignacion_abreviatura_op : 4
-operacion            : 2 13
-operador             : 13
+impresionEcho        : 6
+operacion            : 2 14
+operador             : 14
 print                : 5
 sentencias           : 0
-valor                : 1 20
-valorNumerico        : 6 12 13 27
+valor                : 1 21 31
+valorNumerico        : 7 13 14 28
 
 Parsing method: LALR
 
@@ -210,26 +212,29 @@ state 0
     (3) sentencias -> . asignacion
     (4) sentencias -> . asignacion_abreviatura_op
     (5) sentencias -> . print
-    (6) valor -> . valorNumerico
-    (7) valor -> . CADENA
-    (12) operacion -> . valorNumerico
-    (13) operacion -> . valorNumerico operador operacion
-    (20) asignacion -> . VARIABLE_PHP OPERASIGNACION valor
-    (27) asignacion_abreviatura_op -> . VARIABLE_PHP asignacion_abreviado valorNumerico
-    (28) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
-    (29) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-    (30) print -> . PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA
-    (8) valorNumerico -> . ENTERO
-    (9) valorNumerico -> . FLOTANTE
-    (10) valorNumerico -> . VARIABLE_PHP
-    (11) valorNumerico -> . BOOLEANO
+    (6) sentencias -> . impresionEcho
+    (7) valor -> . valorNumerico
+    (8) valor -> . CADENA
+    (13) operacion -> . valorNumerico
+    (14) operacion -> . valorNumerico operador operacion
+    (21) asignacion -> . VARIABLE_PHP OPERASIGNACION valor
+    (28) asignacion_abreviatura_op -> . VARIABLE_PHP asignacion_abreviado valorNumerico
+    (29) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
+    (30) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+    (31) print -> . PRINT PARENIZQ COMDOB valor COMDOB PARENDER PUNTOYCOMA
+    (32) impresionEcho -> . ECHO CADENA PUNTOYCOMA
+    (9) valorNumerico -> . ENTERO
+    (10) valorNumerico -> . FLOTANTE
+    (11) valorNumerico -> . VARIABLE_PHP
+    (12) valorNumerico -> . BOOLEANO
 
-    CADENA          shift and go to state 8
-    VARIABLE_PHP    shift and go to state 9
-    PRINT           shift and go to state 10
-    ENTERO          shift and go to state 11
-    FLOTANTE        shift and go to state 12
-    BOOLEANO        shift and go to state 13
+    CADENA          shift and go to state 9
+    VARIABLE_PHP    shift and go to state 10
+    PRINT           shift and go to state 11
+    ECHO            shift and go to state 12
+    ENTERO          shift and go to state 13
+    FLOTANTE        shift and go to state 14
+    BOOLEANO        shift and go to state 15
 
     sentencias                     shift and go to state 1
     valor                          shift and go to state 2
@@ -237,7 +242,8 @@ state 0
     asignacion                     shift and go to state 4
     asignacion_abreviatura_op      shift and go to state 5
     print                          shift and go to state 6
-    valorNumerico                  shift and go to state 7
+    impresionEcho                  shift and go to state 7
+    valorNumerico                  shift and go to state 8
 
 state 1
 
@@ -282,430 +288,476 @@ state 6
 
 state 7
 
-    (6) valor -> valorNumerico .
-    (12) operacion -> valorNumerico .
-    (13) operacion -> valorNumerico . operador operacion
-    (14) operador -> . MAS
-    (15) operador -> . MENOS
-    (16) operador -> . MULTIPLICA
-    (17) operador -> . DIVIDE
-    (18) operador -> . MODULO
-    (19) operador -> . EXPONENCIACION
+    (6) sentencias -> impresionEcho .
 
-  ! reduce/reduce conflict for $end resolved using rule 6 (valor -> valorNumerico .)
-    $end            reduce using rule 6 (valor -> valorNumerico .)
-    MAS             shift and go to state 15
-    MENOS           shift and go to state 16
-    MULTIPLICA      shift and go to state 17
-    DIVIDE          shift and go to state 18
-    MODULO          shift and go to state 19
-    EXPONENCIACION  shift and go to state 20
+    $end            reduce using rule 6 (sentencias -> impresionEcho .)
 
-  ! $end            [ reduce using rule 12 (operacion -> valorNumerico .) ]
-
-    operador                       shift and go to state 14
 
 state 8
 
-    (7) valor -> CADENA .
+    (7) valor -> valorNumerico .
+    (13) operacion -> valorNumerico .
+    (14) operacion -> valorNumerico . operador operacion
+    (15) operador -> . MAS
+    (16) operador -> . MENOS
+    (17) operador -> . MULTIPLICA
+    (18) operador -> . DIVIDE
+    (19) operador -> . MODULO
+    (20) operador -> . EXPONENCIACION
 
-    $end            reduce using rule 7 (valor -> CADENA .)
+  ! reduce/reduce conflict for $end resolved using rule 7 (valor -> valorNumerico .)
+    $end            reduce using rule 7 (valor -> valorNumerico .)
+    MAS             shift and go to state 17
+    MENOS           shift and go to state 18
+    MULTIPLICA      shift and go to state 19
+    DIVIDE          shift and go to state 20
+    MODULO          shift and go to state 21
+    EXPONENCIACION  shift and go to state 22
 
+  ! $end            [ reduce using rule 13 (operacion -> valorNumerico .) ]
+
+    operador                       shift and go to state 16
 
 state 9
 
-    (20) asignacion -> VARIABLE_PHP . OPERASIGNACION valor
-    (27) asignacion_abreviatura_op -> VARIABLE_PHP . asignacion_abreviado valorNumerico
-    (10) valorNumerico -> VARIABLE_PHP .
-    (21) asignacion_abreviado -> . MASIGUAL
-    (22) asignacion_abreviado -> . MENOSIGUAL
-    (23) asignacion_abreviado -> . ASTERISCOIGUAL
-    (24) asignacion_abreviado -> . BARRAIGUAL
-    (25) asignacion_abreviado -> . PORCENTAJEIGUAL
-    (26) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
+    (8) valor -> CADENA .
 
-    OPERASIGNACION  shift and go to state 21
-    MAS             reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MENOS           reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MULTIPLICA      reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    DIVIDE          reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MODULO          reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    EXPONENCIACION  reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    $end            reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MASIGUAL        shift and go to state 23
-    MENOSIGUAL      shift and go to state 24
-    ASTERISCOIGUAL  shift and go to state 25
-    BARRAIGUAL      shift and go to state 26
-    PORCENTAJEIGUAL shift and go to state 27
-    DOBLEASTERISCOIGUAL shift and go to state 28
+    $end            reduce using rule 8 (valor -> CADENA .)
+    COMDOB          reduce using rule 8 (valor -> CADENA .)
 
-    asignacion_abreviado           shift and go to state 22
 
 state 10
 
-    (28) print -> PRINT . PARENIZQ PARENDER PUNTOYCOMA
-    (29) print -> PRINT . PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-    (30) print -> PRINT . PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA
+    (21) asignacion -> VARIABLE_PHP . OPERASIGNACION valor
+    (28) asignacion_abreviatura_op -> VARIABLE_PHP . asignacion_abreviado valorNumerico
+    (11) valorNumerico -> VARIABLE_PHP .
+    (22) asignacion_abreviado -> . MASIGUAL
+    (23) asignacion_abreviado -> . MENOSIGUAL
+    (24) asignacion_abreviado -> . ASTERISCOIGUAL
+    (25) asignacion_abreviado -> . BARRAIGUAL
+    (26) asignacion_abreviado -> . PORCENTAJEIGUAL
+    (27) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
 
-    PARENIZQ        shift and go to state 29
+    OPERASIGNACION  shift and go to state 23
+    MAS             reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MENOS           reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MULTIPLICA      reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    DIVIDE          reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MODULO          reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    EXPONENCIACION  reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    $end            reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MASIGUAL        shift and go to state 25
+    MENOSIGUAL      shift and go to state 26
+    ASTERISCOIGUAL  shift and go to state 27
+    BARRAIGUAL      shift and go to state 28
+    PORCENTAJEIGUAL shift and go to state 29
+    DOBLEASTERISCOIGUAL shift and go to state 30
 
+    asignacion_abreviado           shift and go to state 24
 
 state 11
 
-    (8) valorNumerico -> ENTERO .
+    (29) print -> PRINT . PARENIZQ PARENDER PUNTOYCOMA
+    (30) print -> PRINT . PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+    (31) print -> PRINT . PARENIZQ COMDOB valor COMDOB PARENDER PUNTOYCOMA
 
-    MAS             reduce using rule 8 (valorNumerico -> ENTERO .)
-    MENOS           reduce using rule 8 (valorNumerico -> ENTERO .)
-    MULTIPLICA      reduce using rule 8 (valorNumerico -> ENTERO .)
-    DIVIDE          reduce using rule 8 (valorNumerico -> ENTERO .)
-    MODULO          reduce using rule 8 (valorNumerico -> ENTERO .)
-    EXPONENCIACION  reduce using rule 8 (valorNumerico -> ENTERO .)
-    $end            reduce using rule 8 (valorNumerico -> ENTERO .)
+    PARENIZQ        shift and go to state 31
 
 
 state 12
 
-    (9) valorNumerico -> FLOTANTE .
+    (32) impresionEcho -> ECHO . CADENA PUNTOYCOMA
 
-    MAS             reduce using rule 9 (valorNumerico -> FLOTANTE .)
-    MENOS           reduce using rule 9 (valorNumerico -> FLOTANTE .)
-    MULTIPLICA      reduce using rule 9 (valorNumerico -> FLOTANTE .)
-    DIVIDE          reduce using rule 9 (valorNumerico -> FLOTANTE .)
-    MODULO          reduce using rule 9 (valorNumerico -> FLOTANTE .)
-    EXPONENCIACION  reduce using rule 9 (valorNumerico -> FLOTANTE .)
-    $end            reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    CADENA          shift and go to state 32
 
 
 state 13
 
-    (11) valorNumerico -> BOOLEANO .
+    (9) valorNumerico -> ENTERO .
 
-    MAS             reduce using rule 11 (valorNumerico -> BOOLEANO .)
-    MENOS           reduce using rule 11 (valorNumerico -> BOOLEANO .)
-    MULTIPLICA      reduce using rule 11 (valorNumerico -> BOOLEANO .)
-    DIVIDE          reduce using rule 11 (valorNumerico -> BOOLEANO .)
-    MODULO          reduce using rule 11 (valorNumerico -> BOOLEANO .)
-    EXPONENCIACION  reduce using rule 11 (valorNumerico -> BOOLEANO .)
-    $end            reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    MAS             reduce using rule 9 (valorNumerico -> ENTERO .)
+    MENOS           reduce using rule 9 (valorNumerico -> ENTERO .)
+    MULTIPLICA      reduce using rule 9 (valorNumerico -> ENTERO .)
+    DIVIDE          reduce using rule 9 (valorNumerico -> ENTERO .)
+    MODULO          reduce using rule 9 (valorNumerico -> ENTERO .)
+    EXPONENCIACION  reduce using rule 9 (valorNumerico -> ENTERO .)
+    $end            reduce using rule 9 (valorNumerico -> ENTERO .)
+    COMDOB          reduce using rule 9 (valorNumerico -> ENTERO .)
 
 
 state 14
 
-    (13) operacion -> valorNumerico operador . operacion
-    (12) operacion -> . valorNumerico
-    (13) operacion -> . valorNumerico operador operacion
-    (8) valorNumerico -> . ENTERO
-    (9) valorNumerico -> . FLOTANTE
-    (10) valorNumerico -> . VARIABLE_PHP
-    (11) valorNumerico -> . BOOLEANO
+    (10) valorNumerico -> FLOTANTE .
 
-    ENTERO          shift and go to state 11
-    FLOTANTE        shift and go to state 12
-    VARIABLE_PHP    shift and go to state 32
-    BOOLEANO        shift and go to state 13
+    MAS             reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    MENOS           reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    MULTIPLICA      reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    DIVIDE          reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    MODULO          reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    $end            reduce using rule 10 (valorNumerico -> FLOTANTE .)
+    COMDOB          reduce using rule 10 (valorNumerico -> FLOTANTE .)
 
-    valorNumerico                  shift and go to state 30
-    operacion                      shift and go to state 31
 
 state 15
 
-    (14) operador -> MAS .
+    (12) valorNumerico -> BOOLEANO .
 
-    ENTERO          reduce using rule 14 (operador -> MAS .)
-    FLOTANTE        reduce using rule 14 (operador -> MAS .)
-    VARIABLE_PHP    reduce using rule 14 (operador -> MAS .)
-    BOOLEANO        reduce using rule 14 (operador -> MAS .)
+    MAS             reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    MENOS           reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    MULTIPLICA      reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    DIVIDE          reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    MODULO          reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    EXPONENCIACION  reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    $end            reduce using rule 12 (valorNumerico -> BOOLEANO .)
+    COMDOB          reduce using rule 12 (valorNumerico -> BOOLEANO .)
 
 
 state 16
 
-    (15) operador -> MENOS .
+    (14) operacion -> valorNumerico operador . operacion
+    (13) operacion -> . valorNumerico
+    (14) operacion -> . valorNumerico operador operacion
+    (9) valorNumerico -> . ENTERO
+    (10) valorNumerico -> . FLOTANTE
+    (11) valorNumerico -> . VARIABLE_PHP
+    (12) valorNumerico -> . BOOLEANO
 
-    ENTERO          reduce using rule 15 (operador -> MENOS .)
-    FLOTANTE        reduce using rule 15 (operador -> MENOS .)
-    VARIABLE_PHP    reduce using rule 15 (operador -> MENOS .)
-    BOOLEANO        reduce using rule 15 (operador -> MENOS .)
+    ENTERO          shift and go to state 13
+    FLOTANTE        shift and go to state 14
+    VARIABLE_PHP    shift and go to state 35
+    BOOLEANO        shift and go to state 15
 
+    valorNumerico                  shift and go to state 33
+    operacion                      shift and go to state 34
 
 state 17
 
-    (16) operador -> MULTIPLICA .
+    (15) operador -> MAS .
 
-    ENTERO          reduce using rule 16 (operador -> MULTIPLICA .)
-    FLOTANTE        reduce using rule 16 (operador -> MULTIPLICA .)
-    VARIABLE_PHP    reduce using rule 16 (operador -> MULTIPLICA .)
-    BOOLEANO        reduce using rule 16 (operador -> MULTIPLICA .)
+    ENTERO          reduce using rule 15 (operador -> MAS .)
+    FLOTANTE        reduce using rule 15 (operador -> MAS .)
+    VARIABLE_PHP    reduce using rule 15 (operador -> MAS .)
+    BOOLEANO        reduce using rule 15 (operador -> MAS .)
 
 
 state 18
 
-    (17) operador -> DIVIDE .
+    (16) operador -> MENOS .
 
-    ENTERO          reduce using rule 17 (operador -> DIVIDE .)
-    FLOTANTE        reduce using rule 17 (operador -> DIVIDE .)
-    VARIABLE_PHP    reduce using rule 17 (operador -> DIVIDE .)
-    BOOLEANO        reduce using rule 17 (operador -> DIVIDE .)
+    ENTERO          reduce using rule 16 (operador -> MENOS .)
+    FLOTANTE        reduce using rule 16 (operador -> MENOS .)
+    VARIABLE_PHP    reduce using rule 16 (operador -> MENOS .)
+    BOOLEANO        reduce using rule 16 (operador -> MENOS .)
 
 
 state 19
 
-    (18) operador -> MODULO .
+    (17) operador -> MULTIPLICA .
 
-    ENTERO          reduce using rule 18 (operador -> MODULO .)
-    FLOTANTE        reduce using rule 18 (operador -> MODULO .)
-    VARIABLE_PHP    reduce using rule 18 (operador -> MODULO .)
-    BOOLEANO        reduce using rule 18 (operador -> MODULO .)
+    ENTERO          reduce using rule 17 (operador -> MULTIPLICA .)
+    FLOTANTE        reduce using rule 17 (operador -> MULTIPLICA .)
+    VARIABLE_PHP    reduce using rule 17 (operador -> MULTIPLICA .)
+    BOOLEANO        reduce using rule 17 (operador -> MULTIPLICA .)
 
 
 state 20
 
-    (19) operador -> EXPONENCIACION .
+    (18) operador -> DIVIDE .
 
-    ENTERO          reduce using rule 19 (operador -> EXPONENCIACION .)
-    FLOTANTE        reduce using rule 19 (operador -> EXPONENCIACION .)
-    VARIABLE_PHP    reduce using rule 19 (operador -> EXPONENCIACION .)
-    BOOLEANO        reduce using rule 19 (operador -> EXPONENCIACION .)
+    ENTERO          reduce using rule 18 (operador -> DIVIDE .)
+    FLOTANTE        reduce using rule 18 (operador -> DIVIDE .)
+    VARIABLE_PHP    reduce using rule 18 (operador -> DIVIDE .)
+    BOOLEANO        reduce using rule 18 (operador -> DIVIDE .)
 
 
 state 21
 
-    (20) asignacion -> VARIABLE_PHP OPERASIGNACION . valor
-    (6) valor -> . valorNumerico
-    (7) valor -> . CADENA
-    (8) valorNumerico -> . ENTERO
-    (9) valorNumerico -> . FLOTANTE
-    (10) valorNumerico -> . VARIABLE_PHP
-    (11) valorNumerico -> . BOOLEANO
+    (19) operador -> MODULO .
 
-    CADENA          shift and go to state 8
-    ENTERO          shift and go to state 11
-    FLOTANTE        shift and go to state 12
-    VARIABLE_PHP    shift and go to state 32
-    BOOLEANO        shift and go to state 13
+    ENTERO          reduce using rule 19 (operador -> MODULO .)
+    FLOTANTE        reduce using rule 19 (operador -> MODULO .)
+    VARIABLE_PHP    reduce using rule 19 (operador -> MODULO .)
+    BOOLEANO        reduce using rule 19 (operador -> MODULO .)
 
-    valor                          shift and go to state 33
-    valorNumerico                  shift and go to state 34
 
 state 22
 
-    (27) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado . valorNumerico
-    (8) valorNumerico -> . ENTERO
-    (9) valorNumerico -> . FLOTANTE
-    (10) valorNumerico -> . VARIABLE_PHP
-    (11) valorNumerico -> . BOOLEANO
+    (20) operador -> EXPONENCIACION .
 
-    ENTERO          shift and go to state 11
-    FLOTANTE        shift and go to state 12
-    VARIABLE_PHP    shift and go to state 32
-    BOOLEANO        shift and go to state 13
+    ENTERO          reduce using rule 20 (operador -> EXPONENCIACION .)
+    FLOTANTE        reduce using rule 20 (operador -> EXPONENCIACION .)
+    VARIABLE_PHP    reduce using rule 20 (operador -> EXPONENCIACION .)
+    BOOLEANO        reduce using rule 20 (operador -> EXPONENCIACION .)
 
-    valorNumerico                  shift and go to state 35
 
 state 23
 
-    (21) asignacion_abreviado -> MASIGUAL .
+    (21) asignacion -> VARIABLE_PHP OPERASIGNACION . valor
+    (7) valor -> . valorNumerico
+    (8) valor -> . CADENA
+    (9) valorNumerico -> . ENTERO
+    (10) valorNumerico -> . FLOTANTE
+    (11) valorNumerico -> . VARIABLE_PHP
+    (12) valorNumerico -> . BOOLEANO
 
-    ENTERO          reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
-    FLOTANTE        reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
-    VARIABLE_PHP    reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
-    BOOLEANO        reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
+    CADENA          shift and go to state 9
+    ENTERO          shift and go to state 13
+    FLOTANTE        shift and go to state 14
+    VARIABLE_PHP    shift and go to state 35
+    BOOLEANO        shift and go to state 15
 
+    valor                          shift and go to state 36
+    valorNumerico                  shift and go to state 37
 
 state 24
 
-    (22) asignacion_abreviado -> MENOSIGUAL .
+    (28) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado . valorNumerico
+    (9) valorNumerico -> . ENTERO
+    (10) valorNumerico -> . FLOTANTE
+    (11) valorNumerico -> . VARIABLE_PHP
+    (12) valorNumerico -> . BOOLEANO
 
-    ENTERO          reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
-    FLOTANTE        reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
-    VARIABLE_PHP    reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
-    BOOLEANO        reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
+    ENTERO          shift and go to state 13
+    FLOTANTE        shift and go to state 14
+    VARIABLE_PHP    shift and go to state 35
+    BOOLEANO        shift and go to state 15
 
+    valorNumerico                  shift and go to state 38
 
 state 25
 
-    (23) asignacion_abreviado -> ASTERISCOIGUAL .
+    (22) asignacion_abreviado -> MASIGUAL .
 
-    ENTERO          reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    FLOTANTE        reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    VARIABLE_PHP    reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    BOOLEANO        reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    ENTERO          reduce using rule 22 (asignacion_abreviado -> MASIGUAL .)
+    FLOTANTE        reduce using rule 22 (asignacion_abreviado -> MASIGUAL .)
+    VARIABLE_PHP    reduce using rule 22 (asignacion_abreviado -> MASIGUAL .)
+    BOOLEANO        reduce using rule 22 (asignacion_abreviado -> MASIGUAL .)
 
 
 state 26
 
-    (24) asignacion_abreviado -> BARRAIGUAL .
+    (23) asignacion_abreviado -> MENOSIGUAL .
 
-    ENTERO          reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
-    FLOTANTE        reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
-    VARIABLE_PHP    reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
-    BOOLEANO        reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
+    ENTERO          reduce using rule 23 (asignacion_abreviado -> MENOSIGUAL .)
+    FLOTANTE        reduce using rule 23 (asignacion_abreviado -> MENOSIGUAL .)
+    VARIABLE_PHP    reduce using rule 23 (asignacion_abreviado -> MENOSIGUAL .)
+    BOOLEANO        reduce using rule 23 (asignacion_abreviado -> MENOSIGUAL .)
 
 
 state 27
 
-    (25) asignacion_abreviado -> PORCENTAJEIGUAL .
+    (24) asignacion_abreviado -> ASTERISCOIGUAL .
 
-    ENTERO          reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    FLOTANTE        reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    VARIABLE_PHP    reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    BOOLEANO        reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    ENTERO          reduce using rule 24 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 24 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    VARIABLE_PHP    reduce using rule 24 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 24 (asignacion_abreviado -> ASTERISCOIGUAL .)
 
 
 state 28
 
-    (26) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
+    (25) asignacion_abreviado -> BARRAIGUAL .
 
-    ENTERO          reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    FLOTANTE        reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    VARIABLE_PHP    reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    BOOLEANO        reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    ENTERO          reduce using rule 25 (asignacion_abreviado -> BARRAIGUAL .)
+    FLOTANTE        reduce using rule 25 (asignacion_abreviado -> BARRAIGUAL .)
+    VARIABLE_PHP    reduce using rule 25 (asignacion_abreviado -> BARRAIGUAL .)
+    BOOLEANO        reduce using rule 25 (asignacion_abreviado -> BARRAIGUAL .)
 
 
 state 29
 
-    (28) print -> PRINT PARENIZQ . PARENDER PUNTOYCOMA
-    (29) print -> PRINT PARENIZQ . COMDOB COMDOB PARENDER PUNTOYCOMA
-    (30) print -> PRINT PARENIZQ . COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA
+    (26) asignacion_abreviado -> PORCENTAJEIGUAL .
 
-    PARENDER        shift and go to state 36
-    COMDOB          shift and go to state 37
+    ENTERO          reduce using rule 26 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    FLOTANTE        reduce using rule 26 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    VARIABLE_PHP    reduce using rule 26 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    BOOLEANO        reduce using rule 26 (asignacion_abreviado -> PORCENTAJEIGUAL .)
 
 
 state 30
 
-    (12) operacion -> valorNumerico .
-    (13) operacion -> valorNumerico . operador operacion
-    (14) operador -> . MAS
-    (15) operador -> . MENOS
-    (16) operador -> . MULTIPLICA
-    (17) operador -> . DIVIDE
-    (18) operador -> . MODULO
-    (19) operador -> . EXPONENCIACION
+    (27) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
 
-    $end            reduce using rule 12 (operacion -> valorNumerico .)
-    MAS             shift and go to state 15
-    MENOS           shift and go to state 16
-    MULTIPLICA      shift and go to state 17
-    DIVIDE          shift and go to state 18
-    MODULO          shift and go to state 19
-    EXPONENCIACION  shift and go to state 20
+    ENTERO          reduce using rule 27 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 27 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    VARIABLE_PHP    reduce using rule 27 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 27 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
 
-    operador                       shift and go to state 14
 
 state 31
 
-    (13) operacion -> valorNumerico operador operacion .
+    (29) print -> PRINT PARENIZQ . PARENDER PUNTOYCOMA
+    (30) print -> PRINT PARENIZQ . COMDOB COMDOB PARENDER PUNTOYCOMA
+    (31) print -> PRINT PARENIZQ . COMDOB valor COMDOB PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 13 (operacion -> valorNumerico operador operacion .)
+    PARENDER        shift and go to state 39
+    COMDOB          shift and go to state 40
 
 
 state 32
 
-    (10) valorNumerico -> VARIABLE_PHP .
+    (32) impresionEcho -> ECHO CADENA . PUNTOYCOMA
 
-    MAS             reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MENOS           reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MULTIPLICA      reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    DIVIDE          reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    MODULO          reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    EXPONENCIACION  reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
-    $end            reduce using rule 10 (valorNumerico -> VARIABLE_PHP .)
+    PUNTOYCOMA      shift and go to state 41
 
 
 state 33
 
-    (20) asignacion -> VARIABLE_PHP OPERASIGNACION valor .
+    (13) operacion -> valorNumerico .
+    (14) operacion -> valorNumerico . operador operacion
+    (15) operador -> . MAS
+    (16) operador -> . MENOS
+    (17) operador -> . MULTIPLICA
+    (18) operador -> . DIVIDE
+    (19) operador -> . MODULO
+    (20) operador -> . EXPONENCIACION
 
-    $end            reduce using rule 20 (asignacion -> VARIABLE_PHP OPERASIGNACION valor .)
+    $end            reduce using rule 13 (operacion -> valorNumerico .)
+    MAS             shift and go to state 17
+    MENOS           shift and go to state 18
+    MULTIPLICA      shift and go to state 19
+    DIVIDE          shift and go to state 20
+    MODULO          shift and go to state 21
+    EXPONENCIACION  shift and go to state 22
 
+    operador                       shift and go to state 16
 
 state 34
 
-    (6) valor -> valorNumerico .
+    (14) operacion -> valorNumerico operador operacion .
 
-    $end            reduce using rule 6 (valor -> valorNumerico .)
+    $end            reduce using rule 14 (operacion -> valorNumerico operador operacion .)
 
 
 state 35
 
-    (27) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico .
+    (11) valorNumerico -> VARIABLE_PHP .
 
-    $end            reduce using rule 27 (asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico .)
+    MAS             reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MENOS           reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MULTIPLICA      reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    DIVIDE          reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    MODULO          reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    EXPONENCIACION  reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    $end            reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
+    COMDOB          reduce using rule 11 (valorNumerico -> VARIABLE_PHP .)
 
 
 state 36
 
-    (28) print -> PRINT PARENIZQ PARENDER . PUNTOYCOMA
+    (21) asignacion -> VARIABLE_PHP OPERASIGNACION valor .
 
-    PUNTOYCOMA      shift and go to state 38
+    $end            reduce using rule 21 (asignacion -> VARIABLE_PHP OPERASIGNACION valor .)
 
 
 state 37
 
-    (29) print -> PRINT PARENIZQ COMDOB . COMDOB PARENDER PUNTOYCOMA
-    (30) print -> PRINT PARENIZQ COMDOB . VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA
+    (7) valor -> valorNumerico .
 
-    COMDOB          shift and go to state 39
-    VARIABLE_PHP    shift and go to state 40
+    $end            reduce using rule 7 (valor -> valorNumerico .)
+    COMDOB          reduce using rule 7 (valor -> valorNumerico .)
 
 
 state 38
 
-    (28) print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .
+    (28) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico .
 
-    $end            reduce using rule 28 (print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .)
+    $end            reduce using rule 28 (asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico .)
 
 
 state 39
 
-    (29) print -> PRINT PARENIZQ COMDOB COMDOB . PARENDER PUNTOYCOMA
+    (29) print -> PRINT PARENIZQ PARENDER . PUNTOYCOMA
 
-    PARENDER        shift and go to state 41
+    PUNTOYCOMA      shift and go to state 42
 
 
 state 40
 
-    (30) print -> PRINT PARENIZQ COMDOB VARIABLE_PHP . COMDOB PARENDER PUNTOYCOMA
+    (30) print -> PRINT PARENIZQ COMDOB . COMDOB PARENDER PUNTOYCOMA
+    (31) print -> PRINT PARENIZQ COMDOB . valor COMDOB PARENDER PUNTOYCOMA
+    (7) valor -> . valorNumerico
+    (8) valor -> . CADENA
+    (9) valorNumerico -> . ENTERO
+    (10) valorNumerico -> . FLOTANTE
+    (11) valorNumerico -> . VARIABLE_PHP
+    (12) valorNumerico -> . BOOLEANO
 
-    COMDOB          shift and go to state 42
+    COMDOB          shift and go to state 43
+    CADENA          shift and go to state 9
+    ENTERO          shift and go to state 13
+    FLOTANTE        shift and go to state 14
+    VARIABLE_PHP    shift and go to state 35
+    BOOLEANO        shift and go to state 15
 
+    valor                          shift and go to state 44
+    valorNumerico                  shift and go to state 37
 
 state 41
 
-    (29) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER . PUNTOYCOMA
+    (32) impresionEcho -> ECHO CADENA PUNTOYCOMA .
 
-    PUNTOYCOMA      shift and go to state 43
+    $end            reduce using rule 32 (impresionEcho -> ECHO CADENA PUNTOYCOMA .)
 
 
 state 42
 
-    (30) print -> PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB . PARENDER PUNTOYCOMA
+    (29) print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .
 
-    PARENDER        shift and go to state 44
+    $end            reduce using rule 29 (print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .)
 
 
 state 43
 
-    (29) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .
+    (30) print -> PRINT PARENIZQ COMDOB COMDOB . PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 29 (print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .)
+    PARENDER        shift and go to state 45
 
 
 state 44
 
-    (30) print -> PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER . PUNTOYCOMA
+    (31) print -> PRINT PARENIZQ COMDOB valor . COMDOB PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 45
+    COMDOB          shift and go to state 46
 
 
 state 45
 
-    (30) print -> PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA .
+    (30) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER . PUNTOYCOMA
 
-    $end            reduce using rule 30 (print -> PRINT PARENIZQ COMDOB VARIABLE_PHP COMDOB PARENDER PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 47
+
+
+state 46
+
+    (31) print -> PRINT PARENIZQ COMDOB valor COMDOB . PARENDER PUNTOYCOMA
+
+    PARENDER        shift and go to state 48
+
+
+state 47
+
+    (30) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .
+
+    $end            reduce using rule 30 (print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .)
+
+
+state 48
+
+    (31) print -> PRINT PARENIZQ COMDOB valor COMDOB PARENDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 49
+
+
+state 49
+
+    (31) print -> PRINT PARENIZQ COMDOB valor COMDOB PARENDER PUNTOYCOMA .
+
+    $end            reduce using rule 31 (print -> PRINT PARENIZQ COMDOB valor COMDOB PARENDER PUNTOYCOMA .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: reduce/reduce conflict in state 7 resolved using rule (valor -> valorNumerico)
-WARNING: rejected rule (operacion -> valorNumerico) in state 7
+WARNING: reduce/reduce conflict in state 8 resolved using rule (valor -> valorNumerico)
+WARNING: rejected rule (operacion -> valorNumerico) in state 8

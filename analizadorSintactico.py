@@ -1,12 +1,13 @@
 import ply.yacc as yacc
 from analizadorLexico import tokens
-
+#Gabriela
 def p_sentencias(p):
     '''sentencias : valor
                   | operacion
                   | asignacion
                   | asignacion_abreviatura_op
                   | print
+                  | impresionEcho
     '''
 def p_valor(p):
     '''valor : valorNumerico
@@ -30,6 +31,7 @@ def p_operador(p):
                 | DIVIDE
                 | MODULO
                 | EXPONENCIACION
+                
     '''
 def p_asignacion(p):
     '''asignacion : VARIABLE_PHP OPERASIGNACION valor
@@ -50,6 +52,10 @@ def p_print(p):
              | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA
              | PRINT PARENIZQ COMDOB  valor COMDOB PARENDER PUNTOYCOMA
     '''
+def p_impresionEcho(p) :
+    '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
+
+#Gabriela  
 
 def p_error(p):
     print("Syntax error")
