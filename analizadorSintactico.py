@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 from analizadorLexico import tokens
-#Gabriela
+#Gabriela --Correegido Cindy
 def p_sentencias(p):
     '''sentencias : valor
                   | operacion
@@ -8,6 +8,7 @@ def p_sentencias(p):
                   | asignacion_abreviatura_op
                   | print
                   | impresionEcho
+                  | crearMapa
     '''
 def p_valor(p):
     '''valor : valorNumerico
@@ -55,7 +56,18 @@ def p_print(p):
 def p_impresionEcho(p) :
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
 
-#Gabriela  
+#Gabriela  -Corregido Cindy
+
+
+#Daniel
+
+def p_crearMapa(p):
+    '''crearMapa : OPERAMAPA PARENIZQ valor COMA variable COMA variable PARENDER PUNTOYCOMA
+                   | OPERAMAPA PARENIZQ valor COMA valor COMA variable PARENDER PUNTOYCOMA
+                   | OPERAMAPA PARENIZQ valor COMA variable COMA valor PARENDER PUNTOYCOMA
+    '''
+
+#Daniel
 
 def p_error(p):
     print("Syntax error")
