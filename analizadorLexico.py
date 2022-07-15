@@ -34,7 +34,8 @@ reserved = {
     'float' : 'FLOAT',
     'null' : 'NULL',
     'true' : 'TRUE',
-    'false' : 'FALSE'
+    'false' : 'FALSE',
+    'insert' : 'INSERT'
 }
 
 tokens = [
