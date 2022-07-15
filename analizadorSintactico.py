@@ -76,24 +76,37 @@ def p_asignacion_abreviado(p):
 def p_asignacion_abreviatura_op(p):
     '''asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico
     '''
+#print();
+#print("");
+#print $a;
+#print("Hola mundo 1");
+
 def p_print(p):
     '''print : PRINT PARENIZQ PARENDER PUNTOYCOMA
              | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA
-             | PRINT PARENIZQ COMDOB  valor COMDOB PARENDER PUNTOYCOMA
+             | PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
+             | PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
+             | PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
+             | PRINT COMDOB TEXTOSENCILLO varphp COMDOB
     '''
 def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
 
 def p_condIf(p) :
-    '''condIf : IF PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
-                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
-                | IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER'''
+    '''condIf : IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
+                | IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER
+                | IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER
+                | IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    '''
+#do{$a+$b}while(True);
 
 def p_bucleDoWhile(p):
     '''bucleDoWhile : DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
                     | DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA'''
+                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
+    '''
+
 
 
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
