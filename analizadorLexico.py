@@ -2,47 +2,46 @@ import ply.lex as lex
 # Cindy
 # .
 # .
-reservadas = {
-    #PARA ESTRUCTURAS DE CONTROL
-    'if':'IF',
-    'else':'ELSE',
-    'do':'DO',
-    'while':'WHILE',
-    'end_while':'END_WHILE',
-    'for':'FOR',
-    'switch':'SWITCH',
-    'case':'CASE',
-    'end_switch':'END_SWITCH',
-    'break':'BREAK',
-    'continue':'CONTINUE',
-    'default':'DEFAULT',
-    'as':'AS',
-    'rsort':'RSORT',
-    'count':'COUNT',
-    'array':'ARRAY',
-    #PARA PALABRAS RESERVADAS
-    'global':'GLOBAL',
-    'static':'STATIC',
-    'const':'CONST',
-    'print':'PRINT',
-    'function':'FUNCTION',
-    'return':'RETURN',
-    'class':'CLASS',
-    'new':'NEW',
-    'extends':'EXTENDS',
-    'int':'INTEGER',
-    'string':'STRING',
-    'bool':'BOOLEAN',
-    'float':'FLOAT',
-    'null':'NULL',
-    'true':'TRUE',
-    'false':'FALSE'    
+reserved = {
+    'if' : 'IF',
+    'else' : 'ELSE',
+    'do' : 'DO',
+    'while' : 'WHILE',
+    'end_while' : 'END_WHILE',
+    'for' : 'FOR',
+    'switch' : 'SWITCH',
+    'case' : 'CASE',
+    'end_switch' : 'END_SWITCH',
+    'break' : 'BREAK',
+    'continue' : 'CONTINUE',
+    'default' : 'DEFAULT',
+    'as' : 'AS',
+    'rsort' : 'RSORT',
+    'count' : 'COUNT',
+    'array' : 'ARRAY',
+    'global' : 'GLOBAL',
+    'static' : 'STATIC',
+    'print' : 'PRINT',
+    'const' : 'CONST',
+    'function' : 'FUNCTION',
+    'return' : 'RETURN',
+    'class' : 'CLASS',
+    'new' : 'NEW',
+    'extends' : 'EXTENDS',
+    'int' : 'INTEGER',
+    'string' : 'STRING',
+    'bool' : 'BOOLEAN',
+    'float' : 'FLOAT',
+    'null' : 'NULL',
+    'true' : 'TRUE',
+    'false' : 'FALSE'
 }
 
-tokens = (
+tokens = [
     'PUNTOYCOMA',
     'PUNTO',
     'COMA',
+    'COMDOB',
     'DOSPUNTOS',
     'PARENIZQ',
     'PARENDER',
@@ -74,11 +73,9 @@ tokens = (
     'BOOLEANO',
     'MAYORQUE',
     'MENORQUE',
-    #
     'INICIO',
     'FIN',
     'OPERLOG_AND',
-    #ESENCIALES
     'CADENA',
     'ENTERO',
     'FLOTANTE',
@@ -90,15 +87,16 @@ tokens = (
     'OPERACIONSUM',
     'OPERAPUT',
     'ECHO',
-    #VISIBILIDAD
     'PUBLIC',
     'PROTECTED',
-    'PRIVATE'
-) + tuple(reservadas.values())
+    'PRIVATE',
+    #'PRINT'
+ ] + list(reserved.values())
 
 t_PUNTOYCOMA = r';'
 t_PUNTO = r'\.'
 t_COMA = r','
+t_COMDOB = r'\"'
 t_DOSPUNTOS = r':'
 t_PARENIZQ = r'\('
 t_PARENDER = r'\)'
@@ -175,15 +173,18 @@ def t_CADENA(t):
 t_COMENTARIO_UNA_LINEA =r'//'+'.*'
 t_COMENTARIO_LARGO = r'/\*'+'.*'+'\*/'
 
+
 def t_FLOTANTE(t):
     r'\d+\.\d+'
     t.value = float(t.value)
     return t
 
 def t_VARIABLE(t):
-    r'\$[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = reservadas.get(t.value, "VARIABLE")
+    r'(\$[a-zA-Z_][a-zA-Z0-9_]* | [a-zA-Z_][a-zA-Z0-9_]*)'
+    t.type = reserved.get(t.value, "VARIABLE")
     return t
+
+
 #--------------
 
 #.
@@ -206,25 +207,46 @@ def t_contadorLineas(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
 
+#Cindy
+# def t_PRINT(t):
+#     r'print'
+#     return t
+
 def t_error(t):
     print("Caracter no reconocido {t.value[0]} en línea {t.lineno}")
     t.lexer.skip(1)
 
-validador = lex.lex()
+lexer = lex.lex()
 
-def getTokens(lexer):
-    while True:
-        tok = lexer.token()
-        if not tok:
-            break
-        print(tok)
+# def analizar(data):
+#     lexer.input(data)
+#     while True:
+#         tok = lexer.token()
+#         if not tok:
+#             break
+#         print(tok)
 
-linea=" "
-codigo = open("source.vb")
-for linea in codigo:
-  validador.input(linea)
-  getTokens(validador)
-codigo.close()
+
+# while True:
+#     data = input('>> ')
+#     analizar(data)
+#     if len(data)==0:
+#         break
+#-----------------------
+# validador = lex.lex()
+# def getTokens(lexer):
+#     while True:
+#         tok = lexer.token()
+#         if not tok:
+#             break
+#         print(tok)
+
+# linea=" "
+# codigo = open("source.vb")
+# for linea in codigo:
+#   validador.input(linea)
+#   getTokens(validador)
+# codigo.close()
 
 print("Análisis Léxico terminado... :)")
 

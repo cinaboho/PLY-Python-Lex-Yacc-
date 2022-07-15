@@ -6,7 +6,7 @@ def p_sentencias(p):
                   | operacion
                   | asignacion
                   | asignacion_abreviatura_op
-
+                  | print
     '''
 def p_valor(p):
     '''valor : valorNumerico
@@ -44,6 +44,9 @@ def p_asignacion_abreviado(p):
 def p_asignacion_abreviatura_op(p):
     '''asignacion_abreviatura_op : VARIABLE asignacion_abreviado valorNumerico
     '''
+def p_print(p):
+    '''print : PRINT
+    '''
 
 def p_error(p):
     print("Syntax error")
@@ -51,9 +54,10 @@ def p_error(p):
 parser = yacc.yacc()
 while True:
     try:
-        s = input("calc >")
+        s = input("calc>")
     except EOFError:
         break
     if not s: continue
     result = parser.parse(s)
     print(result)
+    

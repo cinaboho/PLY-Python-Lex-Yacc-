@@ -10,6 +10,7 @@ Unused terminals:
     CASE
     CLASS
     COMA
+    COMDOB
     COMENTARIO_LARGO
     COMENTARIO_UNA_LINEA
     CONST
@@ -54,7 +55,6 @@ Unused terminals:
     OPERLOG_AND
     PARENDER
     PARENIZQ
-    PRINT
     PRIVATE
     PROTECTED
     PUBLIC
@@ -75,43 +75,46 @@ Rule 1     sentencias -> valor
 Rule 2     sentencias -> operacion
 Rule 3     sentencias -> asignacion
 Rule 4     sentencias -> asignacion_abreviatura_op
-Rule 5     valor -> valorNumerico
-Rule 6     valor -> CADENA
-Rule 7     valorNumerico -> ENTERO
-Rule 8     valorNumerico -> FLOTANTE
-Rule 9     valorNumerico -> VARIABLE
-Rule 10    valorNumerico -> BOOLEANO
-Rule 11    operacion -> valorNumerico
-Rule 12    operacion -> valorNumerico operador operacion
-Rule 13    operador -> MAS
-Rule 14    operador -> MENOS
-Rule 15    operador -> MULTIPLICA
-Rule 16    operador -> DIVIDE
-Rule 17    operador -> MODULO
-Rule 18    operador -> EXPONENCIACION
-Rule 19    asignacion -> VARIABLE OPERASIGNACION valor
-Rule 20    asignacion_abreviado -> MASIGUAL
-Rule 21    asignacion_abreviado -> MENOSIGUAL
-Rule 22    asignacion_abreviado -> ASTERISCOIGUAL
-Rule 23    asignacion_abreviado -> BARRAIGUAL
-Rule 24    asignacion_abreviado -> PORCENTAJEIGUAL
-Rule 25    asignacion_abreviado -> DOBLEASTERISCOIGUAL
-Rule 26    asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico
+Rule 5     sentencias -> print
+Rule 6     valor -> valorNumerico
+Rule 7     valor -> CADENA
+Rule 8     valorNumerico -> ENTERO
+Rule 9     valorNumerico -> FLOTANTE
+Rule 10    valorNumerico -> VARIABLE
+Rule 11    valorNumerico -> BOOLEANO
+Rule 12    operacion -> valorNumerico
+Rule 13    operacion -> valorNumerico operador operacion
+Rule 14    operador -> MAS
+Rule 15    operador -> MENOS
+Rule 16    operador -> MULTIPLICA
+Rule 17    operador -> DIVIDE
+Rule 18    operador -> MODULO
+Rule 19    operador -> EXPONENCIACION
+Rule 20    asignacion -> VARIABLE OPERASIGNACION valor
+Rule 21    asignacion_abreviado -> MASIGUAL
+Rule 22    asignacion_abreviado -> MENOSIGUAL
+Rule 23    asignacion_abreviado -> ASTERISCOIGUAL
+Rule 24    asignacion_abreviado -> BARRAIGUAL
+Rule 25    asignacion_abreviado -> PORCENTAJEIGUAL
+Rule 26    asignacion_abreviado -> DOBLEASTERISCOIGUAL
+Rule 27    asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico
+Rule 28    print -> PRINT
 
 Terminals, with rules where they appear
 
 AMPERSAND            : 
 ARRAY                : 
 AS                   : 
-ASTERISCOIGUAL       : 22
-BARRAIGUAL           : 23
+ASTERISCOIGUAL       : 23
+BARRAIGUAL           : 24
 BOOLEAN              : 
-BOOLEANO             : 10
+BOOLEANO             : 11
 BREAK                : 
-CADENA               : 6
+CADENA               : 7
 CASE                 : 
 CLASS                : 
 COMA                 : 
+COMDOB               : 
 COMENTARIO_LARGO     : 
 COMENTARIO_UNA_LINEA : 
 CONST                : 
@@ -120,21 +123,21 @@ CORCHDER             :
 CORCHIZQ             : 
 COUNT                : 
 DEFAULT              : 
-DIVIDE               : 16
+DIVIDE               : 17
 DO                   : 
-DOBLEASTERISCOIGUAL  : 25
+DOBLEASTERISCOIGUAL  : 26
 DOSPUNTOS            : 
 ECHO                 : 
 ELSE                 : 
 END_SWITCH           : 
 END_WHILE            : 
-ENTERO               : 7
-EXPONENCIACION       : 18
+ENTERO               : 8
+EXPONENCIACION       : 19
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
 FLOAT                : 
-FLOTANTE             : 8
+FLOTANTE             : 9
 FOR                  : 
 FUNCTION             : 
 GLOBAL               : 
@@ -143,21 +146,21 @@ INICIO               :
 INTEGER              : 
 LLAVEDER             : 
 LLAVEIZQ             : 
-MAS                  : 13
-MASIGUAL             : 20
+MAS                  : 14
+MASIGUAL             : 21
 MAYORQUE             : 
 MENORQUE             : 
-MENOS                : 14
-MENOSIGUAL           : 21
-MODULO               : 17
-MULTIPLICA           : 15
+MENOS                : 15
+MENOSIGUAL           : 22
+MODULO               : 18
+MULTIPLICA           : 16
 NEW                  : 
 NULL                 : 
 OPERACIONSUM         : 
 OPERALOGICO_MAP      : 
 OPERAMAPA            : 
 OPERAPUT             : 
-OPERASIGNACION       : 19
+OPERASIGNACION       : 20
 OPERASIG_ARRAY       : 
 OPERCOMPARACION      : 
 OPERLOGICO_AND       : 
@@ -168,8 +171,8 @@ OPERLOGICO_XOR       :
 OPERLOG_AND          : 
 PARENDER             : 
 PARENIZQ             : 
-PORCENTAJEIGUAL      : 24
-PRINT                : 
+PORCENTAJEIGUAL      : 25
+PRINT                : 28
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
@@ -181,20 +184,21 @@ STATIC               :
 STRING               : 
 SWITCH               : 
 TRUE                 : 
-VARIABLE             : 9 19 26
+VARIABLE             : 10 20 27
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
 asignacion           : 3
-asignacion_abreviado : 26
+asignacion_abreviado : 27
 asignacion_abreviatura_op : 4
-operacion            : 2 12
-operador             : 12
+operacion            : 2 13
+operador             : 13
+print                : 5
 sentencias           : 0
-valor                : 1 19
-valorNumerico        : 5 11 12 26
+valor                : 1 20
+valorNumerico        : 6 12 13 27
 
 Parsing method: LALR
 
@@ -205,29 +209,33 @@ state 0
     (2) sentencias -> . operacion
     (3) sentencias -> . asignacion
     (4) sentencias -> . asignacion_abreviatura_op
-    (5) valor -> . valorNumerico
-    (6) valor -> . CADENA
-    (11) operacion -> . valorNumerico
-    (12) operacion -> . valorNumerico operador operacion
-    (19) asignacion -> . VARIABLE OPERASIGNACION valor
-    (26) asignacion_abreviatura_op -> . VARIABLE asignacion_abreviado valorNumerico
-    (7) valorNumerico -> . ENTERO
-    (8) valorNumerico -> . FLOTANTE
-    (9) valorNumerico -> . VARIABLE
-    (10) valorNumerico -> . BOOLEANO
+    (5) sentencias -> . print
+    (6) valor -> . valorNumerico
+    (7) valor -> . CADENA
+    (12) operacion -> . valorNumerico
+    (13) operacion -> . valorNumerico operador operacion
+    (20) asignacion -> . VARIABLE OPERASIGNACION valor
+    (27) asignacion_abreviatura_op -> . VARIABLE asignacion_abreviado valorNumerico
+    (28) print -> . PRINT
+    (8) valorNumerico -> . ENTERO
+    (9) valorNumerico -> . FLOTANTE
+    (10) valorNumerico -> . VARIABLE
+    (11) valorNumerico -> . BOOLEANO
 
-    CADENA          shift and go to state 7
-    VARIABLE        shift and go to state 8
-    ENTERO          shift and go to state 9
-    FLOTANTE        shift and go to state 10
-    BOOLEANO        shift and go to state 11
+    CADENA          shift and go to state 8
+    VARIABLE        shift and go to state 9
+    PRINT           shift and go to state 10
+    ENTERO          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    BOOLEANO        shift and go to state 13
 
     sentencias                     shift and go to state 1
     valor                          shift and go to state 2
     operacion                      shift and go to state 3
     asignacion                     shift and go to state 4
     asignacion_abreviatura_op      shift and go to state 5
-    valorNumerico                  shift and go to state 6
+    print                          shift and go to state 6
+    valorNumerico                  shift and go to state 7
 
 state 1
 
@@ -265,339 +273,353 @@ state 5
 
 state 6
 
-    (5) valor -> valorNumerico .
-    (11) operacion -> valorNumerico .
-    (12) operacion -> valorNumerico . operador operacion
-    (13) operador -> . MAS
-    (14) operador -> . MENOS
-    (15) operador -> . MULTIPLICA
-    (16) operador -> . DIVIDE
-    (17) operador -> . MODULO
-    (18) operador -> . EXPONENCIACION
+    (5) sentencias -> print .
 
-  ! reduce/reduce conflict for $end resolved using rule 5 (valor -> valorNumerico .)
-    $end            reduce using rule 5 (valor -> valorNumerico .)
-    MAS             shift and go to state 13
-    MENOS           shift and go to state 14
-    MULTIPLICA      shift and go to state 15
-    DIVIDE          shift and go to state 16
-    MODULO          shift and go to state 17
-    EXPONENCIACION  shift and go to state 18
+    $end            reduce using rule 5 (sentencias -> print .)
 
-  ! $end            [ reduce using rule 11 (operacion -> valorNumerico .) ]
-
-    operador                       shift and go to state 12
 
 state 7
 
-    (6) valor -> CADENA .
+    (6) valor -> valorNumerico .
+    (12) operacion -> valorNumerico .
+    (13) operacion -> valorNumerico . operador operacion
+    (14) operador -> . MAS
+    (15) operador -> . MENOS
+    (16) operador -> . MULTIPLICA
+    (17) operador -> . DIVIDE
+    (18) operador -> . MODULO
+    (19) operador -> . EXPONENCIACION
 
-    $end            reduce using rule 6 (valor -> CADENA .)
+  ! reduce/reduce conflict for $end resolved using rule 6 (valor -> valorNumerico .)
+    $end            reduce using rule 6 (valor -> valorNumerico .)
+    MAS             shift and go to state 15
+    MENOS           shift and go to state 16
+    MULTIPLICA      shift and go to state 17
+    DIVIDE          shift and go to state 18
+    MODULO          shift and go to state 19
+    EXPONENCIACION  shift and go to state 20
 
+  ! $end            [ reduce using rule 12 (operacion -> valorNumerico .) ]
+
+    operador                       shift and go to state 14
 
 state 8
 
-    (19) asignacion -> VARIABLE . OPERASIGNACION valor
-    (26) asignacion_abreviatura_op -> VARIABLE . asignacion_abreviado valorNumerico
-    (9) valorNumerico -> VARIABLE .
-    (20) asignacion_abreviado -> . MASIGUAL
-    (21) asignacion_abreviado -> . MENOSIGUAL
-    (22) asignacion_abreviado -> . ASTERISCOIGUAL
-    (23) asignacion_abreviado -> . BARRAIGUAL
-    (24) asignacion_abreviado -> . PORCENTAJEIGUAL
-    (25) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
+    (7) valor -> CADENA .
 
-    OPERASIGNACION  shift and go to state 19
-    MAS             reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MENOS           reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MULTIPLICA      reduce using rule 9 (valorNumerico -> VARIABLE .)
-    DIVIDE          reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MODULO          reduce using rule 9 (valorNumerico -> VARIABLE .)
-    EXPONENCIACION  reduce using rule 9 (valorNumerico -> VARIABLE .)
-    $end            reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MASIGUAL        shift and go to state 21
-    MENOSIGUAL      shift and go to state 22
-    ASTERISCOIGUAL  shift and go to state 23
-    BARRAIGUAL      shift and go to state 24
-    PORCENTAJEIGUAL shift and go to state 25
-    DOBLEASTERISCOIGUAL shift and go to state 26
+    $end            reduce using rule 7 (valor -> CADENA .)
 
-    asignacion_abreviado           shift and go to state 20
 
 state 9
 
-    (7) valorNumerico -> ENTERO .
+    (20) asignacion -> VARIABLE . OPERASIGNACION valor
+    (27) asignacion_abreviatura_op -> VARIABLE . asignacion_abreviado valorNumerico
+    (10) valorNumerico -> VARIABLE .
+    (21) asignacion_abreviado -> . MASIGUAL
+    (22) asignacion_abreviado -> . MENOSIGUAL
+    (23) asignacion_abreviado -> . ASTERISCOIGUAL
+    (24) asignacion_abreviado -> . BARRAIGUAL
+    (25) asignacion_abreviado -> . PORCENTAJEIGUAL
+    (26) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
 
-    MAS             reduce using rule 7 (valorNumerico -> ENTERO .)
-    MENOS           reduce using rule 7 (valorNumerico -> ENTERO .)
-    MULTIPLICA      reduce using rule 7 (valorNumerico -> ENTERO .)
-    DIVIDE          reduce using rule 7 (valorNumerico -> ENTERO .)
-    MODULO          reduce using rule 7 (valorNumerico -> ENTERO .)
-    EXPONENCIACION  reduce using rule 7 (valorNumerico -> ENTERO .)
-    $end            reduce using rule 7 (valorNumerico -> ENTERO .)
+    OPERASIGNACION  shift and go to state 21
+    MAS             reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MENOS           reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MULTIPLICA      reduce using rule 10 (valorNumerico -> VARIABLE .)
+    DIVIDE          reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MODULO          reduce using rule 10 (valorNumerico -> VARIABLE .)
+    EXPONENCIACION  reduce using rule 10 (valorNumerico -> VARIABLE .)
+    $end            reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MASIGUAL        shift and go to state 23
+    MENOSIGUAL      shift and go to state 24
+    ASTERISCOIGUAL  shift and go to state 25
+    BARRAIGUAL      shift and go to state 26
+    PORCENTAJEIGUAL shift and go to state 27
+    DOBLEASTERISCOIGUAL shift and go to state 28
 
+    asignacion_abreviado           shift and go to state 22
 
 state 10
 
-    (8) valorNumerico -> FLOTANTE .
+    (28) print -> PRINT .
 
-    MAS             reduce using rule 8 (valorNumerico -> FLOTANTE .)
-    MENOS           reduce using rule 8 (valorNumerico -> FLOTANTE .)
-    MULTIPLICA      reduce using rule 8 (valorNumerico -> FLOTANTE .)
-    DIVIDE          reduce using rule 8 (valorNumerico -> FLOTANTE .)
-    MODULO          reduce using rule 8 (valorNumerico -> FLOTANTE .)
-    EXPONENCIACION  reduce using rule 8 (valorNumerico -> FLOTANTE .)
-    $end            reduce using rule 8 (valorNumerico -> FLOTANTE .)
+    $end            reduce using rule 28 (print -> PRINT .)
 
 
 state 11
 
-    (10) valorNumerico -> BOOLEANO .
+    (8) valorNumerico -> ENTERO .
 
-    MAS             reduce using rule 10 (valorNumerico -> BOOLEANO .)
-    MENOS           reduce using rule 10 (valorNumerico -> BOOLEANO .)
-    MULTIPLICA      reduce using rule 10 (valorNumerico -> BOOLEANO .)
-    DIVIDE          reduce using rule 10 (valorNumerico -> BOOLEANO .)
-    MODULO          reduce using rule 10 (valorNumerico -> BOOLEANO .)
-    EXPONENCIACION  reduce using rule 10 (valorNumerico -> BOOLEANO .)
-    $end            reduce using rule 10 (valorNumerico -> BOOLEANO .)
+    MAS             reduce using rule 8 (valorNumerico -> ENTERO .)
+    MENOS           reduce using rule 8 (valorNumerico -> ENTERO .)
+    MULTIPLICA      reduce using rule 8 (valorNumerico -> ENTERO .)
+    DIVIDE          reduce using rule 8 (valorNumerico -> ENTERO .)
+    MODULO          reduce using rule 8 (valorNumerico -> ENTERO .)
+    EXPONENCIACION  reduce using rule 8 (valorNumerico -> ENTERO .)
+    $end            reduce using rule 8 (valorNumerico -> ENTERO .)
 
 
 state 12
 
-    (12) operacion -> valorNumerico operador . operacion
-    (11) operacion -> . valorNumerico
-    (12) operacion -> . valorNumerico operador operacion
-    (7) valorNumerico -> . ENTERO
-    (8) valorNumerico -> . FLOTANTE
-    (9) valorNumerico -> . VARIABLE
-    (10) valorNumerico -> . BOOLEANO
+    (9) valorNumerico -> FLOTANTE .
 
-    ENTERO          shift and go to state 9
-    FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 29
-    BOOLEANO        shift and go to state 11
+    MAS             reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    MENOS           reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    MULTIPLICA      reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    DIVIDE          reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    MODULO          reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 9 (valorNumerico -> FLOTANTE .)
+    $end            reduce using rule 9 (valorNumerico -> FLOTANTE .)
 
-    valorNumerico                  shift and go to state 27
-    operacion                      shift and go to state 28
 
 state 13
 
-    (13) operador -> MAS .
+    (11) valorNumerico -> BOOLEANO .
 
-    ENTERO          reduce using rule 13 (operador -> MAS .)
-    FLOTANTE        reduce using rule 13 (operador -> MAS .)
-    VARIABLE        reduce using rule 13 (operador -> MAS .)
-    BOOLEANO        reduce using rule 13 (operador -> MAS .)
+    MAS             reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    MENOS           reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    MULTIPLICA      reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    DIVIDE          reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    MODULO          reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    EXPONENCIACION  reduce using rule 11 (valorNumerico -> BOOLEANO .)
+    $end            reduce using rule 11 (valorNumerico -> BOOLEANO .)
 
 
 state 14
 
-    (14) operador -> MENOS .
+    (13) operacion -> valorNumerico operador . operacion
+    (12) operacion -> . valorNumerico
+    (13) operacion -> . valorNumerico operador operacion
+    (8) valorNumerico -> . ENTERO
+    (9) valorNumerico -> . FLOTANTE
+    (10) valorNumerico -> . VARIABLE
+    (11) valorNumerico -> . BOOLEANO
 
-    ENTERO          reduce using rule 14 (operador -> MENOS .)
-    FLOTANTE        reduce using rule 14 (operador -> MENOS .)
-    VARIABLE        reduce using rule 14 (operador -> MENOS .)
-    BOOLEANO        reduce using rule 14 (operador -> MENOS .)
+    ENTERO          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    VARIABLE        shift and go to state 31
+    BOOLEANO        shift and go to state 13
 
+    valorNumerico                  shift and go to state 29
+    operacion                      shift and go to state 30
 
 state 15
 
-    (15) operador -> MULTIPLICA .
+    (14) operador -> MAS .
 
-    ENTERO          reduce using rule 15 (operador -> MULTIPLICA .)
-    FLOTANTE        reduce using rule 15 (operador -> MULTIPLICA .)
-    VARIABLE        reduce using rule 15 (operador -> MULTIPLICA .)
-    BOOLEANO        reduce using rule 15 (operador -> MULTIPLICA .)
+    ENTERO          reduce using rule 14 (operador -> MAS .)
+    FLOTANTE        reduce using rule 14 (operador -> MAS .)
+    VARIABLE        reduce using rule 14 (operador -> MAS .)
+    BOOLEANO        reduce using rule 14 (operador -> MAS .)
 
 
 state 16
 
-    (16) operador -> DIVIDE .
+    (15) operador -> MENOS .
 
-    ENTERO          reduce using rule 16 (operador -> DIVIDE .)
-    FLOTANTE        reduce using rule 16 (operador -> DIVIDE .)
-    VARIABLE        reduce using rule 16 (operador -> DIVIDE .)
-    BOOLEANO        reduce using rule 16 (operador -> DIVIDE .)
+    ENTERO          reduce using rule 15 (operador -> MENOS .)
+    FLOTANTE        reduce using rule 15 (operador -> MENOS .)
+    VARIABLE        reduce using rule 15 (operador -> MENOS .)
+    BOOLEANO        reduce using rule 15 (operador -> MENOS .)
 
 
 state 17
 
-    (17) operador -> MODULO .
+    (16) operador -> MULTIPLICA .
 
-    ENTERO          reduce using rule 17 (operador -> MODULO .)
-    FLOTANTE        reduce using rule 17 (operador -> MODULO .)
-    VARIABLE        reduce using rule 17 (operador -> MODULO .)
-    BOOLEANO        reduce using rule 17 (operador -> MODULO .)
+    ENTERO          reduce using rule 16 (operador -> MULTIPLICA .)
+    FLOTANTE        reduce using rule 16 (operador -> MULTIPLICA .)
+    VARIABLE        reduce using rule 16 (operador -> MULTIPLICA .)
+    BOOLEANO        reduce using rule 16 (operador -> MULTIPLICA .)
 
 
 state 18
 
-    (18) operador -> EXPONENCIACION .
+    (17) operador -> DIVIDE .
 
-    ENTERO          reduce using rule 18 (operador -> EXPONENCIACION .)
-    FLOTANTE        reduce using rule 18 (operador -> EXPONENCIACION .)
-    VARIABLE        reduce using rule 18 (operador -> EXPONENCIACION .)
-    BOOLEANO        reduce using rule 18 (operador -> EXPONENCIACION .)
+    ENTERO          reduce using rule 17 (operador -> DIVIDE .)
+    FLOTANTE        reduce using rule 17 (operador -> DIVIDE .)
+    VARIABLE        reduce using rule 17 (operador -> DIVIDE .)
+    BOOLEANO        reduce using rule 17 (operador -> DIVIDE .)
 
 
 state 19
 
-    (19) asignacion -> VARIABLE OPERASIGNACION . valor
-    (5) valor -> . valorNumerico
-    (6) valor -> . CADENA
-    (7) valorNumerico -> . ENTERO
-    (8) valorNumerico -> . FLOTANTE
-    (9) valorNumerico -> . VARIABLE
-    (10) valorNumerico -> . BOOLEANO
+    (18) operador -> MODULO .
 
-    CADENA          shift and go to state 7
-    ENTERO          shift and go to state 9
-    FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 29
-    BOOLEANO        shift and go to state 11
+    ENTERO          reduce using rule 18 (operador -> MODULO .)
+    FLOTANTE        reduce using rule 18 (operador -> MODULO .)
+    VARIABLE        reduce using rule 18 (operador -> MODULO .)
+    BOOLEANO        reduce using rule 18 (operador -> MODULO .)
 
-    valor                          shift and go to state 30
-    valorNumerico                  shift and go to state 31
 
 state 20
 
-    (26) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado . valorNumerico
-    (7) valorNumerico -> . ENTERO
-    (8) valorNumerico -> . FLOTANTE
-    (9) valorNumerico -> . VARIABLE
-    (10) valorNumerico -> . BOOLEANO
+    (19) operador -> EXPONENCIACION .
 
-    ENTERO          shift and go to state 9
-    FLOTANTE        shift and go to state 10
-    VARIABLE        shift and go to state 29
-    BOOLEANO        shift and go to state 11
+    ENTERO          reduce using rule 19 (operador -> EXPONENCIACION .)
+    FLOTANTE        reduce using rule 19 (operador -> EXPONENCIACION .)
+    VARIABLE        reduce using rule 19 (operador -> EXPONENCIACION .)
+    BOOLEANO        reduce using rule 19 (operador -> EXPONENCIACION .)
 
-    valorNumerico                  shift and go to state 32
 
 state 21
 
-    (20) asignacion_abreviado -> MASIGUAL .
+    (20) asignacion -> VARIABLE OPERASIGNACION . valor
+    (6) valor -> . valorNumerico
+    (7) valor -> . CADENA
+    (8) valorNumerico -> . ENTERO
+    (9) valorNumerico -> . FLOTANTE
+    (10) valorNumerico -> . VARIABLE
+    (11) valorNumerico -> . BOOLEANO
 
-    ENTERO          reduce using rule 20 (asignacion_abreviado -> MASIGUAL .)
-    FLOTANTE        reduce using rule 20 (asignacion_abreviado -> MASIGUAL .)
-    VARIABLE        reduce using rule 20 (asignacion_abreviado -> MASIGUAL .)
-    BOOLEANO        reduce using rule 20 (asignacion_abreviado -> MASIGUAL .)
+    CADENA          shift and go to state 8
+    ENTERO          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    VARIABLE        shift and go to state 31
+    BOOLEANO        shift and go to state 13
 
+    valor                          shift and go to state 32
+    valorNumerico                  shift and go to state 33
 
 state 22
 
-    (21) asignacion_abreviado -> MENOSIGUAL .
+    (27) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado . valorNumerico
+    (8) valorNumerico -> . ENTERO
+    (9) valorNumerico -> . FLOTANTE
+    (10) valorNumerico -> . VARIABLE
+    (11) valorNumerico -> . BOOLEANO
 
-    ENTERO          reduce using rule 21 (asignacion_abreviado -> MENOSIGUAL .)
-    FLOTANTE        reduce using rule 21 (asignacion_abreviado -> MENOSIGUAL .)
-    VARIABLE        reduce using rule 21 (asignacion_abreviado -> MENOSIGUAL .)
-    BOOLEANO        reduce using rule 21 (asignacion_abreviado -> MENOSIGUAL .)
+    ENTERO          shift and go to state 11
+    FLOTANTE        shift and go to state 12
+    VARIABLE        shift and go to state 31
+    BOOLEANO        shift and go to state 13
 
+    valorNumerico                  shift and go to state 34
 
 state 23
 
-    (22) asignacion_abreviado -> ASTERISCOIGUAL .
+    (21) asignacion_abreviado -> MASIGUAL .
 
-    ENTERO          reduce using rule 22 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    FLOTANTE        reduce using rule 22 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    VARIABLE        reduce using rule 22 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    BOOLEANO        reduce using rule 22 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    ENTERO          reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
+    FLOTANTE        reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
+    VARIABLE        reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
+    BOOLEANO        reduce using rule 21 (asignacion_abreviado -> MASIGUAL .)
 
 
 state 24
 
-    (23) asignacion_abreviado -> BARRAIGUAL .
+    (22) asignacion_abreviado -> MENOSIGUAL .
 
-    ENTERO          reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
-    FLOTANTE        reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
-    VARIABLE        reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
-    BOOLEANO        reduce using rule 23 (asignacion_abreviado -> BARRAIGUAL .)
+    ENTERO          reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
+    FLOTANTE        reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
+    VARIABLE        reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
+    BOOLEANO        reduce using rule 22 (asignacion_abreviado -> MENOSIGUAL .)
 
 
 state 25
 
-    (24) asignacion_abreviado -> PORCENTAJEIGUAL .
+    (23) asignacion_abreviado -> ASTERISCOIGUAL .
 
-    ENTERO          reduce using rule 24 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    FLOTANTE        reduce using rule 24 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    VARIABLE        reduce using rule 24 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    BOOLEANO        reduce using rule 24 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    ENTERO          reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    VARIABLE        reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 23 (asignacion_abreviado -> ASTERISCOIGUAL .)
 
 
 state 26
 
-    (25) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
+    (24) asignacion_abreviado -> BARRAIGUAL .
 
-    ENTERO          reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    FLOTANTE        reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    VARIABLE        reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    BOOLEANO        reduce using rule 25 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    ENTERO          reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
+    FLOTANTE        reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
+    VARIABLE        reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
+    BOOLEANO        reduce using rule 24 (asignacion_abreviado -> BARRAIGUAL .)
 
 
 state 27
 
-    (11) operacion -> valorNumerico .
-    (12) operacion -> valorNumerico . operador operacion
-    (13) operador -> . MAS
-    (14) operador -> . MENOS
-    (15) operador -> . MULTIPLICA
-    (16) operador -> . DIVIDE
-    (17) operador -> . MODULO
-    (18) operador -> . EXPONENCIACION
+    (25) asignacion_abreviado -> PORCENTAJEIGUAL .
 
-    $end            reduce using rule 11 (operacion -> valorNumerico .)
-    MAS             shift and go to state 13
-    MENOS           shift and go to state 14
-    MULTIPLICA      shift and go to state 15
-    DIVIDE          shift and go to state 16
-    MODULO          shift and go to state 17
-    EXPONENCIACION  shift and go to state 18
+    ENTERO          reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    FLOTANTE        reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    VARIABLE        reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    BOOLEANO        reduce using rule 25 (asignacion_abreviado -> PORCENTAJEIGUAL .)
 
-    operador                       shift and go to state 12
 
 state 28
 
-    (12) operacion -> valorNumerico operador operacion .
+    (26) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
 
-    $end            reduce using rule 12 (operacion -> valorNumerico operador operacion .)
+    ENTERO          reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    VARIABLE        reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 26 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
 
 
 state 29
 
-    (9) valorNumerico -> VARIABLE .
+    (12) operacion -> valorNumerico .
+    (13) operacion -> valorNumerico . operador operacion
+    (14) operador -> . MAS
+    (15) operador -> . MENOS
+    (16) operador -> . MULTIPLICA
+    (17) operador -> . DIVIDE
+    (18) operador -> . MODULO
+    (19) operador -> . EXPONENCIACION
 
-    MAS             reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MENOS           reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MULTIPLICA      reduce using rule 9 (valorNumerico -> VARIABLE .)
-    DIVIDE          reduce using rule 9 (valorNumerico -> VARIABLE .)
-    MODULO          reduce using rule 9 (valorNumerico -> VARIABLE .)
-    EXPONENCIACION  reduce using rule 9 (valorNumerico -> VARIABLE .)
-    $end            reduce using rule 9 (valorNumerico -> VARIABLE .)
+    $end            reduce using rule 12 (operacion -> valorNumerico .)
+    MAS             shift and go to state 15
+    MENOS           shift and go to state 16
+    MULTIPLICA      shift and go to state 17
+    DIVIDE          shift and go to state 18
+    MODULO          shift and go to state 19
+    EXPONENCIACION  shift and go to state 20
 
+    operador                       shift and go to state 14
 
 state 30
 
-    (19) asignacion -> VARIABLE OPERASIGNACION valor .
+    (13) operacion -> valorNumerico operador operacion .
 
-    $end            reduce using rule 19 (asignacion -> VARIABLE OPERASIGNACION valor .)
+    $end            reduce using rule 13 (operacion -> valorNumerico operador operacion .)
 
 
 state 31
 
-    (5) valor -> valorNumerico .
+    (10) valorNumerico -> VARIABLE .
 
-    $end            reduce using rule 5 (valor -> valorNumerico .)
+    MAS             reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MENOS           reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MULTIPLICA      reduce using rule 10 (valorNumerico -> VARIABLE .)
+    DIVIDE          reduce using rule 10 (valorNumerico -> VARIABLE .)
+    MODULO          reduce using rule 10 (valorNumerico -> VARIABLE .)
+    EXPONENCIACION  reduce using rule 10 (valorNumerico -> VARIABLE .)
+    $end            reduce using rule 10 (valorNumerico -> VARIABLE .)
 
 
 state 32
 
-    (26) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .
+    (20) asignacion -> VARIABLE OPERASIGNACION valor .
 
-    $end            reduce using rule 26 (asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .)
+    $end            reduce using rule 20 (asignacion -> VARIABLE OPERASIGNACION valor .)
+
+
+state 33
+
+    (6) valor -> valorNumerico .
+
+    $end            reduce using rule 6 (valor -> valorNumerico .)
+
+
+state 34
+
+    (27) asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .
+
+    $end            reduce using rule 27 (asignacion_abreviatura_op -> VARIABLE asignacion_abreviado valorNumerico .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: reduce/reduce conflict in state 6 resolved using rule (valor -> valorNumerico)
-WARNING: rejected rule (operacion -> valorNumerico) in state 6
+WARNING: reduce/reduce conflict in state 7 resolved using rule (valor -> valorNumerico)
+WARNING: rejected rule (operacion -> valorNumerico) in state 7
