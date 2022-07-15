@@ -23,6 +23,7 @@ def p_valorNumerico(p):
 def p_operacion(p):
     '''operacion : valorNumerico
                  | valorNumerico operador operacion
+                 | valorNumerico comparacion operacion
     '''
 def p_operador(p):
     '''operador : MAS
@@ -33,6 +34,14 @@ def p_operador(p):
                 | EXPONENCIACION
                 
     '''
+def p_comparacion(p):
+    '''comparacion : MAYORQUE
+                   | MENORQUE
+                   | MENORQUE OPERASIGNACION
+                   | MAYORQUE OPERASIGNACION
+                   | MENORQUE OPERASIGNACION MAYORQUE
+    '''
+
 def p_asignacion(p):
     '''asignacion : VARIABLE_PHP OPERASIGNACION valor
     '''
@@ -57,7 +66,6 @@ def p_impresionEcho(p):
 
 def p_variable_dolar(p):
     '''variable_dolar : VARIABLE_PHP'''
-
 
 #Gabriela  -Corregido Cindy
 
