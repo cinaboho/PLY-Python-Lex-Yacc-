@@ -11,6 +11,8 @@ def p_sentencias(p):
                   | operacion_logica
                   | condIf
                   | bucleDoWhile
+                  | rellenoArray
+                  | crearHeap
 
     '''
 def p_valor(p):
@@ -106,8 +108,23 @@ def p_bucleDoWhile(p):
                     | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
                     | DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
     '''
+#1=>3,
+def p_rellenoArray(p):  # clave => valor
+    '''rellenoArray : valor OPERASIG_ARRAY valor PUNTOYCOMA
+    '''
+#Daniel Estructuras---Correegido Cindy
 
+#Cindy
+def p_nombreFuncion(p):
+    '''nombreFuncion : VARIABLE PARENIZQ PARENDER
+    '''
 
+def p_crearHeap(p):
+    '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion
+                 | nombreFuncion
+    '''
+
+#Daniel
 
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
 
@@ -134,7 +151,23 @@ def p_bucleDoWhile(p):
 
 #Gabriela  -Corregido Cindy
 
+#Daniel
 
+# def p_crearMapa(p):
+#     '''crearMapa : OPERAMAPA PARENIZQ valor COMA variable COMA variable PARENDER PUNTOYCOMA
+#                    | OPERAMAPA PARENIZQ valor COMA valor COMA variable PARENDER PUNTOYCOMA
+#                    | OPERAMAPA PARENIZQ valor COMA variable COMA valor PARENDER PUNTOYCOMA
+#     '''
+
+
+# def p_sumaMapa(p):
+#     '''sumaMapa : valor PARENIZQ variable OPERALOGICO_MAP OPERACIONSUM PARENDER PUNTOYCOMA'''
+
+
+# def p_mapPut(p):
+#     '''mapPut : valor OPERALOGICO_MAP OPERAPUT PARENIZQ variable COMA variable PARENDER PUNTOYCOMA '''
+
+#Daniel
 
 
 def p_error(p):
