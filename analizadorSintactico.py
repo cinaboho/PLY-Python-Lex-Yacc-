@@ -8,7 +8,6 @@ def p_sentencias(p):
                   | asignacion_abreviatura_op
                   | print
                   | impresionEcho
-                  | crearMapa
     '''
 def p_valor(p):
     '''valor : valorNumerico
@@ -53,21 +52,17 @@ def p_print(p):
              | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA
              | PRINT PARENIZQ COMDOB  valor COMDOB PARENDER PUNTOYCOMA
     '''
-def p_impresionEcho(p) :
+def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
+
+def p_variable_dolar(p):
+    '''variable_dolar : VARIABLE_PHP'''
+
 
 #Gabriela  -Corregido Cindy
 
 
-#Daniel
 
-def p_crearMapa(p):
-    '''crearMapa : OPERAMAPA PARENIZQ valor COMA variable COMA variable PARENDER PUNTOYCOMA
-                   | OPERAMAPA PARENIZQ valor COMA valor COMA variable PARENDER PUNTOYCOMA
-                   | OPERAMAPA PARENIZQ valor COMA variable COMA valor PARENDER PUNTOYCOMA
-    '''
-
-#Daniel
 
 def p_error(p):
     print("Syntax error")
