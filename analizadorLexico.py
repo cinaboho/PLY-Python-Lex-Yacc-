@@ -82,6 +82,7 @@ tokens = [
     'COMENTARIO_UNA_LINEA',
     'COMENTARIO_LARGO',
     'VARIABLE',
+    'VARIABLE_PHP',
     'OPERAMAPA',
     'OPERALOGICO_MAP',
     'OPERACIONSUM',
@@ -179,9 +180,18 @@ def t_FLOTANTE(t):
     t.value = float(t.value)
     return t
 
+# def t_VARIABLE(t):
+#     r'(\$[a-zA-Z_][a-zA-Z0-9_]* | [a-zA-Z_][a-zA-Z0-9_]*)'
+#     t.type = reserved.get(t.value, "VARIABLE")
+#     return t
+
 def t_VARIABLE(t):
-    r'(\$[a-zA-Z_][a-zA-Z0-9_]* | [a-zA-Z_][a-zA-Z0-9_]*)'
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, "VARIABLE")
+    return t
+
+def t_VARIABLE_PHP(t):
+    r'\$[a-zA-Z_][a-zA-Z0-9_]*'
     return t
 
 

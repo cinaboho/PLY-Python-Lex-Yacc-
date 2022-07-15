@@ -15,8 +15,9 @@ def p_valor(p):
 def p_valorNumerico(p):
     '''valorNumerico : ENTERO
                      | FLOTANTE
-                     | VARIABLE
+                     | VARIABLE_PHP
                      | BOOLEANO
+                     
     '''
 def p_operacion(p):
     '''operacion : valorNumerico
@@ -31,7 +32,7 @@ def p_operador(p):
                 | EXPONENCIACION
     '''
 def p_asignacion(p):
-    '''asignacion : VARIABLE OPERASIGNACION valor
+    '''asignacion : VARIABLE_PHP OPERASIGNACION valor
     '''
 def p_asignacion_abreviado(p):
     '''asignacion_abreviado : MASIGUAL
@@ -42,10 +43,12 @@ def p_asignacion_abreviado(p):
                             | DOBLEASTERISCOIGUAL
     '''
 def p_asignacion_abreviatura_op(p):
-    '''asignacion_abreviatura_op : VARIABLE asignacion_abreviado valorNumerico
+    '''asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico
     '''
 def p_print(p):
-    '''print : PRINT
+    '''print : PRINT PARENIZQ PARENDER PUNTOYCOMA
+             | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA
+             | PRINT PARENIZQ COMDOB  valor COMDOB PARENDER PUNTOYCOMA
     '''
 
 def p_error(p):
