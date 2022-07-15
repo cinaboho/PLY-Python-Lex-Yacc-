@@ -118,9 +118,9 @@ def p_rellenoArray(p):  # clave => valor
 def p_nombreFuncion(p):
     '''nombreFuncion : VARIABLE PARENIZQ PARENDER
     '''
-
+#$var = new hola();
 def p_crearHeap(p):
-    '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion
+    '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
                  | nombreFuncion
     '''
 

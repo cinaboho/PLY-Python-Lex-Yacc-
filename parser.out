@@ -115,7 +115,7 @@ Rule 61    bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOO
 Rule 62    bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
 Rule 63    rellenoArray -> valor OPERASIG_ARRAY valor PUNTOYCOMA
 Rule 64    nombreFuncion -> VARIABLE PARENIZQ PARENDER
-Rule 65    crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion
+Rule 65    crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
 Rule 66    crearHeap -> nombreFuncion
 
 Terminals, with rules where they appear
@@ -150,7 +150,7 @@ ELSE                 :
 END_SWITCH           : 
 END_WHILE            : 
 ENTERO               : 15
-ESPACIOENBLANCO      : 50 65 65
+ESPACIOENBLANCO      : 50 65 65 65
 EXPONENCIACION       : 28
 EXTENDS              : 
 FALSE                : 
@@ -196,7 +196,7 @@ PRIVATE              :
 PROTECTED            : 
 PUBLIC               : 
 PUNTO                : 
-PUNTOYCOMA           : 48 49 50 51 54 55 59 60 61 63
+PUNTOYCOMA           : 48 49 50 51 54 55 59 60 61 63 65
 RETURN               : 
 RSORT                : 
 STATIC               : 
@@ -271,7 +271,7 @@ state 0
     (61) bucleDoWhile -> . DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
     (62) bucleDoWhile -> . DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
     (63) rellenoArray -> . valor OPERASIG_ARRAY valor PUNTOYCOMA
-    (65) crearHeap -> . varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion
+    (65) crearHeap -> . varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
     (66) crearHeap -> . nombreFuncion
     (15) valorNumerico -> . ENTERO
     (16) valorNumerico -> . FLOTANTE
@@ -492,7 +492,7 @@ state 16
 state 17
 
     (22) operacion_logica -> varphp . opLogicos varphp
-    (65) crearHeap -> varphp . ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion
+    (65) crearHeap -> varphp . ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
     (17) valorNumerico -> varphp .
     (35) opLogicos -> . OPERLOGICO_AND
     (36) opLogicos -> . OPERLOGICO_OR
@@ -901,7 +901,7 @@ state 48
 
 state 49
 
-    (65) crearHeap -> varphp ESPACIOENBLANCO . OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion
+    (65) crearHeap -> varphp ESPACIOENBLANCO . OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
 
     OPERASIGNACION  shift and go to state 77
 
@@ -1192,7 +1192,7 @@ state 76
 
 state 77
 
-    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION . ESPACIOENBLANCO NEW nombreFuncion
+    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION . ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
 
     ESPACIOENBLANCO shift and go to state 92
 
@@ -1242,6 +1242,7 @@ state 83
     (64) nombreFuncion -> VARIABLE PARENIZQ PARENDER .
 
     $end            reduce using rule 64 (nombreFuncion -> VARIABLE PARENIZQ PARENDER .)
+    PUNTOYCOMA      reduce using rule 64 (nombreFuncion -> VARIABLE PARENIZQ PARENDER .)
 
 
 state 84
@@ -1309,7 +1310,7 @@ state 91
 
 state 92
 
-    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO . NEW nombreFuncion
+    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO . NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
 
     NEW             shift and go to state 101
 
@@ -1380,12 +1381,10 @@ state 100
 
 state 101
 
-    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW . nombreFuncion
-    (64) nombreFuncion -> . VARIABLE PARENIZQ PARENDER
+    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW . ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
 
-    VARIABLE        shift and go to state 25
+    ESPACIOENBLANCO shift and go to state 108
 
-    nombreFuncion                  shift and go to state 108
 
 state 102
 
@@ -1460,30 +1459,32 @@ state 107
 
 state 108
 
-    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion .
+    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO . nombreFuncion PUNTOYCOMA
+    (64) nombreFuncion -> . VARIABLE PARENIZQ PARENDER
 
-    $end            reduce using rule 65 (crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW nombreFuncion .)
+    VARIABLE        shift and go to state 25
 
+    nombreFuncion                  shift and go to state 115
 
 state 109
 
     (56) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion . LLAVEDER
 
-    LLAVEDER        shift and go to state 115
+    LLAVEDER        shift and go to state 116
 
 
 state 110
 
     (57) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print . LLAVEDER
 
-    LLAVEDER        shift and go to state 116
+    LLAVEDER        shift and go to state 117
 
 
 state 111
 
     (58) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho . LLAVEDER
 
-    LLAVEDER        shift and go to state 117
+    LLAVEDER        shift and go to state 118
 
 
 state 112
@@ -1491,103 +1492,117 @@ state 112
     (59) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ . BOOLEANO PARENDER PUNTOYCOMA
     (62) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ . BOOLEANO
 
-    BOOLEANO        shift and go to state 118
+    BOOLEANO        shift and go to state 119
 
 
 state 113
 
     (60) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ . BOOLEANO PARENDER PUNTOYCOMA
 
-    BOOLEANO        shift and go to state 119
+    BOOLEANO        shift and go to state 120
 
 
 state 114
 
     (61) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ . BOOLEANO PARENDER PUNTOYCOMA
 
-    BOOLEANO        shift and go to state 120
+    BOOLEANO        shift and go to state 121
 
 
 state 115
+
+    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 122
+
+
+state 116
 
     (56) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER .
 
     $end            reduce using rule 56 (condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER .)
 
 
-state 116
+state 117
 
     (57) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER .
 
     $end            reduce using rule 57 (condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER .)
 
 
-state 117
+state 118
 
     (58) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER .
 
     $end            reduce using rule 58 (condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER .)
 
 
-state 118
+state 119
 
     (59) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
     (62) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO .
 
-    PARENDER        shift and go to state 121
+    PARENDER        shift and go to state 123
     $end            reduce using rule 62 (bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO .)
-
-
-state 119
-
-    (60) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
-
-    PARENDER        shift and go to state 122
 
 
 state 120
 
-    (61) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
+    (60) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
 
-    PARENDER        shift and go to state 123
+    PARENDER        shift and go to state 124
 
 
 state 121
 
-    (59) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+    (61) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 124
+    PARENDER        shift and go to state 125
 
 
 state 122
 
-    (60) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+    (65) crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA .
 
-    PUNTOYCOMA      shift and go to state 125
+    $end            reduce using rule 65 (crearHeap -> varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA .)
 
 
 state 123
 
-    (61) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+    (59) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
 
     PUNTOYCOMA      shift and go to state 126
 
 
 state 124
 
+    (60) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 127
+
+
+state 125
+
+    (61) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+
+    PUNTOYCOMA      shift and go to state 128
+
+
+state 126
+
     (59) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .
 
     $end            reduce using rule 59 (bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .)
 
 
-state 125
+state 127
 
     (60) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .
 
     $end            reduce using rule 60 (bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .)
 
 
-state 126
+state 128
 
     (61) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .
 
