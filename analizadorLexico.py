@@ -5,7 +5,6 @@ import ply.lex as lex
 # .
 # .
 reserved = {
-<<<<<<< HEAD
     'if': 'IF',
     'else': 'ELSE',
     'do': 'DO',
@@ -37,46 +36,12 @@ reserved = {
     'float': 'FLOAT',
     'null': 'NULL',
     'true': 'TRUE',
-    'false': 'FALSE'
-=======
-    'if' : 'IF',
-    'else' : 'ELSE',
-    'do' : 'DO',
-    'while' : 'WHILE',
-    'end_while' : 'END_WHILE',
-    'for' : 'FOR',
-    'switch' : 'SWITCH',
-    'case' : 'CASE',
-    'end_switch' : 'END_SWITCH',
-    'break' : 'BREAK',
-    'continue' : 'CONTINUE',
-    'default' : 'DEFAULT',
-    'as' : 'AS',
-    'rsort' : 'RSORT',
-    'count' : 'COUNT',
-    'array' : 'ARRAY',
-    'global' : 'GLOBAL',
-    'static' : 'STATIC',
-    'print' : 'PRINT',
-    'const' : 'CONST',
-    'function' : 'FUNCTION',
-    'return' : 'RETURN',
-    'class' : 'CLASS',
-    'new' : 'NEW',
-    'extends' : 'EXTENDS',
-    'int' : 'INTEGER',
-    'string' : 'STRING',
-    'bool' : 'BOOLEAN',
-    'float' : 'FLOAT',
-    'null' : 'NULL',
-    'true' : 'TRUE',
-    'false' : 'FALSE',
-    'insert' : 'INSERT'
->>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd
+    'false': 'FALSE',
+    'compare': 'COMPARE',
+    'current': 'CURRENT'
 }
 tokens = [
     'PUNTOYCOMA',
-    'ESPACIOENBLANCO',
     'PUNTO',
     'COMA',
     'COMDOB',
@@ -118,7 +83,7 @@ tokens = [
     'FLOTANTE',
     'COMENTARIO_UNA_LINEA',
     'COMENTARIO_LARGO',
-    'VARIABLE',
+    'NOMBRE',
     'VARIABLE_PHP',
     'OPERAMAPA',
     'OPERALOGICO_MAP',
@@ -127,13 +92,8 @@ tokens = [
     'ECHO',
     'PUBLIC',
     'PROTECTED',
-<<<<<<< HEAD
-    'PRIVATE'
-    #'PRINT'
-=======
     'PRIVATE',
     'TEXTOSENCILLO'
->>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd
  ] + list(reserved.values())
 
 t_PUNTOYCOMA = r';'
@@ -162,7 +122,7 @@ t_BARRAIGUAL = r'\/\='
 t_PORCENTAJEIGUAL = r'\%\='
 t_DOBLEASTERISCOIGUAL = r'\*\*\='
 t_OPERCOMPARACION = r'=='
-t_ESPACIOENBLANCO = r'\ '
+t_ignore = " \t"
 #t_OPERASIG_ARRAY = r'=>'
 t_OPERAMAPA = r'array\_map'
 t_OPERALOGICO_MAP = r'\->'
@@ -170,15 +130,12 @@ t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
 #cindy
-<<<<<<< HEAD
 
 
 def t_OPERASIG_ARRAY(t):
     r'(\=){1}(\>){1}'
-=======
 def t_TEXTOSENCILLO(t):
     r'([A-Z].*?[\.!?]|[A-Z].*(\ )*)'
->>>>>>> 793feb75565f98dbafe66d0938ca62807d5c40cd
     return t
 
 
@@ -249,7 +206,7 @@ t_MENORQUE = r'<'
 
 
 def t_BOOLEANO(t):
-    r'(True|False)'
+    r'True|False'
     return t
 
 
@@ -273,10 +230,11 @@ def t_FLOTANTE(t):
 #     return t
 
 
-def t_VARIABLE(t):
+def t_NOMBRE(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reserved.get(t.value, "VARIABLE")
     return t
+
 
 
 def t_VARIABLE_PHP(t):

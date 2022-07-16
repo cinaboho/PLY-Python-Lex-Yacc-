@@ -11,11 +11,13 @@ Unused terminals:
     COMA
     COMENTARIO_LARGO
     COMENTARIO_UNA_LINEA
+    COMPARE
     CONST
     CONTINUE
     CORCHDER
     CORCHIZQ
     COUNT
+    CURRENT
     DEFAULT
     DOSPUNTOS
     ELSE
@@ -36,7 +38,6 @@ Unused terminals:
     OPERALOGICO_MAP
     OPERAMAPA
     OPERAPUT
-    OPERASIG_ARRAY
     OPERCOMPARACION
     PRIVATE
     PROTECTED
@@ -47,8 +48,8 @@ Unused terminals:
     STATIC
     STRING
     SWITCH
+    TEXTOSENCILLO
     TRUE
-    VARIABLE
 
 Grammar
 
@@ -62,166 +63,169 @@ Rule 6     sentencias -> impresionEcho
 Rule 7     sentencias -> operacion_logica
 Rule 8     sentencias -> condIf
 Rule 9     sentencias -> bucleDoWhile
-Rule 10    valor -> valorNumerico
-Rule 11    valor -> CADENA
-Rule 12    varphp -> VARIABLE_PHP
-Rule 13    valorNumerico -> ENTERO
-Rule 14    valorNumerico -> FLOTANTE
-Rule 15    valorNumerico -> varphp
-Rule 16    valorNumerico -> BOOLEANO
-Rule 17    operacion -> valorNumerico
-Rule 18    operacion -> valorNumerico operador operacion
-Rule 19    operacion -> valorNumerico comparacion operacion
-Rule 20    operacion_logica -> varphp opLogicos varphp
-Rule 21    operador -> MAS
-Rule 22    operador -> MENOS
-Rule 23    operador -> MULTIPLICA
-Rule 24    operador -> DIVIDE
-Rule 25    operador -> MODULO
-Rule 26    operador -> EXPONENCIACION
-Rule 27    comparacion -> MAYORQUE
-Rule 28    comparacion -> MENORQUE
-Rule 29    comparacion -> MENORQUE OPERASIGNACION
-Rule 30    comparacion -> MAYORQUE OPERASIGNACION
-Rule 31    comparacion -> MENORQUE OPERASIGNACION MAYORQUE
-Rule 32    comparacion -> MENORQUE MAYORQUE
-Rule 33    opLogicos -> OPERLOGICO_AND
-Rule 34    opLogicos -> OPERLOGICO_OR
-Rule 35    opLogicos -> OPERLOGICO_XOR
-Rule 36    opLogicos -> OPERLOGICO_NOT
-Rule 37    opLogicos -> OPERLOGICO_OREXCLUSIVO
-Rule 38    asignacion -> VARIABLE_PHP OPERASIGNACION valor
-Rule 39    asignacion_abreviado -> MASIGUAL
-Rule 40    asignacion_abreviado -> MENOSIGUAL
-Rule 41    asignacion_abreviado -> ASTERISCOIGUAL
-Rule 42    asignacion_abreviado -> BARRAIGUAL
-Rule 43    asignacion_abreviado -> PORCENTAJEIGUAL
-Rule 44    asignacion_abreviado -> DOBLEASTERISCOIGUAL
-Rule 45    asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico
-Rule 46    print -> PRINT PARENIZQ PARENDER PUNTOYCOMA
-Rule 47    print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-Rule 48    print -> PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
+Rule 10    sentencias -> rellenoArray
+Rule 11    valor -> valorNumerico
+Rule 12    valor -> CADENA
+Rule 13    varphp -> VARIABLE_PHP
+Rule 14    valorNumerico -> ENTERO
+Rule 15    valorNumerico -> FLOTANTE
+Rule 16    valorNumerico -> varphp
+Rule 17    valorNumerico -> BOOLEANO
+Rule 18    operacion -> valorNumerico PUNTOYCOMA
+Rule 19    operacion -> valorNumerico operador operacion
+Rule 20    operacion -> valorNumerico comparacion operacion
+Rule 21    operacion_logica -> varphp opLogicos varphp
+Rule 22    operador -> MAS
+Rule 23    operador -> MENOS
+Rule 24    operador -> MULTIPLICA
+Rule 25    operador -> DIVIDE
+Rule 26    operador -> MODULO
+Rule 27    operador -> EXPONENCIACION
+Rule 28    comparacion -> MAYORQUE
+Rule 29    comparacion -> MENORQUE
+Rule 30    comparacion -> MENORQUE OPERASIGNACION
+Rule 31    comparacion -> MAYORQUE OPERASIGNACION
+Rule 32    comparacion -> MENORQUE OPERASIGNACION MAYORQUE
+Rule 33    comparacion -> MENORQUE MAYORQUE
+Rule 34    opLogicos -> OPERLOGICO_AND
+Rule 35    opLogicos -> OPERLOGICO_OR
+Rule 36    opLogicos -> OPERLOGICO_XOR
+Rule 37    opLogicos -> OPERLOGICO_NOT
+Rule 38    opLogicos -> OPERLOGICO_OREXCLUSIVO
+Rule 39    asignacion -> VARIABLE_PHP OPERASIGNACION valor PUNTOYCOMA
+Rule 40    asignacion_abreviado -> MASIGUAL
+Rule 41    asignacion_abreviado -> MENOSIGUAL
+Rule 42    asignacion_abreviado -> ASTERISCOIGUAL
+Rule 43    asignacion_abreviado -> BARRAIGUAL
+Rule 44    asignacion_abreviado -> PORCENTAJEIGUAL
+Rule 45    asignacion_abreviado -> DOBLEASTERISCOIGUAL
+Rule 46    asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico PUNTOYCOMA
+Rule 47    print -> PRINT PARENIZQ PARENDER PUNTOYCOMA
+Rule 48    print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
 Rule 49    print -> PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
-Rule 50    print -> PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
-Rule 51    print -> PRINT COMDOB TEXTOSENCILLO varphp COMDOB
-Rule 52    impresionEcho -> ECHO CADENA PUNTOYCOMA
-Rule 53    condIf -> IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
-Rule 54    condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
-Rule 55    condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
-Rule 56    condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER
-Rule 57    bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-Rule 58    bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-Rule 59    bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-Rule 60    bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
+Rule 50    impresionEcho -> ECHO CADENA PUNTOYCOMA
+Rule 51    condIf -> IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
+Rule 52    condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER
+Rule 53    condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER
+Rule 54    condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER
+Rule 55    bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+Rule 56    bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+Rule 57    bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+Rule 58    bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor
+Rule 59    rellenoArray -> valor OPERASIG_ARRAY valor PUNTOYCOMA
+Rule 60    nombreFuncion -> NOMBRE PARENIZQ PARENDER
 
 Terminals, with rules where they appear
 
 AMPERSAND            : 
 ARRAY                : 
 AS                   : 
-ASTERISCOIGUAL       : 41
-BARRAIGUAL           : 42
-BOOLEAN              : 53
-BOOLEANO             : 16 54 55 56 57 58 59 60
+ASTERISCOIGUAL       : 42
+BARRAIGUAL           : 43
+BOOLEAN              : 51 52 53 54
+BOOLEANO             : 17
 BREAK                : 
-CADENA               : 11 49 52
+CADENA               : 12 49 50
 CASE                 : 
 CLASS                : 
 COMA                 : 
-COMDOB               : 47 47 50 51 51
+COMDOB               : 48 48
 COMENTARIO_LARGO     : 
 COMENTARIO_UNA_LINEA : 
+COMPARE              : 
 CONST                : 
 CONTINUE             : 
 CORCHDER             : 
 CORCHIZQ             : 
 COUNT                : 
+CURRENT              : 
 DEFAULT              : 
-DIVIDE               : 24
-DO                   : 57 58 59 60
-DOBLEASTERISCOIGUAL  : 44
+DIVIDE               : 25
+DO                   : 55 56 57 58
+DOBLEASTERISCOIGUAL  : 45
 DOSPUNTOS            : 
-ECHO                 : 52
+ECHO                 : 50
 ELSE                 : 
 END_SWITCH           : 
 END_WHILE            : 
-ENTERO               : 13
-ESPACIOENBLANCO      : 48
-EXPONENCIACION       : 26
+ENTERO               : 14
+EXPONENCIACION       : 27
 EXTENDS              : 
 FALSE                : 
 FIN                  : 
 FLOAT                : 
-FLOTANTE             : 14
+FLOTANTE             : 15
 FOR                  : 
 FUNCTION             : 
 GLOBAL               : 
-IF                   : 53 54 55 56
+IF                   : 51 52 53 54
 INICIO               : 
 INTEGER              : 
-LLAVEDER             : 54 55 56 57 58 59 60
-LLAVEIZQ             : 54 55 56 57 58 59 60
-MAS                  : 21
-MASIGUAL             : 39
-MAYORQUE             : 27 30 31 32
-MENORQUE             : 28 29 31 32
-MENOS                : 22
-MENOSIGUAL           : 40
-MODULO               : 25
-MULTIPLICA           : 23
+LLAVEDER             : 52 53 54 55 56 57 58
+LLAVEIZQ             : 52 53 54 55 56 57 58
+MAS                  : 22
+MASIGUAL             : 40
+MAYORQUE             : 28 31 32 33
+MENORQUE             : 29 30 32 33
+MENOS                : 23
+MENOSIGUAL           : 41
+MODULO               : 26
+MULTIPLICA           : 24
 NEW                  : 
+NOMBRE               : 60
 NULL                 : 
 OPERACIONSUM         : 
 OPERALOGICO_MAP      : 
 OPERAMAPA            : 
 OPERAPUT             : 
-OPERASIGNACION       : 29 30 31 38
-OPERASIG_ARRAY       : 
+OPERASIGNACION       : 30 31 32 39
+OPERASIG_ARRAY       : 59
 OPERCOMPARACION      : 
-OPERLOGICO_AND       : 33
-OPERLOGICO_NOT       : 36
-OPERLOGICO_OR        : 34
-OPERLOGICO_OREXCLUSIVO : 37
-OPERLOGICO_XOR       : 35
-PARENDER             : 46 47 49 53 54 55 56 57 58 59
-PARENIZQ             : 46 47 49 50 53 54 55 56 57 58 59 60
-PORCENTAJEIGUAL      : 43
-PRINT                : 46 47 48 49 50 51
+OPERLOGICO_AND       : 34
+OPERLOGICO_NOT       : 37
+OPERLOGICO_OR        : 35
+OPERLOGICO_OREXCLUSIVO : 38
+OPERLOGICO_XOR       : 36
+PARENDER             : 47 48 49 51 52 53 54 55 56 57 60
+PARENIZQ             : 47 48 49 51 52 53 54 55 56 57 58 60
+PORCENTAJEIGUAL      : 44
+PRINT                : 47 48 49
 PRIVATE              : 
 PROTECTED            : 
 PUBLIC               : 
 PUNTO                : 
-PUNTOYCOMA           : 46 47 48 49 52 53 57 58 59
+PUNTOYCOMA           : 18 39 46 47 48 49 50 51 55 56 57 59
 RETURN               : 
 RSORT                : 
 STATIC               : 
 STRING               : 
 SWITCH               : 
-TEXTOSENCILLO        : 50 51
+TEXTOSENCILLO        : 
 TRUE                 : 
-VARIABLE             : 
-VARIABLE_PHP         : 12 38 45
-WHILE                : 57 58 59 60
+VARIABLE_PHP         : 13 39 46
+WHILE                : 55 56 57 58
 error                : 
 
 Nonterminals, with rules where they appear
 
 asignacion           : 3
-asignacion_abreviado : 45
+asignacion_abreviado : 46
 asignacion_abreviatura_op : 4
 bucleDoWhile         : 9
-comparacion          : 19
+comparacion          : 20
 condIf               : 8
-impresionEcho        : 6 56 59
-opLogicos            : 20
-operacion            : 2 18 19 54 57 60
+impresionEcho        : 6 54 57
+nombreFuncion        : 
+opLogicos            : 21
+operacion            : 2 19 20 52 55 58
 operacion_logica     : 7
-operador             : 18
-print                : 5 55 58
+operador             : 19
+print                : 5 53 56
+rellenoArray         : 10
 sentencias           : 0
-valor                : 1 38
-valorNumerico        : 10 17 18 19 45
-varphp               : 15 20 20 48 50 51
+valor                : 1 39 55 56 57 58 59 59
+valorNumerico        : 11 18 19 20 46
+varphp               : 16 21 21
 
 Parsing method: LALR
 
@@ -237,44 +241,43 @@ state 0
     (7) sentencias -> . operacion_logica
     (8) sentencias -> . condIf
     (9) sentencias -> . bucleDoWhile
-    (10) valor -> . valorNumerico
-    (11) valor -> . CADENA
-    (17) operacion -> . valorNumerico
-    (18) operacion -> . valorNumerico operador operacion
-    (19) operacion -> . valorNumerico comparacion operacion
-    (38) asignacion -> . VARIABLE_PHP OPERASIGNACION valor
-    (45) asignacion_abreviatura_op -> . VARIABLE_PHP asignacion_abreviado valorNumerico
-    (46) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
-    (47) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-    (48) print -> . PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
+    (10) sentencias -> . rellenoArray
+    (11) valor -> . valorNumerico
+    (12) valor -> . CADENA
+    (18) operacion -> . valorNumerico PUNTOYCOMA
+    (19) operacion -> . valorNumerico operador operacion
+    (20) operacion -> . valorNumerico comparacion operacion
+    (39) asignacion -> . VARIABLE_PHP OPERASIGNACION valor PUNTOYCOMA
+    (46) asignacion_abreviatura_op -> . VARIABLE_PHP asignacion_abreviado valorNumerico PUNTOYCOMA
+    (47) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
+    (48) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
     (49) print -> . PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
-    (50) print -> . PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
-    (51) print -> . PRINT COMDOB TEXTOSENCILLO varphp COMDOB
-    (52) impresionEcho -> . ECHO CADENA PUNTOYCOMA
-    (20) operacion_logica -> . varphp opLogicos varphp
-    (53) condIf -> . IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
-    (54) condIf -> . IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
-    (55) condIf -> . IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
-    (56) condIf -> . IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER
-    (57) bucleDoWhile -> . DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (58) bucleDoWhile -> . DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (59) bucleDoWhile -> . DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> . DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (50) impresionEcho -> . ECHO CADENA PUNTOYCOMA
+    (21) operacion_logica -> . varphp opLogicos varphp
+    (51) condIf -> . IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
+    (52) condIf -> . IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER
+    (53) condIf -> . IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER
+    (54) condIf -> . IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (55) bucleDoWhile -> . DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (56) bucleDoWhile -> . DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (57) bucleDoWhile -> . DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> . DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor
+    (59) rellenoArray -> . valor OPERASIG_ARRAY valor PUNTOYCOMA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    CADENA          shift and go to state 12
-    VARIABLE_PHP    shift and go to state 13
-    PRINT           shift and go to state 14
+    CADENA          shift and go to state 13
+    VARIABLE_PHP    shift and go to state 14
+    PRINT           shift and go to state 15
     ECHO            shift and go to state 16
-    IF              shift and go to state 17
+    IF              shift and go to state 18
     DO              shift and go to state 19
     ENTERO          shift and go to state 20
     FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
+    BOOLEANO        shift and go to state 22
 
     sentencias                     shift and go to state 1
     valor                          shift and go to state 2
@@ -286,8 +289,9 @@ state 0
     operacion_logica               shift and go to state 8
     condIf                         shift and go to state 9
     bucleDoWhile                   shift and go to state 10
-    valorNumerico                  shift and go to state 11
-    varphp                         shift and go to state 15
+    rellenoArray                   shift and go to state 11
+    valorNumerico                  shift and go to state 12
+    varphp                         shift and go to state 17
 
 state 1
 
@@ -298,8 +302,10 @@ state 1
 state 2
 
     (1) sentencias -> valor .
+    (59) rellenoArray -> valor . OPERASIG_ARRAY valor PUNTOYCOMA
 
     $end            reduce using rule 1 (sentencias -> valor .)
+    OPERASIG_ARRAY  shift and go to state 23
 
 
 state 3
@@ -360,887 +366,877 @@ state 10
 
 state 11
 
-    (10) valor -> valorNumerico .
-    (17) operacion -> valorNumerico .
-    (18) operacion -> valorNumerico . operador operacion
-    (19) operacion -> valorNumerico . comparacion operacion
-    (21) operador -> . MAS
-    (22) operador -> . MENOS
-    (23) operador -> . MULTIPLICA
-    (24) operador -> . DIVIDE
-    (25) operador -> . MODULO
-    (26) operador -> . EXPONENCIACION
-    (27) comparacion -> . MAYORQUE
-    (28) comparacion -> . MENORQUE
-    (29) comparacion -> . MENORQUE OPERASIGNACION
-    (30) comparacion -> . MAYORQUE OPERASIGNACION
-    (31) comparacion -> . MENORQUE OPERASIGNACION MAYORQUE
-    (32) comparacion -> . MENORQUE MAYORQUE
+    (10) sentencias -> rellenoArray .
 
-  ! reduce/reduce conflict for $end resolved using rule 10 (valor -> valorNumerico .)
-    $end            reduce using rule 10 (valor -> valorNumerico .)
-    MAS             shift and go to state 24
-    MENOS           shift and go to state 25
-    MULTIPLICA      shift and go to state 26
-    DIVIDE          shift and go to state 27
-    MODULO          shift and go to state 28
-    EXPONENCIACION  shift and go to state 29
-    MAYORQUE        shift and go to state 30
-    MENORQUE        shift and go to state 31
+    $end            reduce using rule 10 (sentencias -> rellenoArray .)
 
-  ! $end            [ reduce using rule 17 (operacion -> valorNumerico .) ]
-
-    operador                       shift and go to state 22
-    comparacion                    shift and go to state 23
 
 state 12
 
-    (11) valor -> CADENA .
+    (11) valor -> valorNumerico .
+    (18) operacion -> valorNumerico . PUNTOYCOMA
+    (19) operacion -> valorNumerico . operador operacion
+    (20) operacion -> valorNumerico . comparacion operacion
+    (22) operador -> . MAS
+    (23) operador -> . MENOS
+    (24) operador -> . MULTIPLICA
+    (25) operador -> . DIVIDE
+    (26) operador -> . MODULO
+    (27) operador -> . EXPONENCIACION
+    (28) comparacion -> . MAYORQUE
+    (29) comparacion -> . MENORQUE
+    (30) comparacion -> . MENORQUE OPERASIGNACION
+    (31) comparacion -> . MAYORQUE OPERASIGNACION
+    (32) comparacion -> . MENORQUE OPERASIGNACION MAYORQUE
+    (33) comparacion -> . MENORQUE MAYORQUE
 
-    $end            reduce using rule 11 (valor -> CADENA .)
+    OPERASIG_ARRAY  reduce using rule 11 (valor -> valorNumerico .)
+    $end            reduce using rule 11 (valor -> valorNumerico .)
+    PUNTOYCOMA      shift and go to state 24
+    MAS             shift and go to state 27
+    MENOS           shift and go to state 28
+    MULTIPLICA      shift and go to state 29
+    DIVIDE          shift and go to state 30
+    MODULO          shift and go to state 31
+    EXPONENCIACION  shift and go to state 32
+    MAYORQUE        shift and go to state 33
+    MENORQUE        shift and go to state 34
 
+    operador                       shift and go to state 25
+    comparacion                    shift and go to state 26
 
 state 13
 
-    (38) asignacion -> VARIABLE_PHP . OPERASIGNACION valor
-    (45) asignacion_abreviatura_op -> VARIABLE_PHP . asignacion_abreviado valorNumerico
-    (12) varphp -> VARIABLE_PHP .
-    (39) asignacion_abreviado -> . MASIGUAL
-    (40) asignacion_abreviado -> . MENOSIGUAL
-    (41) asignacion_abreviado -> . ASTERISCOIGUAL
-    (42) asignacion_abreviado -> . BARRAIGUAL
-    (43) asignacion_abreviado -> . PORCENTAJEIGUAL
-    (44) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
+    (12) valor -> CADENA .
 
-    OPERASIGNACION  shift and go to state 32
-    OPERLOGICO_AND  reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    OPERLOGICO_OR   reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    OPERLOGICO_XOR  reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    OPERLOGICO_NOT  reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    OPERLOGICO_OREXCLUSIVO reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MAS             reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MENOS           reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MULTIPLICA      reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    DIVIDE          reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MODULO          reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    EXPONENCIACION  reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MAYORQUE        reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MENORQUE        reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    $end            reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MASIGUAL        shift and go to state 34
-    MENOSIGUAL      shift and go to state 35
-    ASTERISCOIGUAL  shift and go to state 36
-    BARRAIGUAL      shift and go to state 37
-    PORCENTAJEIGUAL shift and go to state 38
-    DOBLEASTERISCOIGUAL shift and go to state 39
+    OPERASIG_ARRAY  reduce using rule 12 (valor -> CADENA .)
+    $end            reduce using rule 12 (valor -> CADENA .)
+    PUNTOYCOMA      reduce using rule 12 (valor -> CADENA .)
+    PARENDER        reduce using rule 12 (valor -> CADENA .)
 
-    asignacion_abreviado           shift and go to state 33
 
 state 14
 
-    (46) print -> PRINT . PARENIZQ PARENDER PUNTOYCOMA
-    (47) print -> PRINT . PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-    (48) print -> PRINT . ESPACIOENBLANCO varphp PUNTOYCOMA
-    (49) print -> PRINT . PARENIZQ CADENA PARENDER PUNTOYCOMA
-    (50) print -> PRINT . PARENIZQ COMDOB TEXTOSENCILLO varphp
-    (51) print -> PRINT . COMDOB TEXTOSENCILLO varphp COMDOB
+    (39) asignacion -> VARIABLE_PHP . OPERASIGNACION valor PUNTOYCOMA
+    (46) asignacion_abreviatura_op -> VARIABLE_PHP . asignacion_abreviado valorNumerico PUNTOYCOMA
+    (13) varphp -> VARIABLE_PHP .
+    (40) asignacion_abreviado -> . MASIGUAL
+    (41) asignacion_abreviado -> . MENOSIGUAL
+    (42) asignacion_abreviado -> . ASTERISCOIGUAL
+    (43) asignacion_abreviado -> . BARRAIGUAL
+    (44) asignacion_abreviado -> . PORCENTAJEIGUAL
+    (45) asignacion_abreviado -> . DOBLEASTERISCOIGUAL
 
-    PARENIZQ        shift and go to state 40
-    ESPACIOENBLANCO shift and go to state 42
-    COMDOB          shift and go to state 41
+    OPERASIGNACION  shift and go to state 35
+    OPERLOGICO_AND  reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    OPERLOGICO_OR   reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    OPERLOGICO_XOR  reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    OPERLOGICO_NOT  reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    OPERLOGICO_OREXCLUSIVO reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    PUNTOYCOMA      reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MAS             reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MENOS           reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MULTIPLICA      reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    DIVIDE          reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MODULO          reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    EXPONENCIACION  reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MAYORQUE        reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MENORQUE        reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    OPERASIG_ARRAY  reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    $end            reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MASIGUAL        shift and go to state 37
+    MENOSIGUAL      shift and go to state 38
+    ASTERISCOIGUAL  shift and go to state 39
+    BARRAIGUAL      shift and go to state 40
+    PORCENTAJEIGUAL shift and go to state 41
+    DOBLEASTERISCOIGUAL shift and go to state 42
 
+    asignacion_abreviado           shift and go to state 36
 
 state 15
 
-    (20) operacion_logica -> varphp . opLogicos varphp
-    (15) valorNumerico -> varphp .
-    (33) opLogicos -> . OPERLOGICO_AND
-    (34) opLogicos -> . OPERLOGICO_OR
-    (35) opLogicos -> . OPERLOGICO_XOR
-    (36) opLogicos -> . OPERLOGICO_NOT
-    (37) opLogicos -> . OPERLOGICO_OREXCLUSIVO
+    (47) print -> PRINT . PARENIZQ PARENDER PUNTOYCOMA
+    (48) print -> PRINT . PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+    (49) print -> PRINT . PARENIZQ CADENA PARENDER PUNTOYCOMA
 
-    MAS             reduce using rule 15 (valorNumerico -> varphp .)
-    MENOS           reduce using rule 15 (valorNumerico -> varphp .)
-    MULTIPLICA      reduce using rule 15 (valorNumerico -> varphp .)
-    DIVIDE          reduce using rule 15 (valorNumerico -> varphp .)
-    MODULO          reduce using rule 15 (valorNumerico -> varphp .)
-    EXPONENCIACION  reduce using rule 15 (valorNumerico -> varphp .)
-    MAYORQUE        reduce using rule 15 (valorNumerico -> varphp .)
-    MENORQUE        reduce using rule 15 (valorNumerico -> varphp .)
-    $end            reduce using rule 15 (valorNumerico -> varphp .)
-    OPERLOGICO_AND  shift and go to state 44
-    OPERLOGICO_OR   shift and go to state 45
-    OPERLOGICO_XOR  shift and go to state 46
-    OPERLOGICO_NOT  shift and go to state 47
-    OPERLOGICO_OREXCLUSIVO shift and go to state 48
+    PARENIZQ        shift and go to state 43
 
-    opLogicos                      shift and go to state 43
 
 state 16
 
-    (52) impresionEcho -> ECHO . CADENA PUNTOYCOMA
+    (50) impresionEcho -> ECHO . CADENA PUNTOYCOMA
 
-    CADENA          shift and go to state 49
+    CADENA          shift and go to state 44
 
 
 state 17
 
-    (53) condIf -> IF . PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
-    (54) condIf -> IF . PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
-    (55) condIf -> IF . PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
-    (56) condIf -> IF . PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (21) operacion_logica -> varphp . opLogicos varphp
+    (16) valorNumerico -> varphp .
+    (34) opLogicos -> . OPERLOGICO_AND
+    (35) opLogicos -> . OPERLOGICO_OR
+    (36) opLogicos -> . OPERLOGICO_XOR
+    (37) opLogicos -> . OPERLOGICO_NOT
+    (38) opLogicos -> . OPERLOGICO_OREXCLUSIVO
 
-    PARENIZQ        shift and go to state 50
+    PUNTOYCOMA      reduce using rule 16 (valorNumerico -> varphp .)
+    MAS             reduce using rule 16 (valorNumerico -> varphp .)
+    MENOS           reduce using rule 16 (valorNumerico -> varphp .)
+    MULTIPLICA      reduce using rule 16 (valorNumerico -> varphp .)
+    DIVIDE          reduce using rule 16 (valorNumerico -> varphp .)
+    MODULO          reduce using rule 16 (valorNumerico -> varphp .)
+    EXPONENCIACION  reduce using rule 16 (valorNumerico -> varphp .)
+    MAYORQUE        reduce using rule 16 (valorNumerico -> varphp .)
+    MENORQUE        reduce using rule 16 (valorNumerico -> varphp .)
+    OPERASIG_ARRAY  reduce using rule 16 (valorNumerico -> varphp .)
+    $end            reduce using rule 16 (valorNumerico -> varphp .)
+    OPERLOGICO_AND  shift and go to state 46
+    OPERLOGICO_OR   shift and go to state 47
+    OPERLOGICO_XOR  shift and go to state 48
+    OPERLOGICO_NOT  shift and go to state 49
+    OPERLOGICO_OREXCLUSIVO shift and go to state 50
 
+    opLogicos                      shift and go to state 45
 
 state 18
 
-    (16) valorNumerico -> BOOLEANO .
+    (51) condIf -> IF . PARENIZQ BOOLEAN PARENDER PUNTOYCOMA
+    (52) condIf -> IF . PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER
+    (53) condIf -> IF . PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER
+    (54) condIf -> IF . PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER
 
-    MAS             reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    MENOS           reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    MULTIPLICA      reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    DIVIDE          reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    MODULO          reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    EXPONENCIACION  reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    MAYORQUE        reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    MENORQUE        reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    $end            reduce using rule 16 (valorNumerico -> BOOLEANO .)
-    LLAVEDER        reduce using rule 16 (valorNumerico -> BOOLEANO .)
+    PARENIZQ        shift and go to state 51
 
 
 state 19
 
-    (57) bucleDoWhile -> DO . LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (58) bucleDoWhile -> DO . LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (59) bucleDoWhile -> DO . LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO . LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
+    (55) bucleDoWhile -> DO . LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (56) bucleDoWhile -> DO . LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (57) bucleDoWhile -> DO . LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO . LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor
 
-    LLAVEIZQ        shift and go to state 51
+    LLAVEIZQ        shift and go to state 52
 
 
 state 20
 
-    (13) valorNumerico -> ENTERO .
+    (14) valorNumerico -> ENTERO .
 
-    MAS             reduce using rule 13 (valorNumerico -> ENTERO .)
-    MENOS           reduce using rule 13 (valorNumerico -> ENTERO .)
-    MULTIPLICA      reduce using rule 13 (valorNumerico -> ENTERO .)
-    DIVIDE          reduce using rule 13 (valorNumerico -> ENTERO .)
-    MODULO          reduce using rule 13 (valorNumerico -> ENTERO .)
-    EXPONENCIACION  reduce using rule 13 (valorNumerico -> ENTERO .)
-    MAYORQUE        reduce using rule 13 (valorNumerico -> ENTERO .)
-    MENORQUE        reduce using rule 13 (valorNumerico -> ENTERO .)
-    $end            reduce using rule 13 (valorNumerico -> ENTERO .)
-    LLAVEDER        reduce using rule 13 (valorNumerico -> ENTERO .)
+    PUNTOYCOMA      reduce using rule 14 (valorNumerico -> ENTERO .)
+    MAS             reduce using rule 14 (valorNumerico -> ENTERO .)
+    MENOS           reduce using rule 14 (valorNumerico -> ENTERO .)
+    MULTIPLICA      reduce using rule 14 (valorNumerico -> ENTERO .)
+    DIVIDE          reduce using rule 14 (valorNumerico -> ENTERO .)
+    MODULO          reduce using rule 14 (valorNumerico -> ENTERO .)
+    EXPONENCIACION  reduce using rule 14 (valorNumerico -> ENTERO .)
+    MAYORQUE        reduce using rule 14 (valorNumerico -> ENTERO .)
+    MENORQUE        reduce using rule 14 (valorNumerico -> ENTERO .)
+    OPERASIG_ARRAY  reduce using rule 14 (valorNumerico -> ENTERO .)
+    $end            reduce using rule 14 (valorNumerico -> ENTERO .)
+    PARENDER        reduce using rule 14 (valorNumerico -> ENTERO .)
 
 
 state 21
 
-    (14) valorNumerico -> FLOTANTE .
+    (15) valorNumerico -> FLOTANTE .
 
-    MAS             reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    MENOS           reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    MULTIPLICA      reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    DIVIDE          reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    MODULO          reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    EXPONENCIACION  reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    MAYORQUE        reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    MENORQUE        reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    $end            reduce using rule 14 (valorNumerico -> FLOTANTE .)
-    LLAVEDER        reduce using rule 14 (valorNumerico -> FLOTANTE .)
+    PUNTOYCOMA      reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    MAS             reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    MENOS           reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    MULTIPLICA      reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    DIVIDE          reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    MODULO          reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    EXPONENCIACION  reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    MAYORQUE        reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    MENORQUE        reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    OPERASIG_ARRAY  reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    $end            reduce using rule 15 (valorNumerico -> FLOTANTE .)
+    PARENDER        reduce using rule 15 (valorNumerico -> FLOTANTE .)
 
 
 state 22
 
-    (18) operacion -> valorNumerico operador . operacion
-    (17) operacion -> . valorNumerico
-    (18) operacion -> . valorNumerico operador operacion
-    (19) operacion -> . valorNumerico comparacion operacion
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (17) valorNumerico -> BOOLEANO .
 
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
-    VARIABLE_PHP    shift and go to state 55
+    PUNTOYCOMA      reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    MAS             reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    MENOS           reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    MULTIPLICA      reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    DIVIDE          reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    MODULO          reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    EXPONENCIACION  reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    MAYORQUE        reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    MENORQUE        reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    OPERASIG_ARRAY  reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    $end            reduce using rule 17 (valorNumerico -> BOOLEANO .)
+    PARENDER        reduce using rule 17 (valorNumerico -> BOOLEANO .)
 
-    valorNumerico                  shift and go to state 52
-    operacion                      shift and go to state 53
-    varphp                         shift and go to state 54
 
 state 23
 
-    (19) operacion -> valorNumerico comparacion . operacion
-    (17) operacion -> . valorNumerico
-    (18) operacion -> . valorNumerico operador operacion
-    (19) operacion -> . valorNumerico comparacion operacion
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (59) rellenoArray -> valor OPERASIG_ARRAY . valor PUNTOYCOMA
+    (11) valor -> . valorNumerico
+    (12) valor -> . CADENA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
+    CADENA          shift and go to state 13
     ENTERO          shift and go to state 20
     FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
-    VARIABLE_PHP    shift and go to state 55
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
-    valorNumerico                  shift and go to state 52
-    operacion                      shift and go to state 56
-    varphp                         shift and go to state 54
+    valor                          shift and go to state 53
+    valorNumerico                  shift and go to state 54
+    varphp                         shift and go to state 55
 
 state 24
 
-    (21) operador -> MAS .
+    (18) operacion -> valorNumerico PUNTOYCOMA .
 
-    ENTERO          reduce using rule 21 (operador -> MAS .)
-    FLOTANTE        reduce using rule 21 (operador -> MAS .)
-    BOOLEANO        reduce using rule 21 (operador -> MAS .)
-    VARIABLE_PHP    reduce using rule 21 (operador -> MAS .)
+    $end            reduce using rule 18 (operacion -> valorNumerico PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 18 (operacion -> valorNumerico PUNTOYCOMA .)
 
 
 state 25
 
-    (22) operador -> MENOS .
+    (19) operacion -> valorNumerico operador . operacion
+    (18) operacion -> . valorNumerico PUNTOYCOMA
+    (19) operacion -> . valorNumerico operador operacion
+    (20) operacion -> . valorNumerico comparacion operacion
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    ENTERO          reduce using rule 22 (operador -> MENOS .)
-    FLOTANTE        reduce using rule 22 (operador -> MENOS .)
-    BOOLEANO        reduce using rule 22 (operador -> MENOS .)
-    VARIABLE_PHP    reduce using rule 22 (operador -> MENOS .)
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valorNumerico                  shift and go to state 57
+    operacion                      shift and go to state 58
+    varphp                         shift and go to state 55
 
 state 26
 
-    (23) operador -> MULTIPLICA .
+    (20) operacion -> valorNumerico comparacion . operacion
+    (18) operacion -> . valorNumerico PUNTOYCOMA
+    (19) operacion -> . valorNumerico operador operacion
+    (20) operacion -> . valorNumerico comparacion operacion
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    ENTERO          reduce using rule 23 (operador -> MULTIPLICA .)
-    FLOTANTE        reduce using rule 23 (operador -> MULTIPLICA .)
-    BOOLEANO        reduce using rule 23 (operador -> MULTIPLICA .)
-    VARIABLE_PHP    reduce using rule 23 (operador -> MULTIPLICA .)
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valorNumerico                  shift and go to state 57
+    operacion                      shift and go to state 59
+    varphp                         shift and go to state 55
 
 state 27
 
-    (24) operador -> DIVIDE .
+    (22) operador -> MAS .
 
-    ENTERO          reduce using rule 24 (operador -> DIVIDE .)
-    FLOTANTE        reduce using rule 24 (operador -> DIVIDE .)
-    BOOLEANO        reduce using rule 24 (operador -> DIVIDE .)
-    VARIABLE_PHP    reduce using rule 24 (operador -> DIVIDE .)
+    ENTERO          reduce using rule 22 (operador -> MAS .)
+    FLOTANTE        reduce using rule 22 (operador -> MAS .)
+    BOOLEANO        reduce using rule 22 (operador -> MAS .)
+    VARIABLE_PHP    reduce using rule 22 (operador -> MAS .)
 
 
 state 28
 
-    (25) operador -> MODULO .
+    (23) operador -> MENOS .
 
-    ENTERO          reduce using rule 25 (operador -> MODULO .)
-    FLOTANTE        reduce using rule 25 (operador -> MODULO .)
-    BOOLEANO        reduce using rule 25 (operador -> MODULO .)
-    VARIABLE_PHP    reduce using rule 25 (operador -> MODULO .)
+    ENTERO          reduce using rule 23 (operador -> MENOS .)
+    FLOTANTE        reduce using rule 23 (operador -> MENOS .)
+    BOOLEANO        reduce using rule 23 (operador -> MENOS .)
+    VARIABLE_PHP    reduce using rule 23 (operador -> MENOS .)
 
 
 state 29
 
-    (26) operador -> EXPONENCIACION .
+    (24) operador -> MULTIPLICA .
 
-    ENTERO          reduce using rule 26 (operador -> EXPONENCIACION .)
-    FLOTANTE        reduce using rule 26 (operador -> EXPONENCIACION .)
-    BOOLEANO        reduce using rule 26 (operador -> EXPONENCIACION .)
-    VARIABLE_PHP    reduce using rule 26 (operador -> EXPONENCIACION .)
+    ENTERO          reduce using rule 24 (operador -> MULTIPLICA .)
+    FLOTANTE        reduce using rule 24 (operador -> MULTIPLICA .)
+    BOOLEANO        reduce using rule 24 (operador -> MULTIPLICA .)
+    VARIABLE_PHP    reduce using rule 24 (operador -> MULTIPLICA .)
 
 
 state 30
 
-    (27) comparacion -> MAYORQUE .
-    (30) comparacion -> MAYORQUE . OPERASIGNACION
+    (25) operador -> DIVIDE .
 
-    ENTERO          reduce using rule 27 (comparacion -> MAYORQUE .)
-    FLOTANTE        reduce using rule 27 (comparacion -> MAYORQUE .)
-    BOOLEANO        reduce using rule 27 (comparacion -> MAYORQUE .)
-    VARIABLE_PHP    reduce using rule 27 (comparacion -> MAYORQUE .)
-    OPERASIGNACION  shift and go to state 57
+    ENTERO          reduce using rule 25 (operador -> DIVIDE .)
+    FLOTANTE        reduce using rule 25 (operador -> DIVIDE .)
+    BOOLEANO        reduce using rule 25 (operador -> DIVIDE .)
+    VARIABLE_PHP    reduce using rule 25 (operador -> DIVIDE .)
 
 
 state 31
 
-    (28) comparacion -> MENORQUE .
-    (29) comparacion -> MENORQUE . OPERASIGNACION
-    (31) comparacion -> MENORQUE . OPERASIGNACION MAYORQUE
-    (32) comparacion -> MENORQUE . MAYORQUE
+    (26) operador -> MODULO .
 
-    ENTERO          reduce using rule 28 (comparacion -> MENORQUE .)
-    FLOTANTE        reduce using rule 28 (comparacion -> MENORQUE .)
-    BOOLEANO        reduce using rule 28 (comparacion -> MENORQUE .)
-    VARIABLE_PHP    reduce using rule 28 (comparacion -> MENORQUE .)
-    OPERASIGNACION  shift and go to state 58
-    MAYORQUE        shift and go to state 59
+    ENTERO          reduce using rule 26 (operador -> MODULO .)
+    FLOTANTE        reduce using rule 26 (operador -> MODULO .)
+    BOOLEANO        reduce using rule 26 (operador -> MODULO .)
+    VARIABLE_PHP    reduce using rule 26 (operador -> MODULO .)
 
 
 state 32
 
-    (38) asignacion -> VARIABLE_PHP OPERASIGNACION . valor
-    (10) valor -> . valorNumerico
-    (11) valor -> . CADENA
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (27) operador -> EXPONENCIACION .
 
-    CADENA          shift and go to state 12
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
-    VARIABLE_PHP    shift and go to state 55
+    ENTERO          reduce using rule 27 (operador -> EXPONENCIACION .)
+    FLOTANTE        reduce using rule 27 (operador -> EXPONENCIACION .)
+    BOOLEANO        reduce using rule 27 (operador -> EXPONENCIACION .)
+    VARIABLE_PHP    reduce using rule 27 (operador -> EXPONENCIACION .)
 
-    valor                          shift and go to state 60
-    valorNumerico                  shift and go to state 61
-    varphp                         shift and go to state 54
 
 state 33
 
-    (45) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado . valorNumerico
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (28) comparacion -> MAYORQUE .
+    (31) comparacion -> MAYORQUE . OPERASIGNACION
 
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
-    VARIABLE_PHP    shift and go to state 55
+    ENTERO          reduce using rule 28 (comparacion -> MAYORQUE .)
+    FLOTANTE        reduce using rule 28 (comparacion -> MAYORQUE .)
+    BOOLEANO        reduce using rule 28 (comparacion -> MAYORQUE .)
+    VARIABLE_PHP    reduce using rule 28 (comparacion -> MAYORQUE .)
+    OPERASIGNACION  shift and go to state 60
 
-    valorNumerico                  shift and go to state 62
-    varphp                         shift and go to state 54
 
 state 34
 
-    (39) asignacion_abreviado -> MASIGUAL .
+    (29) comparacion -> MENORQUE .
+    (30) comparacion -> MENORQUE . OPERASIGNACION
+    (32) comparacion -> MENORQUE . OPERASIGNACION MAYORQUE
+    (33) comparacion -> MENORQUE . MAYORQUE
 
-    ENTERO          reduce using rule 39 (asignacion_abreviado -> MASIGUAL .)
-    FLOTANTE        reduce using rule 39 (asignacion_abreviado -> MASIGUAL .)
-    BOOLEANO        reduce using rule 39 (asignacion_abreviado -> MASIGUAL .)
-    VARIABLE_PHP    reduce using rule 39 (asignacion_abreviado -> MASIGUAL .)
+    ENTERO          reduce using rule 29 (comparacion -> MENORQUE .)
+    FLOTANTE        reduce using rule 29 (comparacion -> MENORQUE .)
+    BOOLEANO        reduce using rule 29 (comparacion -> MENORQUE .)
+    VARIABLE_PHP    reduce using rule 29 (comparacion -> MENORQUE .)
+    OPERASIGNACION  shift and go to state 61
+    MAYORQUE        shift and go to state 62
 
 
 state 35
 
-    (40) asignacion_abreviado -> MENOSIGUAL .
+    (39) asignacion -> VARIABLE_PHP OPERASIGNACION . valor PUNTOYCOMA
+    (11) valor -> . valorNumerico
+    (12) valor -> . CADENA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    ENTERO          reduce using rule 40 (asignacion_abreviado -> MENOSIGUAL .)
-    FLOTANTE        reduce using rule 40 (asignacion_abreviado -> MENOSIGUAL .)
-    BOOLEANO        reduce using rule 40 (asignacion_abreviado -> MENOSIGUAL .)
-    VARIABLE_PHP    reduce using rule 40 (asignacion_abreviado -> MENOSIGUAL .)
+    CADENA          shift and go to state 13
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valor                          shift and go to state 63
+    valorNumerico                  shift and go to state 54
+    varphp                         shift and go to state 55
 
 state 36
 
-    (41) asignacion_abreviado -> ASTERISCOIGUAL .
+    (46) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado . valorNumerico PUNTOYCOMA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    ENTERO          reduce using rule 41 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    FLOTANTE        reduce using rule 41 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    BOOLEANO        reduce using rule 41 (asignacion_abreviado -> ASTERISCOIGUAL .)
-    VARIABLE_PHP    reduce using rule 41 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valorNumerico                  shift and go to state 64
+    varphp                         shift and go to state 55
 
 state 37
 
-    (42) asignacion_abreviado -> BARRAIGUAL .
+    (40) asignacion_abreviado -> MASIGUAL .
 
-    ENTERO          reduce using rule 42 (asignacion_abreviado -> BARRAIGUAL .)
-    FLOTANTE        reduce using rule 42 (asignacion_abreviado -> BARRAIGUAL .)
-    BOOLEANO        reduce using rule 42 (asignacion_abreviado -> BARRAIGUAL .)
-    VARIABLE_PHP    reduce using rule 42 (asignacion_abreviado -> BARRAIGUAL .)
+    ENTERO          reduce using rule 40 (asignacion_abreviado -> MASIGUAL .)
+    FLOTANTE        reduce using rule 40 (asignacion_abreviado -> MASIGUAL .)
+    BOOLEANO        reduce using rule 40 (asignacion_abreviado -> MASIGUAL .)
+    VARIABLE_PHP    reduce using rule 40 (asignacion_abreviado -> MASIGUAL .)
 
 
 state 38
 
-    (43) asignacion_abreviado -> PORCENTAJEIGUAL .
+    (41) asignacion_abreviado -> MENOSIGUAL .
 
-    ENTERO          reduce using rule 43 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    FLOTANTE        reduce using rule 43 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    BOOLEANO        reduce using rule 43 (asignacion_abreviado -> PORCENTAJEIGUAL .)
-    VARIABLE_PHP    reduce using rule 43 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    ENTERO          reduce using rule 41 (asignacion_abreviado -> MENOSIGUAL .)
+    FLOTANTE        reduce using rule 41 (asignacion_abreviado -> MENOSIGUAL .)
+    BOOLEANO        reduce using rule 41 (asignacion_abreviado -> MENOSIGUAL .)
+    VARIABLE_PHP    reduce using rule 41 (asignacion_abreviado -> MENOSIGUAL .)
 
 
 state 39
 
-    (44) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
+    (42) asignacion_abreviado -> ASTERISCOIGUAL .
 
-    ENTERO          reduce using rule 44 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    FLOTANTE        reduce using rule 44 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    BOOLEANO        reduce using rule 44 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
-    VARIABLE_PHP    reduce using rule 44 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    ENTERO          reduce using rule 42 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 42 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 42 (asignacion_abreviado -> ASTERISCOIGUAL .)
+    VARIABLE_PHP    reduce using rule 42 (asignacion_abreviado -> ASTERISCOIGUAL .)
 
 
 state 40
 
-    (46) print -> PRINT PARENIZQ . PARENDER PUNTOYCOMA
-    (47) print -> PRINT PARENIZQ . COMDOB COMDOB PARENDER PUNTOYCOMA
-    (49) print -> PRINT PARENIZQ . CADENA PARENDER PUNTOYCOMA
-    (50) print -> PRINT PARENIZQ . COMDOB TEXTOSENCILLO varphp
+    (43) asignacion_abreviado -> BARRAIGUAL .
 
-    PARENDER        shift and go to state 63
-    COMDOB          shift and go to state 64
-    CADENA          shift and go to state 65
+    ENTERO          reduce using rule 43 (asignacion_abreviado -> BARRAIGUAL .)
+    FLOTANTE        reduce using rule 43 (asignacion_abreviado -> BARRAIGUAL .)
+    BOOLEANO        reduce using rule 43 (asignacion_abreviado -> BARRAIGUAL .)
+    VARIABLE_PHP    reduce using rule 43 (asignacion_abreviado -> BARRAIGUAL .)
 
 
 state 41
 
-    (51) print -> PRINT COMDOB . TEXTOSENCILLO varphp COMDOB
+    (44) asignacion_abreviado -> PORCENTAJEIGUAL .
 
-    TEXTOSENCILLO   shift and go to state 66
+    ENTERO          reduce using rule 44 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    FLOTANTE        reduce using rule 44 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    BOOLEANO        reduce using rule 44 (asignacion_abreviado -> PORCENTAJEIGUAL .)
+    VARIABLE_PHP    reduce using rule 44 (asignacion_abreviado -> PORCENTAJEIGUAL .)
 
 
 state 42
 
-    (48) print -> PRINT ESPACIOENBLANCO . varphp PUNTOYCOMA
-    (12) varphp -> . VARIABLE_PHP
+    (45) asignacion_abreviado -> DOBLEASTERISCOIGUAL .
 
-    VARIABLE_PHP    shift and go to state 55
+    ENTERO          reduce using rule 45 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    FLOTANTE        reduce using rule 45 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    BOOLEANO        reduce using rule 45 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
+    VARIABLE_PHP    reduce using rule 45 (asignacion_abreviado -> DOBLEASTERISCOIGUAL .)
 
-    varphp                         shift and go to state 67
 
 state 43
 
-    (20) operacion_logica -> varphp opLogicos . varphp
-    (12) varphp -> . VARIABLE_PHP
+    (47) print -> PRINT PARENIZQ . PARENDER PUNTOYCOMA
+    (48) print -> PRINT PARENIZQ . COMDOB COMDOB PARENDER PUNTOYCOMA
+    (49) print -> PRINT PARENIZQ . CADENA PARENDER PUNTOYCOMA
 
-    VARIABLE_PHP    shift and go to state 55
+    PARENDER        shift and go to state 65
+    COMDOB          shift and go to state 66
+    CADENA          shift and go to state 67
 
-    varphp                         shift and go to state 68
 
 state 44
 
-    (33) opLogicos -> OPERLOGICO_AND .
+    (50) impresionEcho -> ECHO CADENA . PUNTOYCOMA
 
-    VARIABLE_PHP    reduce using rule 33 (opLogicos -> OPERLOGICO_AND .)
+    PUNTOYCOMA      shift and go to state 68
 
 
 state 45
 
-    (34) opLogicos -> OPERLOGICO_OR .
+    (21) operacion_logica -> varphp opLogicos . varphp
+    (13) varphp -> . VARIABLE_PHP
 
-    VARIABLE_PHP    reduce using rule 34 (opLogicos -> OPERLOGICO_OR .)
+    VARIABLE_PHP    shift and go to state 56
 
+    varphp                         shift and go to state 69
 
 state 46
 
-    (35) opLogicos -> OPERLOGICO_XOR .
+    (34) opLogicos -> OPERLOGICO_AND .
 
-    VARIABLE_PHP    reduce using rule 35 (opLogicos -> OPERLOGICO_XOR .)
+    VARIABLE_PHP    reduce using rule 34 (opLogicos -> OPERLOGICO_AND .)
 
 
 state 47
 
-    (36) opLogicos -> OPERLOGICO_NOT .
+    (35) opLogicos -> OPERLOGICO_OR .
 
-    VARIABLE_PHP    reduce using rule 36 (opLogicos -> OPERLOGICO_NOT .)
+    VARIABLE_PHP    reduce using rule 35 (opLogicos -> OPERLOGICO_OR .)
 
 
 state 48
 
-    (37) opLogicos -> OPERLOGICO_OREXCLUSIVO .
+    (36) opLogicos -> OPERLOGICO_XOR .
 
-    VARIABLE_PHP    reduce using rule 37 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
+    VARIABLE_PHP    reduce using rule 36 (opLogicos -> OPERLOGICO_XOR .)
 
 
 state 49
 
-    (52) impresionEcho -> ECHO CADENA . PUNTOYCOMA
+    (37) opLogicos -> OPERLOGICO_NOT .
 
-    PUNTOYCOMA      shift and go to state 69
+    VARIABLE_PHP    reduce using rule 37 (opLogicos -> OPERLOGICO_NOT .)
 
 
 state 50
 
-    (53) condIf -> IF PARENIZQ . BOOLEAN PARENDER PUNTOYCOMA
-    (54) condIf -> IF PARENIZQ . BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER
-    (55) condIf -> IF PARENIZQ . BOOLEANO PARENDER LLAVEIZQ print LLAVEDER
-    (56) condIf -> IF PARENIZQ . BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (38) opLogicos -> OPERLOGICO_OREXCLUSIVO .
 
-    BOOLEAN         shift and go to state 70
-    BOOLEANO        shift and go to state 71
+    VARIABLE_PHP    reduce using rule 38 (opLogicos -> OPERLOGICO_OREXCLUSIVO .)
 
 
 state 51
 
-    (57) bucleDoWhile -> DO LLAVEIZQ . operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (58) bucleDoWhile -> DO LLAVEIZQ . print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (59) bucleDoWhile -> DO LLAVEIZQ . impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO LLAVEIZQ . operacion LLAVEDER WHILE PARENIZQ BOOLEANO
-    (17) operacion -> . valorNumerico
-    (18) operacion -> . valorNumerico operador operacion
-    (19) operacion -> . valorNumerico comparacion operacion
-    (46) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
-    (47) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-    (48) print -> . PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
-    (49) print -> . PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
-    (50) print -> . PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
-    (51) print -> . PRINT COMDOB TEXTOSENCILLO varphp COMDOB
-    (52) impresionEcho -> . ECHO CADENA PUNTOYCOMA
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (51) condIf -> IF PARENIZQ . BOOLEAN PARENDER PUNTOYCOMA
+    (52) condIf -> IF PARENIZQ . BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER
+    (53) condIf -> IF PARENIZQ . BOOLEAN PARENDER LLAVEIZQ print LLAVEDER
+    (54) condIf -> IF PARENIZQ . BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER
 
-    PRINT           shift and go to state 14
-    ECHO            shift and go to state 16
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
-    VARIABLE_PHP    shift and go to state 55
+    BOOLEAN         shift and go to state 70
 
-    operacion                      shift and go to state 72
-    print                          shift and go to state 73
-    impresionEcho                  shift and go to state 74
-    valorNumerico                  shift and go to state 52
-    varphp                         shift and go to state 54
 
 state 52
 
-    (17) operacion -> valorNumerico .
-    (18) operacion -> valorNumerico . operador operacion
-    (19) operacion -> valorNumerico . comparacion operacion
-    (21) operador -> . MAS
-    (22) operador -> . MENOS
-    (23) operador -> . MULTIPLICA
-    (24) operador -> . DIVIDE
-    (25) operador -> . MODULO
-    (26) operador -> . EXPONENCIACION
-    (27) comparacion -> . MAYORQUE
-    (28) comparacion -> . MENORQUE
-    (29) comparacion -> . MENORQUE OPERASIGNACION
-    (30) comparacion -> . MAYORQUE OPERASIGNACION
-    (31) comparacion -> . MENORQUE OPERASIGNACION MAYORQUE
-    (32) comparacion -> . MENORQUE MAYORQUE
+    (55) bucleDoWhile -> DO LLAVEIZQ . operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (56) bucleDoWhile -> DO LLAVEIZQ . print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (57) bucleDoWhile -> DO LLAVEIZQ . impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO LLAVEIZQ . operacion LLAVEDER WHILE PARENIZQ valor
+    (18) operacion -> . valorNumerico PUNTOYCOMA
+    (19) operacion -> . valorNumerico operador operacion
+    (20) operacion -> . valorNumerico comparacion operacion
+    (47) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
+    (48) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+    (49) print -> . PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
+    (50) impresionEcho -> . ECHO CADENA PUNTOYCOMA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    $end            reduce using rule 17 (operacion -> valorNumerico .)
-    LLAVEDER        reduce using rule 17 (operacion -> valorNumerico .)
-    MAS             shift and go to state 24
-    MENOS           shift and go to state 25
-    MULTIPLICA      shift and go to state 26
-    DIVIDE          shift and go to state 27
-    MODULO          shift and go to state 28
-    EXPONENCIACION  shift and go to state 29
-    MAYORQUE        shift and go to state 30
-    MENORQUE        shift and go to state 31
+    PRINT           shift and go to state 15
+    ECHO            shift and go to state 16
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
-    operador                       shift and go to state 22
-    comparacion                    shift and go to state 23
+    operacion                      shift and go to state 71
+    print                          shift and go to state 72
+    impresionEcho                  shift and go to state 73
+    valorNumerico                  shift and go to state 57
+    varphp                         shift and go to state 55
 
 state 53
 
-    (18) operacion -> valorNumerico operador operacion .
+    (59) rellenoArray -> valor OPERASIG_ARRAY valor . PUNTOYCOMA
 
-    $end            reduce using rule 18 (operacion -> valorNumerico operador operacion .)
-    LLAVEDER        reduce using rule 18 (operacion -> valorNumerico operador operacion .)
+    PUNTOYCOMA      shift and go to state 74
 
 
 state 54
 
-    (15) valorNumerico -> varphp .
+    (11) valor -> valorNumerico .
 
-    MAS             reduce using rule 15 (valorNumerico -> varphp .)
-    MENOS           reduce using rule 15 (valorNumerico -> varphp .)
-    MULTIPLICA      reduce using rule 15 (valorNumerico -> varphp .)
-    DIVIDE          reduce using rule 15 (valorNumerico -> varphp .)
-    MODULO          reduce using rule 15 (valorNumerico -> varphp .)
-    EXPONENCIACION  reduce using rule 15 (valorNumerico -> varphp .)
-    MAYORQUE        reduce using rule 15 (valorNumerico -> varphp .)
-    MENORQUE        reduce using rule 15 (valorNumerico -> varphp .)
-    $end            reduce using rule 15 (valorNumerico -> varphp .)
-    LLAVEDER        reduce using rule 15 (valorNumerico -> varphp .)
+    PUNTOYCOMA      reduce using rule 11 (valor -> valorNumerico .)
+    PARENDER        reduce using rule 11 (valor -> valorNumerico .)
+    $end            reduce using rule 11 (valor -> valorNumerico .)
 
 
 state 55
 
-    (12) varphp -> VARIABLE_PHP .
+    (16) valorNumerico -> varphp .
 
-    MAS             reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MENOS           reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MULTIPLICA      reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    DIVIDE          reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MODULO          reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    EXPONENCIACION  reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MAYORQUE        reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    MENORQUE        reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    $end            reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    LLAVEDER        reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    PUNTOYCOMA      reduce using rule 12 (varphp -> VARIABLE_PHP .)
-    COMDOB          reduce using rule 12 (varphp -> VARIABLE_PHP .)
+    PUNTOYCOMA      reduce using rule 16 (valorNumerico -> varphp .)
+    MAS             reduce using rule 16 (valorNumerico -> varphp .)
+    MENOS           reduce using rule 16 (valorNumerico -> varphp .)
+    MULTIPLICA      reduce using rule 16 (valorNumerico -> varphp .)
+    DIVIDE          reduce using rule 16 (valorNumerico -> varphp .)
+    MODULO          reduce using rule 16 (valorNumerico -> varphp .)
+    EXPONENCIACION  reduce using rule 16 (valorNumerico -> varphp .)
+    MAYORQUE        reduce using rule 16 (valorNumerico -> varphp .)
+    MENORQUE        reduce using rule 16 (valorNumerico -> varphp .)
+    PARENDER        reduce using rule 16 (valorNumerico -> varphp .)
+    $end            reduce using rule 16 (valorNumerico -> varphp .)
 
 
 state 56
 
-    (19) operacion -> valorNumerico comparacion operacion .
+    (13) varphp -> VARIABLE_PHP .
 
-    $end            reduce using rule 19 (operacion -> valorNumerico comparacion operacion .)
-    LLAVEDER        reduce using rule 19 (operacion -> valorNumerico comparacion operacion .)
+    PUNTOYCOMA      reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MAS             reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MENOS           reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MULTIPLICA      reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    DIVIDE          reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MODULO          reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    EXPONENCIACION  reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MAYORQUE        reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    MENORQUE        reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    $end            reduce using rule 13 (varphp -> VARIABLE_PHP .)
+    PARENDER        reduce using rule 13 (varphp -> VARIABLE_PHP .)
 
 
 state 57
 
-    (30) comparacion -> MAYORQUE OPERASIGNACION .
+    (18) operacion -> valorNumerico . PUNTOYCOMA
+    (19) operacion -> valorNumerico . operador operacion
+    (20) operacion -> valorNumerico . comparacion operacion
+    (22) operador -> . MAS
+    (23) operador -> . MENOS
+    (24) operador -> . MULTIPLICA
+    (25) operador -> . DIVIDE
+    (26) operador -> . MODULO
+    (27) operador -> . EXPONENCIACION
+    (28) comparacion -> . MAYORQUE
+    (29) comparacion -> . MENORQUE
+    (30) comparacion -> . MENORQUE OPERASIGNACION
+    (31) comparacion -> . MAYORQUE OPERASIGNACION
+    (32) comparacion -> . MENORQUE OPERASIGNACION MAYORQUE
+    (33) comparacion -> . MENORQUE MAYORQUE
 
-    ENTERO          reduce using rule 30 (comparacion -> MAYORQUE OPERASIGNACION .)
-    FLOTANTE        reduce using rule 30 (comparacion -> MAYORQUE OPERASIGNACION .)
-    BOOLEANO        reduce using rule 30 (comparacion -> MAYORQUE OPERASIGNACION .)
-    VARIABLE_PHP    reduce using rule 30 (comparacion -> MAYORQUE OPERASIGNACION .)
+    PUNTOYCOMA      shift and go to state 24
+    MAS             shift and go to state 27
+    MENOS           shift and go to state 28
+    MULTIPLICA      shift and go to state 29
+    DIVIDE          shift and go to state 30
+    MODULO          shift and go to state 31
+    EXPONENCIACION  shift and go to state 32
+    MAYORQUE        shift and go to state 33
+    MENORQUE        shift and go to state 34
 
+    operador                       shift and go to state 25
+    comparacion                    shift and go to state 26
 
 state 58
 
-    (29) comparacion -> MENORQUE OPERASIGNACION .
-    (31) comparacion -> MENORQUE OPERASIGNACION . MAYORQUE
+    (19) operacion -> valorNumerico operador operacion .
 
-    ENTERO          reduce using rule 29 (comparacion -> MENORQUE OPERASIGNACION .)
-    FLOTANTE        reduce using rule 29 (comparacion -> MENORQUE OPERASIGNACION .)
-    BOOLEANO        reduce using rule 29 (comparacion -> MENORQUE OPERASIGNACION .)
-    VARIABLE_PHP    reduce using rule 29 (comparacion -> MENORQUE OPERASIGNACION .)
-    MAYORQUE        shift and go to state 75
+    $end            reduce using rule 19 (operacion -> valorNumerico operador operacion .)
+    LLAVEDER        reduce using rule 19 (operacion -> valorNumerico operador operacion .)
 
 
 state 59
 
-    (32) comparacion -> MENORQUE MAYORQUE .
+    (20) operacion -> valorNumerico comparacion operacion .
 
-    ENTERO          reduce using rule 32 (comparacion -> MENORQUE MAYORQUE .)
-    FLOTANTE        reduce using rule 32 (comparacion -> MENORQUE MAYORQUE .)
-    BOOLEANO        reduce using rule 32 (comparacion -> MENORQUE MAYORQUE .)
-    VARIABLE_PHP    reduce using rule 32 (comparacion -> MENORQUE MAYORQUE .)
+    $end            reduce using rule 20 (operacion -> valorNumerico comparacion operacion .)
+    LLAVEDER        reduce using rule 20 (operacion -> valorNumerico comparacion operacion .)
 
 
 state 60
 
-    (38) asignacion -> VARIABLE_PHP OPERASIGNACION valor .
+    (31) comparacion -> MAYORQUE OPERASIGNACION .
 
-    $end            reduce using rule 38 (asignacion -> VARIABLE_PHP OPERASIGNACION valor .)
+    ENTERO          reduce using rule 31 (comparacion -> MAYORQUE OPERASIGNACION .)
+    FLOTANTE        reduce using rule 31 (comparacion -> MAYORQUE OPERASIGNACION .)
+    BOOLEANO        reduce using rule 31 (comparacion -> MAYORQUE OPERASIGNACION .)
+    VARIABLE_PHP    reduce using rule 31 (comparacion -> MAYORQUE OPERASIGNACION .)
 
 
 state 61
 
-    (10) valor -> valorNumerico .
+    (30) comparacion -> MENORQUE OPERASIGNACION .
+    (32) comparacion -> MENORQUE OPERASIGNACION . MAYORQUE
 
-    $end            reduce using rule 10 (valor -> valorNumerico .)
+    ENTERO          reduce using rule 30 (comparacion -> MENORQUE OPERASIGNACION .)
+    FLOTANTE        reduce using rule 30 (comparacion -> MENORQUE OPERASIGNACION .)
+    BOOLEANO        reduce using rule 30 (comparacion -> MENORQUE OPERASIGNACION .)
+    VARIABLE_PHP    reduce using rule 30 (comparacion -> MENORQUE OPERASIGNACION .)
+    MAYORQUE        shift and go to state 75
 
 
 state 62
 
-    (45) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico .
+    (33) comparacion -> MENORQUE MAYORQUE .
 
-    $end            reduce using rule 45 (asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico .)
+    ENTERO          reduce using rule 33 (comparacion -> MENORQUE MAYORQUE .)
+    FLOTANTE        reduce using rule 33 (comparacion -> MENORQUE MAYORQUE .)
+    BOOLEANO        reduce using rule 33 (comparacion -> MENORQUE MAYORQUE .)
+    VARIABLE_PHP    reduce using rule 33 (comparacion -> MENORQUE MAYORQUE .)
 
 
 state 63
 
-    (46) print -> PRINT PARENIZQ PARENDER . PUNTOYCOMA
+    (39) asignacion -> VARIABLE_PHP OPERASIGNACION valor . PUNTOYCOMA
 
     PUNTOYCOMA      shift and go to state 76
 
 
 state 64
 
-    (47) print -> PRINT PARENIZQ COMDOB . COMDOB PARENDER PUNTOYCOMA
-    (50) print -> PRINT PARENIZQ COMDOB . TEXTOSENCILLO varphp
+    (46) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico . PUNTOYCOMA
 
-    COMDOB          shift and go to state 77
-    TEXTOSENCILLO   shift and go to state 78
+    PUNTOYCOMA      shift and go to state 77
 
 
 state 65
 
-    (49) print -> PRINT PARENIZQ CADENA . PARENDER PUNTOYCOMA
+    (47) print -> PRINT PARENIZQ PARENDER . PUNTOYCOMA
 
-    PARENDER        shift and go to state 79
+    PUNTOYCOMA      shift and go to state 78
 
 
 state 66
 
-    (51) print -> PRINT COMDOB TEXTOSENCILLO . varphp COMDOB
-    (12) varphp -> . VARIABLE_PHP
+    (48) print -> PRINT PARENIZQ COMDOB . COMDOB PARENDER PUNTOYCOMA
 
-    VARIABLE_PHP    shift and go to state 55
+    COMDOB          shift and go to state 79
 
-    varphp                         shift and go to state 80
 
 state 67
 
-    (48) print -> PRINT ESPACIOENBLANCO varphp . PUNTOYCOMA
+    (49) print -> PRINT PARENIZQ CADENA . PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 81
+    PARENDER        shift and go to state 80
 
 
 state 68
 
-    (20) operacion_logica -> varphp opLogicos varphp .
+    (50) impresionEcho -> ECHO CADENA PUNTOYCOMA .
 
-    $end            reduce using rule 20 (operacion_logica -> varphp opLogicos varphp .)
+    $end            reduce using rule 50 (impresionEcho -> ECHO CADENA PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 50 (impresionEcho -> ECHO CADENA PUNTOYCOMA .)
 
 
 state 69
 
-    (52) impresionEcho -> ECHO CADENA PUNTOYCOMA .
+    (21) operacion_logica -> varphp opLogicos varphp .
 
-    $end            reduce using rule 52 (impresionEcho -> ECHO CADENA PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 52 (impresionEcho -> ECHO CADENA PUNTOYCOMA .)
+    $end            reduce using rule 21 (operacion_logica -> varphp opLogicos varphp .)
 
 
 state 70
 
-    (53) condIf -> IF PARENIZQ BOOLEAN . PARENDER PUNTOYCOMA
+    (51) condIf -> IF PARENIZQ BOOLEAN . PARENDER PUNTOYCOMA
+    (52) condIf -> IF PARENIZQ BOOLEAN . PARENDER LLAVEIZQ operacion LLAVEDER
+    (53) condIf -> IF PARENIZQ BOOLEAN . PARENDER LLAVEIZQ print LLAVEDER
+    (54) condIf -> IF PARENIZQ BOOLEAN . PARENDER LLAVEIZQ impresionEcho LLAVEDER
 
-    PARENDER        shift and go to state 82
+    PARENDER        shift and go to state 81
 
 
 state 71
 
-    (54) condIf -> IF PARENIZQ BOOLEANO . PARENDER LLAVEIZQ operacion LLAVEDER
-    (55) condIf -> IF PARENIZQ BOOLEANO . PARENDER LLAVEIZQ print LLAVEDER
-    (56) condIf -> IF PARENIZQ BOOLEANO . PARENDER LLAVEIZQ impresionEcho LLAVEDER
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion . LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO LLAVEIZQ operacion . LLAVEDER WHILE PARENIZQ valor
 
-    PARENDER        shift and go to state 83
+    LLAVEDER        shift and go to state 82
 
 
 state 72
 
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion . LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO LLAVEIZQ operacion . LLAVEDER WHILE PARENIZQ BOOLEANO
+    (56) bucleDoWhile -> DO LLAVEIZQ print . LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
 
-    LLAVEDER        shift and go to state 84
+    LLAVEDER        shift and go to state 83
 
 
 state 73
 
-    (58) bucleDoWhile -> DO LLAVEIZQ print . LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho . LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
 
-    LLAVEDER        shift and go to state 85
+    LLAVEDER        shift and go to state 84
 
 
 state 74
 
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho . LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+    (59) rellenoArray -> valor OPERASIG_ARRAY valor PUNTOYCOMA .
 
-    LLAVEDER        shift and go to state 86
+    $end            reduce using rule 59 (rellenoArray -> valor OPERASIG_ARRAY valor PUNTOYCOMA .)
 
 
 state 75
 
-    (31) comparacion -> MENORQUE OPERASIGNACION MAYORQUE .
+    (32) comparacion -> MENORQUE OPERASIGNACION MAYORQUE .
 
-    ENTERO          reduce using rule 31 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
-    FLOTANTE        reduce using rule 31 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
-    BOOLEANO        reduce using rule 31 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
-    VARIABLE_PHP    reduce using rule 31 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
+    ENTERO          reduce using rule 32 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
+    FLOTANTE        reduce using rule 32 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
+    BOOLEANO        reduce using rule 32 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
+    VARIABLE_PHP    reduce using rule 32 (comparacion -> MENORQUE OPERASIGNACION MAYORQUE .)
 
 
 state 76
 
-    (46) print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .
+    (39) asignacion -> VARIABLE_PHP OPERASIGNACION valor PUNTOYCOMA .
 
-    $end            reduce using rule 46 (print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 46 (print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .)
+    $end            reduce using rule 39 (asignacion -> VARIABLE_PHP OPERASIGNACION valor PUNTOYCOMA .)
 
 
 state 77
 
-    (47) print -> PRINT PARENIZQ COMDOB COMDOB . PARENDER PUNTOYCOMA
+    (46) asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico PUNTOYCOMA .
 
-    PARENDER        shift and go to state 87
+    $end            reduce using rule 46 (asignacion_abreviatura_op -> VARIABLE_PHP asignacion_abreviado valorNumerico PUNTOYCOMA .)
 
 
 state 78
 
-    (50) print -> PRINT PARENIZQ COMDOB TEXTOSENCILLO . varphp
-    (12) varphp -> . VARIABLE_PHP
+    (47) print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .
 
-    VARIABLE_PHP    shift and go to state 55
+    $end            reduce using rule 47 (print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 47 (print -> PRINT PARENIZQ PARENDER PUNTOYCOMA .)
 
-    varphp                         shift and go to state 88
 
 state 79
 
-    (49) print -> PRINT PARENIZQ CADENA PARENDER . PUNTOYCOMA
+    (48) print -> PRINT PARENIZQ COMDOB COMDOB . PARENDER PUNTOYCOMA
 
-    PUNTOYCOMA      shift and go to state 89
+    PARENDER        shift and go to state 85
 
 
 state 80
 
-    (51) print -> PRINT COMDOB TEXTOSENCILLO varphp . COMDOB
+    (49) print -> PRINT PARENIZQ CADENA PARENDER . PUNTOYCOMA
 
-    COMDOB          shift and go to state 90
+    PUNTOYCOMA      shift and go to state 86
 
 
 state 81
 
-    (48) print -> PRINT ESPACIOENBLANCO varphp PUNTOYCOMA .
+    (51) condIf -> IF PARENIZQ BOOLEAN PARENDER . PUNTOYCOMA
+    (52) condIf -> IF PARENIZQ BOOLEAN PARENDER . LLAVEIZQ operacion LLAVEDER
+    (53) condIf -> IF PARENIZQ BOOLEAN PARENDER . LLAVEIZQ print LLAVEDER
+    (54) condIf -> IF PARENIZQ BOOLEAN PARENDER . LLAVEIZQ impresionEcho LLAVEDER
 
-    $end            reduce using rule 48 (print -> PRINT ESPACIOENBLANCO varphp PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 48 (print -> PRINT ESPACIOENBLANCO varphp PUNTOYCOMA .)
+    PUNTOYCOMA      shift and go to state 87
+    LLAVEIZQ        shift and go to state 88
 
 
 state 82
 
-    (53) condIf -> IF PARENIZQ BOOLEAN PARENDER . PUNTOYCOMA
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER . WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER . WHILE PARENIZQ valor
 
-    PUNTOYCOMA      shift and go to state 91
+    WHILE           shift and go to state 89
 
 
 state 83
 
-    (54) condIf -> IF PARENIZQ BOOLEANO PARENDER . LLAVEIZQ operacion LLAVEDER
-    (55) condIf -> IF PARENIZQ BOOLEANO PARENDER . LLAVEIZQ print LLAVEDER
-    (56) condIf -> IF PARENIZQ BOOLEANO PARENDER . LLAVEIZQ impresionEcho LLAVEDER
+    (56) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER . WHILE PARENIZQ valor PARENDER PUNTOYCOMA
 
-    LLAVEIZQ        shift and go to state 92
+    WHILE           shift and go to state 90
 
 
 state 84
 
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER . WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER . WHILE PARENIZQ BOOLEANO
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER . WHILE PARENIZQ valor PARENDER PUNTOYCOMA
 
-    WHILE           shift and go to state 93
+    WHILE           shift and go to state 91
 
 
 state 85
 
-    (58) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER . WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+    (48) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER . PUNTOYCOMA
 
-    WHILE           shift and go to state 94
+    PUNTOYCOMA      shift and go to state 92
 
 
 state 86
-
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER . WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-
-    WHILE           shift and go to state 95
-
-
-state 87
-
-    (47) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER . PUNTOYCOMA
-
-    PUNTOYCOMA      shift and go to state 96
-
-
-state 88
-
-    (50) print -> PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp .
-
-    $end            reduce using rule 50 (print -> PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp .)
-    LLAVEDER        reduce using rule 50 (print -> PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp .)
-
-
-state 89
 
     (49) print -> PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA .
 
@@ -1248,215 +1244,241 @@ state 89
     LLAVEDER        reduce using rule 49 (print -> PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA .)
 
 
+state 87
+
+    (51) condIf -> IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA .
+
+    $end            reduce using rule 51 (condIf -> IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA .)
+
+
+state 88
+
+    (52) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ . operacion LLAVEDER
+    (53) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ . print LLAVEDER
+    (54) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ . impresionEcho LLAVEDER
+    (18) operacion -> . valorNumerico PUNTOYCOMA
+    (19) operacion -> . valorNumerico operador operacion
+    (20) operacion -> . valorNumerico comparacion operacion
+    (47) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
+    (48) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+    (49) print -> . PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
+    (50) impresionEcho -> . ECHO CADENA PUNTOYCOMA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
+
+    PRINT           shift and go to state 15
+    ECHO            shift and go to state 16
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
+
+    operacion                      shift and go to state 93
+    print                          shift and go to state 94
+    impresionEcho                  shift and go to state 95
+    valorNumerico                  shift and go to state 57
+    varphp                         shift and go to state 55
+
+state 89
+
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE . PARENIZQ valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE . PARENIZQ valor
+
+    PARENIZQ        shift and go to state 96
+
+
 state 90
 
-    (51) print -> PRINT COMDOB TEXTOSENCILLO varphp COMDOB .
+    (56) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE . PARENIZQ valor PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 51 (print -> PRINT COMDOB TEXTOSENCILLO varphp COMDOB .)
-    LLAVEDER        reduce using rule 51 (print -> PRINT COMDOB TEXTOSENCILLO varphp COMDOB .)
+    PARENIZQ        shift and go to state 97
 
 
 state 91
 
-    (53) condIf -> IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA .
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE . PARENIZQ valor PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 53 (condIf -> IF PARENIZQ BOOLEAN PARENDER PUNTOYCOMA .)
+    PARENIZQ        shift and go to state 98
 
 
 state 92
 
-    (54) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ . operacion LLAVEDER
-    (55) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ . print LLAVEDER
-    (56) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ . impresionEcho LLAVEDER
-    (17) operacion -> . valorNumerico
-    (18) operacion -> . valorNumerico operador operacion
-    (19) operacion -> . valorNumerico comparacion operacion
-    (46) print -> . PRINT PARENIZQ PARENDER PUNTOYCOMA
-    (47) print -> . PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
-    (48) print -> . PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
-    (49) print -> . PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
-    (50) print -> . PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
-    (51) print -> . PRINT COMDOB TEXTOSENCILLO varphp COMDOB
-    (52) impresionEcho -> . ECHO CADENA PUNTOYCOMA
-    (13) valorNumerico -> . ENTERO
-    (14) valorNumerico -> . FLOTANTE
-    (15) valorNumerico -> . varphp
-    (16) valorNumerico -> . BOOLEANO
-    (12) varphp -> . VARIABLE_PHP
+    (48) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .
 
-    PRINT           shift and go to state 14
-    ECHO            shift and go to state 16
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-    BOOLEANO        shift and go to state 18
-    VARIABLE_PHP    shift and go to state 55
+    $end            reduce using rule 48 (print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .)
+    LLAVEDER        reduce using rule 48 (print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .)
 
-    operacion                      shift and go to state 97
-    print                          shift and go to state 98
-    impresionEcho                  shift and go to state 99
-    valorNumerico                  shift and go to state 52
-    varphp                         shift and go to state 54
 
 state 93
 
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE . PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE . PARENIZQ BOOLEANO
+    (52) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion . LLAVEDER
 
-    PARENIZQ        shift and go to state 100
+    LLAVEDER        shift and go to state 99
 
 
 state 94
 
-    (58) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE . PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+    (53) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print . LLAVEDER
 
-    PARENIZQ        shift and go to state 101
+    LLAVEDER        shift and go to state 100
 
 
 state 95
 
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE . PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
+    (54) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho . LLAVEDER
 
-    PARENIZQ        shift and go to state 102
+    LLAVEDER        shift and go to state 101
 
 
 state 96
 
-    (47) print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ . valor PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ . valor
+    (11) valor -> . valorNumerico
+    (12) valor -> . CADENA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    $end            reduce using rule 47 (print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .)
-    LLAVEDER        reduce using rule 47 (print -> PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA .)
+    CADENA          shift and go to state 13
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valor                          shift and go to state 102
+    valorNumerico                  shift and go to state 54
+    varphp                         shift and go to state 55
 
 state 97
 
-    (54) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion . LLAVEDER
+    (56) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ . valor PARENDER PUNTOYCOMA
+    (11) valor -> . valorNumerico
+    (12) valor -> . CADENA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    LLAVEDER        shift and go to state 103
+    CADENA          shift and go to state 13
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valor                          shift and go to state 103
+    valorNumerico                  shift and go to state 54
+    varphp                         shift and go to state 55
 
 state 98
 
-    (55) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print . LLAVEDER
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ . valor PARENDER PUNTOYCOMA
+    (11) valor -> . valorNumerico
+    (12) valor -> . CADENA
+    (14) valorNumerico -> . ENTERO
+    (15) valorNumerico -> . FLOTANTE
+    (16) valorNumerico -> . varphp
+    (17) valorNumerico -> . BOOLEANO
+    (13) varphp -> . VARIABLE_PHP
 
-    LLAVEDER        shift and go to state 104
+    CADENA          shift and go to state 13
+    ENTERO          shift and go to state 20
+    FLOTANTE        shift and go to state 21
+    BOOLEANO        shift and go to state 22
+    VARIABLE_PHP    shift and go to state 56
 
+    valor                          shift and go to state 104
+    valorNumerico                  shift and go to state 54
+    varphp                         shift and go to state 55
 
 state 99
 
-    (56) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho . LLAVEDER
+    (52) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER .
 
-    LLAVEDER        shift and go to state 105
+    $end            reduce using rule 52 (condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ operacion LLAVEDER .)
 
 
 state 100
 
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ . BOOLEANO PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ . BOOLEANO
+    (53) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER .
 
-    BOOLEANO        shift and go to state 106
+    $end            reduce using rule 53 (condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ print LLAVEDER .)
 
 
 state 101
 
-    (58) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ . BOOLEANO PARENDER PUNTOYCOMA
+    (54) condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER .
 
-    BOOLEANO        shift and go to state 107
+    $end            reduce using rule 54 (condIf -> IF PARENIZQ BOOLEAN PARENDER LLAVEIZQ impresionEcho LLAVEDER .)
 
 
 state 102
 
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ . BOOLEANO PARENDER PUNTOYCOMA
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor . PARENDER PUNTOYCOMA
+    (58) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor .
 
-    BOOLEANO        shift and go to state 108
+    PARENDER        shift and go to state 105
+    $end            reduce using rule 58 (bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor .)
 
 
 state 103
 
-    (54) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER .
+    (56) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor . PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 54 (condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ operacion LLAVEDER .)
+    PARENDER        shift and go to state 106
 
 
 state 104
 
-    (55) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER .
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor . PARENDER PUNTOYCOMA
 
-    $end            reduce using rule 55 (condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ print LLAVEDER .)
+    PARENDER        shift and go to state 107
 
 
 state 105
 
-    (56) condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER .
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER . PUNTOYCOMA
 
-    $end            reduce using rule 56 (condIf -> IF PARENIZQ BOOLEANO PARENDER LLAVEIZQ impresionEcho LLAVEDER .)
+    PUNTOYCOMA      shift and go to state 108
 
 
 state 106
 
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
-    (60) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO .
+    (56) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER . PUNTOYCOMA
 
-    PARENDER        shift and go to state 109
-    $end            reduce using rule 60 (bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO .)
+    PUNTOYCOMA      shift and go to state 109
 
 
 state 107
 
-    (58) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER . PUNTOYCOMA
 
-    PARENDER        shift and go to state 110
+    PUNTOYCOMA      shift and go to state 110
 
 
 state 108
 
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO . PARENDER PUNTOYCOMA
+    (55) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA .
 
-    PARENDER        shift and go to state 111
+    $end            reduce using rule 55 (bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA .)
 
 
 state 109
 
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+    (56) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA .
 
-    PUNTOYCOMA      shift and go to state 112
+    $end            reduce using rule 56 (bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA .)
 
 
 state 110
 
-    (58) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
+    (57) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA .
 
-    PUNTOYCOMA      shift and go to state 113
+    $end            reduce using rule 57 (bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA .)
 
-
-state 111
-
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER . PUNTOYCOMA
-
-    PUNTOYCOMA      shift and go to state 114
-
-
-state 112
-
-    (57) bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .
-
-    $end            reduce using rule 57 (bucleDoWhile -> DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .)
-
-
-state 113
-
-    (58) bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .
-
-    $end            reduce using rule 58 (bucleDoWhile -> DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .)
-
-
-state 114
-
-    (59) bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .
-
-    $end            reduce using rule 59 (bucleDoWhile -> DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA .)
-
-WARNING: 
-WARNING: Conflicts:
-WARNING: 
-WARNING: reduce/reduce conflict in state 11 resolved using rule (valor -> valorNumerico)
-WARNING: rejected rule (operacion -> valorNumerico) in state 11
