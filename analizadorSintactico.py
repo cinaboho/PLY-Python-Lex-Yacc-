@@ -12,13 +12,10 @@ def p_sentencias(p):
                   | condIf
                   | bucleDoWhile
                   | rellenoArray
-                  | crearHeap
-
     '''
 def p_valor(p):
     '''valor : valorNumerico
-             | CADENA
-    '''
+             | CADENA'''
 
 def p_varphp(p):
     '''varphp : VARIABLE_PHP'''
@@ -28,10 +25,9 @@ def p_valorNumerico(p):
                      | FLOTANTE
                      | varphp
                      | BOOLEANO
-
     '''
 def p_operacion(p):
-    '''operacion : valorNumerico
+    '''operacion : valorNumerico PUNTOYCOMA
                  | valorNumerico operador operacion
                  | valorNumerico comparacion operacion
     '''
@@ -65,7 +61,7 @@ def p_opLogicos(p) :
 
 
 def p_asignacion(p):
-    '''asignacion : VARIABLE_PHP OPERASIGNACION valor
+    '''asignacion : VARIABLE_PHP OPERASIGNACION valor PUNTOYCOMA
     '''
 def p_asignacion_abreviado(p):
     '''asignacion_abreviado : MASIGUAL
@@ -76,7 +72,7 @@ def p_asignacion_abreviado(p):
                             | DOBLEASTERISCOIGUAL
     '''
 def p_asignacion_abreviatura_op(p):
-    '''asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico
+    '''asignacion_abreviatura_op : VARIABLE_PHP asignacion_abreviado valorNumerico PUNTOYCOMA
     '''
 #print();
 #print("");
@@ -85,12 +81,9 @@ def p_asignacion_abreviatura_op(p):
 
 def p_print(p):
     '''print : PRINT PARENIZQ PARENDER PUNTOYCOMA
-             | PRINT PARENIZQ COMDOB  COMDOB PARENDER PUNTOYCOMA
-             | PRINT ESPACIOENBLANCO varphp PUNTOYCOMA
-             | PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA
-             | PRINT PARENIZQ COMDOB TEXTOSENCILLO varphp
-             | PRINT COMDOB TEXTOSENCILLO varphp COMDOB
-    '''
+                | PRINT PARENIZQ COMDOB COMDOB PARENDER PUNTOYCOMA
+                | PRINT PARENIZQ CADENA PARENDER PUNTOYCOMA'''
+
 def p_impresionEcho(p):
     '''impresionEcho : ECHO CADENA PUNTOYCOMA'''
 
@@ -103,10 +96,10 @@ def p_condIf(p) :
 #do{$a+$b}while(True);
 
 def p_bucleDoWhile(p):
-    '''bucleDoWhile : DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                    | DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ BOOLEANO PARENDER PUNTOYCOMA
-                    | DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ BOOLEANO
+    '''bucleDoWhile : DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ print LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ impresionEcho LLAVEDER WHILE PARENIZQ valor PARENDER PUNTOYCOMA
+                    | DO LLAVEIZQ operacion LLAVEDER WHILE PARENIZQ valor
     '''
 #1=>3,
 def p_rellenoArray(p):  # clave => valor
@@ -116,31 +109,24 @@ def p_rellenoArray(p):  # clave => valor
 
 #Cindy
 def p_nombreFuncion(p):
-    '''nombreFuncion : VARIABLE PARENIZQ PARENDER
+    '''nombreFuncion : NOMBRE PARENIZQ PARENDER
     '''
+
+
 #$var = new hola();
-def p_crearHeap(p):
-    '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
-                 | nombreFuncion
-    '''
 
 #Daniel
 
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
 
-# def p_rellenoArray(p):  # clave => valor
-#     '''rellenoArray : valores OPERASIG_ARRAY valores COMA
-#                     | valores
-#                     | COMA valores OPERASIG_ARRAY valores COMA rellenoArray'''
-
+#def p_crearHeap(p):
+ #   '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
+  #                  | nombreFuncion'''
 
 # def p_crearArreglos(p):
 #     '''crearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
 
 
-# def p_bucleForEach(p):
-#     '''bucleForEach : variable IDENTIFICADOR variable LLAVEIZQ sentencias LLAVEDER
-#                     | variable IDENTIFICADOR variable OPERASIG_ARRAY variable LLAVEIZQ sentencias LLAVEDER'''
 
 
 # def p_metodosArray(p):
@@ -151,7 +137,7 @@ def p_crearHeap(p):
 
 #Gabriela  -Corregido Cindy
 
-#Daniel
+
 
 # def p_crearMapa(p):
 #     '''crearMapa : OPERAMAPA PARENIZQ valor COMA variable COMA variable PARENDER PUNTOYCOMA
@@ -169,17 +155,39 @@ def p_crearHeap(p):
 
 #Daniel
 
+resultado_gramatica = []
+
 
 def p_error(p):
     print("Syntax error")
+    resultado_gramatica.append('Syntax error')
+
 
 parser = yacc.yacc()
-while True:
-    try:
-        s = input("calc>  ")
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
-    
+
+
+def prueba_s(data):
+    global resultado_gramatica
+    resultado_gramatica.clear()
+
+    for item in data.splitlines():
+        if item:
+            gram = parser.parse(item)
+            resultado_gramatica.append(str(gram))
+
+    print("result: ", resultado_gramatica)
+    return resultado_gramatica
+
+
+if __name__ == '__main__':
+    while True:
+        try:
+            s = input(' ingresa dato >>> ')
+        except EOFError:
+            continue
+        if not s: continue
+
+        # gram = parser.parse(s)
+        # print("Resultado ", gram)
+
+        prueba_s(s)
