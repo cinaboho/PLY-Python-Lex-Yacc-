@@ -12,7 +12,21 @@ def p_sentencias(p):
                   | condIf
                   | bucleDoWhile
                   | rellenoArray
+                  | inicio
+                  | fin
+                  | comentario_largo
     '''
+
+def p_inicio(p):
+    '''inicio : INICIO
+    '''
+def p_fin(p):
+    '''fin : FIN
+    '''
+def p_comentario_largo(p):
+    '''comentario_largo : COMENTARIO_LARGO
+    '''
+
 def p_valor(p):
     '''valor : valorNumerico
              | CADENA'''
@@ -41,7 +55,6 @@ def p_operador(p):
                 | DIVIDE
                 | MODULO
                 | EXPONENCIACION
-                
     '''
 def p_comparacion(p):
     '''comparacion : MAYORQUE
@@ -111,7 +124,9 @@ def p_rellenoArray(p):  # clave => valor
 def p_nombreFuncion(p):
     '''nombreFuncion : NOMBRE PARENIZQ PARENDER
     '''
-
+#Estructuras -----Cindy
+#🅻🅸🆂🆃🅰🆂 - EJEMPLOS
+#$lista = list($cadena,$frase1,$frase2);
 
 #$var = new hola();
 

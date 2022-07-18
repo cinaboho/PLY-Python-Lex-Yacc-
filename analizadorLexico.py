@@ -4,6 +4,8 @@ import ply.lex as lex
 # Cindy
 # .
 # .
+
+
 reserved = {
     'if': 'IF',
     'else': 'ELSE',
@@ -38,9 +40,13 @@ reserved = {
     'true': 'TRUE',
     'false': 'FALSE',
     'compare': 'COMPARE',
-    'current': 'CURRENT'
+    'current': 'CURRENT',
+    'list': 'LIST'
 }
 tokens = [
+    'INICIO',
+    'FIN',
+    'OPEN_TAG_WITH_ECHO',
     'PUNTOYCOMA',
     'PUNTO',
     'COMA',
@@ -76,8 +82,6 @@ tokens = [
     'BOOLEANO',
     'MAYORQUE',
     'MENORQUE',
-    'INICIO',
-    'FIN',
     'CADENA',
     'ENTERO',
     'FLOTANTE',
@@ -93,7 +97,8 @@ tokens = [
     'PUBLIC',
     'PROTECTED',
     'PRIVATE',
-    'TEXTOSENCILLO'
+    'TEXTOSENCILLO',
+    'ESPACIOENBLANCO'
  ] + list(reserved.values())
 
 t_PUNTOYCOMA = r';'
@@ -130,10 +135,17 @@ t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
 #cindy
+def t_INICIO(t):
+    r'<[?%](([Pp][Hh][Pp][ \t\r\n]?)|=)?'
+    return t
 
+def t_FIN(t):
+    r'[?%]>\r?\n?'
+    return t
 
 def t_OPERASIG_ARRAY(t):
     r'(\=){1}(\>){1}'
+
 def t_TEXTOSENCILLO(t):
     r'([A-Z].*?[\.!?]|[A-Z].*(\ )*)'
     return t
@@ -164,16 +176,10 @@ def t_OPERLOGICO_NOT(t):
     return t
 #cindy
 
-
-def t_INICIO(t):
-    r'<\?php'
+def t_ESPACIOENBLANCO(t):
+    r'[ \t\r\n]+'
+    t.lexer.lineno += t.value.count("\n")
     return t
-
-
-def t_FIN(t):
-    r'\?>'
-    return t
-
 
 def t_ECHO(t):
     r'echo'
@@ -216,7 +222,8 @@ def t_CADENA(t):
 
 
 t_COMENTARIO_UNA_LINEA =r'//'+'.*'
-t_COMENTARIO_LARGO = r'/\*'+'.*'+'\*/'
+#t_COMENTARIO_LARGO = r'/\*'+'.*'+'\*/'
+t_COMENTARIO_LARGO = r'\/\*(.|\n)*?\*\/|\/\/([^?%\n]|[?%](?!>))*\n?|\#([^?%\n]|[?%](?!>))*\n?'
 
 
 def t_FLOTANTE(t):
@@ -232,13 +239,17 @@ def t_FLOTANTE(t):
 
 def t_NOMBRE(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = reserved.get(t.value, "VARIABLE")
+    t.type = reserved.get(t.value, "NOMBRE")
     return t
 
 
 
-def t_VARIABLE_PHP(t):
-    r'\$[a-zA-Z_][a-zA-Z0-9_]*'
+# def t_VARIABLE_PHP(t):  
+#     r'\$[a-zA-Z_][a-zA-Z0-9_]*'
+#     return t
+
+def t_VARIABLE_PHP(t):  
+    r'\$[A-Za-z_][\w_]*'
     return t
 
 
@@ -306,5 +317,26 @@ if __name__ == '__main__':
 
 
 print("Analizador Léxico")
+
+
+
+#No borrar porfis - Cindy
+# validador = lex.lex()
+# def getTokens(lex):
+#     while True:
+#         tok = lex.token()
+#         if not tok:
+#             break
+#         print(tok)
+
+
+# linea = " "
+# codigo = open("source.vb")
+# for linea in codigo:
+#     validador.input(linea)
+#     getTokens(validador)
+# codigo.close()
+
+# print("Analisis Terminado: ")
 
 
