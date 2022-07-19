@@ -15,6 +15,8 @@ def p_sentencias(p):
                   | inicio
                   | fin
                   | comentario_largo
+                  | lista
+                  | asignarvalores
     '''
 
 def p_inicio(p):
@@ -59,9 +61,9 @@ def p_operador(p):
 def p_comparacion(p):
     '''comparacion : MAYORQUE
                    | MENORQUE
-                   | MENORQUE OPERASIGNACION
-                   | MAYORQUE OPERASIGNACION
-                   | MENORQUE OPERASIGNACION MAYORQUE
+                   | MENORQUE IGUAL
+                   | MAYORQUE IGUAL
+                   | MENORQUE IGUAL MAYORQUE
                    | MENORQUE MAYORQUE
     '''
 def p_opLogicos(p) :
@@ -74,7 +76,7 @@ def p_opLogicos(p) :
 
 
 def p_asignacion(p):
-    '''asignacion : VARIABLE_PHP OPERASIGNACION valor PUNTOYCOMA
+    '''asignacion : VARIABLE_PHP IGUAL valor PUNTOYCOMA
     '''
 def p_asignacion_abreviado(p):
     '''asignacion_abreviado : MASIGUAL
@@ -121,12 +123,26 @@ def p_rellenoArray(p):  # clave => valor
 #Daniel Estructuras---Correegido Cindy
 
 #Cindy
-def p_nombreFuncion(p):
-    '''nombreFuncion : NOMBRE PARENIZQ PARENDER
+def p_defnombreFuncion(p):
+    '''defnombreFuncion : NOMBRE PARENIZQ PARENDER
     '''
+def p_asignarvalores(p):
+    '''asignarvalores : asignarvalores COMA valor
+                       | valor
+    '''
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
 #Estructuras -----Cindy
 #🅻🅸🆂🆃🅰🆂 - EJEMPLOS
 #$lista = list($cadena,$frase1,$frase2);
+def p_lista(p):
+    '''lista : PARENDER asignarvalores PARENIZQ
+             | PARENDER
+             | PARENIZQ
+    '''
 
 #$var = new hola();
 
@@ -135,11 +151,11 @@ def p_nombreFuncion(p):
 #FUE PRESENTADO PERO FALTA VERIFICAR PARA CORREGIR
 
 #def p_crearHeap(p):
- #   '''crearHeap : varphp ESPACIOENBLANCO OPERASIGNACION ESPACIOENBLANCO NEW ESPACIOENBLANCO nombreFuncion PUNTOYCOMA
-  #                  | nombreFuncion'''
+ #   '''crearHeap : varphp ESPACIOENBLANCO IGUAL ESPACIOENBLANCO NEW ESPACIOENBLANCO defnombreFuncion PUNTOYCOMA
+  #                  | defnombreFuncion'''
 
 # def p_crearArreglos(p):
-#     '''crearArreglos : variable OPERASIGNACION array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
+#     '''crearArreglos : variable IGUAL array PARENIZQ rellenoArray PARENDER PUNTOYCOMA'''
 
 
 

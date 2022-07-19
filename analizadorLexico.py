@@ -41,7 +41,9 @@ reserved = {
     'false': 'FALSE',
     'compare': 'COMPARE',
     'current': 'CURRENT',
-    'list': 'LIST'
+    'list': 'LIST',
+    'empty': 'EMPTY'
+
 }
 tokens = [
     'INICIO',
@@ -59,7 +61,7 @@ tokens = [
     'CORCHIZQ',
     'CORCHDER',
     'AMPERSAND',
-    'OPERASIGNACION',
+    'IGUAL',
     'MAS',
     'MENOS',
     'MULTIPLICA',
@@ -106,14 +108,14 @@ t_PUNTO = r'\.'
 t_COMA = r','
 t_COMDOB = r'\"'
 t_DOSPUNTOS = r':'
-t_PARENIZQ = r'\('
-t_PARENDER = r'\)'
+# t_PARENIZQ = r'\('
+# t_PARENDER = r'\)'
 t_LLAVEIZQ = r'\{'
 t_LLAVEDER = r'\}'
 t_CORCHIZQ = r'\['
 t_CORCHDER = r'\]'
 t_AMPERSAND = r'\&'
-t_OPERASIGNACION = r'='
+t_IGUAL = r'='
 t_MAS = r'\+'
 t_MENOS = r'\-'
 t_MULTIPLICA = r'\*'
@@ -135,6 +137,15 @@ t_OPERACIONSUM = r'sum\(\)'
 t_OPERAPUT = r'put'
 
 #cindy
+
+def t_PARENIZQ(t):
+    r'\('
+    return t
+
+def t_PARENDER(t):
+    r'\)'
+    return t
+
 def t_INICIO(t):
     r'<[?%](([Pp][Hh][Pp][ \t\r\n]?)|=)?'
     return t
